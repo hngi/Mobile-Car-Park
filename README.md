@@ -10,13 +10,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Naming Rules
 * **Pascal case** for Classes and Interfaces or Enums 
-> eg LoginActivity()
+``` eg LoginActivity() ```
 
 * **Camel case** for Methods and Fields
-> eg openTool()
+``` eg openTool() ```
 
 * **snake case** for xml id's, layout names and drawable names
-> eg @+id/register_button
+``` eg @+id/register_button ```
 
 ## Additional Rules
 
