@@ -13,7 +13,15 @@
             android:theme="@style/AppTheme"/>
         <activity
             android:name=".views.SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".views.InvoiceActivity"></activity>
         <activity android:name=".views.DetailsActivity"></activity>
         <activity android:name=".EnterOTP"></activity>
@@ -23,13 +31,9 @@
             android:name=".MyVehicleActivity"
             android:label="@string/title_activity_my_vehicle"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".views.MainActivity"></activity>
-        <activity android:name=".views.ProfileActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".views.ProfileActivity" />
+        <activity android:name=".views.MainActivity">
         </activity>
     </application>
 
