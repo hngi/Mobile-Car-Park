@@ -7,4 +7,5 @@
     <color name="color_yellow">#FFC408</color>
     <color name="color_black">#4A4A4A</color>
     <color name="text_black">#333333</color>
+    <color name="button_edge">#C0BFBF</color>
 </resources>
