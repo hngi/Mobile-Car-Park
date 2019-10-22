@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.CarDetailsActiviy"
+    android:orientation="vertical">
+
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_details_form"
+        android:orientation="vertical"
+        />
+
+    <ImageView
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/car_icon"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Car Plate Number"
+        android:fontFamily="@font/nunito"
+        />
+
+
+    <EditText
+        android:id="@+id/car_plate_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="20dp"
+        android:hint="XXXXXXXXXX"
+        android:inputType="textCapCharacters"
+        android:padding="10dp"
+        android:fontFamily="@font/nunito"
+
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Car make and Model"
+        android:fontFamily="@font/nunito"
+
+        />
+
+    <EditText
+        android:id="@+id/car_model"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="20dp"
+        android:hint="Lexus RX330"
+        android:inputType="textCapCharacters"
+        android:padding="20dp"
+        android:fontFamily="@font/nunito"
+
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+
+        <Switch
+            android:id="@+id/primary_ride"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:checked="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="This is my main ride"
+            android:fontFamily="@font/nunito"
+
+            />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/save_car_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/colorPrimary"
+        android:fontFamily="@font/nunito"
+        android:text="Save"
+        android:textColor="@color/color_white"
+        />
+
+</LinearLayout>
+
+
