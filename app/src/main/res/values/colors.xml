@@ -8,4 +8,5 @@
     <color name="color_black">#4A4A4A</color>
     <color name="text_black">#333333</color>
     <color name="otp_edit_text_black">#66777777</color>
+    <color name="button_edge">#C0BFBF</color>
 </resources>
