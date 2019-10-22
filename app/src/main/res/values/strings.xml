@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Car Park</string>
+    <string name="title_activity_my_vehicle">My Vehicle</string>
 </resources>

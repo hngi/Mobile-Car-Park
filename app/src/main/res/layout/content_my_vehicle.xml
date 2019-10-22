@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MyVehicleActivity"
+    tools:showIn="@layout/activity_my_vehicle">
+
+    <ImageView
+        android:id="@+id/car_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/car_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/Linear_Layout1"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/car_icon"-->
+    <!--        android:layout_marginRight="20dp"-->
+    <!--        android:layout_marginLeft="20dp"-->
+    <!--        android:background="@drawable/cornered_rectangle"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        android:weightSum="100">-->
+
+    <!--        <TextView-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_weight="50"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Car Plate Number"-->
+    <!--            android:padding="5dp"-->
+    <!--            android:layout_marginLeft="30dp"-->
+    <!--            android:layout_marginTop="5dp"-->
+    <!--            android:textColor="#fff" />-->
+
+    <!--        <View-->
+    <!--            android:layout_width="1dp"-->
+    <!--            android:layout_height="30dp"-->
+    <!--            android:background="#fff"-->
+    <!--            android:layout_gravity="center_vertical"/>-->
+
+    <!--        <TextView-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_weight="50"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Car Make/Model"-->
+    <!--            android:padding="5dp"-->
+    <!--            android:layout_marginLeft="30dp"-->
+    <!--            android:layout_marginTop="5dp"-->
+    <!--            android:textColor="#fff" />-->
+
+    <!--    </LinearLayout>-->
+
+    <LinearLayout
+        android:id="@+id/Linear_Layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/car_icon"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/cornered_rectangle_white_backgroud"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="30"
+            android:layout_height="wrap_content"
+            android:text="XXXXXX"
+            android:padding="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#000" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="#000"/>
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="40"
+            android:layout_height="wrap_content"
+            android:text="Lexus RX330"
+            android:padding="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#000" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="20"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="edit"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"/>
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
