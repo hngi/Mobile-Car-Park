@@ -7,5 +7,5 @@
     <string name="change">Change</string>
     <string name="next">Next</string>
     <string name="addVehicle">Add Vehicle</string>
-
+    <string name="title_activity_my_vehicle">My Vehicle</string>
 </resources>
