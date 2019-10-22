@@ -73,6 +73,7 @@
             android:layout_weight="30"
             android:layout_height="wrap_content"
             android:text="XXXXXX"
+            android:fontFamily="@font/nunito"
             android:padding="5dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="5dp"
@@ -91,6 +92,7 @@
             android:layout_weight="40"
             android:layout_height="wrap_content"
             android:text="Lexus RX330"
+            android:fontFamily="@font/nunito"
             android:padding="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
@@ -105,6 +107,7 @@
             android:layout_gravity="center_vertical"
             android:gravity="right"
             android:text="edit"
+            android:fontFamily="@font/nunito"
             android:textStyle="bold"
             android:textAllCaps="true"
             android:textColor="@color/colorPrimary"/>
