@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Car Park</string>
+    <string name="checkIn">Check-In</string>
+    <string name="checkOut">Check-Out</string>
+    <string name="duration">Duration</string>
+    <string name="vehicleNo">Vehicle No.</string>
+    <string name="change">Change</string>
+    <string name="next">Next</string>
+    <string name="addVehicle">Add Vehicle</string>
+
 </resources>
