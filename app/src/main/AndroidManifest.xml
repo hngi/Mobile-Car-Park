@@ -9,15 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.PaymentMethodsActivity" android:label="Payment Method"></activity>
-
-        <activity android:name=".views.OnboardingActivity"
-            android:theme="@style/AppTheme"/>
+        <activity android:name=".views.PromotionActivity"></activity>
+        <activity
+            android:name=".views.PaymentMethodsActivity"
+            android:label="Payment Method" />
+        <activity
+            android:name=".views.OnboardingActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"  />
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,14 +29,15 @@
         <activity android:name=".views.InvoiceActivity"></activity>
         <activity android:name=".views.DetailsActivity"></activity>
         <activity android:name=".EnterOTP" android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".views.ScheduleActivity" />
         <activity android:name=".views.ProfileActivity" />
-        <activity android:name=".views.MainActivity"></activity>
+        <activity android:name=".views.MainActivity" />
         <activity android:name=".VerifyNumber" />
         <activity
             android:name=".MyVehicleActivity"
             android:label="@string/title_activity_my_vehicle"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

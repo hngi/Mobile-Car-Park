@@ -8,6 +8,13 @@
     android:layout_height="match_parent"
     tools:context=".views.MainActivity">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/button_curve"
+        android:text="Intent"/>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:id="@+id/frame"
