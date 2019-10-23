@@ -13,7 +13,7 @@ public class InvoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoice);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Invoice");
+        ActionBar ab = getActionBar();
+        ab.setTitle("Invoice");
     }
 }
