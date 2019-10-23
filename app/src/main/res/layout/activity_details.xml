@@ -56,12 +56,14 @@
                 android:fontFamily="@font/nunito"
                 android:layout_marginStart="30dp"
                 android:layout_weight="1"
+                android:textSize="12sp"
                 android:text="Available" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
+                android:textSize="12sp"
                 android:layout_marginEnd="30dp"
                 android:fontFamily="@font/nunito"
                 android:gravity="end"
@@ -84,8 +86,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:padding="8dp"
+                android:layout_marginStart="8dp"
                 android:text="Address"
+
                 android:fontFamily="@font/nunito"
                 android:textColor="#757575"
                 android:textSize="16sp" />
@@ -95,7 +98,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/address"
                 android:fontFamily="@font/nunito"
-                android:layout_margin="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
                 android:text="Bisway St, Admiralty way, Lekki Lagos"
                 android:textColor="#000000"
                 android:textSize="14sp" />
@@ -139,7 +143,7 @@
                 android:layout_margin="16dp"
                 android:text="Security"
                 android:fontFamily="@font/nunito"
-                android:textColor="#757575"
+                android:textColor="#000000"
                 android:textSize="14sp" />
 
             <ImageView
@@ -163,6 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
             android:text="Operation"
             android:fontFamily="@font/nunito"
             android:textColor="#757575"
@@ -181,6 +186,7 @@
             android:id="@+id/bookButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:layout_margin="16dp"
             android:background="@drawable/button_curve"
             android:text="Book"
