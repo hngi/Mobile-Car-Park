@@ -139,7 +139,7 @@
             android:padding="8dp"
             android:text="Operation"
             android:textColor="#757575"
-            android:textSize="@dimen/text_16sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
