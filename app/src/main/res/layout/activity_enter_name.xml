@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/color"
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:ignore="MissingConstraints" />
@@ -19,10 +19,37 @@
         android:layout_height="match_parent">
 
 
+
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="MissingConstraints">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                tools:ignore="MissingConstraints"
+                android:layout_marginTop="150dp">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Enter Name"
+                    android:padding="3dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="93dp"
+                    android:layout_marginRight="250dp"
+                    android:layout_marginLeft="15dp"
+                    tools:ignore="MissingConstraints" />
+
+            </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -72,58 +99,34 @@
                         tools:layout_editor_absoluteY="119dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </RelativeLayout>
 
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:ignore="MissingConstraints"
-                android:layout_marginTop="350dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                >
-                <Button
-                    android:id="@+id/btnContinue"
-                    android:layout_width="370dp"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="70dp"
-                    android:background="@drawable/rounded_triangle_blue"
-                    android:text="Continue"
-                    android:textAllCaps="false"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp"
-                    android:visibility="visible"
-                    tools:ignore="MissingConstraints" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:ignore="MissingConstraints"
-                android:layout_marginTop="150dp"
-
-                >
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Enter Name"
-                    android:padding="10dp"
-                    android:textSize="23sp"
-                    android:textColor="@color/text_black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="93dp"
-                    android:layout_marginRight="250dp"
-                    android:layout_marginLeft="15dp"
-                    tools:ignore="MissingConstraints" />
+                    tools:ignore="MissingConstraints"
+                    android:layout_marginTop="50dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+                    <Button
+                        android:id="@+id/btnContinue"
+                        android:layout_width="370dp"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="70dp"
+                        android:background="@drawable/rounded_triangle_blue"
+                        android:text="Continue"
+                        android:layout_marginLeft="20dp"
+                        android:textAllCaps="false"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp"
+                        android:visibility="visible"
+                        tools:ignore="MissingConstraints" />
 
+                </RelativeLayout>
             </RelativeLayout>
+
 
 
 
