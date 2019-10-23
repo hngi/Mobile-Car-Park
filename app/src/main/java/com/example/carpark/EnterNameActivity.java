@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.carpark.views.MainActivity;
 
@@ -20,17 +21,26 @@ public class EnterNameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_name);
         firstName = findViewById(R.id.firstName);
+        ImageButton back = (ImageButton) findViewById(R.id.back);
         lastName = findViewById(R.id.lastName);
         btnContinue = findViewById(R.id.btnContinue);
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        //Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        //mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
 
 
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editContinue();
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(EnterNameActivity.this,EnterOTP.class);
+                startActivity(i);
             }
         });
 
