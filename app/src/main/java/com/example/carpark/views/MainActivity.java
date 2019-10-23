@@ -21,6 +21,13 @@ public class MainActivity extends AppCompatActivity implements  PreferenceFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        moveToProfile();
+    }
+
+    private void moveToProfile() {
+        Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
+        startActivity(intent);
     }
 
     @Override
