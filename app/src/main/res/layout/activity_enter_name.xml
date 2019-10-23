@@ -100,33 +100,31 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    tools:ignore="MissingConstraints"
+                    android:layout_marginTop="50dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+                    <Button
+                        android:id="@+id/btnContinue"
+                        android:layout_width="370dp"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="70dp"
+                        android:background="@drawable/rounded_triangle_blue"
+                        android:text="Continue"
+                        android:layout_marginLeft="20dp"
+                        android:textAllCaps="false"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp"
+                        android:visibility="visible"
+                        tools:ignore="MissingConstraints" />
 
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                tools:ignore="MissingConstraints"
-                android:layout_marginTop="50dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                >
-                <Button
-                    android:id="@+id/btnContinue"
-                    android:layout_width="370dp"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="70dp"
-                    android:background="@drawable/rounded_triangle_blue"
-                    android:text="Continue"
-                    android:layout_marginLeft="20dp"
-                    android:textAllCaps="false"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp"
-                    android:visibility="visible"
-                    tools:ignore="MissingConstraints" />
-
-            </RelativeLayout>
+                </RelativeLayout>
             </RelativeLayout>
 
 
