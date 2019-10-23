@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Car Park</string>
+    <string name="app_name"></string>
     <string name="checkIn">Check-In</string>
     <string name="checkOut">Check-Out</string>
     <string name="duration">Duration</string>
