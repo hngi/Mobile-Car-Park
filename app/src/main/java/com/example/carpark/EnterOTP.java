@@ -2,14 +2,22 @@ package com.example.carpark;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class EnterOTP extends AppCompatActivity {
 
     EditText otp1,otp2,otp3,otp4;
+    TextView receiveNumber;
+    ImageView backToVerify;
+    Button btnToNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +28,20 @@ public class EnterOTP extends AppCompatActivity {
         otp2 = findViewById(R.id.edit_otp2);
         otp3 = findViewById(R.id.edit_otp3);
         otp4 = findViewById(R.id.edit_otp4);
+        receiveNumber = findViewById(R.id.display_number);
+        backToVerify = findViewById(R.id.back_verify_num);
+        btnToNext = findViewById(R.id.btn_next_otp);
 
+        //arrow back click to return to previous activity
+        backToVerify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backVerify = new Intent(EnterOTP.this, VerifyNumber.class);
+                startActivity(backVerify);
+            }
+        });
+
+        //TextWatcher to change focus after each OTP number is entered
         otp1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -109,5 +130,16 @@ public class EnterOTP extends AppCompatActivity {
 
             }
         });
+
+        //next button intent
+        btnToNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toEnterName = new Intent(EnterOTP.this, EnterNameActivity.class);
+                startActivity(toEnterName);
+            }
+        });
+        
+        
     }
 }
