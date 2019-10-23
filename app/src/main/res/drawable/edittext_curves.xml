@@ -5,7 +5,7 @@
 
     <solid android:color="@android:color/transparent"
         />
-    <stroke android:width="5px"
+    <stroke android:width="3px"
         android:color="@color/button_edge"/>
     <corners android:radius="5dp"/>
 </shape>
