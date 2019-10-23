@@ -26,7 +26,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.InvoiceActivity" />
-        <activity android:name=".views.DetailsActivity" />
+        <activity
+            android:name=".views.DetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EnterOTP" />
         <activity android:name=".views.ScheduleActivity" />
         <activity android:name=".views.ProfileActivity" />
