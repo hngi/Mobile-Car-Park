@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Done by Ehma Ugbogo; Please do not change-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/addcard_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/addcard_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/addcard_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@color/color_white"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:id="@+id/addcard_relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+        <!--
+        <androidx.cardview.widget.CardView
+            android:layout_width="fill_parent"
+            android:layout_height="225dp"
+            app:cardCornerRadius="5dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:background="@color/colorPrimary">
+                <ImageView
+                    android:id="@+id/addcard_cardtype"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/master_card_logo"/>
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_more_horiz_black_24dp"
+                    android:layout_alignParentRight="true"/>
+                <TextView
+                    android:id="@+id/addcard_card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addcard_cardtype"
+                    android:text="****  ****  ****  7637"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:id="@+id/addcard_card_nameTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addcard_card_number"
+                    android:text="CARD HOLDER"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="32dp"/>
+                <TextView
+                    android:id="@+id/addcard_card_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addcard_card_nameTitle"
+                    android:text="A J LastName"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="0dp"/>
+
+
+                <TextView
+                    android:id="@+id/addcard_expire_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addcard_card_number"
+                    android:layout_toEndOf="@id/addcard_card_nameTitle"
+                    android:text="EXPIRES"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="32dp"/>
+                <TextView
+                    android:id="@+id/addcard_expire_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addcard_card_nameTitle"
+                    android:layout_alignParentRight="true"
+                    android:text="14/2211"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="0dp"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+-->
+        <com.vinaygaba.creditcardview.CreditCardView
+            android:id="@+id/addcard_creditCardView"
+            android:layout_width="fill_parent"
+            android:layout_height="225dp"
+            android:background="@drawable/cardbackground_sky"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            app:cardNumber="000000000000000"
+            app:cardName="Your Card Name"
+            app:cardNumberTextColor="#cccccc"
+            app:cardNumberFormat="only_last_four"
+            app:cardNameTextColor="#cccccc"
+            app:type="auto"
+            app:putChip="false"
+            app:expiryDate = "00/00"
+            app:expiryDateTextColor="#cccccc"
+            app:isEditable="false"
+            app:validTillTextColor="#cccccc"
+            app:hintTextColor = "#cccccc" />
+        <!--app:brandLogo="@drawable/ic_logo_blue"-->
+
+        <com.braintreepayments.cardform.view.CardForm
+            android:id="@+id/addcard_card_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addcard_creditCardView"/>
+
+        <Button
+            android:id="@+id/addcard_save_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cornered_rectangle"
+            android:fontFamily="@font/nunito"
+            android:textStyle="bold"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:textColor="@color/color_white"
+            android:layout_below="@id/addcard_card_form"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!--<com.fevziomurtekin.payview.Payview
+            android:id="@+id/addcard_payview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBgColor="@color/colorPrimary"
+            app:cardFgColor="@android:color/white"
+            app:cardTextColor="@color/text_black"
+            app:cardNameHelperText="Enter to card name. Max 25 characters."
+            app:cardCvTextSize="14"
+            app:cardNoTextSize="14"
+            app:cardNumberHelperText="You must enter your 16-digit card number."
+            app:cardYearTextSize="13"
+            app:cardNameTextSize="15"
+            app:cardMonthTextSize="13"
+            app:cardAnimationType="vertical"
+            app:cardCvErrorText="You must enter 3-digit characters"
+            app:cardMonthErrorText="You must enter 2-digit characters and you'll enter to number the most digit-value is '12'"
+            app:cardYearErrorText="You must enter 2-digit characters and you'll enter to number the most digit-value is '99'"
+            app:cardExpiredErrorText="Your card has expired. Please enter the usage date correctly." />
+    -->
+    </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
