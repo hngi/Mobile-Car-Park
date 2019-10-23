@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Car Park</string>
+    <string name="app_name"></string>
     <string name="checkIn">Check-In</string>
     <string name="checkOut">Check-Out</string>
     <string name="duration">Duration</string>
@@ -8,6 +8,13 @@
     <string name="next">Next</string>
     <string name="addVehicle">Add Vehicle</string>
     <string name="title_activity_my_vehicle">My Vehicle</string>
+    <string name="card">Card</string>
+    <string name="add_payment">Add Payment Card</string>
+    <string name="others">Others</string>
+    <string name="barter">Barter</string>
+    <string name="paystack">Paystack</string>
+    <string name="promotions">Promotions</string>
+    <string name="add_promo_code">Add Promo Code</string>
     <string name="show_qr">Show QR code at parking Lot</string>
     <string name="qr_code">QR CODE</string>
     <string name="booking_id">Booking ID</string>
@@ -23,4 +30,8 @@
     <string name="vehicle">Vehicle</string>
     <string name="lexus_rx330">Lexus RX330</string>
     <string name="lng122bw">LNG122BW</string>
+    <string name="promo_code"><font size="16">Promo Code</font></string>
+    <string name="enter_the_promo_code_and_it_will_be_applied_to_your_next_parking_reservation">Enter the promo code and it will be applied\n to your next parking reservation</string>
+    <string name="apply">Apply</string>
+
 </resources>
