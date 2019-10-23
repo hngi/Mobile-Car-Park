@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Car Park</string>
+    <string name="app_name"></string>
     <string name="checkIn">Check-In</string>
     <string name="checkOut">Check-Out</string>
     <string name="duration">Duration</string>
@@ -30,7 +30,7 @@
     <string name="vehicle">Vehicle</string>
     <string name="lexus_rx330">Lexus RX330</string>
     <string name="lng122bw">LNG122BW</string>
-    <string name="promo_code"><font size = "16">Promo Code</font></string>
+    <string name="promo_code"><font size="16">Promo Code</font></string>
     <string name="enter_the_promo_code_and_it_will_be_applied_to_your_next_parking_reservation">Enter the promo code and it will be applied\n to your next parking reservation</string>
     <string name="apply">Apply</string>
 
