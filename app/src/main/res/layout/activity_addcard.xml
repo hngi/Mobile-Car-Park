@@ -27,32 +27,116 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <RelativeLayout
-        android:id="@+id/addcard_relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        <RelativeLayout
+            android:id="@+id/addcard_relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
+        <!--
+        <androidx.cardview.widget.CardView
+            android:layout_width="fill_parent"
+            android:layout_height="225dp"
+            app:cardCornerRadius="5dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:background="@color/colorPrimary">
+                <ImageView
+                    android:id="@+id/addcard_cardtype"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/master_card_logo"/>
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_more_horiz_black_24dp"
+                    android:layout_alignParentRight="true"/>
+                <TextView
+                    android:id="@+id/addcard_card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addcard_cardtype"
+                    android:text="****  ****  ****  7637"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:id="@+id/addcard_card_nameTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addcard_card_number"
+                    android:text="CARD HOLDER"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="32dp"/>
+                <TextView
+                    android:id="@+id/addcard_card_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addcard_card_nameTitle"
+                    android:text="A J LastName"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="0dp"/>
+
+
+                <TextView
+                    android:id="@+id/addcard_expire_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addcard_card_number"
+                    android:layout_toEndOf="@id/addcard_card_nameTitle"
+                    android:text="EXPIRES"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="32dp"/>
+                <TextView
+                    android:id="@+id/addcard_expire_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addcard_card_nameTitle"
+                    android:layout_alignParentRight="true"
+                    android:text="14/2211"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="0dp"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+-->
         <com.vinaygaba.creditcardview.CreditCardView
             android:id="@+id/addcard_creditCardView"
             android:layout_width="fill_parent"
             android:layout_height="225dp"
-            android:background="@color/colorPrimary"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
+            android:background="@drawable/cardbackground_sky"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
             app:cardNumber="000000000000000"
-            app:cardName="Your Name"
+            app:cardName="Your Card Name"
             app:cardNumberTextColor="#cccccc"
-            app:cardNumberFormat="masked_all_but_last_four"
+            app:cardNumberFormat="only_last_four"
             app:cardNameTextColor="#cccccc"
             app:type="auto"
-            app:brandLogo="@drawable/ic_logo_blue"
             app:putChip="false"
             app:expiryDate = "00/00"
             app:expiryDateTextColor="#cccccc"
             app:isEditable="false"
             app:validTillTextColor="#cccccc"
             app:hintTextColor = "#cccccc" />
+        <!--app:brandLogo="@drawable/ic_logo_blue"-->
 
         <com.braintreepayments.cardform.view.CardForm
             android:id="@+id/addcard_card_form"
@@ -71,7 +155,7 @@
             android:textAllCaps="false"
             android:textColor="@color/color_white"
             android:layout_below="@id/addcard_card_form"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:padding="16dp"
             android:layout_marginBottom="16dp"/>
 

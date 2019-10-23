@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.braintreepayments.cardform.OnCardFormFieldFocusedListener;
 import com.braintreepayments.cardform.OnCardFormValidListener;
@@ -42,17 +41,19 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcard);
 
-        Toolbar toolbar=findViewById(R.id.addcard_toolbar);
+        Toolbar toolbar = findViewById(R.id.addcard_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         init();
         cardListener();
+        /*creditCardView = findViewById(R.id.addcard_creditCardView);
+        creditCardView.setCardFrontBackground(R.drawable.button_curve);*/
 
     }
 
 
-    private void init(){
+    private void init() {
         findViewById(R.id.addcard_save_btn).setOnClickListener(this);
         cardForm = findViewById(R.id.addcard_card_form);
         creditCardView = findViewById(R.id.addcard_creditCardView);
@@ -61,7 +62,8 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void setUpCardCreditCardView() {
-
+        //creditCardView.setBackgroundResource(R.drawable.card);
+        creditCardView.setCardFrontBackground(R.drawable.button_curve);
     }
 
     private void setUpCardForm() {
@@ -74,7 +76,7 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
                 .mobileNumberExplanation("SMS is required on this number")*/
                 .actionLabel("Add Card")
                 .setup(this);
-        cardForm.getCvvEditText().setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        cardForm.getCvvEditText().setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
     }
 
     private void cardListener() {
@@ -90,6 +92,7 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
             public void onCardTypeChanged(CardType cardType) {
                 int frontResource = cardType.getFrontResource();
                 creditCardView.setCardNumber(cardForm.getCardNumber());
+
 
             }
         });
@@ -122,11 +125,13 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
 
     }
 
-    private void displayExpiryData(){
+    private void displayExpiryData() {
         String expirationMonth = cardForm.getExpirationMonth();
         String expirationYear = cardForm.getExpirationYear();
 
-        creditCardView.setExpiryDate(expirationMonth+"/"+expirationYear);
+        if (!expirationMonth.equals("") && !expirationYear.equals("")) {
+            creditCardView.setExpiryDate(expirationMonth + "/" + expirationYear);
+        }
     }
 
     private void validateCardData() {
@@ -140,7 +145,7 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
             String countryCode = cardForm.getCountryCode();
             String mobileNumber = cardForm.getMobileNumber();*/
 
-            startActivity(new Intent(this,MainActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
             showToast("Card added successfully");
 
         } else {
@@ -148,8 +153,8 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
-    private void scanCard(){
-        if(cardForm.isCardScanningAvailable()){
+    private void scanCard() {
+        if (cardForm.isCardScanningAvailable()) {
             cardForm.scanCard(this);
         }
     }
@@ -157,20 +162,20 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        if(view.getId()==R.id.addcard_save_btn){
+        if (view.getId() == R.id.addcard_save_btn) {
             validateCardData();
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.addcard_menu,menu);
+        getMenuInflater().inflate(R.menu.addcard_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.addcard_menu_scan){
+        if (item.getItemId() == R.id.addcard_menu_scan) {
             scanCard();
         }
         return super.onOptionsItemSelected(item);

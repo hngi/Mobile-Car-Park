@@ -2,14 +2,20 @@ package com.example.carpark;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class EnterOTP extends AppCompatActivity {
 
     EditText otp1,otp2,otp3,otp4;
+    TextView receiveNumber;
+    ImageView backToVerify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +26,17 @@ public class EnterOTP extends AppCompatActivity {
         otp2 = findViewById(R.id.edit_otp2);
         otp3 = findViewById(R.id.edit_otp3);
         otp4 = findViewById(R.id.edit_otp4);
+        receiveNumber = findViewById(R.id.display_number);
+        backToVerify = findViewById(R.id.back_verify_num);
+
+        //arrow back click to return to previous activity
+        backToVerify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backVerify = new Intent(EnterOTP.this, VerifyNumber.class);
+                startActivity(backVerify);
+            }
+        });
 
         otp1.addTextChangedListener(new TextWatcher() {
             @Override
