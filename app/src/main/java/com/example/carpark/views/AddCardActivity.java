@@ -47,8 +47,6 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
 
         init();
         cardListener();
-        /*creditCardView = findViewById(R.id.addcard_creditCardView);
-        creditCardView.setCardFrontBackground(R.drawable.button_curve);*/
 
     }
 
