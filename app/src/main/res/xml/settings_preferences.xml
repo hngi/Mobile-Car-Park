@@ -6,6 +6,7 @@
     <Preference
         android:title="Profile Display"
         android:key="theKey"
+        android:selectAllOnFocus="true"
         android:layout="@layout/header">
 
     <intent
