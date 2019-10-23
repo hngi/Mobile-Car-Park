@@ -27,8 +27,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    //CardView, Recycler, Circle Image
+    //CardView, Recycler, Circle Image, flipper
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.github.technolifestyle:AutoImageFlipper:1.5.8'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -72,6 +73,10 @@ dependencies {
 
     //Facebook Dependencies
     implementation 'com.facebook.android:facebook-login:5.8.0'
+
+    //Onboarding
+    implementation 'com.codemybrainsout.onboarding:onboarder:1.0.4'
+
 
     //Preferences Dependencies
     implementation 'androidx.preference:preference:1.1.0'
