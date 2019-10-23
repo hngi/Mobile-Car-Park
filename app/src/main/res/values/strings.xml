@@ -8,6 +8,13 @@
     <string name="next">Next</string>
     <string name="addVehicle">Add Vehicle</string>
     <string name="title_activity_my_vehicle">My Vehicle</string>
+    <string name="card">Card</string>
+    <string name="add_payment">Add Payment Card</string>
+    <string name="others">Others</string>
+    <string name="barter">Barter</string>
+    <string name="paystack">Paystack</string>
+    <string name="promotions">Promotions</string>
+    <string name="add_promo_code">Add Promo Code</string>
     <string name="show_qr">Show QR code at parking Lot</string>
     <string name="qr_code">QR CODE</string>
     <string name="booking_id">Booking ID</string>

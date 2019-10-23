@@ -3,6 +3,7 @@ package com.example.carpark.views;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OnboardingActivity extends AhoyOnboarderActivity {
+
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,8 @@ public class OnboardingActivity extends AhoyOnboarderActivity {
 
     @Override
     public void onFinishButtonPressed() {
-
+        intent = new Intent( OnboardingActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

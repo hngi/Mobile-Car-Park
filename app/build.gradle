@@ -77,7 +77,13 @@ dependencies {
     //Onboarding
     implementation 'com.codemybrainsout.onboarding:onboarder:1.0.4'
 
+
     //Material design EditText
     implementation 'com.google.android.material:material:1.0.0'
+
+
+
+    //Preferences Dependencies
+    implementation 'androidx.preference:preference:1.1.0'
 
 }
