@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Car Park</string>
+    <string name="checkIn">Check-In</string>
+    <string name="checkOut">Check-Out</string>
+    <string name="duration">Duration</string>
+    <string name="vehicleNo">Vehicle No.</string>
+    <string name="change">Change</string>
+    <string name="next">Next</string>
+    <string name="addVehicle">Add Vehicle</string>
     <string name="title_activity_my_vehicle">My Vehicle</string>
     <string name="card">Card</string>
     <string name="add_payment">Add Payment Card</string>
@@ -8,4 +15,19 @@
     <string name="paystack">Paystack</string>
     <string name="promotions">Promotions</string>
     <string name="add_promo_code">Add Promo Code</string>
+    <string name="show_qr">Show QR code at parking Lot</string>
+    <string name="qr_code">QR CODE</string>
+    <string name="booking_id">Booking ID</string>
+    <string name="id_">#000000</string>
+    <string name="parking_slot">Parking Slot</string>
+    <string name="slot_">Floor XX Section XX Lane XX</string>
+    <string name="from">From</string>
+    <string name="date">Sun, 20 Oct.</string>
+    <string name="get_direction">Get direction</string>
+    <string name="time_to">10:00 AM</string>
+    <string name="to">To</string>
+    <string name="time_t">10:00 AM</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="lexus_rx330">Lexus RX330</string>
+    <string name="lng122bw">LNG122BW</string>
 </resources>
