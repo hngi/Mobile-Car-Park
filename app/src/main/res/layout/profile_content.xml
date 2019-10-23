@@ -95,7 +95,7 @@
         android:id="@+id/profile_phone_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:text="Phone Number"
         android:textSize="14sp"
         android:textStyle="bold"

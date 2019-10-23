@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.carpark.MyVehicleActivity;
 import com.example.carpark.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 /**
  * Created by Utibe Etim
@@ -19,7 +20,7 @@ import com.example.carpark.R;
  */
 public class ProfileActivity extends BaseActivity {
 
-    private EditText fname_edt, lname_edt, phone_edt, email_edt;
+    private TextInputLayout fname_edt, lname_edt, phone_edt, email_edt;
     private Button save_btn;
 
     @Override
