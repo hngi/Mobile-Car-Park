@@ -1,31 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--Done by Ehma Ugbogo; Please do not change-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addcard_root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".views.MainActivity">
+    android:layout_height="match_parent">
 
-    <com.fevziomurtekin.payview.Payview
-        android:id="@+id/addcard_payview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardBgColor="@android:color/holo_blue_light"
-        app:cardFgColor="@android:color/white"
-        app:cardTextColor="@color/text_black"
-        app:cardNameHelperText="Enter to card name. Max 25 characters."
-        app:cardCvTextSize="14"
-        app:cardNoTextSize="14"
-        app:cardNumberHelperText="You must enter your 16-digit card number."
-        app:cardYearTextSize="13"
-        app:cardNameTextSize="15"
-        app:cardMonthTextSize="13"
-        app:cardAnimationType="vertical"
-        app:cardCvErrorText="You must enter 3-digit characters"
-        app:cardMonthErrorText="You must enter 2-digit characters and you'll enter to number the most digit-value is '12'"
-        app:cardYearErrorText="You must enter 2-digit characters and you'll enter to number the most digit-value is '99'"
-        app:cardExpiredErrorText="Your card has expired. Please enter the usage date correctly."
-        />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/addcard_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/addcard_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@color/color_white"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <RelativeLayout
+        android:id="@+id/addcard_relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <com.vinaygaba.creditcardview.CreditCardView
+            android:id="@+id/addcard_creditCardView"
+            android:layout_width="fill_parent"
+            android:layout_height="225dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            app:cardNumber="000000000000000"
+            app:cardName="Your Name"
+            app:cardNumberTextColor="#cccccc"
+            app:cardNumberFormat="masked_all_but_last_four"
+            app:cardNameTextColor="#cccccc"
+            app:type="auto"
+            app:brandLogo="@drawable/ic_logo_blue"
+            app:putChip="false"
+            app:expiryDate = "00/00"
+            app:expiryDateTextColor="#cccccc"
+            app:isEditable="false"
+            app:validTillTextColor="#cccccc"
+            app:hintTextColor = "#cccccc" />
+
+        <com.braintreepayments.cardform.view.CardForm
+            android:id="@+id/addcard_card_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addcard_creditCardView"/>
+
+        <Button
+            android:id="@+id/addcard_save_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cornered_rectangle"
+            android:fontFamily="@font/nunito"
+            android:textStyle="bold"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:textColor="@color/color_white"
+            android:layout_below="@id/addcard_card_form"
+            android:layout_marginTop="32dp"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!--<com.fevziomurtekin.payview.Payview
+            android:id="@+id/addcard_payview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBgColor="@color/colorPrimary"
+            app:cardFgColor="@android:color/white"
+            app:cardTextColor="@color/text_black"
+            app:cardNameHelperText="Enter to card name. Max 25 characters."
+            app:cardCvTextSize="14"
+            app:cardNoTextSize="14"
+            app:cardNumberHelperText="You must enter your 16-digit card number."
+            app:cardYearTextSize="13"
+            app:cardNameTextSize="15"
+            app:cardMonthTextSize="13"
+            app:cardAnimationType="vertical"
+            app:cardCvErrorText="You must enter 3-digit characters"
+            app:cardMonthErrorText="You must enter 2-digit characters and you'll enter to number the most digit-value is '12'"
+            app:cardYearErrorText="You must enter 2-digit characters and you'll enter to number the most digit-value is '99'"
+            app:cardExpiredErrorText="Your card has expired. Please enter the usage date correctly." />
+    -->
+    </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
