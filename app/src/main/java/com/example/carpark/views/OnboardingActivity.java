@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.codemybrainsout.onboarder.AhoyOnboarderActivity;
 import com.codemybrainsout.onboarder.AhoyOnboarderCard;
+import com.example.carpark.GetStarted;
 import com.example.carpark.R;
 
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class OnboardingActivity extends AhoyOnboarderActivity {
 
     @Override
     public void onFinishButtonPressed() {
-        intent = new Intent( OnboardingActivity.this, MainActivity.class);
+        intent = new Intent( OnboardingActivity.this, GetStarted.class);
         startActivity(intent);
         finish();
     }
