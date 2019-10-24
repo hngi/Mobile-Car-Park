@@ -38,10 +38,13 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".EnterNameActivity"
-            android:theme="@style/Material"
-            android:parentActivityName=".EnterOTP"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".EnterOTP">
+        </activity>
+
         <activity android:name=".GetStarted"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
         <activity android:name=".views.PromotionActivity" />
         <activity
@@ -64,14 +67,13 @@
         <activity android:name=".BaseActivity" />
         <activity
             android:name=".views.AddCardActivity"
-            android:parentActivityName=".views.MainActivity"
+            android:parentActivityName=".views.Home"
             android:theme="@style/AppTheme.NoActionBar"
 
             android:label="Add Card"/>
              <activity
             android:name=".views.Home"
             android:label="Home"
-
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -88,7 +90,6 @@
         <activity android:name=".views.ScheduleActivity" />
         <activity android:name=".views.ProfileActivity"
             android:parentActivityName=".EnterNameActivity"/>
-        <activity android:name=".views.MainActivity" />
         <activity android:name=".VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity

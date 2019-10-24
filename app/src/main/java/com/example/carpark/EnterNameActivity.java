@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.carpark.views.MainActivity;
+import com.example.carpark.views.Home;
 
 
 public class EnterNameActivity extends AppCompatActivity {
@@ -19,13 +19,15 @@ public class EnterNameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Enter Name");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_enter_name);
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
         btnContinue = findViewById(R.id.btnContinue);
 
-        //Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        //mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
 
 
         btnContinue.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +52,7 @@ public class EnterNameActivity extends AppCompatActivity {
         } else if (lastName.isEmpty()) {
             this.lastName.setError("Please enter your last name");
         }else{
-         Intent intent = new Intent(EnterNameActivity.this, MainActivity.class);
+         Intent intent = new Intent(EnterNameActivity.this, Home.class);
          startActivity(intent);
         }
     }

@@ -36,8 +36,8 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="250dp"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/nunito_semibold"
                     android:padding="3dp"
                     android:text="Enter Name"
                     android:textColor="@color/text_black"
@@ -57,7 +57,6 @@
                 tools:ignore="MissingConstraints">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -66,8 +65,11 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/firstName"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="First Name" />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/edittext_curves"
+                        android:fontFamily="@font/nunito"
+                        android:hint="First Name"
+                        android:padding="12dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +84,6 @@
                 tools:ignore="MissingConstraints">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -93,7 +94,10 @@
                         android:id="@+id/lastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_curves"
+                        android:fontFamily="@font/nunito"
                         android:hint="Last Name"
+                        android:padding="12dp"
                         tools:layout_editor_absoluteX="20dp"
                         tools:layout_editor_absoluteY="119dp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -109,17 +113,19 @@
 
                     <Button
                         android:id="@+id/btnContinue"
-                        android:layout_width="370dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="70dp"
-                        android:background="@drawable/rounded_triangle_blue"
-                        android:padding="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/com_facebook_button_background"
+                        android:fontFamily="@font/nunito"
                         android:text="Continue"
                         android:textAllCaps="false"
                         android:textColor="#ffffff"
                         android:textSize="20sp"
+                        android:textStyle="bold"
                         android:visibility="visible"
                         tools:ignore="MissingConstraints" />
 
