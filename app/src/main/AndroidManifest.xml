@@ -76,6 +76,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TransactionActivity"
+            android:label="Transaction"/>
         <activity android:name=".views.InvoiceActivity"></activity>
         <activity android:name=".views.DetailsActivity"></activity>
         <activity android:name=".EnterOTP" android:theme="@style/AppTheme.NoActionBar" />
