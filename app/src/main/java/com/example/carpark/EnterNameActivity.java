@@ -21,7 +21,6 @@ public class EnterNameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_name);
         firstName = findViewById(R.id.firstName);
-        ImageButton back = (ImageButton) findViewById(R.id.back);
         lastName = findViewById(R.id.lastName);
         btnContinue = findViewById(R.id.btnContinue);
 
@@ -36,13 +35,6 @@ public class EnterNameActivity extends AppCompatActivity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(EnterNameActivity.this,EnterOTP.class);
-                startActivity(i);
-            }
-        });
 
     }
 
