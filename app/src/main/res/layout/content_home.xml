@@ -45,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:text="My Parking"
                     android:textSize="18sp"
+                    android:fontFamily="@font/nunito"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"/>
 
@@ -53,6 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Space"
+                    android:fontFamily="@font/nunito"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
@@ -63,7 +65,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="access all your saved"
-                    android:textSize="13sp"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/nunito"
                     android:layout_marginTop="10dp"
                     android:textColor="@android:color/white"
                     android:layout_above="@+id/text4"/>
@@ -73,7 +76,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="parking spaces"
-                    android:textSize="13sp"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/nunito"
                     android:textColor="@android:color/white"
                     android:layout_alignParentBottom="true"/>
 
@@ -108,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:background="@color/colorPrimary"
+            android:background="#344955"
             android:padding="10dp">
 
             <RelativeLayout
@@ -121,6 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Schedule"
+                    android:fontFamily="@font/nunito"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"/>
@@ -130,7 +135,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="access all your saved"
-                    android:textSize="13sp"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/nunito"
                     android:layout_marginTop="10dp"
                     android:textColor="@android:color/white"
                     android:layout_above="@+id/text7"/>
@@ -140,7 +146,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="parking spaces"
-                    android:textSize="13sp"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/nunito"
                     android:textColor="@android:color/white"
                     android:layout_alignParentBottom="true"/>
 
@@ -174,7 +181,9 @@
             android:layout_height="wrap_content"
             android:text="Available Spaces"
             android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:fontFamily="@font/nunito"
+            android:textColor="#464646"
+            android:textSize="20sp"/>
 
         <FrameLayout
             android:id="@+id/car_map"

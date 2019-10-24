@@ -28,15 +28,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/spacing_middle"
-                android:paddingBottom="@dimen/spacing_middle">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_middle"
-                    android:layout_marginRight="@dimen/spacing_middle"
                     android:text="Parking Completed"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#000"
@@ -46,13 +42,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:layout_marginEnd="@dimen/spacing_large"
                     android:text="2019-10-20 11:00AM"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textSize="14sp"
                     android:textColor="#999999"
-                    android:layout_marginRight="@dimen/spacing_large" />
+                    />
 
             </LinearLayout>
 
@@ -64,18 +58,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_mlarge"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_middle"
-                    android:layout_marginRight="@dimen/spacing_middle"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:layout_marginBottom="@dimen/spacing_medium"
                     android:drawableLeft="@drawable/ic_location"
-                    android:drawablePadding="@dimen/spacing_medium"
                     android:text="Floor 3 Section D Lane 3"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#777"
@@ -85,12 +73,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_middle"
-                    android:layout_marginRight="@dimen/spacing_middle"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:layout_marginBottom="@dimen/spacing_medium"
                     android:drawableLeft="@drawable/ic_qr"
-                    android:drawablePadding="@dimen/spacing_medium"
                     android:text="SYCP8289"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#777"
@@ -100,12 +83,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_middle"
-                    android:layout_marginRight="@dimen/spacing_middle"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:layout_marginBottom="@dimen/spacing_medium"
                     android:drawableLeft="@drawable/ic_car_card"
-                    android:drawablePadding="@dimen/spacing_medium"
                     android:text="NGN200"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#777"
@@ -151,15 +129,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/spacing_middle"
-                android:paddingBottom="@dimen/spacing_middle">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_middle"
-                    android:layout_marginRight="@dimen/spacing_middle"
                     android:text="Parking Completed"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#000"
@@ -169,13 +143,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:layout_marginEnd="@dimen/spacing_large"
                     android:text="2019-10-20 11:00AM"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textSize="14sp"
-                    android:textColor="#999999"
-                    android:layout_marginRight="@dimen/spacing_large" />
+                    android:textColor="#999999" />
 
             </LinearLayout>
 
@@ -187,18 +158,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_mlarge"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_middle"
-                    android:layout_marginRight="@dimen/spacing_middle"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:layout_marginBottom="@dimen/spacing_medium"
                     android:drawableLeft="@drawable/ic_location"
-                    android:drawablePadding="@dimen/spacing_medium"
                     android:text="Floor 3 Section D Lane 3"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#777"
@@ -208,12 +173,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_middle"
-                    android:layout_marginRight="@dimen/spacing_middle"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:layout_marginBottom="@dimen/spacing_medium"
                     android:drawableLeft="@drawable/ic_qr"
-                    android:drawablePadding="@dimen/spacing_medium"
                     android:text="SYCP8289"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#777"
@@ -223,12 +183,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_middle"
-                    android:layout_marginRight="@dimen/spacing_middle"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:layout_marginBottom="@dimen/spacing_medium"
                     android:drawableLeft="@drawable/ic_car_card"
-                    android:drawablePadding="@dimen/spacing_medium"
                     android:text="NGN200"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#777"
