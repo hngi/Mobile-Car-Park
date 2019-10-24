@@ -19,6 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <activity android:name=".ConfirmationActivity"></activity>
+        <activity
+            android:name=".EnterNameActivity"
+            android:theme="@style/Material" />
+        
+
         
         
         <!--
@@ -37,6 +44,7 @@
             android:theme="@style/Material"></activity>
         <activity android:name=".GetStarted"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <activity android:name=".views.PromotionActivity" />
         <activity
             android:name=".views.PaymentMethodsActivity"
@@ -47,21 +55,26 @@
         <activity
             android:name=".views.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
-
         <activity android:name=".BaseActivity" />
-        <activity android:name=".views.AddCardActivity"
+        <activity
+            android:name=".views.AddCardActivity"
+            android:label="Add Card"
             android:parentActivityName=".views.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="Add Card"/>
              <activity
             android:name=".views.Home"
             android:label="Home"
+
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,12 +82,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".views.InvoiceActivity"></activity>
-        <activity android:name=".views.DetailsActivity"></activity>
-        <activity android:name=".EnterOTP" android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity android:name=".views.InvoiceActivity" />
+        <activity android:name=".views.DetailsActivity" />
+        <activity
+            android:name=".EnterOTP"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.ScheduleActivity" />
         <activity android:name=".views.ProfileActivity" />
         <activity android:name=".views.MainActivity" />
