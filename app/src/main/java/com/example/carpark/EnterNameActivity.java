@@ -19,11 +19,11 @@ public class EnterNameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_enter_name);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Enter Name");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.activity_enter_name);
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
         btnContinue = findViewById(R.id.btnContinue);
