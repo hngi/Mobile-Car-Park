@@ -58,7 +58,7 @@
         <activity android:name=".views.AddCardActivity"
             android:parentActivityName=".views.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:label="Add Card">
+            android:label="Add Card"/>
              <activity
             android:name=".views.Home"
             android:label="Home"
