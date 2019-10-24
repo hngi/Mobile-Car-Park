@@ -32,6 +32,9 @@ public class EnterOTP extends AppCompatActivity {
         backToVerify = findViewById(R.id.back_verify_num);
         btnToNext = findViewById(R.id.btn_next_otp);
 
+        //receive user phone number from verify number activity
+        receiveNumber.setText(getIntent().getStringExtra("PhoneNumber"));
+
         //arrow back click to return to previous activity
         backToVerify.setOnClickListener(new View.OnClickListener() {
             @Override
