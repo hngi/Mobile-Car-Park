@@ -43,6 +43,7 @@ public class Home extends FragmentActivity implements OnMapReadyCallback, Naviga
         mapFragment.getMapAsync(this);
 
         navigationView = findViewById(R.id.navigation_view);
+        navigationView.setItemIconTintList(null);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mNavMenu = findViewById(R.id.nav_menu_icon);
 
