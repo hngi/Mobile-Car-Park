@@ -24,7 +24,8 @@ public class VerifyNumber extends AppCompatActivity {
 
         nxt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)  {
-                Intent intToMain = new Intent(VerifyNumber.this, EnterOTP.class);
+                Intent intToMain = new Intent(getApplicationContext(), EnterOTP.class);
+                intToMain.putExtra("PhoneNumber", tv.getText().toString());
                 startActivity(intToMain);
             }
 
