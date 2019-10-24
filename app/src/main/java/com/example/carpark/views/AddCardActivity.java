@@ -143,7 +143,7 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
             String countryCode = cardForm.getCountryCode();
             String mobileNumber = cardForm.getMobileNumber();*/
 
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, Home.class));
             showToast("Card added successfully");
 
         } else {

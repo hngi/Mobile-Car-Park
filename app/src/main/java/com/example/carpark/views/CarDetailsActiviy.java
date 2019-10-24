@@ -44,7 +44,7 @@ public class CarDetailsActiviy extends AppCompatActivity {
             public void onClick(View v) {
                 viewsInit();
                 checkInputBoxes();
-                Intent intent = new Intent(CarDetailsActiviy.this,MainActivity.class);
+                Intent intent = new Intent(CarDetailsActiviy.this,Home.class);
                 startActivity(intent);
 
             }
