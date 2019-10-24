@@ -21,9 +21,6 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".ConfirmationActivity"></activity>
-        <activity
-            android:name=".EnterNameActivity"
-            android:theme="@style/Material" />
         
 
         
@@ -67,7 +64,6 @@
         <activity android:name=".BaseActivity" />
         <activity
             android:name=".views.AddCardActivity"
-            android:label="Add Card"
             android:parentActivityName=".views.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
 
