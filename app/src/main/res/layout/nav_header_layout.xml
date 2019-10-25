@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@android:color/white"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/person_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lebron James"
+            android:textSize="16sp"
+            android:fontFamily="@font/nunito_semibold"
+            android:textColor="#808080"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>

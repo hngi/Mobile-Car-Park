@@ -1,16 +1,13 @@
 package com.example.carpark.views;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 
 import com.codemybrainsout.onboarder.AhoyOnboarderActivity;
 import com.codemybrainsout.onboarder.AhoyOnboarderCard;
-import com.example.carpark.GetStarted;
 import com.example.carpark.R;
 
 import java.util.ArrayList;

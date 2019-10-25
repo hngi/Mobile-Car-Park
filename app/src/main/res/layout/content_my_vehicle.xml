@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:background="#fff"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MyVehicleActivity"
-    tools:showIn="@layout/activity_my_vehicle">
+    tools:context=".views.homefragments.MyVehicleFragment"
+    tools:showIn="@layout/fragment_my_vehicle">
 
     <ImageView
         android:id="@+id/car_icon"
