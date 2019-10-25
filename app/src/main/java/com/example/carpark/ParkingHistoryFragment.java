@@ -2,7 +2,6 @@ package com.example.carpark;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
@@ -19,7 +18,7 @@ public class ParkingHistoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.activity_parking_history, container, false);
+        View root = inflater.inflate(R.layout.fragment_parking_history, container, false);
 
 
         btnRebook = root.findViewById ( R.id.btn_rebook );

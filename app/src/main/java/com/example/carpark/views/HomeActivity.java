@@ -86,7 +86,7 @@ public class HomeActivity extends FragmentActivity {
                 if (fragment != null) {
                     setUpFragment(fragment);
                 }
-                return false;
+                return true;
             }
         });
 
