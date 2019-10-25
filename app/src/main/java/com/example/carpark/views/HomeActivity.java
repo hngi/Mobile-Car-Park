@@ -56,7 +56,7 @@ public class HomeActivity extends FragmentActivity {
                 switch (item.getItemId()) {
 
                     case R.id.nav_notification:
-                        fragment = new DefaultFragment();
+                        fragment = null;
                         break;
 
                     case R.id.nav_parking_history:
