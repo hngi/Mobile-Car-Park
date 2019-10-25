@@ -41,19 +41,15 @@
 
         <activity android:name=".GetStarted"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
 
-        <activity android:name=".views.PromotionActivity" />
-        <activity
-            android:name=".views.PaymentMethodsActivity"
-            android:label="Payment Method" />
         <activity
             android:name=".views.OnboardingActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".views.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -64,19 +60,14 @@
         <activity android:name=".BaseActivity" />
         <activity
             android:name=".views.AddCardActivity"
-            android:parentActivityName=".views.Home"
+            android:parentActivityName=".views.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar"
 
             android:label="Add Card"/>
              <activity
-            android:name=".views.Home"
+            android:name=".views.HomeActivity"
             android:label="Home"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".TransactionActivity"
             android:label="Transaction"/>
@@ -88,10 +79,6 @@
             android:parentActivityName=".EnterNameActivity"/>
         <activity android:name=".VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-            android:name=".MyVehicleActivity"
-            android:label="@string/title_activity_my_vehicle"
-            android:parentActivityName=".views.ProfileActivity"/>
     </application>
 
 </manifest>

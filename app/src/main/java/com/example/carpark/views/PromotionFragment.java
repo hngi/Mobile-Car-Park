@@ -1,32 +1,32 @@
 package com.example.carpark.views;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.carpark.R;
 
-public class PromotionActivity extends AppCompatActivity {
+public class PromotionFragment extends Fragment {
     EditText rectangle;
     Button btn;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_promotion);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root =  inflater.inflate(R.layout.activity_promotion, container, false);
 
-        //change action bar title
-        getSupportActionBar().setTitle("Apply Promo Code");
 
-        //find views by id
-        rectangle = findViewById(R.id.promotion_rectangle);
-        btn = findViewById(R.id.promo_btn);
+        rectangle = root.findViewById(R.id.promotion_rectangle);
+        btn = root.findViewById(R.id.promo_btn);
 
         //set on click listener on button
         btn.setOnClickListener(new View.OnClickListener() {
@@ -39,9 +39,12 @@ public class PromotionActivity extends AppCompatActivity {
                     rectangle.requestFocus();
                     return;
                 }
-                Intent intent = new Intent(PromotionActivity.this, PaymentMethodsActivity.class);
+                Intent intent = new Intent(getContext(), PaymentMethodsFragment.class);
                 startActivity(intent);
             }
         });
+        return root;
     }
+//            Todo: getSupportActionBar().setTitle("Apply Promo Code");
+
 }
