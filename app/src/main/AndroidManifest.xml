@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.carpark">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -19,9 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".views.ConfirmationActivity"></activity>
-
+        <activity android:name=".views.PaymentMethodActivity"></activity>
+        <activity android:name=".views.ConfirmationActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -34,16 +32,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".views.EnterNameActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".views.EnterOTP">
-        </activity>
-
-        <activity android:name=".views.GetStarted"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
+        <activity
+            android:name=".views.EnterNameActivity"
+            android:parentActivityName=".views.EnterOTP"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".views.GetStarted"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".views.OnboardingActivity"
             android:theme="@style/AppTheme" />
@@ -59,24 +54,28 @@
         <activity android:name=".BaseActivity" />
         <activity
             android:name=".views.AddCardActivity"
+            android:label="Add Card"
             android:parentActivityName=".views.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Add Card"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.HomeActivity"
             android:label="Home"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".views.TransactionActivity"
-            android:label="Transaction"/>
-        <activity android:name=".views.InvoiceActivity"></activity>
-        <activity android:name=".views.DetailsActivity"></activity>
-        <activity android:name=".views.EnterOTP" android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".views.TransactionActivity"
+            android:label="Transaction" />
+        <activity android:name=".views.InvoiceActivity" />
+        <activity android:name=".views.DetailsActivity" />
+        <activity
+            android:name=".views.EnterOTP"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.ScheduleActivity" />
-        <activity android:name=".views.ProfileActivity"
-            android:parentActivityName=".views.EnterNameActivity"/>
-        <activity android:name=".views.VerifyNumber"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".views.ProfileActivity"
+            android:parentActivityName=".views.EnterNameActivity" />
+        <activity
+            android:name=".views.VerifyNumber"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

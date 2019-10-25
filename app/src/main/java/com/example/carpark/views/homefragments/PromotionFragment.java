@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.carpark.R;
+import com.example.carpark.views.PaymentMethodActivity;
 
 public class PromotionFragment extends Fragment {
     EditText rectangle;
@@ -39,7 +40,7 @@ public class PromotionFragment extends Fragment {
                     rectangle.requestFocus();
                     return;
                 }
-                Intent intent = new Intent(getContext(), PaymentMethodsFragment.class);
+                Intent intent = new Intent(getContext(), PaymentMethodActivity.class);
                 startActivity(intent);
             }
         });
