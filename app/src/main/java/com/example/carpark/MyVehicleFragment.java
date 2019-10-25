@@ -5,21 +5,24 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-public class MyVehicleActivity extends AppCompatActivity {
-
+public class MyVehicleFragment extends Fragment {
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_vehicle);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root =  inflater.inflate(R.layout.activity_my_vehicle, container, false);
+        Toolbar toolbar = root.findViewById(R.id.toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = root.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -27,6 +30,6 @@ public class MyVehicleActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        return root;
     }
-
 }
