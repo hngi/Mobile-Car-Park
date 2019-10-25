@@ -83,15 +83,19 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp">
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/firstName"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/edittext_curves"
                         android:fontFamily="@font/nunito"
                         android:hint="First Name"
+                        android:lines="1"
                         android:padding="12dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -110,7 +114,10 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
                     tools:ignore="MissingConstraints">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -120,6 +127,7 @@
                         android:background="@drawable/edittext_curves"
                         android:fontFamily="@font/nunito"
                         android:hint="Last Name"
+                        android:lines="1"
                         android:padding="12dp"
                         tools:layout_editor_absoluteX="20dp"
                         tools:layout_editor_absoluteY="119dp" />
