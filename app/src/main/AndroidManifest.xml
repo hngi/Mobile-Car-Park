@@ -25,11 +25,11 @@
         <activity
             android:name=".views.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
 
         <activity android:name=".BaseActivity" />
@@ -37,11 +37,7 @@
             android:parentActivityName=".views.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="Add Card">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
 
