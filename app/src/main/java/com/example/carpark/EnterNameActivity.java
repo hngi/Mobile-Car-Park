@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.carpark.views.MainActivity;
+import com.example.carpark.views.Home;
 
 
 public class EnterNameActivity extends AppCompatActivity {
@@ -58,7 +58,7 @@ public class EnterNameActivity extends AppCompatActivity {
         } else if (lastName.isEmpty()) {
             this.lastName.setError("Please enter your last name");
         }else{
-         Intent intent = new Intent(EnterNameActivity.this, MainActivity.class);
+         Intent intent = new Intent(EnterNameActivity.this, Home.class);
          startActivity(intent);
         }
     }

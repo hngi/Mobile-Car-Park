@@ -1,5 +1,6 @@
 package com.example.carpark.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -9,8 +10,11 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.carpark.MyVehicleActivity;
+import com.example.carpark.ParkingHistoryActivity;
 import com.example.carpark.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,6 +31,7 @@ public class Home extends FragmentActivity implements OnMapReadyCallback, Naviga
     //widgets
     private DrawerLayout mDrawerLayout;
     private ImageView mNavMenu;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +42,8 @@ public class Home extends FragmentActivity implements OnMapReadyCallback, Naviga
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView = findViewById(R.id.navigation_view);
+        navigationView.setItemIconTintList(null);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mNavMenu = findViewById(R.id.nav_menu_icon);
 
@@ -62,13 +68,41 @@ public class Home extends FragmentActivity implements OnMapReadyCallback, Naviga
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Fragment fragment = null;
+
         switch (menuItem.getItemId()) {
 
             case R.id.nav_notification:
+
                 return true;
+
             case R.id.nav_parking_history:
+                Intent parking_history = new Intent(getApplicationContext(), ParkingHistoryActivity.class);
+                startActivity(parking_history);
                 return true;
+
             case R.id.nav_pay:
+                Intent payments = new Intent(getApplicationContext(), PaymentMethodsActivity.class);
+                startActivity(payments);
+                return true;
+
+            case R.id.nav_prom:
+                Intent promotions = new Intent(getApplicationContext(), PromotionActivity.class);
+                startActivity(promotions);
+                return true;
+
+            case R.id.nav_car:
+                Intent my_vehicle = new Intent(getApplicationContext(), MyVehicleActivity.class);
+                startActivity(my_vehicle);
+                return true;
+
+            case R.id.nav_settings:
+                fragment = new SettingsFragment();
+
+                if (fragment != null) {
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.mai, fragment).commit();
+                   // setUpFragment(fragment);
+                }
                 return true;
         }
 

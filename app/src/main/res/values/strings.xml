@@ -35,5 +35,6 @@
     <string name="apply">Apply</string>
     <string name="car_park_name">Car Park Name</string>
     <string name="amount">Amount</string>
+    <string name="back">Back</string>
 
 </resources>
