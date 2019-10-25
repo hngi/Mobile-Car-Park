@@ -22,7 +22,7 @@ public class PromotionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root =  inflater.inflate(R.layout.activity_promotion, container, false);
+        View root =  inflater.inflate(R.layout.fragment_promotion, container, false);
 
 
         rectangle = root.findViewById(R.id.promotion_rectangle);
