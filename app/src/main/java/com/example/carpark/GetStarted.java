@@ -1,9 +1,11 @@
 package com.example.carpark;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.util.StringUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -43,10 +45,14 @@ public class GetStarted extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 intent = new Intent(getApplicationContext(),VerifyNumber.class);
-                intent.putExtra("EdiTtEXTvALUE", ccp.getSelectedCountryCodeWithPlus() + number.getText().toString());
-                startActivity(intent);
+                if(TextUtils.isEmpty(number.getText().toString())){
+                    number.setError("Please fill in phone number");
+                }else {
+                    intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
+                    intent.putExtra("phoneNumber", number.getText().toString());
+                    startActivity(intent);
+                }
                 return false;
-
 
             }
 
@@ -57,9 +63,14 @@ public class GetStarted extends AppCompatActivity {
         forward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(getApplicationContext(),VerifyNumber.class);
-                intent.putExtra("EdiTtEXTvALUE", ccp.getSelectedCountryCodeWithPlus() + number.getText().toString());
-                startActivity(intent);
+                if(TextUtils.isEmpty(number.getText().toString())){
+                    number.setError("Please fill in phone number");
+                }else {
+                    intent = new Intent(getApplicationContext(),VerifyNumber.class);
+                    intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
+                    intent.putExtra("phoneNumber", number.getText().toString());
+                    startActivity(intent);
+                }
             }
         });
 

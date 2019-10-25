@@ -8,37 +8,46 @@ import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class VerifyNumber extends AppCompatActivity {
 
-    Button nxt;
-    EditText tv;
+    Button next;
+    EditText etPhoneNumer;
+    TextView tvCountryCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_number);
-        ImageButton back = (ImageButton) findViewById(R.id.imageButton2);
-        nxt = findViewById(R.id.next1);
-        tv = findViewById(R.id.editText2);
 
-        nxt.setOnClickListener(new View.OnClickListener() {
+        ImageButton back = (ImageButton) findViewById(R.id.imageButton2);
+
+        next = findViewById(R.id.next1);
+        etPhoneNumer= findViewById(R.id.editText2);
+        tvCountryCode = findViewById(R.id.vn_code);
+
+        next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)  {
                 Intent intToMain = new Intent(getApplicationContext(), EnterOTP.class);
-                intToMain.putExtra("PhoneNumber", tv.getText().toString());
+                intToMain.putExtra("PhoneNumber", tvCountryCode.getText().toString()+etPhoneNumer.getText().toString());
                 startActivity(intToMain);
             }
 
         });
 
         // this allowsthe passed edittext from getstarted to show
-        tv.setText(getIntent().getStringExtra("EdiTtEXTvALUE"));
+        String countryCode = getIntent().getStringExtra("countryCode");
+        String phoneNumber = getIntent().getStringExtra("phoneNumber");
+        etPhoneNumer.setText(phoneNumber);
+        tvCountryCode.setText(countryCode);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(VerifyNumber.this,GetStarted.class);
                 startActivity(i);
+               // finish();
             }
         });
     }
