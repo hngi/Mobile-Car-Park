@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/edittext_curves"
-    tools:context=".VerifyNumber">
+    tools:context=".views.VerifyNumber">
 
     <TextView
         android:id="@+id/textView4"
@@ -46,21 +46,27 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
         <TextView
-            android:id="@+id/textView10"
-            android:layout_width="139dp"
-            android:layout_height="29dp"
-            android:layout_weight="1"
+            android:id="@+id/vn_code"
+            android:layout_width="68dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
             android:fontFamily="@font/nunito"
-            android:text="     +234" />
+            android:gravity="center_vertical"
+            android:text="+234"
+            android:textAlignment="center"
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/editText2"
-            android:layout_width="318dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:background="@drawable/edittext_curves"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:background="@drawable/edittext_line"
             android:ems="10"
-            android:inputType="phone" />
+            android:fontFamily="@font/nunito"
+            android:inputType="phone"
+            android:paddingStart="8dp"
+            android:textSize="15sp" />
 
     </LinearLayout>
 

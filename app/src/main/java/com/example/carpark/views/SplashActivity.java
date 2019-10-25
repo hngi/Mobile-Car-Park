@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.carpark.EnterNameActivity;
 import com.example.carpark.R;
 
 public class SplashActivity extends AppCompatActivity {

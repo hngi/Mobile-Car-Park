@@ -1,7 +1,6 @@
-package com.example.carpark;
+package com.example.carpark.views;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.carpark.views.Home;
+import com.example.carpark.R;
 
 
 public class EnterNameActivity extends AppCompatActivity {
@@ -39,7 +38,7 @@ public class EnterNameActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(EnterNameActivity.this,EnterOTP.class);
+                Intent i = new Intent(EnterNameActivity.this, EnterOTP.class);
                 startActivity(i);
             }
         });
@@ -58,7 +57,7 @@ public class EnterNameActivity extends AppCompatActivity {
         } else if (lastName.isEmpty()) {
             this.lastName.setError("Please enter your last name");
         }else{
-         Intent intent = new Intent(EnterNameActivity.this, Home.class);
+         Intent intent = new Intent(EnterNameActivity.this, HomeActivity.class);
          startActivity(intent);
         }
     }

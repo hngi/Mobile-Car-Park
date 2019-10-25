@@ -7,19 +7,6 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/nav_menu_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/menu_icon"/>
-
-    </RelativeLayout>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/my_parking_space_cardview"
         android:layout_width="match_parent"
