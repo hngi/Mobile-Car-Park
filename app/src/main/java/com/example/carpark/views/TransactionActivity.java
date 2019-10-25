@@ -1,14 +1,16 @@
-package com.example.carpark;
+package com.example.carpark.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ConfirmationActivity extends AppCompatActivity {
+import com.example.carpark.R;
+
+public class TransactionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirmation);
+        setContentView(R.layout.activity_transaction);
     }
 }

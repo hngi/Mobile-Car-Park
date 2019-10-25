@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".ConfirmationActivity"></activity>
+        <activity android:name=".views.ConfirmationActivity"></activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -34,12 +34,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".EnterNameActivity"
+        <activity android:name=".views.EnterNameActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".EnterOTP">
+            android:parentActivityName=".views.EnterOTP">
         </activity>
 
-        <activity android:name=".GetStarted"
+        <activity android:name=".views.GetStarted"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
@@ -55,29 +55,27 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".BaseActivity" />
         <activity
             android:name=".views.AddCardActivity"
             android:parentActivityName=".views.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar"
-
             android:label="Add Card"/>
-             <activity
+        <activity
             android:name=".views.HomeActivity"
             android:label="Home"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".TransactionActivity"
+        <activity android:name=".views.TransactionActivity"
             android:label="Transaction"/>
         <activity android:name=".views.InvoiceActivity"></activity>
         <activity android:name=".views.DetailsActivity"></activity>
-        <activity android:name=".EnterOTP" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".views.EnterOTP" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.ScheduleActivity" />
         <activity android:name=".views.ProfileActivity"
-            android:parentActivityName=".EnterNameActivity"/>
-        <activity android:name=".VerifyNumber"
+            android:parentActivityName=".views.EnterNameActivity"/>
+        <activity android:name=".views.VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
