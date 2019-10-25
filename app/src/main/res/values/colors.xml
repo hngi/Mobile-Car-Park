@@ -10,5 +10,6 @@
     <color name="otp_edit_text_black">#66777777</color>
     <color name="light_grey">#D8D8D8</color>
     <color name="button_edge">#E6E6E6</color>
+    <color name="trans_text_black">#777777</color>
 
 </resources>
