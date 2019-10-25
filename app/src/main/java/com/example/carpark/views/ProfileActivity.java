@@ -36,7 +36,7 @@ public class ProfileActivity extends BaseActivity {
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, MyVehicleFragment.class);
+                Intent intent = new Intent(ProfileActivity.this, VehicleActivity.class);
                 showToast("Your information has been saved successfully");
                 startActivity(intent);
             }
