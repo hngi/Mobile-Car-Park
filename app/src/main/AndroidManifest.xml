@@ -3,6 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.carpark">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,52 +20,63 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".EnterNameActivity"
-            android:theme="@style/Material"></activity>
-        <activity android:name=".GetStarted"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".views.PromotionActivity" />
-        <activity
-            android:name=".views.PaymentMethodsActivity"
-            android:label="Payment Method" />
+        <activity android:name=".views.ConfirmationActivity"></activity>
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".views.EnterNameActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".views.EnterOTP">
+        </activity>
+
+        <activity android:name=".views.GetStarted"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
         <activity
             android:name=".views.OnboardingActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".views.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-
-        <activity android:name=".BaseActivity" />
-        <activity android:name=".views.AddCardActivity"
-            android:parentActivityName=".views.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Add Card">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
+        <activity android:name=".BaseActivity" />
+        <activity
+            android:name=".views.AddCardActivity"
+            android:parentActivityName=".views.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Add Card"/>
+        <activity
+            android:name=".views.HomeActivity"
+            android:label="Home"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".views.TransactionActivity"
+            android:label="Transaction"/>
         <activity android:name=".views.InvoiceActivity"></activity>
         <activity android:name=".views.DetailsActivity"></activity>
-        <activity android:name=".EnterOTP" android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity android:name=".views.EnterOTP" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.ScheduleActivity" />
-        <activity android:name=".views.ProfileActivity" />
-        <activity android:name=".views.MainActivity" />
-        <activity android:name=".VerifyNumber" />
-        <activity
-            android:name=".MyVehicleActivity"
-            android:label="@string/title_activity_my_vehicle"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".views.ProfileActivity"
+            android:parentActivityName=".views.EnterNameActivity"/>
+        <activity android:name=".views.VerifyNumber"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
