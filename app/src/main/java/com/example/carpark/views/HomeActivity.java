@@ -49,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.home_toolbar);
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.navigation_view);
+        navigationView.setItemIconTintList(null);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
         mDrawerLayout.addDrawerListener(toggle);
