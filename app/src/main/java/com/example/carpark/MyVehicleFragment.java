@@ -21,7 +21,6 @@ public class MyVehicleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View root =  inflater.inflate(R.layout.activity_my_vehicle, container, false);
-        Toolbar toolbar = root.findViewById(R.id.toolbar);
 
         FloatingActionButton fab = root.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
