@@ -1,4 +1,4 @@
-package com.example.carpark;
+package com.example.carpark.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.carpark.R;
 
 public class VerifyNumber extends AppCompatActivity {
 
@@ -45,7 +47,7 @@ public class VerifyNumber extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(VerifyNumber.this,GetStarted.class);
+                Intent i = new Intent(VerifyNumber.this, GetStarted.class);
                 startActivity(i);
                // finish();
             }

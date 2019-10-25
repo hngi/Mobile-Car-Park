@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.PaymentMethodsFragment">
+    tools:context=".views.homefragments.PaymentMethodsFragment">
     <!-- Card -->
     <TextView
         android:id="@+id/card"
