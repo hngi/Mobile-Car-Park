@@ -17,6 +17,8 @@
     <string name="add_promo_code">Add Promo Code</string>
     <string name="show_qr">Show QR code at parking Lot</string>
     <string name="qr_code">QR CODE</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
     <string name="booking_id">Booking ID</string>
     <string name="id_">#000000</string>
     <string name="parking_slot">Parking Slot</string>
@@ -33,5 +35,11 @@
     <string name="promo_code"><font size="16">Promo Code</font></string>
     <string name="enter_the_promo_code_and_it_will_be_applied_to_your_next_parking_reservation">Enter the promo code and it will be applied\n to your next parking reservation</string>
     <string name="apply">Apply</string>
+    <string name="car_park_name">Car Park Name</string>
+    <string name="amount">Amount</string>
+    <string name="back">Back</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

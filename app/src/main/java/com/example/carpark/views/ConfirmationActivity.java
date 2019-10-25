@@ -1,8 +1,10 @@
-package com.example.carpark;
+package com.example.carpark.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.carpark.R;
 
 public class ConfirmationActivity extends AppCompatActivity {
 
