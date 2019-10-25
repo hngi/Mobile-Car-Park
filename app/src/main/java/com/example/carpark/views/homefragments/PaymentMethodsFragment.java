@@ -2,7 +2,6 @@ package com.example.carpark.views.homefragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -19,7 +18,7 @@ public class PaymentMethodsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root =  inflater.inflate(R.layout.activity_payment_methods, container, false);
+        View root =  inflater.inflate(R.layout.fragment_payment_methods, container, false);
 
 //        assert getSupportActionBar() != null;   //null check
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
