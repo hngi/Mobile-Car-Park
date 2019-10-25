@@ -50,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
     private void setUpDefaultFragment() {
         DefaultFragment defaultFragment = new DefaultFragment();
         setUpFragment(defaultFragment);
+        toolbar.setTitle(null);
     }
 
 
@@ -59,29 +60,36 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment = null;
+                String titile = "";
                 switch (item.getItemId()) {
 
                     case R.id.nav_notification:
+                        titile = "Notificatins";
                         fragment = null;
                         break;
 
                     case R.id.nav_parking_history:
+                        titile = "Parking History";
                         fragment = new ParkingHistoryFragment();
                         break;
 
                     case R.id.nav_pay:
+                        titile = "Payment Methods";
                         fragment = new PaymentMethodsFragment();
                         break;
 
                     case R.id.nav_prom:
+                        titile = "Promotions";
                         fragment = new PromotionFragment();
                         break;
 
                     case R.id.nav_car:
+                        titile = "My Vehicle";
                         fragment = new MyVehicleFragment();
                         break;
 
                     case R.id.nav_settings:
+                        titile = "Settings";
                         fragment = new SettingsFragment();
                         break;
 
@@ -92,6 +100,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (fragment != null) {
                     setUpFragment(fragment);
                     enableBackViews(true);
+                    toolbar.setTitle(titile);
                 }
                 return true;
             }
