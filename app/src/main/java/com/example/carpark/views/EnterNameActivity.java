@@ -1,4 +1,4 @@
-package com.example.carpark;
+package com.example.carpark.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.carpark.views.HomeActivity;
+import com.example.carpark.R;
 
 
 public class EnterNameActivity extends AppCompatActivity {
@@ -38,7 +38,7 @@ public class EnterNameActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(EnterNameActivity.this,EnterOTP.class);
+                Intent i = new Intent(EnterNameActivity.this, EnterOTP.class);
                 startActivity(i);
             }
         });

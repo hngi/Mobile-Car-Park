@@ -1,8 +1,10 @@
-package com.example.carpark;
+package com.example.carpark.views.homefragments;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.carpark.R;
+import com.example.carpark.views.TransactionActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

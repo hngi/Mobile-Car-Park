@@ -1,4 +1,4 @@
-package com.example.carpark;
+package com.example.carpark.views.homefragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.carpark.R;
 
 public class ParkingHistoryFragment extends Fragment {
 

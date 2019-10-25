@@ -17,9 +17,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-import com.example.carpark.MyVehicleFragment;
-import com.example.carpark.ParkingHistoryFragment;
 import com.example.carpark.R;
+import com.example.carpark.views.homefragments.DefaultFragment;
+import com.example.carpark.views.homefragments.MyVehicleFragment;
+import com.example.carpark.views.homefragments.ParkingHistoryFragment;
+import com.example.carpark.views.homefragments.PaymentMethodsFragment;
+import com.example.carpark.views.homefragments.PromotionFragment;
+import com.example.carpark.views.homefragments.SettingsFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -70,31 +74,37 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.nav_notification:
                         titile = "Notificatins";
                         fragment = null;
+
                         break;
 
                     case R.id.nav_parking_history:
                         titile = "Parking History";
                         fragment = new ParkingHistoryFragment();
+                        toolbar.setTitle("Parking History");
                         break;
 
                     case R.id.nav_pay:
                         titile = "Payment Methods";
                         fragment = new PaymentMethodsFragment();
+                        toolbar.setTitle("Payment Methods");
                         break;
 
                     case R.id.nav_prom:
                         titile = "Promotions";
                         fragment = new PromotionFragment();
+                        toolbar.setTitle("Promotion");
                         break;
 
                     case R.id.nav_car:
                         titile = "My Vehicle";
                         fragment = new MyVehicleFragment();
+                        toolbar.setTitle("My Vehicle");
                         break;
 
                     case R.id.nav_settings:
                         titile = "Settings";
                         fragment = new SettingsFragment();
+                        toolbar.setTitle("Settings");
                         break;
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.PaymentMethodsFragment">
+    tools:context=".views.homefragments.PaymentMethodsFragment">
     <!-- Card -->
     <TextView
         android:id="@+id/card"
@@ -42,7 +42,7 @@
         android:layout_marginTop="18dp"
         app:layout_constraintStart_toStartOf="@+id/card"
         app:layout_constraintTop_toBottomOf="@+id/line_1_1"
-        app:srcCompat="@drawable/card" />
+        android:src="@drawable/card" />
 
     <TextView
         android:id="@+id/add_payment"
@@ -121,7 +121,7 @@
         android:layout_marginStart="26dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line_1_3"
-        app:srcCompat="@drawable/bartar" />
+        android:src="@drawable/bartar" />
 
     <TextView
         android:id="@+id/barter"
@@ -169,7 +169,7 @@
         android:layout_marginStart="26dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line_1_4"
-        app:srcCompat="@drawable/paystack_icon" />
+        android:src="@drawable/paystack_icon" />
 
     <TextView
         android:id="@+id/paystack"
@@ -243,11 +243,11 @@
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line_1_6"
-        app:srcCompat="@drawable/icon_gift" />
+        android:src="@drawable/ic_gift" />
 
     <TextView
         android:id="@+id/add_promo_code"

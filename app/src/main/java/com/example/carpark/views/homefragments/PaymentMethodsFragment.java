@@ -1,4 +1,4 @@
-package com.example.carpark.views;
+package com.example.carpark.views.homefragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
