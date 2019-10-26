@@ -48,7 +48,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/nunito"
-                android:text="Enter the 4-Digit code sent"
+                android:text="Enter the 6-Digit code sent"
                 android:textColor="@color/color_black"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -168,6 +168,38 @@
 
                 <EditText
                     android:id="@+id/edit_otp4"
+                    android:layout_width="50dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/otp_edit_text"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textAlignment="center" />
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="8dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0"
+                    android:background="?android:attr/listDivider" />
+
+                <EditText
+                    android:id="@+id/edit_otp5"
+                    android:layout_width="50dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/otp_edit_text"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textAlignment="center" />
+
+                <View
+                    android:id="@+id/divider5"
+                    android:layout_width="8dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0"
+                    android:background="?android:attr/listDivider" />
+
+                <EditText
+                    android:id="@+id/edit_otp6"
                     android:layout_width="50dp"
                     android:layout_height="48dp"
                     android:background="@drawable/otp_edit_text"
