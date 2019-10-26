@@ -12,37 +12,14 @@
         android:orientation="vertical"
         tools:context=".views.DetailsActivity">
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:background="@color/colorAccent"
-            android:layout_height="wrap_content">
-
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/ic_action_back"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:text="Lekki Gardens"
-                android:fontFamily="@font/nunito_bold"
-                android:textColor="@color/color_white"
-                android:textSize="20sp"/>
-        </androidx.appcompat.widget.Toolbar>
-
         <technolifestyle.com.imageslider.FlipperLayout
             android:id="@+id/flipper_layout"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/background_address" />
+            android:background="@drawable/edittext_curves" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,32 +30,33 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="20dp"
                 android:layout_weight="1"
-                android:textSize="12sp"
-                android:text="Available" />
+                android:fontFamily="@font/nunito"
+                android:text="Available"
+                android:textSize="13sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:textSize="12sp"
                 android:layout_marginEnd="30dp"
+                android:layout_weight="1"
                 android:fontFamily="@font/nunito"
                 android:gravity="end"
-                android:layout_weight="1"
-                android:text="N200/hr" />
+                android:text="N200/hr"
+                android:textSize="13sp" />
         </LinearLayout>
 
 
         <RelativeLayout
+            android:id="@+id/ad_rel_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/background_address">
+            android:background="@drawable/background_address"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/address"
@@ -86,10 +64,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="8dp"
-                android:text="Address"
-
                 android:fontFamily="@font/nunito"
+
+                android:text="Address"
                 android:textColor="#757575"
                 android:textSize="16sp" />
 
@@ -97,9 +74,8 @@
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/address"
-                android:fontFamily="@font/nunito"
                 android:layout_marginTop="8dp"
-                android:layout_marginStart="8dp"
+                android:fontFamily="@font/nunito"
                 android:text="Bisway St, Admiralty way, Lekki Lagos"
                 android:textColor="#000000"
                 android:textSize="14sp" />
@@ -117,9 +93,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="Facilities"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito"
+            android:text="Facilities"
             android:textColor="#757575"
             android:textSize="16sp" />
 
@@ -127,8 +104,8 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -141,8 +118,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Security"
                 android:fontFamily="@font/nunito"
+                android:text="Security"
                 android:textColor="#000000"
                 android:textSize="14sp" />
 
@@ -156,8 +133,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Valet"
                 android:fontFamily="@font/nunito"
+                android:text="Valet"
                 android:textColor="#757575"
                 android:textSize="14sp" />
 
@@ -166,17 +143,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
-            android:text="Operation"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/nunito"
+            android:text="Operation"
             android:textColor="#757575"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/nunito"
             android:text="Open 24 hours"
             android:textColor="#000000"
@@ -186,14 +163,17 @@
             android:id="@+id/bookButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:layout_margin="16dp"
-            android:background="@drawable/button_curve"
-            android:text="Book"
-            android:layout_marginBottom="20dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_curve"
             android:fontFamily="@font/nunito_bold"
-            android:textColor="@color/color_white" />
+            android:onClick="book"
+            android:text="Book"
+            android:textAllCaps="false"
+            android:textColor="@color/color_white"
+            android:textSize="16sp" />
 
 
     </LinearLayout>

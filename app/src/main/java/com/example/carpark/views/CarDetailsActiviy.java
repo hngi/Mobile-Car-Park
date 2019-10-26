@@ -33,23 +33,11 @@ public class CarDetailsActiviy extends AppCompatActivity {
         getSupportActionBar().setTitle("Add Vechicle"); // for set actionbar title
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         viewsInit();
 
-        saveCarDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewsInit();
-                checkInputBoxes();
-                Intent intent = new Intent(CarDetailsActiviy.this, HomeActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
-
-
+        saveCar();
     }
+
     // when the back icon on the activity page is clicked
    // public boolean onOptionsItemSelected(MenuItem item) {
    //     switch (item.getItemId()) {
@@ -115,15 +103,21 @@ public class CarDetailsActiviy extends AppCompatActivity {
             editor.putBoolean("data3",primary);
             editor.commit();
 
-
-
-
-
-
-
-
         }
 
+    }
+
+    public void saveCar(){
+        saveCarDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //viewsInit();
+                //checkInputBoxes();
+                Intent intent = new Intent(CarDetailsActiviy.this, HomeActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
 

@@ -2,6 +2,7 @@ package com.example.carpark.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,6 @@ import technolifestyle.com.imageslider.FlipperView;
 
 public class DetailsActivity extends AppCompatActivity {
     FlipperLayout flipperLayout;
-    Button Book;
 
     //Todo: Note, Most images are placeholders
 
@@ -25,17 +25,11 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        getSupportActionBar().setTitle("Lekki Gardens");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         flipperLayout = findViewById(R.id.flipper_layout);
         setLayout();
-        Book = findViewById(R.id.bookButton);
-
-        Book.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Todo: Replace with your own command
-                Toast.makeText(DetailsActivity.this, "I was clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
     }
@@ -60,5 +54,10 @@ public class DetailsActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void book(View view){
+        Intent intent = new Intent(DetailsActivity.this, ScheduleActivity.class);
+        startActivity(intent);
     }
 }
