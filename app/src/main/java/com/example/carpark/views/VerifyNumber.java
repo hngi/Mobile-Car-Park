@@ -11,12 +11,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.carpark.R;
+import com.hbb20.CountryCodePicker;
 
 public class VerifyNumber extends AppCompatActivity {
 
     Button next;
     EditText etPhoneNumer;
-    TextView tvCountryCode;
+    CountryCodePicker tvCountryCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +27,13 @@ public class VerifyNumber extends AppCompatActivity {
         ImageButton back = (ImageButton) findViewById(R.id.imageButton2);
 
         next = findViewById(R.id.next1);
-        etPhoneNumer= findViewById(R.id.editText2);
-        tvCountryCode = findViewById(R.id.vn_code);
+        etPhoneNumer= findViewById(R.id.verify_number);
+        tvCountryCode = findViewById(R.id.verify_ccp);
 
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)  {
                 Intent intToMain = new Intent(getApplicationContext(), EnterOTP.class);
-                intToMain.putExtra("PhoneNumber", tvCountryCode.getText().toString()+etPhoneNumer.getText().toString());
+                intToMain.putExtra("PhoneNumber", tvCountryCode.getSelectedCountryCodeWithPlus()+etPhoneNumer.getText().toString());
                 startActivity(intToMain);
             }
 
@@ -42,7 +43,7 @@ public class VerifyNumber extends AppCompatActivity {
         String countryCode = getIntent().getStringExtra("countryCode");
         String phoneNumber = getIntent().getStringExtra("phoneNumber");
         etPhoneNumer.setText(phoneNumber);
-        tvCountryCode.setText(countryCode);
+        tvCountryCode.setFullNumber(countryCode);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
