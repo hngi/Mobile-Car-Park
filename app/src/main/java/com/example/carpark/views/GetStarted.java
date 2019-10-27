@@ -30,7 +30,6 @@ public class GetStarted extends AppCompatActivity {
         final Button fbbtn = (Button) findViewById(R.id.fb_btn);
         final EditText number = (EditText) findViewById(R.id.number);
         final CountryCodePicker ccp = (CountryCodePicker) findViewById(R.id.ccp);
-        ImageButton forward = (ImageButton) findViewById(R.id.forward);
 
 
         fbbtn.setOnClickListener(new View.OnClickListener() {
@@ -59,22 +58,6 @@ public class GetStarted extends AppCompatActivity {
 
 
         });
-
-        forward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(TextUtils.isEmpty(number.getText().toString())){
-                    number.setError("Please fill in phone number");
-                }else {
-                    intent = new Intent(getApplicationContext(),VerifyNumber.class);
-                    intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
-                    intent.putExtra("phoneNumber", number.getText().toString());
-                    startActivity(intent);
-                }
-            }
-        });
-
-
 
     }}
 
