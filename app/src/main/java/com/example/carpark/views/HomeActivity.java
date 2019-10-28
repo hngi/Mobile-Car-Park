@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.carpark.R;
+import com.example.carpark.views.homefragments.AboutFragment;
 import com.example.carpark.views.homefragments.DefaultFragment;
 import com.example.carpark.views.homefragments.MyVehicleFragment;
 import com.example.carpark.views.homefragments.ParkingHistoryFragment;
@@ -103,11 +104,18 @@ public class HomeActivity extends AppCompatActivity {
                         toolbar.setTitle("My Vehicle");
                         break;
 
+                    case R.id.nav_about:
+                        titile = "About";
+                        fragment = new AboutFragment();
+                        toolbar.setTitle("About/How it works");
+                        break;
+
                     case R.id.nav_settings:
                         titile = "Settings";
                         fragment = new SettingsFragment();
                         toolbar.setTitle("Settings");
                         break;
+
 
 
                 }
