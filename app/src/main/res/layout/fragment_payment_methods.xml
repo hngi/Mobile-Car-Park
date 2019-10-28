@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.homefragments.PaymentMethodsFragment">
+    <!-- Card -->
+    <TextView
+        android:id="@+id/card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="58dp"
+        android:fontFamily="@font/nunito_bold"
+        android:gravity="top"
+        android:letterSpacing="0.02"
+        android:lineHeight="16sp"
+        android:lineSpacingExtra="0sp"
+        android:text="@string/card"
+        android:textColor="#344955"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/line_1_1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.17"
+        android:background="@drawable/line_1_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/card"
+        app:layout_constraintTop_toBottomOf="@id/card" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        app:layout_constraintStart_toStartOf="@+id/card"
+        app:layout_constraintTop_toBottomOf="@+id/line_1_1"
+        android:src="@drawable/card" />
+
+    <TextView
+        android:id="@+id/add_payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="top"
+        android:lineHeight="22sp"
+        android:paddingLeft="18dp"
+        android:paddingTop="18dp"
+        android:paddingRight="200dp"
+        android:paddingBottom="16dp"
+        android:text="@string/add_payment"
+        android:textColor="#777777"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/line_1_1" />
+
+    <Button
+        android:id="@+id/add_card_btn"
+        android:background="@drawable/ellipse_btn"
+        style="?android:attr/borderlessButtonStyle"
+        android:enabled="false"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_1_1" />
+    <View
+        android:id="@+id/line_1_2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.17"
+        android:background="@drawable/line_1_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/card"
+        app:layout_constraintTop_toBottomOf="@id/add_payment" />
+
+    <TextView
+        android:id="@+id/others"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/nunito_bold"
+        android:gravity="top"
+        android:letterSpacing="0.02"
+        android:lineHeight="16sp"
+        android:lineSpacingExtra="0sp"
+        android:text="@string/others"
+        android:textColor="#344955"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_1_2" />
+
+    <View
+        android:id="@+id/line_1_3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.17"
+        android:background="@drawable/line_1_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/others"
+        app:layout_constraintTop_toBottomOf="@id/others" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_1_3"
+        android:src="@drawable/bartar" />
+
+    <TextView
+        android:id="@+id/barter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="top"
+        android:lineHeight="22sp"
+        android:text="@string/barter"
+        android:textColor="#777777"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/line_1_3" />
+
+    <Button
+        android:id="@+id/barter_btn"
+        android:background="@drawable/ellipse_btn"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_1_3" />
+
+    <View
+        android:id="@+id/line_1_4"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.17"
+        android:background="@drawable/line_1_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/others"
+        app:layout_constraintTop_toBottomOf="@id/barter" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_1_4"
+        android:src="@drawable/paystack_icon" />
+
+    <TextView
+        android:id="@+id/paystack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="top"
+        android:lineHeight="22sp"
+        android:text="@string/paystack"
+        android:textColor="#777777"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/line_1_4" />
+
+
+    <Button
+        android:id="@+id/paystack_btn"
+        android:background="@drawable/ellipse_btn"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_1_4" />
+
+    <View
+        android:id="@+id/line_1_5"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.17"
+        android:background="@drawable/line_1_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/others"
+        app:layout_constraintTop_toBottomOf="@id/paystack" />
+
+    <TextView
+        android:id="@+id/promotions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/nunito_bold"
+        android:gravity="top"
+        android:letterSpacing="0.02"
+        android:lineHeight="16sp"
+        android:lineSpacingExtra="0sp"
+        android:text="@string/promotions"
+        android:textColor="#344955"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_1_5" />
+
+    <View
+        android:id="@+id/line_1_6"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.17"
+        android:background="@drawable/line_1_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/promotions"
+        app:layout_constraintTop_toBottomOf="@id/promotions" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_1_6"
+        android:src="@drawable/ic_gift" />
+
+    <TextView
+        android:id="@+id/add_promo_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="top"
+        android:lineHeight="22sp"
+        android:paddingLeft="20dp"
+        android:paddingTop="16dp"
+        android:paddingRight="80dp"
+        android:paddingBottom="16dp"
+        android:text="@string/add_promo_code"
+        android:textColor="#777777"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/line_1_6" />
+
+    <View
+        android:id="@+id/line_1_7"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.17"
+        android:background="@drawable/line_1_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/promotions"
+        app:layout_constraintTop_toBottomOf="@id/add_promo_code" />
+</androidx.constraintlayout.widget.ConstraintLayout>

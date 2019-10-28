@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addcard_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".views.ProfileActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/addcard_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/addcard_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@color/color_white"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.vinaygaba.creditcardview.CreditCardView
+        android:id="@+id/addcard_creditCardView"
+        android:layout_width="fill_parent"
+        android:layout_height="225dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="8dp"
+        android:padding="16dp"
+        android:layout_marginTop="0dp"
+        app:cardNumber="000000000000000"
+        app:cardName="Your Name"
+        app:cardNumberTextColor="#cccccc"
+        app:cardNumberFormat="all_digits"
+        app:cardNameTextColor="#cccccc"
+        app:type="mastercard"
+        app:brandLogo="@drawable/ic_logo_blue"
+        app:putChip="false"
+        app:expiryDate = "00/00"
+        app:expiryDateTextColor="#cccccc"
+        app:isEditable="false"
+        app:validTillTextColor="#cccccc"
+        app:hintTextColor = "#cccccc" />
+
+    <TextView
+        android:id="@+id/profile_fname_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="6dp"
+        android:text="Card Number"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/nunito_light"
+        android:textColor="@color/text_black" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="7483 4749 5926 3742"
+            android:padding="16dp"
+            android:fontFamily="@font/nunito_light"
+            android:background="@drawable/edittext_curves"
+            android:inputType="number"
+            android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/profile_lname_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="6dp"
+        android:text="Card Holder's Name"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_black"
+        android:fontFamily="@font/nunito_light" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="A J LastName"
+            android:padding="16dp"
+            android:fontFamily="@font/nunito_light"
+            android:background="@drawable/edittext_curves"
+            android:inputType="text"
+            android:textSize="16sp" />
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_marginTop="30dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="Exp Month"
+            android:padding="16dp"
+            android:fontFamily="@font/nunito_light"
+            android:background="@drawable/edittext_curves"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textSize="16sp" />
+
+       <View
+           android:layout_width="8dp"
+           android:layout_height="0dp"
+           android:layout_weight="0"
+           android:background="?android:attr/listDivider" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_light"
+            android:background="@drawable/edittext_curves"
+            android:hint="Exp. Year"
+            android:inputType="number"
+            android:maxLength="4"
+            android:padding="16dp"
+            android:textSize="16sp" />
+
+       <View
+           android:layout_width="8dp"
+           android:layout_height="0dp"
+           android:layout_weight="0"
+           android:background="?android:attr/listDivider" />
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="wrap_content"
+               android:fontFamily="@font/nunito_light"
+               android:background="@drawable/edittext_curves"
+               android:hint="CCV"
+               android:inputType="numberPassword"
+               android:maxLength="3"
+               android:padding="16dp"
+               android:textSize="16sp" />
+   </LinearLayout>
+
+    <Button
+        android:id="@+id/profile_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        android:padding="16dp"
+        android:background="@drawable/button_curve"
+        android:text="Save"
+        android:textColor="@color/color_white" />
+</LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

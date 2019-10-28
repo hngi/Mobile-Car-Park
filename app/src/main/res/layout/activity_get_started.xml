@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.GetStarted">
+
+    <Button
+        android:id="@+id/fb_btn"
+        android:layout_width="320dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/button_curve"
+        android:fontFamily="@font/nunito"
+        android:text="Continue with Facebook"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linccp"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="188dp"
+        android:autofillHints="+234"
+        android:background="@drawable/edittext_curves"
+        android:inputType="phone"
+        android:orientation="horizontal"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textColorHint="#474747"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp"
+            android:layout_width="68dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            app:ccp_arrowColor="@color/colorPrimary"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_contentColor="#777777"
+            app:ccp_showArrow="false"
+            app:ccp_showFlag="false"
+            app:ccp_showNameCode="false"
+            app:ccp_textSize="15sp">
+
+        </com.hbb20.CountryCodePicker>
+
+        <EditText
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:autofillHints="+234"
+            android:background="@drawable/edittext_line"
+            android:fontFamily="@font/nunito"
+            android:hint="Enter your phone number"
+            android:inputType="phone"
+            android:maxLength="12"
+            android:paddingLeft="8dp"
+            android:textAllCaps="false"
+            android:textColor="#777777"
+            android:textColorHint="#777777"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:fontFamily="@font/nunito"
+        android:text="Welcome to CarPark"
+        android:textColor="#4A4A4A"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linccp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito"
+        android:gravity="top"
+        android:text="OR"
+        android:textAlignment="center"
+        android:textColor="#5F7481"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linccp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="88dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/bluelogo" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

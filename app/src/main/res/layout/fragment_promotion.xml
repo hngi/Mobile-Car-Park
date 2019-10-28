@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.homefragments.PromotionFragment">
+
+    <EditText
+        android:id="@+id/promotion_rectangle"
+        android:layout_width="318dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/edittext_curves"
+        android:ems="10"
+        android:fontFamily="@font/nunito"
+        android:hint="@string/promo_code"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/promo_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="64dp"
+        android:fontFamily="@font/nunito"
+        android:text="@string/enter_the_promo_code_and_it_will_be_applied_to_your_next_parking_reservation"
+        android:textAlignment="center"
+        android:textColor="#9D9D9C"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/promotion_rectangle" />
+
+    <Button
+        android:id="@+id/promo_btn"
+        android:layout_width="322dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/cornered_rectangle"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/apply"
+        android:textColor="@color/color_white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/promo_description" />
+</androidx.constraintlayout.widget.ConstraintLayout>
