@@ -36,6 +36,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD_sKnjGf4KrzOB-743vnPPpSqAZdS1Qwc" />
 
+        <meta-data
+            android:name="co.paystack.android.PublicKey"
+            android:value="pk_test_a6776f501f9fc824598fe84b547c0b742dd357f0"/>
+
         <activity
             android:name=".views.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
