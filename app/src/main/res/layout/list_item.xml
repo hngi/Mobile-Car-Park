@@ -23,7 +23,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/notification_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -31,7 +31,7 @@
             android:text="TextView"/>
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/notication_timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />

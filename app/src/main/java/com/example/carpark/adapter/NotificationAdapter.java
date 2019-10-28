@@ -5,6 +5,8 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,8 +26,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     @Override
-    public NotificationAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                             int viewType) {
+    public NotificationAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         return new NotificationAdapter.ViewHolder(v);
     }
@@ -33,7 +34,16 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(NotificationAdapter.ViewHolder holder, int position) {
         NotificationModel item = items.get(position);
-        //TODO Fill in your logic for binding the view.
+
+        holder.mMessage.setText(item.getMessage());
+        holder.mTimestamp.setText(item.getTimeStamp());
+        holder.micon.setText(item.getImageUrl());
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -45,22 +55,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
+        private TextView mMessage;
+        private TextView mTimestamp;
+        private  TextView micon;
+        private ImageView imageView;
 
         private ViewHolder(View itemView) {
             super(itemView);
-
-            itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
-                @Override
-                public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-                    contextMenu.setHeaderTitle("Choose an option");
-                    if(getAdapterPosition()!=0){ //if statement done because of first fake item in datalist
-                        contextMenu.add(getAdapterPosition(), 112, 1, "Edit");
-                        contextMenu.add(getAdapterPosition(), 113, 2, "Delete");
-                    }
-
-                }
-            });
+            mMessage = itemView.findViewById(R.id.notification_message);
+            mTimestamp = itemView.findViewById(R.id.notication_timestamp);
+            micon = itemView.findViewById(R.id.notification_icon);
+            imageView = itemView.findViewById(R.id.enter_image);
         }
     }
 }
