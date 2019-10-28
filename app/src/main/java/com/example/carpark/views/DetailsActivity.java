@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.carpark.R;
@@ -17,6 +19,8 @@ import technolifestyle.com.imageslider.FlipperView;
 
 public class DetailsActivity extends AppCompatActivity {
     FlipperLayout flipperLayout;
+    RelativeLayout address_picker;
+
 
     //Todo: Note, Most images are placeholders
 
@@ -31,6 +35,15 @@ public class DetailsActivity extends AppCompatActivity {
         flipperLayout = findViewById(R.id.flipper_layout);
         setLayout();
 
+        address_picker = findViewById(R.id.ad_rel_layout);
+
+        address_picker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailsActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

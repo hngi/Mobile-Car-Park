@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.carpark">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -11,7 +12,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,10 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.VehicleActivity"></activity>
-        <activity android:name=".views.PaymentMethodActivity" />
-        <activity android:name=".views.ConfirmationActivity"
-                  android:parentActivityName=".views.ScheduleActivity"/>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,6 +33,18 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".views.MapsActivity"
+            android:label="@string/title_activity_maps">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.carpark.views.DetailsActivity" />
+        </activity>
+        <activity android:name=".views.VehicleActivity" />
+        <activity android:name=".views.PaymentMethodActivity" />
+        <activity
+            android:name=".views.ConfirmationActivity"
+            android:parentActivityName=".views.ScheduleActivity" />
         <activity
             android:name=".views.EnterNameActivity"
             android:parentActivityName=".views.EnterOTP"
@@ -57,9 +66,9 @@
         </activity>
         <activity
             android:name=".views.AddCardActivity"
+            android:label="Add Card"
             android:parentActivityName=".views.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Add Card"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.HomeActivity"
             android:label="Home"
@@ -67,26 +76,25 @@
         <activity
             android:name=".views.TransactionActivity"
             android:label="Transaction" />
-
-        <activity android:name=".views.InvoiceActivity"
+        <activity
+            android:name=".views.InvoiceActivity"
             android:parentActivityName=".views.HomeActivity" />
-
-        <activity android:name=".views.DetailsActivity"
-            android:parentActivityName=".views.HomeActivity"/>
+        <activity
+            android:name=".views.DetailsActivity"
+            android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.EnterOTP"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".views.ScheduleActivity"
-            android:parentActivityName=".views.HomeActivity"
-            />
+        <activity
+            android:name=".views.ScheduleActivity"
+            android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.ProfileActivity"
             android:parentActivityName=".views.EnterNameActivity" />
         <activity
             android:name=".views.VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".views.CarDetailsActiviy"/>
+        <activity android:name=".views.CarDetailsActiviy" />
         <activity android:name=".views.BarterActivity" />
         <activity android:name=".views.BaseActivity" />
     </application>
