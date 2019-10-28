@@ -18,10 +18,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.VehicleActivity"></activity>
+        <activity android:name=".views.NotificationActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".views.VehicleActivity" />
         <activity android:name=".views.PaymentMethodActivity" />
-        <activity android:name=".views.ConfirmationActivity"
-                  android:parentActivityName=".views.ScheduleActivity"/>
+        <activity
+            android:name=".views.ConfirmationActivity"
+            android:parentActivityName=".views.ScheduleActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -47,11 +58,6 @@
         <activity
             android:name=".views.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".BaseActivity" />
         <activity
@@ -66,26 +72,25 @@
         <activity
             android:name=".views.TransactionActivity"
             android:label="Transaction" />
-
-        <activity android:name=".views.InvoiceActivity"
+        <activity
+            android:name=".views.InvoiceActivity"
             android:parentActivityName=".views.HomeActivity" />
-
-        <activity android:name=".views.DetailsActivity"
-            android:parentActivityName=".views.HomeActivity"/>
+        <activity
+            android:name=".views.DetailsActivity"
+            android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.EnterOTP"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".views.ScheduleActivity"
-            android:parentActivityName=".views.HomeActivity"
-            />
+        <activity
+            android:name=".views.ScheduleActivity"
+            android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.ProfileActivity"
             android:parentActivityName=".views.EnterNameActivity" />
         <activity
             android:name=".views.VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".views.CarDetailsActiviy"/>
+        <activity android:name=".views.CarDetailsActiviy" />
     </application>
 
 </manifest>
