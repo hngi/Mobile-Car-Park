@@ -2,9 +2,13 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lyt_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="18dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="20dp"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -18,93 +22,115 @@
         app:cardElevation="5dp"
         android:focusable="true">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#F4F3F3"
-            android:orientation="vertical"
-            android:padding="15dp">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nunito"
+                android:textStyle="bold"
+                android:text="Parking Completed"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Parking Completed"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="2019-10-20 11:00AM"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textSize="14sp"
-                    android:textColor="#999999"
-                    />
-
-            </LinearLayout>
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="18dp"
+                android:text="2019-10-20 11:00AM"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#999999"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
             <View
+                android:id="@+id/view5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#000"/>
+                android:layout_marginTop="4dp"
+                android:background="#000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="27dp"
+                android:drawableStart="@drawable/ic_location"
+                android:drawableLeft="@drawable/ic_location"
+                android:drawablePadding="7dp"
+                android:text="Floor 3 Section D Lane 3"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#777"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_location"
-                    android:text="Floor 3 Section D Lane 3"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#777"
-                    android:textSize="16sp"
-                    android:drawableStart="@drawable/ic_location" />
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="13dp"
+                android:drawablePadding="7dp"
+                android:drawableStart="@drawable/ic_qr"
+                android:drawableLeft="@drawable/ic_qr"
+                android:text="SYCP8289"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#777"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_qr"
-                    android:text="SYCP8289"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#777"
-                    android:textSize="16sp"
-                    android:drawableStart="@drawable/ic_qr" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_car_card"
-                    android:text="NGN200"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#777"
-                    android:textSize="16sp"
-                    android:drawableStart="@drawable/ic_car_card" />
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:drawablePadding="7dp"
+                android:layout_marginTop="13dp"
+                android:drawableStart="@drawable/ic_car_card"
+                android:drawableLeft="@drawable/ic_car_card"
+                android:text="NGN200"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#777"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
             <View
+                android:id="@+id/view6"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"/>
+                android:layout_height="20dp"
+                app:layout_constraintTop_toBottomOf="parent"
+                tools:layout_editor_absoluteX="15dp" />
 
             <Button
                 android:id="@+id/btn_rebook"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/ic_car_button"
                 android:text="Re-Book"
                 android:textColor="#fff"
-                android:background="@drawable/ic_car_button"/>
-
-        </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/textView28"
+                tools:layout_editor_absoluteX="15dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -119,91 +145,115 @@
         app:cardElevation="5dp"
         android:focusable="true">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#F4F3F3"
-            android:orientation="vertical"
-            android:padding="15dp">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/textView24_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nunito"
+                android:textStyle="bold"
+                android:text="Parking Completed"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView25_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Parking Completed"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="2019-10-20 11:00AM"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textSize="14sp"
-                    android:textColor="#999999" />
-
-            </LinearLayout>
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="18dp"
+                android:text="2019-10-20 11:00AM"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#999999"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView24_2" />
 
             <View
+                android:id="@+id/view5_2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#000"/>
+                android:layout_marginTop="4dp"
+                android:background="#000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView25_2" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView26_2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="27dp"
+                android:drawableStart="@drawable/ic_location"
+                android:drawableLeft="@drawable/ic_location"
+                android:drawablePadding="7dp"
+                android:text="Floor 3 Section D Lane 3"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#777"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView25_2" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_location"
-                    android:text="Floor 3 Section D Lane 3"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#777"
-                    android:textSize="16sp"
-                    android:drawableStart="@drawable/ic_location" />
+            <TextView
+                android:id="@+id/textView27_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="13dp"
+                android:drawablePadding="7dp"
+                android:drawableStart="@drawable/ic_qr"
+                android:drawableLeft="@drawable/ic_qr"
+                android:text="SYCP8289"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#777"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView26_2" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_qr"
-                    android:text="SYCP8289"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#777"
-                    android:textSize="16sp"
-                    android:drawableStart="@drawable/ic_qr" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_car_card"
-                    android:text="NGN200"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#777"
-                    android:textSize="16sp"
-                    android:drawableStart="@drawable/ic_car_card" />
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/textView28_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:drawablePadding="7dp"
+                android:layout_marginTop="13dp"
+                android:drawableStart="@drawable/ic_car_card"
+                android:drawableLeft="@drawable/ic_car_card"
+                android:text="NGN200"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#777"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView27_2" />
 
             <View
+                android:id="@+id/view6_2"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"/>
+                android:layout_height="20dp"
+                app:layout_constraintTop_toBottomOf="parent"
+                tools:layout_editor_absoluteX="15dp" />
 
             <Button
+                android:id="@+id/btn_rebook2"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/ic_car_button"
                 android:text="Re-Book"
                 android:textColor="#fff"
-                android:background="@drawable/ic_car_button"/>
-
-        </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/textView28_2"
+                tools:layout_editor_absoluteX="15dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
