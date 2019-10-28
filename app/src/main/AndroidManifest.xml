@@ -103,6 +103,9 @@
 
         <activity android:name=".views.BaseActivity" />
 
+
+        <activity android:name=".views.BarterActivity" />
+
     </application>
 
 </manifest>

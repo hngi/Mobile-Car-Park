@@ -101,6 +101,9 @@ dependencies {
     //Dependency for country codes
     implementation 'com.hbb20:ccp:2.3.2'
 
+    //Flutterwave rave-android
+    implementation 'com.github.Flutterwave:rave-android:1.0.40'
+
 
     //map dependencies
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
