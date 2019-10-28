@@ -105,5 +105,21 @@ dependencies {
     implementation 'com.github.Flutterwave:rave-android:1.0.40'
 
 
+    //map dependencies
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
+
+
+    //Flutterwave rave-android
+    implementation 'com.github.Flutterwave:rave-android:1.0.40'
+
+
+
+
+    //Flutterwave rave-android
+    implementation 'com.github.Flutterwave:rave-android:1.0.40'
+
+
+
 }
 apply plugin: 'com.google.gms.google-services'
