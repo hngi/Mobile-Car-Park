@@ -100,6 +100,7 @@
             />
 
     </LinearLayout>
+
     <Button
         android:id="@+id/save_car_details"
         android:layout_width="match_parent"
@@ -107,11 +108,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/button_curve"
         android:fontFamily="@font/nunito"
         android:text="Save"
-        android:textColor="@color/color_white"
-        />
+        android:textColor="@color/color_white" />
 
 </LinearLayout>
 

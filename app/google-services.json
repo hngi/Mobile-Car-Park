@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "986496656818",
+    "firebase_url": "https://car-app-636b2.firebaseio.com",
+    "project_id": "car-app-636b2",
+    "storage_bucket": "car-app-636b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986496656818:android:7a1c9edda4b643e49530ab",
+        "android_client_info": {
+          "package_name": "com.example.carpark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "986496656818-1o7qbns6qltagaq8qefml83h8ssclnu8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.carpark",
+            "certificate_hash": "518601702346eba69378500ef9c5e836d12ed083"
+          }
+        },
+        {
+          "client_id": "986496656818-4flr7frv1r4q7uhk7t9ghs767gilteeg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOkc59GQ5M6lKg-yTZGwUBNTlpRKOFPU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "986496656818-4flr7frv1r4q7uhk7t9ghs767gilteeg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

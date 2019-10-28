@@ -77,13 +77,6 @@
             android:textColorHint="#777777"
             android:textSize="15sp" />
 
-        <ImageButton
-            android:id="@+id/forward"
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_arrow_forward_black_24dp" />
     </LinearLayout>
 
     <TextView

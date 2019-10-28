@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.carpark.R;
+import com.example.carpark.views.CarDetailsActiviy;
 import com.example.carpark.views.TransactionActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -26,7 +27,7 @@ public class MyVehicleFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent transactionIntent = new Intent(getContext(), TransactionActivity.class);
+                Intent transactionIntent = new Intent(getContext(), CarDetailsActiviy.class);
                 startActivity(transactionIntent);
                 Snackbar.make(root, "Add new Vehicle", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();

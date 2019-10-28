@@ -1,11 +1,14 @@
 package com.example.carpark.views;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 ;
 
 import androidx.annotation.NonNull;
@@ -54,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
     }
 
     private void setUpDefaultFragment() {
