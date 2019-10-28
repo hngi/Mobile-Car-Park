@@ -104,6 +104,10 @@ dependencies {
     //Flutterwave rave-android
     implementation 'com.github.Flutterwave:rave-android:1.0.40'
 
+    //Qrcode sdk
+    implementation 'com.google.zxing:core:3.3.3'
+    implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+
 
 }
 apply plugin: 'com.google.gms.google-services'
