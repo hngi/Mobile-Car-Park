@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.GravityCompat;
@@ -37,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private boolean mToolBarNavigationListenerIsRegistered = false;
+    private SearchView searchView;
 
 
     @Override
@@ -46,12 +48,15 @@ public class HomeActivity extends AppCompatActivity {
         initViews();
         setUpDefaultFragment();
         navigationClickListeners();
+
+
     }
 
     private void initViews() {
         toolbar = findViewById(R.id.home_toolbar);
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.navigation_view);
+        //searchView = findViewById(R.id.location_search);
         navigationView.setItemIconTintList(null);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
