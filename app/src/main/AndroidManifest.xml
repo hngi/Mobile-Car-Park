@@ -99,6 +99,8 @@
             android:name=".views.CarDetailsActiviy"/>
 
 
+
+
         <activity android:name=".views.BaseActivity" />
 
     </application>
