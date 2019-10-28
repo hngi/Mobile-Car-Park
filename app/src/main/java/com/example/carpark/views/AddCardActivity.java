@@ -15,7 +15,6 @@ import com.braintreepayments.cardform.OnCardFormValidListener;
 import com.braintreepayments.cardform.utils.CardType;
 import com.braintreepayments.cardform.view.CardEditText;
 import com.braintreepayments.cardform.view.CardForm;
-import com.example.carpark.BaseActivity;
 import com.example.carpark.R;
 import com.vinaygaba.creditcardview.CreditCardView;
 
@@ -98,7 +97,7 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
         cardForm.setOnCardFormValidListener(new OnCardFormValidListener() {
             @Override
             public void onCardFormValid(boolean valid) {
-                showSnackBar(findViewById(R.id.addcard_root), "Card is valid");
+                showToast("Card is valid");
                 Log.d(TAG, "onCardFormFieldFocused: Card is valid ");
             }
         });
@@ -167,15 +166,15 @@ public class AddCardActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.addcard_menu, menu);
+        //getMenuInflater().inflate(R.menu.addcard_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.addcard_menu_scan) {
+        /*if (item.getItemId() == R.id.addcard_menu_scan) {
             scanCard();
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

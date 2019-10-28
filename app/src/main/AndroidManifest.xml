@@ -9,6 +9,8 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -53,12 +55,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BaseActivity" />
         <activity
             android:name=".views.AddCardActivity"
-            android:label="Add Card"
             android:parentActivityName=".views.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Add Card"/>
         <activity
             android:name=".views.HomeActivity"
             android:label="Home"
@@ -86,6 +87,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.CarDetailsActiviy"/>
+        <activity android:name=".views.BarterActivity" />
+        <activity android:name=".views.BaseActivity" />
     </application>
 
 </manifest>
