@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.carpark.R;
 
@@ -20,6 +21,7 @@ public class PaymentMethodsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_payment_methods, container, false);
 
+        TextView addcardTextView=root.findViewById(R.id.add_payment);
 //        assert getSupportActionBar() != null;   //null check
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
         return root;
