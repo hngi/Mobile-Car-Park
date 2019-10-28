@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.example.carpark.R;
 import com.example.carpark.views.AddCardActivity;
-import com.example.carpark.views.BarterActivity;
+// import com.example.carpark.views.BarterActivity;
 
 public class PaymentMethodsFragment extends Fragment {
     private TextView card;
@@ -40,7 +40,7 @@ public class PaymentMethodsFragment extends Fragment {
         barter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), BarterActivity.class));
+                //startActivity(new Intent(getActivity(), BarterActivity.class));
             }
         });
     }
