@@ -26,7 +26,8 @@
             android:id="@+id/notification_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:fontFamily="@font/nunito_bold"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:text="TextView"/>
 
@@ -34,6 +35,7 @@
             android:id="@+id/notication_timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
             android:text="TextView" />
 
 

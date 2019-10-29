@@ -10,10 +10,11 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.carpark.R;
+import com.example.carpark.model.NotificationModel;
 
 import java.util.List;
 
-import com.example.carpark.Model.NotificationModel;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {
     private final Context context;
@@ -36,7 +37,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         holder.mMessage.setText(item.getMessage());
         holder.mTimestamp.setText(item.getTimeStamp());
-        holder.micon.setText(item.getImageUrl());
+        holder.mIcon.setImageResource(item.getImageUrl());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,14 +57,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mMessage;
         private TextView mTimestamp;
-        private  TextView micon;
+        private CircleImageView mIcon;
         private ImageView imageView;
 
         private ViewHolder(View itemView) {
             super(itemView);
             mMessage = itemView.findViewById(R.id.notification_message);
             mTimestamp = itemView.findViewById(R.id.notication_timestamp);
-            micon = itemView.findViewById(R.id.notification_icon);
+            mIcon = itemView.findViewById(R.id.notification_icon);
             imageView = itemView.findViewById(R.id.enter_image);
         }
     }

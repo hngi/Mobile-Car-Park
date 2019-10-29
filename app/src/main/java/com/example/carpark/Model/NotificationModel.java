@@ -1,10 +1,15 @@
-package com.example.carpark.Model;
+package com.example.carpark.model;
 
 public class NotificationModel {
     private  String message;
-    private String imageUrl;
+    private Integer imageUrl;
     private String timeStamp;
 
+    public NotificationModel(String message, Integer imageUrl, String timeStamp) {
+        this.message = message;
+        this.imageUrl = imageUrl;
+        this.timeStamp = timeStamp;
+    }
 
     public String getMessage() {
         return message;
@@ -14,11 +19,11 @@ public class NotificationModel {
         this.message = message;
     }
 
-    public String getImageUrl() {
+    public Integer getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(Integer imageUrl) {
         this.imageUrl = imageUrl;
     }
 
