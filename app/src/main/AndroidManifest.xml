@@ -36,6 +36,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD1XwtM5P9rGEwSyvDY4f2W5VqhS85Xdjo" />
 
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
         <meta-data
             android:name="co.paystack.android.PublicKey"
             android:value="pk_test_a6776f501f9fc824598fe84b547c0b742dd357f0"/>
