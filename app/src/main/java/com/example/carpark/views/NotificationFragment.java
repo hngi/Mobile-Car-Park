@@ -12,12 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.carpark.Model.NotificationModel;
 import com.example.carpark.R;
 import com.example.carpark.adapter.NotificationAdapter;
 
 import java.util.ArrayList;
 
-import Model.NotificationModel;
 
 public class NotificationFragment extends Fragment {
     private Toolbar toolbar;
