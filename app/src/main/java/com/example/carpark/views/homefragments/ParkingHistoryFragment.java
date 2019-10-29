@@ -23,7 +23,7 @@ public class ParkingHistoryFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_parking_history, container, false);
 
 
-        btnRebook = root.findViewById ( R.id.btn_rebook );
+        btnRebook = root.findViewById ( R.id.ph_btn_rebook);
 
         btnRebook.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
