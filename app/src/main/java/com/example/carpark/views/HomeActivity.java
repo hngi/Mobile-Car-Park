@@ -19,6 +19,7 @@ import com.example.carpark.R;
 import com.example.carpark.views.homefragments.AboutFragment;
 import com.example.carpark.views.homefragments.DefaultFragment;
 import com.example.carpark.views.homefragments.MyVehicleFragment;
+import com.example.carpark.views.homefragments.ParkingHistoryFragment;
 import com.example.carpark.views.homefragments.PaymentMethodsFragment;
 import com.example.carpark.views.homefragments.PromotionFragment;
 import com.example.carpark.views.homefragments.SettingsFragment;
@@ -70,41 +71,41 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment = null;
-                String titile = "";
+                String title = "";
                 switch (item.getItemId()) {
 
                     case R.id.nav_notification:
-                        titile = "Notificatins";
+                        title = "Notificatins";
                         fragment = new NotificationFragment();
                         break;
 
                     case R.id.nav_parking_history:
-                        titile = "Notifications ";
-                        fragment = new NotificationFragment();
+                        title = "Parking History ";
+                        fragment = new ParkingHistoryFragment();
                         break;
 
                     case R.id.nav_pay:
-                        titile = "Payment Methods";
+                        title = "Payment Methods";
                         fragment = new PaymentMethodsFragment();
                         break;
 
                     case R.id.nav_prom:
-                        titile = "Promotions";
+                        title = "Promotions";
                         fragment = new PromotionFragment();
                         break;
 
                     case R.id.nav_car:
-                        titile = "My Vehicle";
+                        title = "My Vehicle";
                         fragment = new MyVehicleFragment();
                         break;
 
                     case R.id.nav_about:
-                        titile = "About";
+                        title = "About";
                         fragment = new AboutFragment();
                         break;
 
                     case R.id.nav_settings:
-                        titile = "Settings";
+                        title = "Settings";
                         fragment = new SettingsFragment();
                         break;
                 }
@@ -113,7 +114,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (fragment != null) {
                     setUpFragment(fragment);
                     enableBackViews(true);
-                    toolbar.setTitle(titile);
+                    toolbar.setTitle(title);
 
                 }
                 return true;
