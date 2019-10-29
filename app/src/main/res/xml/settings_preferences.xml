@@ -25,7 +25,7 @@
         <Preference
             app:iconSpaceReserved="false"
             android:selectAllOnFocus="true"
-            android:fragment="com.example.carpark.views.NotificationActivity"
+            android:fragment="com.example.carpark.views.NotificationFragment"
             android:singleLine="true"
             android:title="Notification" >
 

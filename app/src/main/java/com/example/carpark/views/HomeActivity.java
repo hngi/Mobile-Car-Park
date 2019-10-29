@@ -19,7 +19,6 @@ import com.example.carpark.R;
 import com.example.carpark.views.homefragments.AboutFragment;
 import com.example.carpark.views.homefragments.DefaultFragment;
 import com.example.carpark.views.homefragments.MyVehicleFragment;
-import com.example.carpark.views.homefragments.ParkingHistoryFragment;
 import com.example.carpark.views.homefragments.PaymentMethodsFragment;
 import com.example.carpark.views.homefragments.PromotionFragment;
 import com.example.carpark.views.homefragments.SettingsFragment;
@@ -76,12 +75,12 @@ public class HomeActivity extends AppCompatActivity {
 
                     case R.id.nav_notification:
                         titile = "Notificatins";
-                        fragment = new NotificationActivity();
+                        fragment = new NotificationFragment();
                         break;
 
                     case R.id.nav_parking_history:
                         titile = "Notifications ";
-                        fragment = new NotificationActivity();
+                        fragment = new NotificationFragment();
                         break;
 
                     case R.id.nav_pay:

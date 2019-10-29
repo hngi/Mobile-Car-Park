@@ -2,7 +2,6 @@ package com.example.carpark.views;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 
 import Model.NotificationModel;
 
-public class NotificationActivity extends Fragment {
+public class NotificationFragment extends Fragment {
     private Toolbar toolbar;
     ArrayList<NotificationModel> Notifications;
     private NotificationAdapter notificationAdapter;
@@ -29,7 +28,7 @@ public class NotificationActivity extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.activity_notification, container, false);
+        View root = inflater.inflate(R.layout.fragment_notification, container, false);
         recyclerView = root.findViewById(R.id.notif_recycler);
         initViews();
         return root;
