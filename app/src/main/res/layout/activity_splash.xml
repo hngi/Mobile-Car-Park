@@ -9,12 +9,12 @@
     android:background="@color/colorPrimary"
     tools:context=".views.SplashActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/splash_bck"
-        android:scaleType="centerCrop"
-        android:alpha="0.6"/>
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:srcCompat="@drawable/splash_bck"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:alpha="0.6"/>-->
 
     <ImageView
         android:id="@+id/splash_img"

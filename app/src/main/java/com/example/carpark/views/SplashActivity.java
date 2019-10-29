@@ -17,32 +17,31 @@ import com.example.carpark.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    Handler handler = new Handler();
     Animation fromLeft;
     ImageView car_park_ic;
-
+    Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
 
         car_park_ic = findViewById(R.id.splash_img);
-        car_park_ic = findViewById(R.id.splash_relative);
+        //car_park_ic = findViewById(R.id.splash_relative);
 
         //splash screen animation
-//        fromLeft = AnimationUtils.loadAnimation(this, R.anim.fromleft);
-//        car_park_ic.setAnimation(fromLeft);
+        fromLeft = AnimationUtils.loadAnimation(this, R.anim.fromleft);
+        car_park_ic.setAnimation(fromLeft);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
-        setContentView(R.layout.activity_splash);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), VerifyNumber.class);
+                Intent intent = new Intent(getApplicationContext(), OnboardingActivity.class);
                 startActivity(intent);
                 finish();
             }

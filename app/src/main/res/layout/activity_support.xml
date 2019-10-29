@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fillViewport="true"
+    tools:context=".views.Support">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/lin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject"
+        android:layout_margin="10dp"
+        android:textSize="16sp"/>
+    <EditText
+        android:layout_margin="10dp"
+        android:id="@+id/subjectID"
+        android:background="@drawable/edittext_curves"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Subject"/>
+
+    <TextView
+        android:id="@+id/mailID"
+        android:text="gbindinazeez@gmail.com"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:textColor="@color/white"
+        android:hint="Email"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:layout_margin="10dp"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:layout_margin="10dp"
+        android:id="@+id/messageID"
+        android:gravity="start"
+        android:hint="message"
+        android:background="@drawable/edittext_curves"
+        android:layout_width="match_parent"
+        android:layout_height="500dp" />
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cornered_rectangle"
+        android:text="send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

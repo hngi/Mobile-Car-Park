@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.carpark.R;
 import com.example.carpark.views.AddCardActivity;
+import com.example.carpark.views.BarterActivity;
 
 import co.paystack.android.Paystack;
 import co.paystack.android.PaystackSdk;
@@ -48,7 +49,7 @@ public class PaymentMethodsFragment extends Fragment {
 
 
         barter = root.findViewById(R.id.barter);
-        openBarter(root);
+        openBarter();
 
 
         payStackBut.setOnClickListener(new View.OnClickListener() {
@@ -119,11 +120,11 @@ public class PaymentMethodsFragment extends Fragment {
     }
 
 
-    private void openBarter(View root) {
+    private void openBarter() {
         barter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(getActivity(), BarterActivity.class));
+                startActivity(new Intent(getActivity(), BarterActivity.class));
             }
         });
     }

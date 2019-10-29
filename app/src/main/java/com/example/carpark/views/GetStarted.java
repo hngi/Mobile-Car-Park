@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,8 @@ public class GetStarted extends AppCompatActivity {
     private static final String AUTH_TYPE = "rerequest";
     private static final String EMAIL = "email";
     private EditText number;
-    private Button fb_btn, cont_btn;
+    private Button fb_btn;
+    private ImageView cont_btn;
     private CountryCodePicker ccp;
     Intent intent;
 
@@ -49,7 +51,7 @@ public class GetStarted extends AppCompatActivity {
         fb_btn = (Button) findViewById(R.id.fb_btn);
          number = (EditText) findViewById(R.id.number);
          ccp = (CountryCodePicker) findViewById(R.id.ccp);
-        cont_btn = (Button)findViewById(R.id.getSrt_cont_btn);
+        cont_btn = (ImageView) findViewById(R.id.getSrt_cont_btn);
 
 
         // facebook authentication

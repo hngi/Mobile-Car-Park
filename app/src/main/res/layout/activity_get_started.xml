@@ -10,7 +10,7 @@
         android:id="@+id/fb_btn"
         android:layout_width="320dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/button_curve"
         android:fontFamily="@font/nunito"
         android:text="Continue with Facebook"
@@ -77,6 +77,13 @@
             android:textColorHint="#777777"
             android:textSize="15sp" />
 
+        <ImageButton
+            android:id="@+id/getSrt_cont_btn"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_arrow_forward_black_24dp"
+            android:background="#00EEEEEE"/>
+
     </LinearLayout>
 
     <TextView
@@ -100,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/nunito"
         android:gravity="top"
         android:text="OR"
@@ -109,7 +116,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getSrt_cont_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/linccp" />
 
     <ImageView
         android:id="@+id/getSrt_img"
@@ -122,22 +129,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/bluelogo" />
 
-    <Button
-        android:id="@+id/getSrt_cont_btn"
-        android:layout_width="320dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="8dp"
-        android:text="Continue"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:background="@drawable/button_curve"
-        android:fontFamily="@font/nunito"
-        app:layout_constraintEnd_toEndOf="@+id/linccp"
-        app:layout_constraintStart_toStartOf="@+id/linccp"
-        app:layout_constraintTop_toBottomOf="@+id/linccp" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
