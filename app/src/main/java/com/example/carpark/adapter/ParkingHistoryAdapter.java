@@ -7,8 +7,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.carpark.Model.ParkingHistoryModel;
+
 import com.example.carpark.R;
+import com.example.carpark.model.ParkingHistoryModel;
 
 import java.util.List;
 

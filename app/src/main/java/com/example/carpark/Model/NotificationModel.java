@@ -1,4 +1,4 @@
-package com.example.carpark.Model;
+package com.example.carpark.model;
 
 public class NotificationModel {
     private  String message;
