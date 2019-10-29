@@ -1,7 +1,6 @@
 package com.example.carpark.adapter;
 
 import android.content.Context;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import com.example.carpark.R;
 
 import java.util.List;
 
-import Model.NotificationModel;
+import com.example.carpark.Model.NotificationModel;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {
     private final Context context;
