@@ -3,6 +3,7 @@ package com.example.carpark.views;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.carpark.R;
@@ -87,7 +88,9 @@ public class ParkLocation extends FragmentActivity implements GoogleMap.OnMarker
     /** Called when the user clicks a marker. */
     @Override
     public boolean onMarkerClick(final Marker marker) {
-
+        String address = (String) marker.getTitle();
+        EditText address_search = findViewById(R.id.searchView2);
+        address_search.setText(address);
         return false;
     }
 
