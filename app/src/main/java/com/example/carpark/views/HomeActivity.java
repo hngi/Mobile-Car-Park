@@ -100,17 +100,6 @@ public class HomeActivity extends AppCompatActivity {
                         fragment = new MyVehicleFragment();
                         break;
 
-                    case R.id.nav_about:
-                        title = "About";
-                        fragment = new AboutFragment();
-                        break;
-
-                    case R.id.nav_support:
-                        title ="Support";
-                        Intent i = new Intent(HomeActivity.this,Support.class);
-                        startActivity(i);
-                        break;
-
                     case R.id.nav_settings:
                         title = "Settings";
                         fragment = new SettingsFragment();
