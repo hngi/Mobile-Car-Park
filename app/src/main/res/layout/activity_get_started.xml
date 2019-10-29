@@ -77,6 +77,13 @@
             android:textColorHint="#777777"
             android:textSize="15sp" />
 
+        <ImageButton
+            android:id="@+id/nextto"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_arrow_forward_black_24dp"
+            android:background="#00EEEEEE"/>
+
     </LinearLayout>
 
     <TextView

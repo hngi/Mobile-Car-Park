@@ -126,5 +126,11 @@ dependencies {
     implementation 'com.github.Flutterwave:rave-android:1.0.40'
 
 
+    //this allows mail to be sent in-app
+    implementation files('libs/activation.jar')
+    implementation files('libs/additionnal.jar')
+    implementation files('libs/mail.jar')
+
+
 }
 apply plugin: 'com.google.gms.google-services'

@@ -16,6 +16,7 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.hbb20.CountryCodePicker;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +24,7 @@ public class VerifyNumber extends AppCompatActivity {
 
     Button next;
     EditText etPhoneNumer;
-    TextView tvCountryCode;
+    CountryCodePicker tvCountryCode;
     String phoneNumber;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
 
@@ -36,20 +37,20 @@ public class VerifyNumber extends AppCompatActivity {
         ImageButton back = (ImageButton) findViewById(R.id.imageButton2);
 
         next = findViewById(R.id.next1);
-        etPhoneNumer= findViewById(R.id.editText2);
-        tvCountryCode = findViewById(R.id.vn_code);
+        etPhoneNumer= findViewById(R.id.verify_number);
+        tvCountryCode = findViewById(R.id.verify_ccp);
 
         // this allowsthe passed edittext from getstarted to show
         final String countryCode = getIntent().getStringExtra("countryCode");
         String phone = getIntent().getStringExtra("phoneNumber");
         etPhoneNumer.setText(phone);
-        tvCountryCode.setText(countryCode);
+        tvCountryCode.setFullNumber(countryCode);
 
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)  {
                // phoneNumber = etPhoneNumer.getText().toString();
                 Intent intToMain = new Intent(getApplicationContext(), EnterOTP.class);
-                intToMain.putExtra("PhoneNumber", tvCountryCode.getText().toString()+etPhoneNumer.getText().toString());
+                intToMain.putExtra("PhoneNumber", tvCountryCode.getSelectedCountryCodeWithPlus()+etPhoneNumer.getText().toString());
                 startActivity(intToMain);
             }
 

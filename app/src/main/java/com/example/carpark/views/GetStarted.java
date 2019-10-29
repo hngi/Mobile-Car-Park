@@ -49,6 +49,7 @@ public class GetStarted extends AppCompatActivity {
         fbbtn = findViewById(R.id.fb_btn);
         final EditText number = (EditText) findViewById(R.id.number);
         final CountryCodePicker ccp = (CountryCodePicker) findViewById(R.id.ccp);
+        ImageButton nextto = (ImageButton) findViewById(R.id.nextto);
 
         // facebook authentication
         FacebookSdk.sdkInitialize(this);
@@ -83,6 +84,19 @@ public class GetStarted extends AppCompatActivity {
 
 
 
+        });
+
+        nextto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(getApplicationContext(), VerifyNumber.class);
+                if(TextUtils.isEmpty(number.getText().toString())){
+                    number.setError("Please fill in phone number");
+                }else {
+                    intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
+                    intent.putExtra("phoneNumber", number.getText().toString());
+                    startActivity(intent);
+            }}
         });
 
     }
