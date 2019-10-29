@@ -31,13 +31,26 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD1XwtM5P9rGEwSyvDY4f2W5VqhS85Xdjo"/>
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD1XwtM5P9rGEwSyvDY4f2W5VqhS85Xdjo" />
+            android:name="co.paystack.android.PublicKey"
+            android:value="pk_test_a6776f501f9fc824598fe84b547c0b742dd357f0"/>
+
 
         <activity
+
+
             android:name=".views.MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps"></activity>
+
+
+
+
         <activity android:name=".views.VehicleActivity" />
         <activity android:name=".views.PaymentMethodActivity" />
         <activity
@@ -61,6 +74,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".views.ParkLocation"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".views.AddCardActivity"
@@ -92,7 +109,12 @@
         <activity
             android:name=".views.VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".views.CarDetailsActiviy" />
+
+
+
+
+        <activity
+            android:name=".views.CarDetailsActiviy"/>
         <activity android:name=".views.BaseActivity" />
         <activity android:name=".views.BarterActivity" />
     </application>

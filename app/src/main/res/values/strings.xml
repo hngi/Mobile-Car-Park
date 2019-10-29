@@ -41,9 +41,18 @@
     <string name="facebook_app_id">2687903551262284</string>
     <string name="fb_login_protocol_scheme">fb2687903551262284</string>
 
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="title_activity_maps">Map</string>
     <string name="where_would_you_love_to_park">Where would you love to park?</string>
 
+    <string name="about_app">Car Park application allows you find parking in seconds, wherever and whenever \n you need it, with millions of options at your \n finger tips via rated application.
+                                \n \n From work journeys to weekend trips, shopping to \n sport stadiums even parties, we have got you covered - with
+                                \n directions to car parks and on-street spaces, plus information on availability and restrictions.
+                                \n \n And for maximum peace of mind? Choose one of our numerous reservable locations - then simply
+                                \n \n park and get on with your day</string>
 </resources>

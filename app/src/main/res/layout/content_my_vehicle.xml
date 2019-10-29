@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +9,11 @@
     tools:context=".views.homefragments.MyVehicleFragment"
     tools:showIn="@layout/fragment_my_vehicle">
 
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/car_icon"
         android:layout_width="wrap_content"
@@ -17,96 +22,99 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"/>
 
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/Linear_Layout1"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@id/car_icon"-->
-    <!--        android:layout_marginRight="20dp"-->
-    <!--        android:layout_marginLeft="20dp"-->
-    <!--        android:background="@drawable/cornered_rectangle"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:weightSum="100">-->
+        <LinearLayout
+            android:id="@+id/Linear_Layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/car_icon"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/cornered_rectangle"
+            android:orientation="horizontal"
+            android:weightSum="80">
 
-    <!--        <TextView-->
-    <!--            android:layout_width="0dp"-->
-    <!--            android:layout_weight="50"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Car Plate Number"-->
-    <!--            android:padding="5dp"-->
-    <!--            android:layout_marginLeft="30dp"-->
-    <!--            android:layout_marginTop="5dp"-->
-    <!--            android:textColor="#fff" />-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="40"
+                android:layout_height="wrap_content"
+                android:text="Car Plate Number"
+                android:padding="5dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:textColor="@color/color_white" />
 
-    <!--        <View-->
-    <!--            android:layout_width="1dp"-->
-    <!--            android:layout_height="30dp"-->
-    <!--            android:background="#fff"-->
-    <!--            android:layout_gravity="center_vertical"/>-->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="#fff"
+                android:layout_gravity="center_vertical"/>
 
-    <!--        <TextView-->
-    <!--            android:layout_width="0dp"-->
-    <!--            android:layout_weight="50"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Car Make/Model"-->
-    <!--            android:padding="5dp"-->
-    <!--            android:layout_marginLeft="30dp"-->
-    <!--            android:layout_marginTop="5dp"-->
-    <!--            android:textColor="#fff" />-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="40"
+                android:layout_height="wrap_content"
+                android:text="Car Make/Model"
+                android:padding="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/color_white" />
 
-    <!--    </LinearLayout>-->
+        </LinearLayout>
 
     <LinearLayout
         android:id="@+id/Linear_Layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/car_icon"
+        android:layout_below="@id/Linear_Layout1"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/cornered_rectangle_white_backgroud"
         android:orientation="horizontal"
         android:weightSum="100">
 
         <TextView
+            android:id="@+id/my_vehicle_plate_number"
             android:layout_width="0dp"
-            android:layout_weight="30"
+            android:layout_weight="40"
             android:layout_height="wrap_content"
-            android:text="XXXXXX"
+            android:text="XXXXXXXX"
+            android:textAlignment="center"
             android:fontFamily="@font/nunito"
             android:padding="5dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:textColor="#000" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:background="#000"/>
+            android:textColor="@color/color_black" />
 
 
         <TextView
+            android:id="@+id/my_vehicle_model"
             android:layout_width="0dp"
             android:layout_weight="40"
             android:layout_height="wrap_content"
-            android:text="Lexus RX330"
+            android:text="Lenus RX089"
             android:fontFamily="@font/nunito"
-            android:padding="5dp"
+            android:paddingLeft="20dp"
+            android:textAlignment="center"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:textColor="#000" />
+            android:textColor="@color/color_black" />
 
 
         <TextView
+            android:id="@+id/tv_edit"
             android:layout_width="0dp"
             android:layout_weight="20"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="right"
             android:text="edit"
+            android:layout_marginRight="10dp"
             android:fontFamily="@font/nunito"
             android:textStyle="bold"
             android:textAllCaps="true"
@@ -119,3 +127,4 @@
 
 
 </RelativeLayout>
+</androidx.cardview.widget.CardView>

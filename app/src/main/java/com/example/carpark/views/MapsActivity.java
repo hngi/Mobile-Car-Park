@@ -91,7 +91,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mSearchText = (EditText) findViewById(R.id.input_search);
         getLocationPermission();
 
-        init();
     }
 
     private void init(){
@@ -209,6 +208,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.d(TAG, "onRequestPermissionsResult: called.");
         mLocationPermissionsGranted = false;
 
+
         switch(requestCode){
             case LOCATION_PERMISSION_REQUEST_CODE:{
                 if(grantResults.length > 0){
@@ -226,6 +226,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         }
+
     }
 
 
