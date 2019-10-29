@@ -25,7 +25,7 @@ import com.hbb20.CountryCodePicker;
 public class GetStarted extends AppCompatActivity {
 
     EditText number;
-    Button fbbtn;
+    Button fb_btn, cont_btn;
     CountryCodePicker ccp;
     Intent intent;
 
@@ -34,15 +34,23 @@ public class GetStarted extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_started);
 
-        final Button fbbtn = (Button) findViewById(R.id.fb_btn);
-        final EditText number = (EditText) findViewById(R.id.number);
-        final CountryCodePicker ccp = (CountryCodePicker) findViewById(R.id.ccp);
+        fb_btn = (Button) findViewById(R.id.fb_btn);
+         number = (EditText) findViewById(R.id.number);
+         ccp = (CountryCodePicker) findViewById(R.id.ccp);
+        cont_btn = (Button)findViewById(R.id.getSrt_cont_btn);
 
 
-        fbbtn.setOnClickListener(new View.OnClickListener() {
+        fb_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+
+        cont_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              openVerifyNumber();
             }
         });
 
@@ -50,14 +58,15 @@ public class GetStarted extends AppCompatActivity {
         number.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                intent = new Intent(getApplicationContext(), VerifyNumber.class);
-                if(TextUtils.isEmpty(number.getText().toString())){
-                    number.setError("Please fill in phone number");
-                }else {
-                    intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
-                    intent.putExtra("phoneNumber", number.getText().toString());
-                    startActivity(intent);
-                }
+//                intent = new Intent(getApplicationContext(), VerifyNumber.class);
+//                if(TextUtils.isEmpty(number.getText().toString())){
+//                    number.setError("Please fill in phone number");
+//                }else {
+//                    intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
+//                    intent.putExtra("phoneNumber", number.getText().toString());
+//                    startActivity(intent);
+//                }
+                openVerifyNumber();
                 return false;
 
             }
@@ -66,5 +75,18 @@ public class GetStarted extends AppCompatActivity {
 
         });
 
-    }}
+    }
+
+    private void openVerifyNumber() {
+        intent = new Intent(getApplicationContext(), VerifyNumber.class);
+        if(TextUtils.isEmpty(number.getText().toString())){
+            number.setError("Please fill in phone number");
+        }else {
+            intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
+            intent.putExtra("phoneNumber", number.getText().toString());
+            startActivity(intent);
+        }
+
+    }
+}
 

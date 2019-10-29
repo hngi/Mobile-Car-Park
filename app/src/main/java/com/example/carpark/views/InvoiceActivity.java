@@ -37,18 +37,18 @@ public class InvoiceActivity extends AppCompatActivity {
 
     private void initView() {
         qrImage = findViewById(R.id.qr_code);
-        showQrCode();
+        //showQrCode();
     }
 
     public void showQrCode(){
 
-
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         //final Bitmap bm = null;
-        String barcodeNumber = BarcodeMatrix.toString();
+        String barcodeNumber = "";
+        //BarcodeMatrix barcodeNumber;
         try {
            // bm = encod
-            BitMatrix bitMatrix = multiFormatWriter.encode(barcodeNumber, BarcodeFormat.UPC_A, 200, 200);
+            BitMatrix bitMatrix = multiFormatWriter.encode(barcodeNumber, BarcodeFormat.QR_CODE, 200, 200);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
 
