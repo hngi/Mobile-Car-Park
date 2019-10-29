@@ -9,11 +9,12 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.example.carpark.R;
+import com.example.carpark.model.NotificationModel;
 
 import java.util.List;
 
-import Model.NotificationModel;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {

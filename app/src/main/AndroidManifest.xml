@@ -2,16 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.carpark">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -21,9 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".views.Map"></activity>
 
-        <uses-library android:name="com.google.android.maps"/>
-
+        <uses-library android:name="com.google.android.maps" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -32,18 +31,25 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD1XwtM5P9rGEwSyvDY4f2W5VqhS85Xdjo" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD1XwtM5P9rGEwSyvDY4f2W5VqhS85Xdjo"/>
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
 
         <meta-data
             android:name="co.paystack.android.PublicKey"
             android:value="pk_test_a6776f501f9fc824598fe84b547c0b742dd357f0"/>
 
+
         <activity
-            android:name=".views.MapsActivity">
-<!--            android:label="@string/title_activity_maps">-->
-        </activity>
+
+
+            android:name=".views.MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
+
+
+
 
         <activity android:name=".views.VehicleActivity" />
         <activity android:name=".views.PaymentMethodActivity" />
@@ -103,11 +109,14 @@
         <activity
             android:name=".views.VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar" />
+
+
+
+
         <activity
             android:name=".views.CarDetailsActiviy"/>
         <activity android:name=".views.BaseActivity" />
         <activity android:name=".views.BarterActivity" />
-
     </application>
 
 </manifest>

@@ -183,17 +183,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_available_spaces">
 
-            <include layout="@layout/activity_maps" />
+            <include layout="@layout/map_fragment" />
 
         </FrameLayout>
 
     </RelativeLayout>
 
-    <SearchView
-        android:id="@+id/location_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_curves"
-        app:queryHint="Where would you love to park?" />
+
 
 </LinearLayout>
