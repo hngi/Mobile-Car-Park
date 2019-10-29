@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.carpark.R;
@@ -59,7 +60,13 @@ public class ParkingHistoryAdapter extends RecyclerView.Adapter<ParkingHistoryAd
         holder.date_time.setText(parkingHistory.get(position).getParkingHistoryDate()+" "+parkingHistory.get(position).getParkingHistoryTime());
         holder.location.setText(parkingHistory.get(position).getLocation());
         holder.qr_code.setText(parkingHistory.get(position).getQrCode());
-        holder.amount.setText(parkingHistory.get(position).getAmount());
+        holder.amount.setText("NGN"+parkingHistory.get(position).getAmount());
+
+        holder.re_book.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(context, "Re-Book", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
