@@ -1,19 +1,22 @@
 package com.example.carpark.views;
+
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+
 import com.example.carpark.R;
+import com.example.carpark.views.homefragments.AboutFragment;
 import com.example.carpark.views.homefragments.DefaultFragment;
 import com.example.carpark.views.homefragments.MyVehicleFragment;
 import com.example.carpark.views.homefragments.ParkingHistoryFragment;
@@ -21,6 +24,8 @@ import com.example.carpark.views.homefragments.PaymentMethodsFragment;
 import com.example.carpark.views.homefragments.PromotionFragment;
 import com.example.carpark.views.homefragments.SettingsFragment;
 import com.google.android.material.navigation.NavigationView;
+
+;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -30,7 +35,6 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private boolean mToolBarNavigationListenerIsRegistered = false;
-    private SearchView searchView;
 
 
     @Override
@@ -40,15 +44,12 @@ public class HomeActivity extends AppCompatActivity {
         initViews();
         setUpDefaultFragment();
         navigationClickListeners();
-
-
     }
 
     private void initViews() {
         toolbar = findViewById(R.id.home_toolbar);
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.navigation_view);
-        //searchView = findViewById(R.id.location_search);
         navigationView.setItemIconTintList(null);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
@@ -103,11 +104,18 @@ public class HomeActivity extends AppCompatActivity {
                         toolbar.setTitle("My Vehicle");
                         break;
 
+                    case R.id.nav_about:
+                        titile = "About";
+                        fragment = new AboutFragment();
+                        toolbar.setTitle("About/How it works");
+                        break;
+
                     case R.id.nav_settings:
                         titile = "Settings";
                         fragment = new SettingsFragment();
                         toolbar.setTitle("Settings");
                         break;
+
 
 
                 }
@@ -117,6 +125,10 @@ public class HomeActivity extends AppCompatActivity {
                     setUpFragment(fragment);
                     enableBackViews(true);
                     toolbar.setTitle(titile);
+
+
+
+
                 }
                 return true;
             }
@@ -151,10 +163,10 @@ public class HomeActivity extends AppCompatActivity {
             final Drawable upArrow = getResources().getDrawable(R.drawable.ic_action_back);
             upArrow.setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.SRC_ATOP);
             getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
             toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
             if (!mToolBarNavigationListenerIsRegistered) {
@@ -175,7 +187,7 @@ public class HomeActivity extends AppCompatActivity {
             toggle.setToolbarNavigationClickListener(null);
             mToolBarNavigationListenerIsRegistered = false;
 
-            toolbar.setBackgroundColor(getResources().getColor(R.color.white));        }
+            toolbar.setBackgroundColor(getResources().getColor(R.color.color_white));        }
     }
 
 }
