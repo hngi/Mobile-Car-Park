@@ -21,7 +21,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 public class InvoiceActivity extends AppCompatActivity {
 
     private ImageView qrImage;
-
+    private Object BarcodeMatrix;
 
 
     @Override
@@ -37,15 +37,15 @@ public class InvoiceActivity extends AppCompatActivity {
 
     private void initView() {
         qrImage = findViewById(R.id.qr_code);
-
+        showQrCode();
     }
 
-    public void showQrCode(final BarcodeMatrix barcode){
+    public void showQrCode(){
 
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-        final Bitmap bm = null;
-        String barcodeNumber = barcode.getMatrix().toString();
+        //final Bitmap bm = null;
+        String barcodeNumber = BarcodeMatrix.toString();
         try {
            // bm = encod
             BitMatrix bitMatrix = multiFormatWriter.encode(barcodeNumber, BarcodeFormat.UPC_A, 200, 200);
