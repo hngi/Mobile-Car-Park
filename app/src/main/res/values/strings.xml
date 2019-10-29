@@ -38,6 +38,7 @@
     <string name="car_park_name">Car Park Name</string>
     <string name="amount">Amount</string>
     <string name="back">Back</string>
+    <string name="title_activity_maps"></string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
