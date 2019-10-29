@@ -25,8 +25,12 @@
         <Preference
             app:iconSpaceReserved="false"
             android:selectAllOnFocus="true"
+            android:fragment="com.example.carpark.views.NotificationFragment"
             android:singleLine="true"
-            android:title="Notification" />
+            android:title="Notification" >
+
+        </Preference>
+
         <SwitchPreference
             android:defaultValue="true"
             app:iconSpaceReserved="false"

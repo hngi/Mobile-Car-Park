@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.carpark">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -9,6 +10,8 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -18,10 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.VehicleActivity"></activity>
-        <activity android:name=".views.PaymentMethodActivity" />
-        <activity android:name=".views.ConfirmationActivity"
-                  android:parentActivityName=".views.ScheduleActivity"/>
+
+        <uses-library android:name="com.google.android.maps"/>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -32,31 +34,22 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyD1XwtM5P9rGEwSyvDY4f2W5VqhS85Xdjo" />
 
-        <!--
-            Facebook meta data tag specifying application ID
-            activity and intent filter for Chrome Custom Tabs
-        -->
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="co.paystack.android.PublicKey"
+            android:value="pk_test_a6776f501f9fc824598fe84b547c0b742dd357f0"/>
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
         <activity
-            android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="@string/fb_login_protocol_scheme" />
-            </intent-filter>
+            android:name=".views.MapsActivity">
+<!--            android:label="@string/title_activity_maps">-->
         </activity>
 
-
+        <activity android:name=".views.VehicleActivity" />
+        <activity android:name=".views.PaymentMethodActivity" />
+        <activity
+            android:name=".views.ConfirmationActivity"
+            android:parentActivityName=".views.ScheduleActivity" />
         <activity
             android:name=".views.EnterNameActivity"
             android:parentActivityName=".views.EnterOTP"
@@ -76,7 +69,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BaseActivity" />
+        <activity
+            android:name=".views.ParkLocation"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".views.AddCardActivity"
             android:label="Add Card"
@@ -89,18 +85,18 @@
         <activity
             android:name=".views.TransactionActivity"
             android:label="Transaction" />
-
-        <activity android:name=".views.InvoiceActivity"
+        <activity
+            android:name=".views.InvoiceActivity"
             android:parentActivityName=".views.HomeActivity" />
-
-        <activity android:name=".views.DetailsActivity"
-            android:parentActivityName=".views.HomeActivity"/>
+        <activity
+            android:name=".views.DetailsActivity"
+            android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.EnterOTP"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".views.ScheduleActivity"
-            android:parentActivityName=".views.HomeActivity"
-            />
+        <activity
+            android:name=".views.ScheduleActivity"
+            android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.ProfileActivity"
             android:parentActivityName=".views.EnterNameActivity" />
@@ -109,6 +105,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.CarDetailsActiviy"/>
+        <activity android:name=".views.BaseActivity" />
+        <activity android:name=".views.BarterActivity" />
+
     </application>
 
 </manifest>
