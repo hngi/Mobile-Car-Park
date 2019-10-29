@@ -64,6 +64,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".views.ParkLocation"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
             android:name=".views.AddCardActivity"
             android:parentActivityName=".views.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar"
