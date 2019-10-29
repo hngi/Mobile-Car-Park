@@ -12,6 +12,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -50,16 +51,19 @@ public class ParkLocation extends FragmentActivity implements GoogleMap.OnMarker
         // Add some markers to the map, and add a data object to each marker.
         mIkeja_g = mMap.addMarker(new MarkerOptions()
                 .position(Ikeja_G)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
                 .title("Ikeja General Hospital, Car Park"));
         mIkeja_g.setTag(0);
 
         mN_air = mMap.addMarker(new MarkerOptions()
                 .position(N_Air)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
                 .title("New Airport, Car Park"));
         mN_air.setTag(0);
 
         mIkeja_p = mMap.addMarker(new MarkerOptions()
                 .position(Ikeja_p)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
                 .title("Ikeja, Car Park"));
         mIkeja_p.setTag(0);
 
