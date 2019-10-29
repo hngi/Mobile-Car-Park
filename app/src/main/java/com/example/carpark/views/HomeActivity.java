@@ -1,5 +1,6 @@
 package com.example.carpark.views;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -102,6 +103,12 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.nav_about:
                         title = "About";
                         fragment = new AboutFragment();
+                        break;
+
+                    case R.id.nav_support:
+                        title ="Support";
+                        Intent i = new Intent(HomeActivity.this,Support.class);
+                        startActivity(i);
                         break;
 
                     case R.id.nav_settings:
