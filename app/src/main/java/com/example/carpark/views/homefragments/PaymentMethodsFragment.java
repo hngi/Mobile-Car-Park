@@ -47,6 +47,8 @@ public class PaymentMethodsFragment extends Fragment {
         payStackBut = root.findViewById(R.id.paystack_btn);
         paymentBar = root.findViewById(R.id.paymentBar);
 
+       // paymentBar.setVisibility(View.INVISIBLE);
+
 
         PaystackSdk.initialize(getActivity());
 
@@ -132,8 +134,6 @@ public class PaymentMethodsFragment extends Fragment {
         barter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                paymentBar.setVisibility(View.VISIBLE);
                 startActivity(new Intent(getActivity(), BarterActivity.class));
             }
         });

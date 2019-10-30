@@ -31,7 +31,6 @@ public class BarterActivity extends BaseActivity {
     private String firstName;
     private String lastName;
     private Double amount;
-    ProgressBar paymentBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +38,7 @@ public class BarterActivity extends BaseActivity {
 
         initData();
         makePay();
-        paymentBar = findViewById(R.id.paymentBar);
+
     }
 
     private void initData() {
@@ -48,7 +47,7 @@ public class BarterActivity extends BaseActivity {
         email = "ehmaugbogo@gmail.com";
         firstName = "Ehma";
         lastName = "Ugbogo";
-        amount=1000.50;
+        amount = 1000.50;
     }
 
     private void makePay() {
@@ -62,7 +61,7 @@ public class BarterActivity extends BaseActivity {
                 .setNarration("Parking Payment")
                 .setPublicKey(publicKey)
                 .setEncryptionKey(encryptionKey)
-                .setTxRef(System.currentTimeMillis()+"Ref")
+                .setTxRef(System.currentTimeMillis() + "Ref")
                 .acceptAccountPayments(true)
                 .acceptCardPayments(true)
                 .allowSaveCardFeature(true)
@@ -82,21 +81,18 @@ public class BarterActivity extends BaseActivity {
         if (requestCode == RaveConstants.RAVE_REQUEST_CODE && data != null) {
             String message = data.getStringExtra("response");
             if (resultCode == RavePayActivity.RESULT_SUCCESS) {
-                paymentBar.setVisibility(View.INVISIBLE);
                 showToast("SUCCESS " + message);
-            }
-            else if (resultCode == RavePayActivity.RESULT_ERROR) {
-                paymentBar.setVisibility(View.INVISIBLE);
+            } else if (resultCode == RavePayActivity.RESULT_ERROR) {
                 showToast("ERROR " + message);
-            }
-            else if (resultCode == RavePayActivity.RESULT_CANCELLED) {
-                paymentBar.setVisibility(View.INVISIBLE);
+            } else if (resultCode == RavePayActivity.RESULT_CANCELLED) {
                 showToast("CANCELLED " + message);
                 finish();
             }
-        }
-        else {
-            paymentBar.setVisibility(View.INVISIBLE);
+
+
+
+        } else {
+
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
