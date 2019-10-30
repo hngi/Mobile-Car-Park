@@ -2,8 +2,11 @@ package com.example.carpark.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.carpark.R;
+import com.example.carpark.views.homefragments.PaymentMethodsFragment;
 import com.flutterwave.raveandroid.RaveConstants;
 import com.flutterwave.raveandroid.RavePayActivity;
 import com.flutterwave.raveandroid.RavePayManager;
@@ -28,6 +31,7 @@ public class BarterActivity extends BaseActivity {
     private String firstName;
     private String lastName;
     private Double amount;
+    ProgressBar paymentBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class BarterActivity extends BaseActivity {
 
         initData();
         makePay();
+        paymentBar = findViewById(R.id.paymentBar);
     }
 
     private void initData() {
@@ -77,17 +82,21 @@ public class BarterActivity extends BaseActivity {
         if (requestCode == RaveConstants.RAVE_REQUEST_CODE && data != null) {
             String message = data.getStringExtra("response");
             if (resultCode == RavePayActivity.RESULT_SUCCESS) {
+                paymentBar.setVisibility(View.INVISIBLE);
                 showToast("SUCCESS " + message);
             }
             else if (resultCode == RavePayActivity.RESULT_ERROR) {
+                paymentBar.setVisibility(View.INVISIBLE);
                 showToast("ERROR " + message);
             }
             else if (resultCode == RavePayActivity.RESULT_CANCELLED) {
+                paymentBar.setVisibility(View.INVISIBLE);
                 showToast("CANCELLED " + message);
                 finish();
             }
         }
         else {
+            paymentBar.setVisibility(View.INVISIBLE);
             super.onActivityResult(requestCode, resultCode, data);
         }
     }

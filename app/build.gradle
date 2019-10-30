@@ -73,8 +73,6 @@ dependencies {
 
     implementation 'com.vinaygaba:creditcardview:1.0.4'
     implementation 'com.braintreepayments:card-form:4.2.0'
-    api 'io.card:android-sdk:[5.5.0,6.0.0)'
-
 
     //Glide Image Library
     implementation 'com.github.bumptech.glide:glide:4.10.0'
@@ -118,12 +116,10 @@ dependencies {
     implementation "com.google.android.gms:play-services-location:17.0.0"
 
 
-    //Flutterwave rave-android
-    implementation 'com.github.Flutterwave:rave-android:1.0.40'
-
-
-    //Flutterwave rave-android
-    implementation 'com.github.Flutterwave:rave-android:1.0.40'
+    //this allows mail to be sent in-app
+    implementation files('libs/activation.jar')
+    implementation files('libs/additionnal.jar')
+    implementation files('libs/mail.jar')
 
 
 }

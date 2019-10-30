@@ -11,11 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carpark.R;
 import com.example.carpark.views.AddCardActivity;
+import com.example.carpark.views.BarterActivity;
 
 import co.paystack.android.Paystack;
 import co.paystack.android.PaystackSdk;
@@ -31,6 +33,7 @@ public class PaymentMethodsFragment extends Fragment {
     private TextView promoCode;
     private TextView barter;
     private Button payStackBut;
+    ProgressBar paymentBar;
 
     @Nullable
     @Override
@@ -42,18 +45,20 @@ public class PaymentMethodsFragment extends Fragment {
         addCard(root);
         addPromoCode(root);
         payStackBut = root.findViewById(R.id.paystack_btn);
+        paymentBar = root.findViewById(R.id.paymentBar);
 
 
         PaystackSdk.initialize(getActivity());
 
 
         barter = root.findViewById(R.id.barter);
-        openBarter(root);
+        openBarter();
 
 
         payStackBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                paymentBar.setVisibility(View.VISIBLE);
                 performCharge();
             }
         });
@@ -95,6 +100,7 @@ public class PaymentMethodsFragment extends Fragment {
                     // Retrieve the transaction, and send its reference to your server
                     // for verification.
                     String paymentReference = transaction.getReference();
+                    paymentBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(getActivity(), "Transaction Successful! payment reference: "
                             + paymentReference, Toast.LENGTH_LONG).show();
                 }
@@ -108,10 +114,13 @@ public class PaymentMethodsFragment extends Fragment {
 
                 @Override
                 public void onError(Throwable error, Transaction transaction) {
+                    paymentBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getActivity(), "An error occured: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     //handle error here
                 }
             });
         } else {
+            paymentBar.setVisibility(View.INVISIBLE);
             Toast.makeText(getActivity(), "Card invalid", Toast.LENGTH_LONG).show();
         }
 
@@ -119,11 +128,13 @@ public class PaymentMethodsFragment extends Fragment {
     }
 
 
-    private void openBarter(View root) {
+    private void openBarter() {
         barter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(getActivity(), BarterActivity.class));
+
+                paymentBar.setVisibility(View.VISIBLE);
+                startActivity(new Intent(getActivity(), BarterActivity.class));
             }
         });
     }

@@ -42,8 +42,6 @@
     <string name="fb_login_protocol_scheme">fb2687903551262284</string>
 
 
-
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -55,4 +53,6 @@
                                 \n directions to car parks and on-street spaces, plus information on availability and restrictions.
                                 \n \n And for maximum peace of mind? Choose one of our numerous reservable locations - then simply
                                 \n \n park and get on with your day</string>
+    <string name="enter_the_4_digit_code_sent">Enter the 4-Digit code sent</string>
+
 </resources>

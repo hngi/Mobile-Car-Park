@@ -9,8 +9,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.carpark.Model.NotificationModel;
+
 import com.example.carpark.R;
+import com.example.carpark.model.NotificationModel;
 
 import java.util.List;
 
