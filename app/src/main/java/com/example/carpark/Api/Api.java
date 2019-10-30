@@ -7,7 +7,6 @@ import retrofit2.http.POST;
 public interface Api {
 
     //Registration APIs
-   // @GET("auth/send-otp")
 
 
 }
