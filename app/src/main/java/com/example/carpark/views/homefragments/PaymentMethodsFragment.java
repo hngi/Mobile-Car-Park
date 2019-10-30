@@ -133,7 +133,7 @@ public class PaymentMethodsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                // paymentBar.setVisibility(View.VISIBLE);
+                paymentBar.setVisibility(View.VISIBLE);
                 startActivity(new Intent(getActivity(), BarterActivity.class));
             }
         });
