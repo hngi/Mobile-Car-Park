@@ -14,7 +14,6 @@
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="22dp"
             android:orientation="vertical"
             android:padding="22dp"
             app:layout_constraintBottom_toTopOf="@+id/schedule_button"
@@ -28,7 +27,8 @@
                 android:fontFamily="@font/nunito"
                 android:text="Lekki Gardens"
                 android:textColor="@color/text_black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -55,7 +55,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -76,17 +76,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/nunito"
-                    android:text="20 Oct, 10:00"
+                    android:text=""
                     android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/tv_change_checkIn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/nunito"
+                    android:onClick="checkIn"
                     android:text="@string/change"
                     android:textAlignment="textEnd"
                     android:textColor="@android:color/holo_red_light"
@@ -104,7 +104,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -125,17 +125,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/nunito"
-                    android:text="20 Oct, 11:00"
+                    android:text=""
                     android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/tv_change_checkOut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/nunito"
+                    android:onClick="checkOut"
                     android:text="@string/change"
                     android:textAlignment="textEnd"
                     android:textColor="@android:color/holo_red_light"
@@ -153,7 +153,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -173,10 +173,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/nunito"
-                    android:text="1 Hour"
+                    android:text=""
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <View
@@ -189,7 +188,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30sp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -211,8 +210,7 @@
                     android:fontFamily="@font/nunito"
                     android:text="LNG122BW"
                     android:textAlignment="textEnd"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -232,13 +230,14 @@
                     android:text="@string/addVehicle" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floatingActionButton2"
+                    android:id="@+id/fb_schedule_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:clickable="true"
                     android:tint="#F9F9F9"
                     app:fabSize="mini"
+                    app:maxImageSize="16dp"
                     app:srcCompat="@drawable/dashicons_plus_add" />
 
             </LinearLayout>
@@ -261,10 +260,11 @@
             android:layout_marginBottom="22dp"
             android:background="@drawable/com_facebook_button_background"
             android:fontFamily="@font/nunito"
+            android:onClick="next"
             android:text="@string/next"
             android:textAllCaps="false"
             android:textColor="@color/color_white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

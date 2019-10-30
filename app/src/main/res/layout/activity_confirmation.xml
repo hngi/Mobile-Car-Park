@@ -29,7 +29,8 @@
                 android:fontFamily="@font/nunito"
                 android:text="Lekki Gardens"
                 android:textColor="@color/text_black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv2"
@@ -216,16 +217,16 @@
             android:layout_marginBottom="18dp"
             android:background="@drawable/com_facebook_button_background"
             android:fontFamily="@font/nunito"
+            android:onClick="confirmBooking"
             android:text="Confirm Booking"
             android:textAllCaps="false"
             android:textColor="@color/color_white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/edit_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"/>
-
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <Button
@@ -237,10 +238,11 @@
             android:layout_marginBottom="22dp"
             android:background="@drawable/cornered_rectangle_white_backgroud_confirmation_btn"
             android:fontFamily="@font/nunito"
+            android:onClick="editBooking"
             android:text="Edit Booking"
             android:textAllCaps="false"
             android:textColor="#A7A7A7"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

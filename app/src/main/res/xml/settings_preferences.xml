@@ -19,14 +19,15 @@
 
     <PreferenceCategory app:title="Privacy Settings" android:key="rootKey" app:iconSpaceReserved="false" >
 
-        <!-- Add Nested Notification Fragment Here-->
-        <!-- Add  android:fragment="com.example.carpark.views.Notification"-->
-
         <Preference
             app:iconSpaceReserved="false"
             android:selectAllOnFocus="true"
+            android:fragment="com.example.carpark.views.NotificationFragment"
             android:singleLine="true"
-            android:title="Notification" />
+            android:title="Notification" >
+
+        </Preference>
+
         <SwitchPreference
             android:defaultValue="true"
             app:iconSpaceReserved="false"
@@ -36,14 +37,13 @@
 
     <PreferenceCategory app:title="Support" app:iconSpaceReserved="false">
 
-        <!-- Add Nested About Fragment Here-->
-        <!-- Add  android:fragment="com.example.carpark.views.About"-->
 
         <Preference
             android:defaultValue="Default value"
             app:iconSpaceReserved="false"
             android:key="about_preferences"
             android:selectAllOnFocus="true"
+            android:fragment="com.example.carpark.views.homefragments.AboutFragment"
             android:singleLine="true"
             android:title="About" />
 
@@ -58,14 +58,13 @@
             app:iconSpaceReserved="false"
             android:title="Frequently Asked Questions" />
 
-        <!-- Add Nested Support Fragment Here-->
-        <!-- Add  android:fragment="com.example.carpark.views.Support"-->
 
         <Preference
             android:defaultValue="Default value"
             android:key="support_preferences"
             android:selectAllOnFocus="true"
             android:singleLine="true"
+            android:fragment="com.example.carpark.views.homefragments.SupportFragment"
             app:iconSpaceReserved="false"
             android:title="Support" />
     </PreferenceCategory>
