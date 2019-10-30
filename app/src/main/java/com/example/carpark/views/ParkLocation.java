@@ -2,7 +2,11 @@ package com.example.carpark.views;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.carpark.R;
@@ -11,6 +15,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -26,7 +31,8 @@ public class ParkLocation extends FragmentActivity implements GoogleMap.OnMarker
     private Marker mIkeja_g;
     private Marker mN_air;
     private Marker mIkeja_p;
-
+    private Button schedule;
+    private EditText address_search;
     private GoogleMap mMap;
 
     @Override
@@ -49,16 +55,19 @@ public class ParkLocation extends FragmentActivity implements GoogleMap.OnMarker
         // Add some markers to the map, and add a data object to each marker.
         mIkeja_g = mMap.addMarker(new MarkerOptions()
                 .position(Ikeja_G)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
                 .title("Ikeja General Hospital, Car Park"));
         mIkeja_g.setTag(0);
 
         mN_air = mMap.addMarker(new MarkerOptions()
                 .position(N_Air)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
                 .title("New Airport, Car Park"));
         mN_air.setTag(0);
 
         mIkeja_p = mMap.addMarker(new MarkerOptions()
                 .position(Ikeja_p)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
                 .title("Ikeja, Car Park"));
         mIkeja_p.setTag(0);
 
@@ -87,7 +96,24 @@ public class ParkLocation extends FragmentActivity implements GoogleMap.OnMarker
     /** Called when the user clicks a marker. */
     @Override
     public boolean onMarkerClick(final Marker marker) {
-
+        String address = (String) marker.getTitle();
+        address_search = findViewById(R.id.searchView2);
+        address_search.setText(address);
+        address_search.setFocusable(false);
+        address_search.setClickable(false);
+        schedule = findViewById(R.id.schedule_btn);
+        if(address_search!=null){
+            schedule.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getApplicationContext(), "Activity Build in Progress", Toast.LENGTH_LONG).show();
+                    //String park_address = address_search.getText().toString();
+                    //Intent i = new Intent(getApplicationContext(),Map.class);
+                    //i.putExtra("address",park_address);
+                    //startActivity(i);
+                }
+            });
+        }
         return false;
     }
 
