@@ -132,6 +132,7 @@ public class PaymentMethodsFragment extends Fragment {
         barter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 paymentBar.setVisibility(View.VISIBLE);
                 startActivity(new Intent(getActivity(), BarterActivity.class));
             }
