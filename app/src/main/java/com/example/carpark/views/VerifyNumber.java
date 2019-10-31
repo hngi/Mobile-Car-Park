@@ -12,8 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carpark.Api.ParkingApi;
-import com.example.carpark.Api.Responses.BaseDataResponse;
-import com.example.carpark.Api.Responses.LoginReg.UserResponse;
+import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.R;
 import com.google.android.gms.common.api.Api;
@@ -86,9 +85,9 @@ public class VerifyNumber extends AppCompatActivity {
 
     private void SendOtp(final String PhoneForOTP){
 
-        /*RetrofitClient.getInstance().create(ParkingApi.class).sendOTP(PhoneForOTP).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+        RetrofitClient.getInstance().create(ParkingApi.class).sendOTP(PhoneForOTP).enqueue(new Callback<BaseResponse>() {
             @Override
-            public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
 
                 if (response.isSuccessful()){
                     Toast.makeText(VerifyNumber.this, "Otp Sent", Toast.LENGTH_SHORT).show();
@@ -103,13 +102,13 @@ public class VerifyNumber extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
                 Toast.makeText(VerifyNumber.this, t.getMessage() , Toast.LENGTH_SHORT).show();
 
             }
         });
 
-*/
+
 
     }
 

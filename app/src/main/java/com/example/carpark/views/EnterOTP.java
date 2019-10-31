@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.carpark.Api.Responses.BaseDataResponse;
+import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.PhoneOtp;
@@ -179,9 +180,9 @@ public class EnterOTP extends BaseActivity {
             PhoneOtp phoneOtp = new PhoneOtp();
             phoneOtp.setPhone(phoneNum);
             phoneOtp.setOtp(sentOTP);
-            /*getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+            getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseResponse>() {
                 @Override
-                public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
+                public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                     if (response.isSuccessful()) {
 
                         if (!sentOTP.equals("1234")) {
@@ -198,11 +199,11 @@ public class EnterOTP extends BaseActivity {
                 }
 
                 @Override
-                public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
+                public void onFailure(Call<BaseResponse> call, Throwable t) {
                     Toast.makeText(EnterOTP.this, "Use 1234 for OTP for now please", Toast.LENGTH_SHORT).show();
 
                 }
-            });*/
+            });
 
 
         } else {
