@@ -11,11 +11,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.carpark.Api.Api;
+import com.example.carpark.Api.ParkingApi;
 import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.R;
+import com.google.android.gms.common.api.Api;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -85,7 +86,7 @@ public class VerifyNumber extends AppCompatActivity {
 
     private void SendOtp(final String PhoneForOTP){
 
-        RetrofitClient.getInstance().create(Api.class).sendOTP(PhoneForOTP).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+        /*RetrofitClient.getInstance().create(ParkingApi.class).sendOTP(PhoneForOTP).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
             @Override
             public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
 
@@ -108,7 +109,7 @@ public class VerifyNumber extends AppCompatActivity {
             }
         });
 
-
+*/
 
     }
 
