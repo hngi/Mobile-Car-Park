@@ -14,9 +14,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+import com.example.carpark.Model.review.ParkingHistoryModel;
 import com.example.carpark.R;
 import com.example.carpark.adapter.ParkingHistoryAdapter;
-import com.example.carpark.model.ParkingHistoryModel;
 
 import java.util.ArrayList;
 import java.util.List;
