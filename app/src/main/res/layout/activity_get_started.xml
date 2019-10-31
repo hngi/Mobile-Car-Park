@@ -78,12 +78,12 @@
             android:textSize="15sp" />
 
         <ImageButton
-            android:id="@+id/forward"
-            android:layout_width="45dp"
+            android:id="@+id/nextto"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_arrow_forward_black_24dp" />
+            android:src="@drawable/ic_arrow_forward_black_24dp"
+            android:background="#00EEEEEE"/>
+
     </LinearLayout>
 
     <TextView

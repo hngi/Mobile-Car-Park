@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carpark.R;
+import com.example.carpark.views.DetailsActivity;
 import com.example.carpark.views.HomeActivity;
 import com.example.carpark.views.ScheduleActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,6 +42,8 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback {
 
         setLayoutOnClickListers(root);
 
+        Toast.makeText(getActivity(), "Please click on schedule to test other activities", Toast.LENGTH_LONG).show();
+
         return root;
     }
 
@@ -50,8 +53,8 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        LatLng sydney = new LatLng(6.605874, 3.349149);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Ikeja"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
     }
@@ -70,7 +73,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback {
         homeSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ScheduleActivity.class);
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
                 startActivity(intent);
             }
         });

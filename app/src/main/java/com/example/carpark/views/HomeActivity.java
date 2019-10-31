@@ -7,20 +7,17 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.carpark.R;
+import com.example.carpark.views.homefragments.AboutFragment;
 import com.example.carpark.views.homefragments.DefaultFragment;
 import com.example.carpark.views.homefragments.MyVehicleFragment;
 import com.example.carpark.views.homefragments.ParkingHistoryFragment;
@@ -28,6 +25,8 @@ import com.example.carpark.views.homefragments.PaymentMethodsFragment;
 import com.example.carpark.views.homefragments.PromotionFragment;
 import com.example.carpark.views.homefragments.SettingsFragment;
 import com.google.android.material.navigation.NavigationView;
+
+;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -73,56 +72,56 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment = null;
-                String titile = "";
+                String title = "";
                 switch (item.getItemId()) {
 
                     case R.id.nav_notification:
-                        titile = "Notificatins";
-                        fragment = null;
-
+                        title = "Notificatins";
+                        fragment = new NotificationFragment();
                         break;
 
                     case R.id.nav_parking_history:
-                        titile = "Parking History";
+                        title = "Parking History ";
                         fragment = new ParkingHistoryFragment();
-                        toolbar.setTitle("Parking History");
                         break;
 
                     case R.id.nav_pay:
-                        titile = "Payment Methods";
+                        title = "Payment Methods";
                         fragment = new PaymentMethodsFragment();
-                        toolbar.setTitle("Payment Methods");
                         break;
 
                     case R.id.nav_prom:
-                        titile = "Promotions";
+                        title = "Promotions";
                         fragment = new PromotionFragment();
-                        toolbar.setTitle("Promotion");
                         break;
 
                     case R.id.nav_car:
-                        titile = "My Vehicle";
+                        title = "My Vehicle";
                         fragment = new MyVehicleFragment();
-                        toolbar.setTitle("My Vehicle");
+                        break;
+
+                    case R.id.nav_about:
+                        title = "About";
+                        fragment = new AboutFragment();
+                        break;
+
+                    case R.id.nav_support:
+                        title ="Support";
+                        Intent i = new Intent(HomeActivity.this,Support.class);
+                        startActivity(i);
                         break;
 
                     case R.id.nav_settings:
-                        titile = "Settings";
+                        title = "Settings";
                         fragment = new SettingsFragment();
-                        toolbar.setTitle("Settings");
                         break;
-
-
                 }
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 navigationView.setCheckedItem(item);
                 if (fragment != null) {
                     setUpFragment(fragment);
                     enableBackViews(true);
-                    toolbar.setTitle(titile);
-
-
-
+                    toolbar.setTitle(title);
 
                 }
                 return true;
@@ -161,7 +160,7 @@ public class HomeActivity extends AppCompatActivity {
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
             toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
             if (!mToolBarNavigationListenerIsRegistered) {
@@ -182,7 +181,7 @@ public class HomeActivity extends AppCompatActivity {
             toggle.setToolbarNavigationClickListener(null);
             mToolBarNavigationListenerIsRegistered = false;
 
-            toolbar.setBackgroundColor(getResources().getColor(R.color.white));        }
+            toolbar.setBackgroundColor(getResources().getColor(R.color.color_white));        }
     }
 
 }
