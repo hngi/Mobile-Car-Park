@@ -21,9 +21,10 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface ApiService {
+public interface ApiServiceInterface {
 
     // Registration
+
     @POST("auth/register")
     Call<UserResponse> registerUser(@Body NewUser newUser);
 
@@ -41,6 +42,9 @@ public interface ApiService {
     @POST("auth/login")
     Call<BaseDataResponse<BaseResponse>> getUserAcessToken(@Body PhoneOtp phoneOtp);
 
+
+    //Vehicles
+
     @GET("vehicles")
     Call<Vehicle> listAllVehicles();
 
@@ -55,6 +59,9 @@ public interface ApiService {
     @DELETE("vehicles/{id}")
     @FormUrlEncoded
     Call<Void> deleteVehicleRecord(@Path("id") int id, @Field("plate_number") String plate_number, @Field("make_model") String make_model);
+
+
+    //User
 
     @GET("user")
     Call<User> getUserProfile();
