@@ -1,6 +1,7 @@
-package com.example.carpark.Api;
+package service;
 
 import com.example.carpark.Api.Responses.BaseDataResponse;
+import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Model.NewUser;
 import com.example.carpark.Model.PhoneOtp;
@@ -14,32 +15,36 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
-public interface Api {
+public interface ApiServiceInterface {
 
-    //Registration APIs
+    // Registration
+
     @POST("auth/register")
     Call<UserResponse> registerUser(@Body NewUser newUser);
 
     @POST("auth/send-otp")
     @FormUrlEncoded
-    Call<BaseDataResponse<UserResponse>>sendOTP(@Field("phone") String phone);
+    Call<BaseDataResponse<BaseResponse>>sendOTP(@Field("phone") String phone);
 
     @POST("auth/verify-otp")
-    Call<BaseDataResponse<UserResponse>> verifyOTP(@Body PhoneOtp phoneOtp);
+    Call<BaseDataResponse<BaseResponse>> verifyOTP(@Body PhoneOtp phoneOtp);
 
-    @POST("auth/send-otp?login=true")
+    @POST("auth/send-otp")
     @FormUrlEncoded
-    Call<BaseDataResponse<UserResponse>> getLoginOTP(@Field("phone") String phone);
+    Call<BaseDataResponse<BaseResponse>> loginUser(@Field("phone") String phone, @Query ("login") boolean status);
 
     @POST("auth/login")
-    Call<BaseDataResponse<UserResponse>> getUserAcessToken(@Body PhoneOtp phoneOtp);
+    Call<BaseDataResponse<BaseResponse>> getUserAcessToken(@Body PhoneOtp phoneOtp);
 
 
     //Vehicles
+
     @GET("vehicles")
     Call<Vehicle> listAllVehicles();
 
@@ -52,10 +57,12 @@ public interface Api {
     Call<Vehicle> editVehicleRecord(@Path("id") int id, @Field("plate_number") String plate_number, @Field("make_model") String make_model);
 
     @DELETE("vehicles/{id}")
-    Call<Void> deleteVehicleRecord(@Path("id") int id);
+    @FormUrlEncoded
+    Call<Void> deleteVehicleRecord(@Path("id") int id, @Field("plate_number") String plate_number, @Field("make_model") String make_model);
 
 
     //User
+
     @GET("user")
     Call<User> getUserProfile();
 
