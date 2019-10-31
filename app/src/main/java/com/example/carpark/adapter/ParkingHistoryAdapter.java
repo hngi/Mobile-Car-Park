@@ -9,8 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.carpark.Model.review.ParkingHistoryModel;
 import com.example.carpark.R;
-import com.example.carpark.model.ParkingHistoryModel;
 
 import java.util.List;
 

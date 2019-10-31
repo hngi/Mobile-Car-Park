@@ -8,7 +8,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "https://kidstories.app/api/v1/";
+    private static final String BASE_URL = "https://hng-car-park-api.herokuapp.com/api/v1/";
     private static Retrofit INSTANCE;
 
     public static synchronized Retrofit getInstance(){
