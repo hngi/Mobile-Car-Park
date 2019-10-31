@@ -4,12 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.example.carpark.Api.Api;
+import com.example.carpark.Api.Responses.LoginReg.UserResponse;
+import com.example.carpark.Api.RetrofitClient;
+import com.example.carpark.Model.NewUser;
 import com.example.carpark.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class EnterNameActivity extends AppCompatActivity {
@@ -50,15 +60,44 @@ public class EnterNameActivity extends AppCompatActivity {
     public void editContinue(){
         String firstName = this.firstName.getText().toString();
         String lastName = this.lastName.getText().toString();
+        String otp_create = getIntent().getStringExtra("OTP");
+        String  phoneNumber = getIntent().getStringExtra("Phone");
 
 
-        if (firstName.isEmpty()) {
+        if (TextUtils.isEmpty(firstName)) {
             this.firstName.setError("Please enter your first name");
-        } else if (lastName.isEmpty()) {
-            this.lastName.setError("Please enter your last name");
-        }else{
-         Intent intent = new Intent(EnterNameActivity.this, HomeActivity.class);
-         startActivity(intent);
+            this.firstName.requestFocus();
         }
+
+        if(TextUtils.isEmpty(lastName)){
+            this.lastName.setError("Please enter your last name");
+            this.lastName.requestFocus();
+        }
+
+        NewUser newUser = new NewUser();
+        newUser.setOtp(otp_create);
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setPhone(phoneNumber);
+
+        RetrofitClient.getInstance().create(Api.class).registerUser(newUser).enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful()) {
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+
+                    finish();
+                    Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

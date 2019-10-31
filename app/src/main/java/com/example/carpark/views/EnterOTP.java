@@ -1,6 +1,7 @@
 package com.example.carpark.views;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -30,6 +31,7 @@ public class EnterOTP extends AppCompatActivity {
     ImageView backToVerify;
     Button btnToNext;
     String otp;
+
 
     FirebaseAuth auth;
     private String verificationCode;
@@ -169,10 +171,12 @@ public class EnterOTP extends AppCompatActivity {
         if(!(TextUtils.isEmpty(otp1.getText()) && TextUtils.isEmpty(otp2.getText())&&TextUtils.isEmpty(otp3.getText()) && TextUtils.isEmpty(otp4.getText()))){
 
             otp = otp1.getText().toString()+otp2.getText().toString()+otp3.getText().toString()+otp4.getText().toString();
-
+            String phone = getIntent().getStringExtra("PhoneNumber");
             //PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, otp);
           //  SigninWithPhone(credential);
             Intent intent = new Intent(EnterOTP.this, EnterNameActivity.class);
+            intent.putExtra("OTP", otp);
+            intent.putExtra("Phone", phone);
             startActivity(intent);
 
            }else{
