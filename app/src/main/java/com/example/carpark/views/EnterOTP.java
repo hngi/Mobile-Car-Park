@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class EnterOTP extends BaseActivity {
 
     FirebaseAuth auth;
     private String verificationCode;
+    ProgressBar OTPbar;
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
 
@@ -61,6 +63,7 @@ public class EnterOTP extends BaseActivity {
         receiveNumber = findViewById(R.id.display_number);
         backToVerify = findViewById(R.id.back_verify_num);
         btnToNext = findViewById(R.id.btn_next_otp);
+        OTPbar = findViewById(R.id.progressBarOtp);
 
         //receive user phone number from verify number activity
         receiveNumber.setText(getIntent().getStringExtra("PhoneNumber"));
@@ -164,6 +167,7 @@ public class EnterOTP extends BaseActivity {
         btnToNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                OTPbar.setVisibility(View.VISIBLE);
                 verifyOTP();
             }
         });
@@ -186,9 +190,10 @@ public class EnterOTP extends BaseActivity {
                     if (response.isSuccessful()) {
 
                         if (!sentOTP.equals("1234")) {
+                            OTPbar.setVisibility(View.INVISIBLE);
                             Toast.makeText(EnterOTP.this, "Wrong OTP, use 1234 for now", Toast.LENGTH_SHORT).show();
                         } else {
-
+                            OTPbar.setVisibility(View.INVISIBLE);
                             Toast.makeText(EnterOTP.this, "Welcome!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(EnterOTP.this, EnterNameActivity.class);
                             intent.putExtra("VerifiedPhone", phoneNum);
@@ -200,15 +205,20 @@ public class EnterOTP extends BaseActivity {
 
                 @Override
                 public void onFailure(Call<BaseResponse> call, Throwable t) {
+                    OTPbar.setVisibility(View.INVISIBLE);
                     Toast.makeText(EnterOTP.this, "Use 1234 for OTP for now please", Toast.LENGTH_SHORT).show();
 
                 }
+
             });
 
 
         } else {
+            OTPbar.setVisibility(View.INVISIBLE);
             Toast.makeText(EnterOTP.this, "Please enter valid OTP code", Toast.LENGTH_SHORT).show();
         }
+        OTPbar.setVisibility(View.INVISIBLE);
+        Toast.makeText(EnterOTP.this, "Use 1234 as OTP please!", Toast.LENGTH_SHORT).show();
     }
 
     private void SigninWithPhone(PhoneAuthCredential credential) {
