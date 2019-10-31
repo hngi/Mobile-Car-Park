@@ -40,7 +40,7 @@ public class DetailsActivity extends AppCompatActivity {
         address_picker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailsActivity.this, Map.class);
+                Intent intent = new Intent(DetailsActivity.this, ParkLocation.class);
                 startActivity(intent);
             }
         });

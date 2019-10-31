@@ -13,9 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.example.carpark.Model.review.NotificationModel;
 import com.example.carpark.R;
 import com.example.carpark.adapter.NotificationAdapter;
-import com.example.carpark.model.NotificationModel;
+
 
 import java.util.ArrayList;
 

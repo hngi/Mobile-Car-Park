@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/nunito"
-                    android:text="20 Oct, 10:00"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="18sp" />
 
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/nunito"
-                    android:text="20 Oct, 11:00"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="18sp" />
 
@@ -173,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/nunito"
-                    android:text="1 Hour"
+                    android:text=""
                     android:textAlignment="textEnd"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -237,6 +237,7 @@
                     android:clickable="true"
                     android:tint="#F9F9F9"
                     app:fabSize="mini"
+                    app:maxImageSize="16dp"
                     app:srcCompat="@drawable/dashicons_plus_add" />
 
             </LinearLayout>

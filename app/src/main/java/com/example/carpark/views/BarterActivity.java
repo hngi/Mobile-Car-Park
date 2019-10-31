@@ -2,8 +2,11 @@ package com.example.carpark.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.carpark.R;
+import com.example.carpark.views.homefragments.PaymentMethodsFragment;
 import com.flutterwave.raveandroid.RaveConstants;
 import com.flutterwave.raveandroid.RavePayActivity;
 import com.flutterwave.raveandroid.RavePayManager;
@@ -35,6 +38,7 @@ public class BarterActivity extends BaseActivity {
 
         initData();
         makePay();
+
     }
 
     private void initData() {
@@ -43,7 +47,7 @@ public class BarterActivity extends BaseActivity {
         email = "ehmaugbogo@gmail.com";
         firstName = "Ehma";
         lastName = "Ugbogo";
-        amount=1000.50;
+        amount = 1000.50;
     }
 
     private void makePay() {
@@ -57,7 +61,7 @@ public class BarterActivity extends BaseActivity {
                 .setNarration("Parking Payment")
                 .setPublicKey(publicKey)
                 .setEncryptionKey(encryptionKey)
-                .setTxRef(System.currentTimeMillis()+"Ref")
+                .setTxRef(System.currentTimeMillis() + "Ref")
                 .acceptAccountPayments(true)
                 .acceptCardPayments(true)
                 .allowSaveCardFeature(true)
@@ -78,16 +82,17 @@ public class BarterActivity extends BaseActivity {
             String message = data.getStringExtra("response");
             if (resultCode == RavePayActivity.RESULT_SUCCESS) {
                 showToast("SUCCESS " + message);
-            }
-            else if (resultCode == RavePayActivity.RESULT_ERROR) {
+            } else if (resultCode == RavePayActivity.RESULT_ERROR) {
                 showToast("ERROR " + message);
-            }
-            else if (resultCode == RavePayActivity.RESULT_CANCELLED) {
+            } else if (resultCode == RavePayActivity.RESULT_CANCELLED) {
                 showToast("CANCELLED " + message);
                 finish();
             }
-        }
-        else {
+
+
+
+        } else {
+
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
