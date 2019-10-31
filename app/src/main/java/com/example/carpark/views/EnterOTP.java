@@ -16,12 +16,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.carpark.Api.Api;
 import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.PhoneOtp;
 import com.example.carpark.R;
+import com.google.android.gms.common.api.Api;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -33,7 +33,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EnterOTP extends AppCompatActivity {
+public class EnterOTP extends BaseActivity {
 
     EditText otp1, otp2, otp3, otp4;
     TextView receiveNumber;
@@ -179,7 +179,7 @@ public class EnterOTP extends AppCompatActivity {
             PhoneOtp phoneOtp = new PhoneOtp();
             phoneOtp.setPhone(phoneNum);
             phoneOtp.setOtp(sentOTP);
-            RetrofitClient.getInstance().create(Api.class).verifyOTP(phoneOtp).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+            /*getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
                 @Override
                 public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
                     if (response.isSuccessful()) {
@@ -202,7 +202,7 @@ public class EnterOTP extends AppCompatActivity {
                     Toast.makeText(EnterOTP.this, "Use 1234 for OTP for now please", Toast.LENGTH_SHORT).show();
 
                 }
-            });
+            });*/
 
 
         } else {

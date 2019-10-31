@@ -1,4 +1,4 @@
-package com.example.carpark.Model;
+package com.example.carpark.Model.map;
 
 import android.util.Log;
 
