@@ -22,7 +22,7 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public interface Api {
+public interface ParkingApi {
 
     //Registration APIs
 

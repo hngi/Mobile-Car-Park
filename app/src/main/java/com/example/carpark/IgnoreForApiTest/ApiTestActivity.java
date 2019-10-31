@@ -1,17 +1,16 @@
 package com.example.carpark.IgnoreForApiTest;
 
-import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
-import com.example.carpark.Api.Api;
 import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
-import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.NewUser;
 import com.example.carpark.R;
 import com.example.carpark.views.BaseActivity;
@@ -23,6 +22,11 @@ import com.example.carpark.views.BaseActivity;
  */
 
 
+// Please ignore this activity, first its for test purpose. Secondly, its to help show how to make Retrofit
+// api Implementation. this class will be deleted later
+
+//To use in yours: ensure to log errors so you see whats happening via logs
+
 public class ApiTestActivity extends BaseActivity {
     private static final String TAG = "ApiTestActivity";
 
@@ -32,17 +36,23 @@ public class ApiTestActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_api_test);
 
+        Button testBtn=findViewById(R.id.testBtn);
+        testBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerNewUser();
+            }
+        });
 
-        test();
     }
 
-    private void test() {
+    private void registerNewUser() {
         NewUser newUser=new NewUser();
         newUser.setFirstName("Ehma");
         newUser.setLastName("Ugbogo");
         newUser.setOtp("1234");
         newUser.setPhone("08107535626");
-        RetrofitClient.getInstance().create(Api.class).registerUser(newUser)
+        getParkingApi().registerUser(newUser)
                 .enqueue(new Callback<BaseDataResponse<UserResponse>>() {
             @Override
             public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
