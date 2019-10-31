@@ -94,13 +94,16 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_curves"
                         android:fontFamily="@font/nunito"
-                        android:hint="First Name"
+                        android:hint="Car Plate Number"
                         android:lines="1"
                         android:padding="12dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
             </RelativeLayout>
+
+
+
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -124,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_curves"
                         android:fontFamily="@font/nunito"
-                        android:hint="Last Name"
+                        android:hint="Car make and model"
                         android:lines="1"
                         android:padding="12dp"
                         tools:layout_editor_absoluteX="20dp"
