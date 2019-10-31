@@ -99,13 +99,16 @@ public class GetStarted extends AppCompatActivity {
     }
 
     private void openVerifyNumber() {
+        String Phone = number.getText().toString().trim();
         intent = new Intent(getApplicationContext(), VerifyNumber.class);
         if(TextUtils.isEmpty(number.getText().toString())){
             number.setError("Please fill in phone number");
-        }else {
+        }else if (!((Phone.length() < 10) || (Phone.length() > 11))){
             intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
             intent.putExtra("phoneNumber", number.getText().toString());
             startActivity(intent);
+        }else {
+            Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
         }
 
     }

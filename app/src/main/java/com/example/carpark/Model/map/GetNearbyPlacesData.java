@@ -1,4 +1,4 @@
-package com.example.carpark.Model;
+package com.example.carpark.Model.map;
 
 import android.os.AsyncTask;
 import android.util.Log;
