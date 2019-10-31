@@ -11,6 +11,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.carpark.Api.Api;
+import com.example.carpark.Api.Responses.BaseDataResponse;
+import com.example.carpark.Api.Responses.LoginReg.UserResponse;
+import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.R;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +23,10 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.hbb20.CountryCodePicker;
 
 import java.util.concurrent.TimeUnit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class VerifyNumber extends AppCompatActivity {
 
@@ -45,13 +53,21 @@ public class VerifyNumber extends AppCompatActivity {
         String phone = getIntent().getStringExtra("phoneNumber");
         etPhoneNumer.setText(phone);
         tvCountryCode.setFullNumber(countryCode);
+        final String phoneForOTP = etPhoneNumer.getText().toString();
+        String countryCodeForOTP = tvCountryCode.getFullNumber();
+        final String numberForOTP = countryCodeForOTP+phoneForOTP;
 
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)  {
                // phoneNumber = etPhoneNumer.getText().toString();
-                Intent intToMain = new Intent(getApplicationContext(), EnterOTP.class);
-                intToMain.putExtra("PhoneNumber", tvCountryCode.getSelectedCountryCodeWithPlus()+etPhoneNumer.getText().toString());
-                startActivity(intToMain);
+
+                if (!((phoneForOTP.length() < 10))){
+
+                SendOtp(numberForOTP);
+
+                }else {
+                    Toast.makeText(VerifyNumber.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
+                }
             }
 
         });
@@ -64,6 +80,35 @@ public class VerifyNumber extends AppCompatActivity {
                // finish();
             }
         });
+
+    }
+
+    private void SendOtp(final String PhoneForOTP){
+
+        RetrofitClient.getInstance().create(Api.class).sendOTP(PhoneForOTP).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+            @Override
+            public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
+
+                if (response.isSuccessful()){
+                    Toast.makeText(VerifyNumber.this, "Otp Sent", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(VerifyNumber.this, EnterOTP.class);
+                        intent.putExtra("PhoneNumberForOTP", PhoneForOTP);
+                        startActivity(intent);
+
+                }else {
+                    Toast.makeText(VerifyNumber.this, response.message(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
+                Toast.makeText(VerifyNumber.this, t.getMessage() , Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
     }
 
