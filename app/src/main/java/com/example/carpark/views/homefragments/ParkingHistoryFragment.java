@@ -13,7 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.carpark.Model.ParkingHistoryModel;
+
+import com.example.carpark.Model.review.ParkingHistoryModel;
 import com.example.carpark.R;
 import com.example.carpark.adapter.ParkingHistoryAdapter;
 
