@@ -64,10 +64,7 @@ public class VerifyNumber extends AppCompatActivity {
 
                 if (!((phoneForOTP.length() < 10))){
 
-                //SendOtp(numberForOTP);
-                    Intent intent = new Intent(VerifyNumber.this, EnterOTP.class);
-                    intent.putExtra("PhoneNumberForOTP", phoneForOTP);
-                    startActivity(intent);
+               // SendOtp(numberForOTP);
 
 
                 }else {
@@ -111,9 +108,9 @@ public class VerifyNumber extends AppCompatActivity {
                 Toast.makeText(VerifyNumber.this, t.getMessage() , Toast.LENGTH_SHORT).show();
 
             }
-        });*/
+        });
 
-
+*/
 
     }
 

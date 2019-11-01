@@ -82,7 +82,9 @@
         <activity
             android:name=".views.VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".views.CarDetailsActiviy" />
+        <activity android:name=".views.CarDetailsActiviy"
+            android:parentActivityName=".views.ScheduleActivity"
+            />
         <activity android:name=".views.BaseActivity" />
         <activity android:name=".views.BarterActivity" />
 
