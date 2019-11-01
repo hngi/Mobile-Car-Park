@@ -83,7 +83,7 @@ public class EnterNameActivity extends AppCompatActivity {
         newUser.setLastName(lastName);
         newUser.setPhone(phoneNumber);
 
-        RetrofitClient.getInstance().create(ParkingApi.class).registerUser(newUser).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+       /* RetrofitClient.getInstance().create(ParkingApi.class).registerUser(newUser).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
             @Override
             public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
                 if(response.isSuccessful()){
@@ -102,6 +102,8 @@ public class EnterNameActivity extends AppCompatActivity {
             public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
+       Intent intent = new Intent(EnterNameActivity.this, HomeActivity.class);
+       startActivity(intent);
     }
 }
