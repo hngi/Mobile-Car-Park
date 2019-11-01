@@ -14,7 +14,7 @@
     <string name="barter">Barter</string>
     <string name="paystack">Paystack</string>
     <string name="promotions">Promotions</string>
-    <string name="add_promo_code">Add Promo Code</string>
+    <string name="add_promo_code">Get Promo Code</string>
     <string name="show_qr">Show QR code at parking Lot</string>
     <string name="qr_code">QR CODE</string>
     <string name="open_drawer">Open Drawer</string>

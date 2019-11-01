@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.CarDetailsActiviy"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".views.CarDetailsActiviy">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,11 +17,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/card_details_form"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/card_details_form"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="100dp"
@@ -89,9 +88,8 @@
                 tools:ignore="MissingConstraints">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
 
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="14dp"
@@ -102,7 +100,6 @@
                         android:id="@+id/car_plate_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:hint="Car Plate Number"
                         android:lines="1"
                         android:padding="12dp" />
@@ -119,7 +116,6 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -132,10 +128,7 @@
                         android:id="@+id/car_model"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
-
                         android:hint="Car Make "
-
                         android:padding="12dp"
                         tools:layout_editor_absoluteX="20dp"
                         tools:layout_editor_absoluteY="119dp" />
@@ -145,25 +138,23 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-
-                >
-
+                android:orientation="horizontal">
 
                 <Switch
                     android:id="@+id/primary_ride"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
                     android:checked="true" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:text="This is my main ride"
                     android:fontFamily="@font/nunito"
+                    android:text="This is my main ride"
 
                     />
 
