@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Bitmap;
+
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,14 +23,12 @@ import com.google.zxing.pdf417.encoder.BarcodeMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 
-public class InvoiceActivity extends AppCompatActivity {
+public class InvoiceActivity extends AppCompatActivity{
 
     private ImageView qrImage;
     private Object BarcodeMatrix;
-    private Button getDirection;
     private String directionFrom;
     private String directionTo;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,6 @@ public class InvoiceActivity extends AppCompatActivity {
 
     private void initView() {
         qrImage = findViewById(R.id.qr_code);
-        getDirection = findViewById(R.id.btn_get_direction);
 
         showQrCode();
 

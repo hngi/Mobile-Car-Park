@@ -54,5 +54,9 @@
                                 \n \n And for maximum peace of mind? Choose one of our numerous reservable locations - then simply
                                 \n \n park and get on with your day</string>
     <string name="enter_the_4_digit_code_sent">Enter the 4-Digit code sent</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="continueButton">Continue</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
 
 </resources>
