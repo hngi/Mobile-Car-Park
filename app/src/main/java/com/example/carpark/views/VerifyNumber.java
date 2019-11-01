@@ -67,7 +67,8 @@ public class VerifyNumber extends AppCompatActivity {
                 if (!((phoneForOTP.length() < 10))){
                     verifyBar.setVisibility(View.VISIBLE);
 
-                SendOtp(numberForOTP);
+               // SendOtp(numberForOTP);
+
 
                 }else {
                     Toast.makeText(VerifyNumber.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();

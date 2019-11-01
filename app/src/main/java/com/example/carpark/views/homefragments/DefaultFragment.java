@@ -44,6 +44,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class DefaultFragment extends Fragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
+        GoogleMap.OnMarkerClickListener,
         LocationListener {
 
     private GoogleMap mMap;
@@ -58,7 +59,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
     private Marker mN_air;
     private Marker mIkeja_p;
     private Button schedule;
-    private EditText address_search;
+    private EditText input_search;
     private GoogleApiClient mGoogleApiClient;
     double latitude;
     double longitude;
@@ -66,6 +67,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
     Location mLastLocation;
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
+    View root;
 
     public DefaultFragment() {
         // Required empty public constructor
@@ -73,7 +75,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.content_home, container, false);
+        root = inflater.inflate(R.layout.content_home, container, false);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
@@ -217,6 +219,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
         mCurrLocationMarker = mMap.addMarker(markerOptions);
 
         getNearbyParks();
+        mMap.setOnMarkerClickListener(this);
 
 
 
@@ -343,4 +346,19 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
     }
 
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        final String address = (String) marker.getTitle();
+        input_search = root.findViewById(R.id.input_search);
+        input_search.setText(address);
+        String park_address = input_search.getText().toString();
+
+        if(input_search!=null){
+            Intent i = new Intent(getContext(),DetailsActivity.class);
+            i.putExtra("address",park_address);
+            startActivity(i);
+        }
+
+        return false;
+    }
 }
