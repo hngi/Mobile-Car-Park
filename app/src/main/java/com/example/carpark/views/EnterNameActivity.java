@@ -11,7 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.carpark.Api.Api;
+import com.example.carpark.Api.ParkingApi;
+import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.NewUser;
@@ -50,6 +51,8 @@ public class EnterNameActivity extends AppCompatActivity {
 //            public void onClick(View view) {
 //                Intent i = new Intent(EnterNameActivity.this, EnterOTP.class);
 //                startActivity(i);
+
+
 //            }
 //        });
 
@@ -61,7 +64,7 @@ public class EnterNameActivity extends AppCompatActivity {
         String firstName = this.firstName.getText().toString();
         String lastName = this.lastName.getText().toString();
         String otp_create = getIntent().getStringExtra("OTP");
-        String  phoneNumber = getIntent().getStringExtra("Phone");
+        String  phoneNumber = getIntent().getStringExtra("phone");
 
 
         if (TextUtils.isEmpty(firstName)) {
@@ -75,27 +78,28 @@ public class EnterNameActivity extends AppCompatActivity {
         }
 
         NewUser newUser = new NewUser();
-        newUser.setOtp(otp_create);
+        newUser.setOtp("1234");
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
         newUser.setPhone(phoneNumber);
 
-        RetrofitClient.getInstance().create(Api.class).registerUser(newUser).enqueue(new Callback<UserResponse>() {
+        RetrofitClient.getInstance().create(ParkingApi.class).registerUser(newUser).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
             @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                if (response.isSuccessful()) {
-                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
+                if(response.isSuccessful()){
+                    Intent intent = new Intent(EnterNameActivity.this, HomeActivity.class);
+                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
 
-                    finish();
                     Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_SHORT).show();
-
+                    finish();
+                }else{
+                    Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
+            public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

@@ -25,9 +25,6 @@ public class RetrofitClient {
                     .addInterceptor(interceptor)
                     .build();
 
-            Gson gson = new GsonBuilder()
-                    .setLenient()
-                    .create();
 
 
             return new Retrofit.Builder()

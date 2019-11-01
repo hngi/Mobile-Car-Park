@@ -175,10 +175,18 @@ public class EnterOTP extends BaseActivity {
         if (!(TextUtils.isEmpty(otp1.getText()) && TextUtils.isEmpty(otp2.getText()) && TextUtils.isEmpty(otp3.getText()) && TextUtils.isEmpty(otp4.getText()))) {
 
             sentOTP = otp1.getText().toString() + otp2.getText().toString() + otp3.getText().toString() + otp4.getText().toString();
-            final String phoneNum = getIntent().getStringExtra("PhoneNumberForOTP");
+            String phoneNum = getIntent().getStringExtra("PhoneNumberForOTP");
             PhoneOtp phoneOtp = new PhoneOtp();
             phoneOtp.setPhone(phoneNum);
             phoneOtp.setOtp(sentOTP);
+
+            //Noel please include this intent in your response method
+            Intent intent1 = new Intent(EnterOTP.this, EnterNameActivity.class);
+            intent1.putExtra("phone", phoneNum);
+            intent1.putExtra("OTP", sentOTP);
+            startActivity(intent1);
+
+
             /*getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
                 @Override
                 public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
