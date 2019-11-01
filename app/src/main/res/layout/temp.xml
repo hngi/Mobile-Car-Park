@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#fff"
+app:layout_behavior="@string/appbar_scrolling_view_behavior"
+tools:context=".views.homefragments.MyVehicleFragment">
+
+<!-- PLEASE DO NOT DELETE -->
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/car_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/car_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+    <LinearLayout
+        android:id="@+id/Linear_Layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/car_icon"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/cornered_rectangle"
+        android:orientation="horizontal"
+        android:weightSum="80">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="40"
+            android:layout_height="wrap_content"
+            android:text="Car Plate Number"
+            android:padding="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/color_white" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:background="#fff"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="40"
+            android:layout_height="wrap_content"
+            android:text="Car Make/Model"
+            android:padding="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/color_white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Linear_Layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Linear_Layout1"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/cornered_rectangle_white_backgroud"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mv_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/vehicle_item"/>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
+</androidx.cardview.widget.CardView>
