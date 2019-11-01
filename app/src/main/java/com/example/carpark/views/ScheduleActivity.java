@@ -10,12 +10,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.carpark.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,6 +27,7 @@ public class ScheduleActivity extends AppCompatActivity {
     private TextView tvCheckIn;
     private TextView tvCheckOut;
     private TextView tvDuration;
+    FloatingActionButton add_vehicle;
     final Calendar checkInDate = Calendar.getInstance();
     final Calendar checkOutDate = Calendar.getInstance();
 
@@ -39,6 +42,16 @@ public class ScheduleActivity extends AppCompatActivity {
         tvCheckIn = findViewById(R.id.textView7);
         tvCheckOut = findViewById(R.id.textView10);
         tvDuration = findViewById(R.id.textView13);
+        add_vehicle = findViewById(R.id.fb_schedule_add);
+
+
+        add_vehicle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ScheduleActivity.this,CarDetailsActiviy.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

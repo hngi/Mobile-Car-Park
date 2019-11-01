@@ -15,8 +15,6 @@ import javax.mail.internet.MimeMessage;
 
 public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
-
-
     //Variables
     private Context mContext;
     private Session mSession;
