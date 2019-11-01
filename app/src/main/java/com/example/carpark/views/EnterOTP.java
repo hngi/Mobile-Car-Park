@@ -163,6 +163,7 @@ public class EnterOTP extends BaseActivity {
         btnToNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //SigninWithPhone();
                 verifyOTP();
             }
         });
