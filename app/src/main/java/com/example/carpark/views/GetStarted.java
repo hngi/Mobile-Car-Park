@@ -19,11 +19,6 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.Profile;
-import com.facebook.*;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.example.carpark.R;
@@ -55,25 +50,47 @@ public class GetStarted extends AppCompatActivity {
 
 
         // facebook authentication
-        FacebookSdk.sdkInitialize(this);
         callbackManager = CallbackManager.Factory.create();
+
+        // Check if user is already logged in through facebook
+        checkLoginStatus();
+
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(GetStarted.this, "User logged in through Facebook.", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onSuccess: " + loginResult.getAccessToken().getUserId());
+                setResult(RESULT_OK);
+                startActivity(new Intent(GetStarted.this, HomeActivity.class));
+                finish();
+                /*call : loginResult.getAccessToken().getUserId() to get userId and save to database;*/
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+            @Override
+            public void onError(FacebookException error) {
+                Toast.makeText(GetStarted.this, "Error " + error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
         fb_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LoginManager.getInstance().setAuthType(AUTH_TYPE)
                         .logInWithReadPermissions(GetStarted.this, Arrays.asList(EMAIL));
-                facebookLogin();
-
             }
         });
 
+        // phone number verification
         cont_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
               openVerifyNumber();
             }
         });
-
 
         // the below code enables the next button on the keyboard to work
         number.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -89,13 +106,9 @@ public class GetStarted extends AppCompatActivity {
 //                }
                 openVerifyNumber();
                 return false;
-
             }
 
-
-
         });
-
     }
 
     private void openVerifyNumber() {
@@ -110,17 +123,16 @@ public class GetStarted extends AppCompatActivity {
         }else {
             Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
         }
-
     }
 
+    //pass the facebook login results to the LoginManager via callbackManager.
     @Override
-    public void onStart() {
-        super.onStart();
-
-        // Check if user is logged in through facebook
-        checkLoginStatus();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
+    // Check if user is already logged in through facebook
     private void checkLoginStatus() {
         if (AccessToken.getCurrentAccessToken() != null && !AccessToken.getCurrentAccessToken().isExpired()) {
             // user already signed in
@@ -129,29 +141,6 @@ public class GetStarted extends AppCompatActivity {
         }
     }
 
-    public void facebookLogin() {
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(GetStarted.this, "Successful", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "onSuccess: " + loginResult.getAccessToken().getUserId());
-                setResult(RESULT_OK);
-                startActivity(new Intent(GetStarted.this, HomeActivity.class));
-                finish();
-                /*call : loginResult.getAccessToken().getUserId() to get userId and save to database;*/
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(GetStarted.this, "Error " + error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 }
 
 
