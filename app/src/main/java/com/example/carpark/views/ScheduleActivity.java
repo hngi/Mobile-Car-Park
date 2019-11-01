@@ -17,6 +17,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.carpark.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,7 +27,7 @@ public class ScheduleActivity extends AppCompatActivity {
     private TextView tvCheckIn;
     private TextView tvCheckOut;
     private TextView tvDuration;
-    Button add_vehicle;
+    FloatingActionButton add_vehicle;
     final Calendar checkInDate = Calendar.getInstance();
     final Calendar checkOutDate = Calendar.getInstance();
 

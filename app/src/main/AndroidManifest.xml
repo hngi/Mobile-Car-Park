@@ -66,7 +66,7 @@
             android:label="Transaction" />
         <activity
             android:name=".views.InvoiceActivity"
-            android:parentActivityName=".views.HomeActivity" />
+            android:parentActivityName=".views.ConfirmationActivity" />
         <activity
             android:name=".views.DetailsActivity"
             android:parentActivityName=".views.HomeActivity" />
