@@ -19,14 +19,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.carpark.Model.GetNearbyPlacesData;
+import com.example.carpark.Model.map.GetNearbyPlacesData;
 import com.example.carpark.R;
 import com.example.carpark.views.DetailsActivity;
-import com.example.carpark.views.HomeActivity;
-import com.example.carpark.views.ScheduleActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;

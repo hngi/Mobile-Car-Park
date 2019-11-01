@@ -14,8 +14,8 @@ public class RetrofitClient {
     private static final String BASE_URL = "https://hng-car-park-api.herokuapp.com/api/v1/";
     private static Retrofit INSTANCE;
 
-    public static synchronized Retrofit getInstance(){
-        if(INSTANCE==null) {
+    public static synchronized Retrofit getInstance() {
+        if (INSTANCE == null) {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.level(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder()
