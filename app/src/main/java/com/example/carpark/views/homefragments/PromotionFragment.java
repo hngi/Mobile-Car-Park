@@ -2,6 +2,7 @@ package com.example.carpark.views.homefragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -19,15 +20,19 @@ import com.example.carpark.views.PaymentMethodActivity;
 public class PromotionFragment extends Fragment {
     EditText rectangle;
     Button btn;
+    Toolbar toolbar;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_promotion, container, false);
 
 
         rectangle = root.findViewById(R.id.promotion_rectangle);
         btn = root.findViewById(R.id.promo_btn);
+        getActivity().setTitle("Promotions");
+
+
 
         //set on click listener on button
         btn.setOnClickListener(new View.OnClickListener() {

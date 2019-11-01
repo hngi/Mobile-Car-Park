@@ -1,5 +1,8 @@
 package com.example.carpark.Api;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -8,11 +11,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "https://kidstories.app/api/v1/";
+    private static final String BASE_URL = "https://hng-car-park-api.herokuapp.com/api/v1/";
     private static Retrofit INSTANCE;
 
-    public static synchronized Retrofit getInstance(){
-        if(INSTANCE==null) {
+    public static synchronized Retrofit getInstance() {
+        if (INSTANCE == null) {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.level(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder()
@@ -21,6 +24,7 @@ public class RetrofitClient {
                     .writeTimeout(2, TimeUnit.MINUTES)
                     .addInterceptor(interceptor)
                     .build();
+
 
 
             return new Retrofit.Builder()

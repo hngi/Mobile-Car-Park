@@ -14,7 +14,7 @@
     <string name="barter">Barter</string>
     <string name="paystack">Paystack</string>
     <string name="promotions">Promotions</string>
-    <string name="add_promo_code">Add Promo Code</string>
+    <string name="add_promo_code">Get Promo Code</string>
     <string name="show_qr">Show QR code at parking Lot</string>
     <string name="qr_code">QR CODE</string>
     <string name="open_drawer">Open Drawer</string>
@@ -54,5 +54,10 @@
                                 \n \n And for maximum peace of mind? Choose one of our numerous reservable locations - then simply
                                 \n \n park and get on with your day</string>
     <string name="enter_the_4_digit_code_sent">Enter the 4-Digit code sent</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="continueButton">Continue</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="edit">Edit</string>
 
 </resources>
