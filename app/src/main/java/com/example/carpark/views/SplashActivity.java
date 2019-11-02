@@ -44,27 +44,21 @@ public class SplashActivity extends AppCompatActivity {
 
         firstTime = sharedPreferences.getBoolean("firstTime",true);
 
-        if (firstTime) {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    firstTime = false;
-                    editor.putBoolean("firstTime",firstTime);
-                    editor.apply();
+                if (firstTime) {
                     Intent intent = new Intent(getApplicationContext(), OnboardingActivity.class);
                     startActivity(intent);
                     finish();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), GetStarted.class);
+                    startActivity(intent);
+                    finish();
                 }
-            }, 3000);
-        }
-
-        else {
-            Intent intent = new Intent(getApplicationContext(), GetStarted.class);
-            startActivity(intent);
-            finish();
-        }
+            }
+        }, 3000);
 
     }
 
