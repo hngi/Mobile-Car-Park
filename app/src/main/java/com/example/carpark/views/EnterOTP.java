@@ -188,6 +188,12 @@ public class EnterOTP extends BaseActivity {
             phoneOtp.setPhone(phoneNum);
             phoneOtp.setOtp(sentOTP);
 
+            /*Todo: remove this intent code when the API starts responding */
+            Intent intent1 = new Intent(EnterOTP.this, EnterNameActivity.class);
+            intent1.putExtra("phone", phoneNum);
+            intent1.putExtra("OTP", sentOTP);
+            startActivity(intent1);
+
 
             getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseResponse>() {
                 @Override
