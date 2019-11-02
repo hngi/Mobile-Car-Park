@@ -78,7 +78,7 @@
             android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.ProfileActivity"
-            android:parentActivityName=".views.EnterNameActivity" />
+            android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar" />
