@@ -1,5 +1,8 @@
 package com.example.carpark.Api;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -21,6 +24,7 @@ public class RetrofitClient {
                     .writeTimeout(2, TimeUnit.MINUTES)
                     .addInterceptor(interceptor)
                     .build();
+
 
 
             return new Retrofit.Builder()

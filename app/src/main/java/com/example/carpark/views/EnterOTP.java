@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.carpark.Api.Responses.BaseDataResponse;
+import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.PhoneOtp;
@@ -43,6 +45,7 @@ public class EnterOTP extends BaseActivity {
 
     FirebaseAuth auth;
     private String verificationCode;
+    ProgressBar OTPbar;
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
 
@@ -60,6 +63,7 @@ public class EnterOTP extends BaseActivity {
         receiveNumber = findViewById(R.id.display_number);
         backToVerify = findViewById(R.id.back_verify_num);
         btnToNext = findViewById(R.id.btn_next_otp);
+        OTPbar = findViewById(R.id.progressBarOtp);
 
         //receive user phone number from verify number activity
         receiveNumber.setText(getIntent().getStringExtra("PhoneNumber"));
@@ -163,8 +167,11 @@ public class EnterOTP extends BaseActivity {
         btnToNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SigninWithPhone();
+                OTPbar.setVisibility(View.VISIBLE);
                 verifyOTP();
+
+                //SigninWithPhone();
+
             }
         });
 
@@ -180,36 +187,58 @@ public class EnterOTP extends BaseActivity {
             PhoneOtp phoneOtp = new PhoneOtp();
             phoneOtp.setPhone(phoneNum);
             phoneOtp.setOtp(sentOTP);
-            /*getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+
+            /*Todo: remove this intent code when the API starts responding */
+            Intent intent1 = new Intent(EnterOTP.this, EnterNameActivity.class);
+            intent1.putExtra("phone", phoneNum);
+            intent1.putExtra("OTP", sentOTP);
+            startActivity(intent1);
+
+
+            getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseResponse>() {
                 @Override
-                public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
+                public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                     if (response.isSuccessful()) {
+                        OTPbar.setVisibility(View.INVISIBLE);
+                        Intent intent1 = new Intent(EnterOTP.this, EnterNameActivity.class);
+                        intent1.putExtra("phone", phoneNum);
+                        intent1.putExtra("OTP", sentOTP);
+                        startActivity(intent1);
 
-                        if (!sentOTP.equals("1234")) {
+                /* Todo: Don't touch this code for now please
+
+                        /*if (!sentOTP.equals("1234")) {
+                            OTPbar.setVisibility(View.INVISIBLE);
                             Toast.makeText(EnterOTP.this, "Wrong OTP, use 1234 for now", Toast.LENGTH_SHORT).show();
-                        } else {
+                        }
 
+                         else {
+                            OTPbar.setVisibility(View.INVISIBLE);
                             Toast.makeText(EnterOTP.this, "Welcome!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(EnterOTP.this, EnterNameActivity.class);
                             intent.putExtra("VerifiedPhone", phoneNum);
                             startActivity(intent);
-                        }
+                        }*/
                     }
 
                 }
 
                 @Override
-                public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
-                    Toast.makeText(EnterOTP.this, "Use 1234 for OTP for now please", Toast.LENGTH_SHORT).show();
+                public void onFailure(Call<BaseResponse> call, Throwable t) {
+                    OTPbar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(EnterOTP.this, t.getMessage() + " Failure", Toast.LENGTH_SHORT).show();
 
                 }
-            });*/
+
+            });
 
 
         } else {
-            Toast.makeText(EnterOTP.this, "Please enter valid OTP code", Toast.LENGTH_SHORT).show();
+            OTPbar.setVisibility(View.INVISIBLE);
+            Toast.makeText(EnterOTP.this, "Enter a Valid OTP code", Toast.LENGTH_SHORT).show();
         }
-    }
+
+    } /*
 
     private void SigninWithPhone(PhoneAuthCredential credential) {
         auth.signInWithCredential(credential)
