@@ -103,10 +103,8 @@ public class VerifyNumber extends AppCompatActivity {
 
                 }else {
                     verifyBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(VerifyNumber.this, "Done!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(VerifyNumber.this, EnterOTP.class);
-                    intent.putExtra("PhoneNumberForOTP", PhoneForOTP);
-                    startActivity(intent);
+                    Toast.makeText(VerifyNumber.this, response.message(), Toast.LENGTH_SHORT).show();
+
                 }
 
             }

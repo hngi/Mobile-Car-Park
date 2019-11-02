@@ -217,8 +217,7 @@ public class EnterOTP extends BaseActivity {
             OTPbar.setVisibility(View.INVISIBLE);
             Toast.makeText(EnterOTP.this, "Please enter valid OTP code", Toast.LENGTH_SHORT).show();
         }
-        OTPbar.setVisibility(View.INVISIBLE);
-        Toast.makeText(EnterOTP.this, "Use 1234 as OTP please!", Toast.LENGTH_SHORT).show();
+
     }
 
     private void SigninWithPhone(PhoneAuthCredential credential) {
