@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,8 @@ public class SplashActivity extends AppCompatActivity {
     Animation fromLeft;
     ImageView car_park_ic;
     Handler handler = new Handler();
+    SharedPreferences sharedPreferences;
+    Boolean firstTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +40,31 @@ public class SplashActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
+        sharedPreferences = getSharedPreferences("MyPrefs",MODE_PRIVATE);
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(getApplicationContext(), OnboardingActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }, 3000);
+        firstTime = sharedPreferences.getBoolean("firstTime",true);
+
+        if (firstTime) {
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    firstTime = false;
+                    editor.putBoolean("firstTime",firstTime);
+                    editor.apply();
+                    Intent intent = new Intent(getApplicationContext(), OnboardingActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }, 3000);
+        }
+
+        else {
+            Intent intent = new Intent(getApplicationContext(), GetStarted.class);
+            startActivity(intent);
+            finish();
+        }
 
     }
 

@@ -8,12 +8,12 @@ import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carpark.Api.ParkingApi;
-import com.example.carpark.Api.Responses.BaseDataResponse;
-import com.example.carpark.Api.Responses.LoginReg.UserResponse;
+import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.R;
 import com.google.android.gms.common.api.Api;
@@ -22,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.hbb20.CountryCodePicker;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,6 +38,7 @@ public class VerifyNumber extends AppCompatActivity {
     CountryCodePicker tvCountryCode;
     String phoneNumber;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
+    ProgressBar verifyBar;
 
 
     @Override
@@ -48,6 +51,7 @@ public class VerifyNumber extends AppCompatActivity {
         next = findViewById(R.id.next1);
         etPhoneNumer= findViewById(R.id.verify_number);
         tvCountryCode = findViewById(R.id.verify_ccp);
+        verifyBar = findViewById(R.id.progressBarVer);
 
         // this allowsthe passed edittext from getstarted to show
         final String countryCode = getIntent().getStringExtra("countryCode");
@@ -63,8 +67,8 @@ public class VerifyNumber extends AppCompatActivity {
                // phoneNumber = etPhoneNumer.getText().toString();
 
                 if (!((phoneForOTP.length() < 10))){
-
-               // SendOtp(numberForOTP);
+                    verifyBar.setVisibility(View.VISIBLE);
+                    SendOtp(numberForOTP);
 
 
                 }else {
@@ -87,30 +91,37 @@ public class VerifyNumber extends AppCompatActivity {
 
     private void SendOtp(final String PhoneForOTP){
 
-        /*RetrofitClient.getInstance().create(ParkingApi.class).sendOTP(PhoneForOTP).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+        RetrofitClient.getInstance().create(ParkingApi.class).sendOTP(PhoneForOTP).enqueue(new Callback<BaseResponse>() {
             @Override
-            public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
+            public void onResponse(@NotNull Call<BaseResponse> call, @NotNull Response<BaseResponse> response) {
 
                 if (response.isSuccessful()){
                     Toast.makeText(VerifyNumber.this, "Otp Sent", Toast.LENGTH_SHORT).show();
+                    verifyBar.setVisibility(View.INVISIBLE);
                         Intent intent = new Intent(VerifyNumber.this, EnterOTP.class);
                         intent.putExtra("PhoneNumberForOTP", PhoneForOTP);
                         startActivity(intent);
 
                 }else {
-                    Toast.makeText(VerifyNumber.this, response.message(), Toast.LENGTH_SHORT).show();
+                    verifyBar.setVisibility(View.INVISIBLE);
+                   // Toast.makeText(VerifyNumber.this, response.message() + "  Response", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(VerifyNumber.this, EnterOTP.class);
+                    intent.putExtra("PhoneNumberForOTP", PhoneForOTP);
+                    startActivity(intent);
+
                 }
 
             }
 
             @Override
-            public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
-                Toast.makeText(VerifyNumber.this, t.getMessage() , Toast.LENGTH_SHORT).show();
+            public void onFailure(@NotNull Call<BaseResponse> call, @NotNull Throwable t) {
+                verifyBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(VerifyNumber.this, t.getMessage()+ " Failure", Toast.LENGTH_SHORT).show();
 
             }
         });
 
-*/
+
 
     }
 
