@@ -26,18 +26,19 @@ public class SupportFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View root =  inflater.inflate(R.layout.fragment_support, container, false);
 
-
         mEmail = root.findViewById(R.id.mailID);
         mMessage = root.findViewById(R.id.messageID);
         mSubject = root.findViewById(R.id.subjectID);
 
-        Button fab = root.findViewById(R.id.send);
+        Button fab = root.findViewById(R.id.btn_send);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendMail();
             }
         });
+
+        getActivity().setTitle("Support");
 
         return root;
     }
