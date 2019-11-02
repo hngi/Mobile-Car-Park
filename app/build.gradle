@@ -90,7 +90,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.1.0'
 
     //Facebook Dependencies
-    implementation 'com.facebook.android:facebook-login:[5,6)'
+    implementation 'com.facebook.android:facebook-login:5.9.0'
 
     //Onboarding
     implementation 'com.codemybrainsout.onboarding:onboarder:1.0.4'

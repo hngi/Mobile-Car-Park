@@ -46,6 +46,7 @@
             android:fontFamily="@font/nunito"
             android:hint="@string/where_would_you_love_to_park"
             android:imeOptions="actionSearch"
+            android:inputType="textShortMessage|textAutoCorrect"
             android:textColor="#000"
             android:textSize="15sp" />
 

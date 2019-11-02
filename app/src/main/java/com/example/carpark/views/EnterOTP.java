@@ -168,6 +168,7 @@ public class EnterOTP extends BaseActivity {
             @Override
             public void onClick(View view) {
                 OTPbar.setVisibility(View.VISIBLE);
+                //SigninWithPhone();
                 verifyOTP();
             }
         });
@@ -184,21 +185,32 @@ public class EnterOTP extends BaseActivity {
             PhoneOtp phoneOtp = new PhoneOtp();
             phoneOtp.setPhone(phoneNum);
             phoneOtp.setOtp(sentOTP);
+
+
             getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseResponse>() {
                 @Override
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                     if (response.isSuccessful()) {
+                        OTPbar.setVisibility(View.INVISIBLE);
+                        Intent intent1 = new Intent(EnterOTP.this, EnterNameActivity.class);
+                        intent1.putExtra("phone", phoneNum);
+                        intent1.putExtra("OTP", sentOTP);
+                        startActivity(intent1);
 
-                        if (!sentOTP.equals("1234")) {
+                /* Todo: Don't touch this code for now please
+
+                        /*if (!sentOTP.equals("1234")) {
                             OTPbar.setVisibility(View.INVISIBLE);
                             Toast.makeText(EnterOTP.this, "Wrong OTP, use 1234 for now", Toast.LENGTH_SHORT).show();
-                        } else {
+                        }
+
+                         else {
                             OTPbar.setVisibility(View.INVISIBLE);
                             Toast.makeText(EnterOTP.this, "Welcome!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(EnterOTP.this, EnterNameActivity.class);
                             intent.putExtra("VerifiedPhone", phoneNum);
                             startActivity(intent);
-                        }
+                        }*/
                     }
 
                 }
@@ -206,7 +218,7 @@ public class EnterOTP extends BaseActivity {
                 @Override
                 public void onFailure(Call<BaseResponse> call, Throwable t) {
                     OTPbar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(EnterOTP.this, "Use 1234 for OTP for now please", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EnterOTP.this, t.getMessage() + " Failure", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -215,10 +227,10 @@ public class EnterOTP extends BaseActivity {
 
         } else {
             OTPbar.setVisibility(View.INVISIBLE);
-            Toast.makeText(EnterOTP.this, "Please enter valid OTP code", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EnterOTP.this, "Enter a Valid OTP code", Toast.LENGTH_SHORT).show();
         }
 
-    }
+    } /*
 
     private void SigninWithPhone(PhoneAuthCredential credential) {
         auth.signInWithCredential(credential)

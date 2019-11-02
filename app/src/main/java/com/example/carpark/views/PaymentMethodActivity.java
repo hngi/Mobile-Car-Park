@@ -14,4 +14,8 @@ public class PaymentMethodActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_method);
     }
+
+    public void setTitle(String title) {
+        getActionBar().setTitle(title);
+    }
 }
