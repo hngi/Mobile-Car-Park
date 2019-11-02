@@ -23,6 +23,8 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.hbb20.CountryCodePicker;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
@@ -66,8 +68,7 @@ public class VerifyNumber extends AppCompatActivity {
 
                 if (!((phoneForOTP.length() < 10))){
                     verifyBar.setVisibility(View.VISIBLE);
-
-               // SendOtp(numberForOTP);
+                    SendOtp(numberForOTP);
 
 
                 }else {
@@ -92,7 +93,7 @@ public class VerifyNumber extends AppCompatActivity {
 
         RetrofitClient.getInstance().create(ParkingApi.class).sendOTP(PhoneForOTP).enqueue(new Callback<BaseResponse>() {
             @Override
-            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+            public void onResponse(@NotNull Call<BaseResponse> call, @NotNull Response<BaseResponse> response) {
 
                 if (response.isSuccessful()){
                     Toast.makeText(VerifyNumber.this, "Otp Sent", Toast.LENGTH_SHORT).show();
@@ -103,16 +104,19 @@ public class VerifyNumber extends AppCompatActivity {
 
                 }else {
                     verifyBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(VerifyNumber.this, response.message(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(VerifyNumber.this, response.message() + "  Response", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(VerifyNumber.this, EnterOTP.class);
+                    intent.putExtra("PhoneNumberForOTP", PhoneForOTP);
+                    startActivity(intent);
 
                 }
 
             }
 
             @Override
-            public void onFailure(Call<BaseResponse> call, Throwable t) {
+            public void onFailure(@NotNull Call<BaseResponse> call, @NotNull Throwable t) {
                 verifyBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(VerifyNumber.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(VerifyNumber.this, t.getMessage()+ " Failure", Toast.LENGTH_SHORT).show();
 
             }
         });

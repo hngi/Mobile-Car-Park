@@ -168,8 +168,10 @@ public class EnterOTP extends BaseActivity {
             @Override
             public void onClick(View view) {
                 OTPbar.setVisibility(View.VISIBLE);
-                //SigninWithPhone();
                 verifyOTP();
+
+                //SigninWithPhone();
+
             }
         });
 
