@@ -284,7 +284,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
                 .position(Ikeja_G)
 
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_icon))
 
                 .title("Ikeja General Hospital, Car Park"));
 
@@ -296,7 +296,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
                 .position(N_Air)
 
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_icon))
 
                 .title("New Airport, Car Park"));
 
@@ -308,7 +308,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
                 .position(Ikeja_p)
 
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_icon))
 
                 .title("Ikeja, Car Park"));
 
@@ -332,23 +332,23 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
 
 
-        LatLngBounds bounds = builder.build();
+   //     LatLngBounds bounds = builder.build();
 
 
 
-        int width = getResources().getDisplayMetrics().widthPixels;
+     //   int width = getResources().getDisplayMetrics().widthPixels;
 
-        int height = getResources().getDisplayMetrics().heightPixels;
+       // int height = getResources().getDisplayMetrics().heightPixels;
 
-        int padding = (int) (width * 0.10); // offset from edges of the map 10% of screen
-
-
-
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+        //int padding = (int) (width * 0.10); // offset from edges of the map 10% of screen
 
 
 
-        mMap.animateCamera(cu);
+        //CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+
+
+
+      //  mMap.animateCamera(cu);
 
 
 
@@ -462,7 +462,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
         markerOptions.title("Current Position");
 
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
 
         mCurrLocationMarker = mMap.addMarker(markerOptions);
 
