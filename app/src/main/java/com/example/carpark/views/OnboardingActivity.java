@@ -3,6 +3,7 @@ package com.example.carpark.views;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -65,6 +66,11 @@ public class OnboardingActivity extends AhoyOnboarderActivity {
 
     @Override
     public void onFinishButtonPressed() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("firstTime",false);
+        editor.apply();
+
         intent = new Intent( OnboardingActivity.this, GetStarted.class);
         startActivity(intent);
         finish();
