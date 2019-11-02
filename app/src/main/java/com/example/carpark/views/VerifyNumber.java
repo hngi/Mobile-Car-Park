@@ -65,6 +65,8 @@ public class VerifyNumber extends AppCompatActivity {
                 if (!((phoneForOTP.length() < 10))){
 
                // SendOtp(numberForOTP);
+                    Intent i = new Intent(VerifyNumber.this, EnterOTP.class);
+                    startActivity(i);
 
 
                 }else {
