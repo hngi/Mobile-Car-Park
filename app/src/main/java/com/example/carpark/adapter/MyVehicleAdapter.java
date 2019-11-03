@@ -55,7 +55,6 @@ public class MyVehicleAdapter extends RecyclerView.Adapter<MyVehicleAdapter.Cust
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
             }
         });
     }
