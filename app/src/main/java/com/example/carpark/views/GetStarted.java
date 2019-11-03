@@ -101,6 +101,7 @@ public class GetStarted extends BaseActivity {
             @Override
             public void onClick(View view) {
                 openVerifyNumber();
+
             }
         });
 
