@@ -1,7 +1,9 @@
 package com.example.carpark.views;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,11 +21,6 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.Profile;
-import com.facebook.*;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.example.carpark.R;
@@ -55,25 +52,74 @@ public class GetStarted extends AppCompatActivity {
 
 
         // facebook authentication
-        FacebookSdk.sdkInitialize(this);
         callbackManager = CallbackManager.Factory.create();
+
+        // Check if user is already logged in through facebook
+        checkLoginStatus();
+
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(GetStarted.this, "User logged in through Facebook.", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onSuccess: " + loginResult.getAccessToken().getUserId());
+                setResult(RESULT_OK);
+                startActivity(new Intent(GetStarted.this, HomeActivity.class));
+                finish();
+                /*call : loginResult.getAccessToken().getUserId() to get userId and save to database;*/
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+            @Override
+            public void onError(FacebookException error) {
+                Toast.makeText(GetStarted.this, "Error " + error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
         fb_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LoginManager.getInstance().setAuthType(AUTH_TYPE)
                         .logInWithReadPermissions(GetStarted.this, Arrays.asList(EMAIL));
-                facebookLogin();
-
             }
         });
 
+        // phone number verification
         cont_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              openVerifyNumber();
+                String Phone = number.getText().toString().trim();
+                String countryCode = ccp.getSelectedCountryCodeWithPlus();
+                String fullPhone = countryCode+Phone;
+                intent = new Intent(getApplicationContext(), VerifyNumber.class);
+                if(TextUtils.isEmpty(number.getText().toString())){
+                    number.setError("Please fill in phone number");
+                }else if (!((Phone.length() < 10) || (Phone.length() > 11))){
+            /*intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
+            intent.putExtra("phoneNumber", number.getText().toString());
+            startActivity(intent);*/
+
+                    showAlert(fullPhone);
+                }else {
+                    Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+//                if (TextUtils.isEmpty(number.getText().toString())){
+//                    number.setError("Please fill in phone number");
+//
+//                }else{
+//                    Intent intent= new Intent(getApplicationContext(),VerifyNumber.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
+             
             }
         });
-
 
         // the below code enables the next button on the keyboard to work
         number.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -89,38 +135,37 @@ public class GetStarted extends AppCompatActivity {
 //                }
                 openVerifyNumber();
                 return false;
-
             }
 
-
-
         });
-
     }
 
     private void openVerifyNumber() {
         String Phone = number.getText().toString().trim();
+        String countryCode = ccp.getSelectedCountryCodeWithPlus();
+        String fullPhone = countryCode+Phone;
         intent = new Intent(getApplicationContext(), VerifyNumber.class);
         if(TextUtils.isEmpty(number.getText().toString())){
             number.setError("Please fill in phone number");
         }else if (!((Phone.length() < 10) || (Phone.length() > 11))){
-            intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
+            /*intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
             intent.putExtra("phoneNumber", number.getText().toString());
-            startActivity(intent);
+            startActivity(intent);*/
+
+            showAlert(fullPhone);
         }else {
             Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
         }
-
     }
 
+    //pass the facebook login results to the LoginManager via callbackManager.
     @Override
-    public void onStart() {
-        super.onStart();
-
-        // Check if user is logged in through facebook
-        checkLoginStatus();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
+    // Check if user is already logged in through facebook
     private void checkLoginStatus() {
         if (AccessToken.getCurrentAccessToken() != null && !AccessToken.getCurrentAccessToken().isExpired()) {
             // user already signed in
@@ -129,29 +174,53 @@ public class GetStarted extends AppCompatActivity {
         }
     }
 
-    public void facebookLogin() {
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(GetStarted.this, "Successful", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "onSuccess: " + loginResult.getAccessToken().getUserId());
-                setResult(RESULT_OK);
-                startActivity(new Intent(GetStarted.this, HomeActivity.class));
-                finish();
-                /*call : loginResult.getAccessToken().getUserId() to get userId and save to database;*/
-            }
+    private void showAlert(final String phoneNumber){
+TextView yes, no;
+TextView phone;
 
+        final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
+        //myDialog.setTitle("Confirm Number?");
+        final View customView = getLayoutInflater().inflate(R.layout.activity_custom_dialogue, null);
+        yes = customView.findViewById(R.id.YesButton);
+        no = customView.findViewById(R.id.NoButton);
+        phone = customView.findViewById(R.id.confirmNumber);
+        phone.setText(phoneNumber);
+        yes.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(GetStarted.this, "Error " + error.getMessage(), Toast.LENGTH_LONG).show();
+            public void onClick(View view) {
+                Intent intent = new Intent(GetStarted.this, EnterOTP.class);
+                intent.putExtra("PhoneNumberForOTP",phoneNumber);
+                startActivity(intent);
             }
         });
+        myDialog.setView(customView);
+        final AlertDialog dialog = myDialog.create();
+        dialog.show();
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+dialog.dismiss();
+            }
+        });
+
+       /* myDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(GetStarted.this, EnterOTP.class);
+                intent.putExtra("PhoneNumberForOTP",phoneNumber);
+                startActivity(intent);
+            }
+        });
+        myDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });*/
+
+
     }
+
 }
 
 

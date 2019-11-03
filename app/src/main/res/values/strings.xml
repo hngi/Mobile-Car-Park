@@ -59,5 +59,12 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="edit">Edit</string>
+    <string name="car_plate_number">Car Plate Number</string>
+    <string name="car_make">Car Make and Model</string>
+    <string name="main_ride">This is my main ride.</string>
+    <string name="button.save">Save</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
 
 </resources>

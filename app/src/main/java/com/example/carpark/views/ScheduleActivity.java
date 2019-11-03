@@ -26,7 +26,7 @@ import java.util.Date;
 public class ScheduleActivity extends AppCompatActivity {
     private TextView tvCheckIn;
     private TextView tvCheckOut;
-    private TextView tvDuration;
+    private TextView tvDuration, park,address;
     FloatingActionButton add_vehicle;
     final Calendar checkInDate = Calendar.getInstance();
     final Calendar checkOutDate = Calendar.getInstance();
@@ -36,13 +36,21 @@ public class ScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        getSupportActionBar().setTitle("Schedule");
+        getSupportActionBar().setTitle("Booking Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        String park_name = getIntent().getStringExtra("Park_Name");
+        String park_address = getIntent().getStringExtra("Park_Address");
+
+        park = findViewById(R.id.textView2);
+        address = findViewById(R.id.textView3);
         tvCheckIn = findViewById(R.id.textView7);
         tvCheckOut = findViewById(R.id.textView10);
         tvDuration = findViewById(R.id.textView13);
         add_vehicle = findViewById(R.id.fb_schedule_add);
+
+        park.setText(park_name);
+        address.setText(park_address);
 
 
         add_vehicle.setOnClickListener(new View.OnClickListener() {

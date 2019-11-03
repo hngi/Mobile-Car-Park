@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.carpark">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,12 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".IgnoreForApiTest.ApiTestActivity"></activity>
+
+        <activity android:name=".views.MyParkingSpace"
+                  android:parentActivityName=".views.HomeActivity"/>
+
+        <activity android:name=".IgnoreForApiTest.ApiTestActivity" />
         <activity android:name=".views.homefragments.SupportFragment" />
         <activity android:name=".views.Map" />
         <activity
             android:name=".views.MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:parentActivityName=".views.HomeActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,7 +43,7 @@
         <activity
             android:name=".views.EnterNameActivity"
             android:parentActivityName=".views.EnterOTP"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Material" /> <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
         <activity
             android:name=".views.GetStarted"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -78,13 +88,13 @@
             android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.ProfileActivity"
-            android:parentActivityName=".views.EnterNameActivity" />
+            android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".views.CarDetailsActiviy"
-            android:parentActivityName=".views.ScheduleActivity"
-            />
+        <activity
+            android:name=".views.CarDetailsActiviy"
+            android:parentActivityName=".views.ScheduleActivity" />
         <activity android:name=".views.BaseActivity" />
         <activity android:name=".views.BarterActivity" />
 
@@ -100,10 +110,5 @@
 
         <uses-library android:name="com.google.android.maps" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 </manifest>
