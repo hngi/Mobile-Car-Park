@@ -26,6 +26,8 @@ public class ParkingHistoryFragment extends Fragment {
     private RecyclerView recyclerView;
     private ParkingHistoryAdapter parkingHistoryAdapter;
     private List<ParkingHistoryModel> parkingHistory;
+    private Button rebook1;
+    private Button rebook2;
 
 
     @Nullable

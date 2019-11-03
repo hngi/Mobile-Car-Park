@@ -24,6 +24,33 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <Button
+            android:id="@+id/rebook1"
+            android:layout_width="378dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="203dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/cornered_rectangle"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Re-book"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/rebook2"
+            android:layout_width="373dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="467dp"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/cornered_rectangle"
+            android:text="Re-book"
+            android:textColor="#E0D7D7"
+            android:textSize="16sp" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

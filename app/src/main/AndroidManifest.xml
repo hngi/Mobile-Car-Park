@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -17,10 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".views.MyParkingSpace"
-                  android:parentActivityName=".views.HomeActivity"/>
-
+        <activity android:name=".MainActivity"></activity>
+        <activity
+            android:name=".views.MyParkingSpace"
+            android:parentActivityName=".views.HomeActivity" />
         <activity android:name=".IgnoreForApiTest.ApiTestActivity" />
         <activity android:name=".views.homefragments.SupportFragment" />
         <activity android:name=".views.Map" />
