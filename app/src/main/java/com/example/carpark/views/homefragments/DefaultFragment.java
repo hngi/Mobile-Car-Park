@@ -27,12 +27,14 @@ import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 
 import android.view.View;
 
 import android.view.ViewGroup;
 
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 
 import android.widget.EditText;
@@ -40,6 +42,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -194,13 +197,26 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
         Toast.makeText(getActivity(), "Please click on schedule to test other activities", Toast.LENGTH_LONG).show();
 
-        ImageView imageView = root.findViewById(R.id.ic_magnify);
-        imageView.setOnClickListener(new View.OnClickListener() {
+       // ImageView imageView = root.findViewById(R.id.ic_magnify);
+       /* imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onSearch(view);
             }
+        });*/
+
+        input_search = root.findViewById(R.id.input_search);
+        input_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if(i == EditorInfo.IME_ACTION_SEARCH){
+                    onSearch();
+                    return true;
+                }
+                return false;
+            }
         });
+
 
 
 
@@ -370,8 +386,8 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
     }
 
-    public void onSearch(View view){
-        input_search = root.findViewById(R.id.input_search);
+    public void onSearch(){
+
             String location = input_search.getText().toString();
              List<Address> addressList = null;
 
@@ -383,10 +399,16 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Address address = addressList.get(0);
-                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+               try {
+
+                       Address address = addressList.get(0);
+
+                       LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                       mMap.addMarker(new MarkerOptions().position(latLng).title(address.getCountryName()));
+                       mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                   } catch (Exception e) {
+                   e.printStackTrace();
+               }
             }
     }
 
