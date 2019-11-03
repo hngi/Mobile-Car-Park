@@ -33,7 +33,8 @@
         <activity
             android:name=".views.EnterNameActivity"
             android:parentActivityName=".views.EnterOTP"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Material"/>
+           <!-- android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
             android:name=".views.GetStarted"
             android:theme="@style/AppTheme.NoActionBar" />
