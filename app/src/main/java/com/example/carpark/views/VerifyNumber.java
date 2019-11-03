@@ -99,8 +99,10 @@ public class VerifyNumber extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)  {
                // phoneNumber = etPhoneNumer.getText().toString();
-
-                if (!((phoneForOTP.length() < 10))){
+//                sendFBOTP();
+//                Intent i = new Intent(VerifyNumber.this, EnterOTP.class);
+//                startActivity(i);
+                if (!((phoneForOTP.length() <10))){
                     verifyBar.setVisibility(View.VISIBLE);
                     SendOtp(numberForOTP);
 
@@ -127,7 +129,7 @@ public class VerifyNumber extends AppCompatActivity {
 
     }
 
-    public void sendFBOTP(View view){
+    public void sendFBOTP(){
        phoneNumber = etPhoneNumer.getText().toString();
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             phoneNumber,60,TimeUnit.SECONDS,this,mCallback

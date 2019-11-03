@@ -42,7 +42,7 @@ public class EnterOTP extends BaseActivity {
     ImageView backToVerify;
     Button btnToNext;
     String sentOTP, input_otp;
-
+    String phoneNumber, verification_code;
     FirebaseAuth auth;
     private String verificationCode;
     ProgressBar OTPbar;
@@ -63,7 +63,7 @@ public class EnterOTP extends BaseActivity {
         receiveNumber = findViewById(R.id.display_number);
         backToVerify = findViewById(R.id.back_verify_num);
         btnToNext = findViewById(R.id.btn_next_otp);
-        OTPbar = findViewById(R.id.progressBarOtp);
+        OTPbar = findViewById(R.id.progress_bar_otp);
 
         //receive user phone number from verify number activity
         receiveNumber.setText(getIntent().getStringExtra("PhoneNumber"));
@@ -169,6 +169,7 @@ public class EnterOTP extends BaseActivity {
             public void onClick(View view) {
                 OTPbar.setVisibility(View.VISIBLE);
                 verifyOTP();
+                //verifyFBOTP();
 
                 //SigninWithPhone();
 
@@ -179,12 +180,24 @@ public class EnterOTP extends BaseActivity {
         // PhoneAuthProvider.getInstance().verifyPhoneNumber(getIntent().getStringExtra("PhoneNumber"), 60, TimeUnit.SECONDS, EnterOTP.this, mCallback);
     }
 
-    public void verifyFBOTP(View v){
+    public void verifyFBOTP(){
         input_otp = otp1.getText().toString() + otp2.getText().toString() + otp3.getText().toString() + otp4.getText().toString();
+            verifyPhoneNumbber(verification_code,input_otp);
+
     }
 
     public void verifyPhoneNumbber(String verifyCode, String input_otp){
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verifyCode,input_otp);
+        signInwithPhone(credential);
+    }
+    public void signInwithPhone(PhoneAuthCredential credential){
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(getApplicationContext(),"User has Logged in successfully", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void verifyOTP() {

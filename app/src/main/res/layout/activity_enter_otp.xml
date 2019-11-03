@@ -174,7 +174,7 @@
         </LinearLayout>
 
         <ProgressBar
-            android:id="@+id/progressBarOtp"
+            android:id="@+id/progress_bar_otp"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
