@@ -20,6 +20,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ParkingApi {
@@ -65,9 +66,9 @@ public interface ParkingApi {
     Call<BaseDataResponse<Vehicle>> addNewVehicle(@Field("plate_number") String plate_number, @Field("make_model") String make_model, @Field("main_ride") boolean main_ride);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
-    @PATCH("vehicles/{id}")
+    @PUT("vehicles/{id}")
     @FormUrlEncoded
-    Call<Vehicle> editVehicle(@Path("id") int id, @Field("plate_number") String plate_number, @Field("make_model") String make_model);
+    Call<BaseDataResponse<Vehicle>> editVehicle(@Path("id") int id, @Field("plate_number") String plate_number, @Field("make_model") String make_model);
 
 
 
@@ -84,7 +85,7 @@ public interface ParkingApi {
     Call<User> getUserProfile();
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
-    @PATCH("user")
+    @PUT("user")
     Call<BaseDataResponse<UserProfile>> editUserProfile(@Body UserProfile userProfile);
 
 }

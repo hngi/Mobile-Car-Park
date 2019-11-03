@@ -1,4 +1,4 @@
-package com.example.carpark.Model;
+package com.example.carpark.Model.Park;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

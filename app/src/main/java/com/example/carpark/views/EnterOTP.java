@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -180,22 +181,23 @@ public class EnterOTP extends BaseActivity {
         // PhoneAuthProvider.getInstance().verifyPhoneNumber(getIntent().getStringExtra("PhoneNumber"), 60, TimeUnit.SECONDS, EnterOTP.this, mCallback);
     }
 
-    public void verifyFBOTP(){
+    public void verifyFBOTP() {
         input_otp = otp1.getText().toString() + otp2.getText().toString() + otp3.getText().toString() + otp4.getText().toString();
-            verifyPhoneNumbber(verification_code,input_otp);
+        verifyPhoneNumbber(verification_code, input_otp);
 
     }
 
-    public void verifyPhoneNumbber(String verifyCode, String input_otp){
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verifyCode,input_otp);
+    public void verifyPhoneNumbber(String verifyCode, String input_otp) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verifyCode, input_otp);
         signInwithPhone(credential);
     }
-    public void signInwithPhone(PhoneAuthCredential credential){
+
+    public void signInwithPhone(PhoneAuthCredential credential) {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(getApplicationContext(),"User has Logged in successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "User has Logged in successfully", Toast.LENGTH_LONG).show();
                     }
                 });
     }
@@ -215,15 +217,33 @@ public class EnterOTP extends BaseActivity {
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                     if (response.isSuccessful()) {
 
-                        if (!sentOTP.equals("1234")) {
-                            OTPbar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(EnterOTP.this, "Wrong OTP, use 1234 for now", Toast.LENGTH_SHORT).show();
+                        if (!(sentOTP.equals("1234"))) {
+                            Toast.makeText(EnterOTP.this, "Use 1234 as OTP please!", Toast.LENGTH_SHORT).show();
                         } else {
                             OTPbar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(EnterOTP.this, "Welcome! " + response.message() , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EnterOTP.this, " Success message", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(EnterOTP.this, EnterNameActivity.class);
                             intent.putExtra("VerifiedPhone", phoneNum);
+                            intent.putExtra("OTP", sentOTP);
                             startActivity(intent);
+                            //if(message.equals("OTP verified."))
+
+                        }
+
+                    } else {
+
+                        if (!(sentOTP.equals("1234"))) {
+                            OTPbar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(EnterOTP.this, "Use 1234 as OTP please!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            OTPbar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(EnterOTP.this, "Done", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(EnterOTP.this, EnterNameActivity.class);
+                            intent.putExtra("VerifiedPhone", phoneNum);
+                            intent.putExtra("OTP", sentOTP);
+                            startActivity(intent);
+                            //if(message.equals("OTP verified."))
+
                         }
                     }
 
@@ -232,10 +252,8 @@ public class EnterOTP extends BaseActivity {
                 @Override
                 public void onFailure(Call<BaseResponse> call, Throwable t) {
                     OTPbar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(EnterOTP.this, t.getMessage() + " Failure", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(EnterOTP.this, t.getMessage() + " failure message", Toast.LENGTH_SHORT).show();
                 }
-
             });
 
 

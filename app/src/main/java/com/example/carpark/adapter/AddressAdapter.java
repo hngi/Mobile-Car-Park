@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.carpark.Model.ParkAddress;
+import com.example.carpark.Model.Park.ParkAddress;
 import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
 import com.example.carpark.views.ScheduleActivity;
