@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.carpark.R;
+import com.example.carpark.views.GetStarted;
 import com.example.carpark.views.PaymentMethodActivity;
 
 public class PromotionFragment extends Fragment {
@@ -45,12 +47,12 @@ public class PromotionFragment extends Fragment {
                     rectangle.requestFocus();
                     return;
                 }
+                Toast.makeText(getActivity(), "Sorry! No promo yet.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), PaymentMethodActivity.class);
                 startActivity(intent);
             }
         });
         return root;
     }
-//            Todo: getSupportActionBar().setTitle("Apply Promo Code");
 
 }
