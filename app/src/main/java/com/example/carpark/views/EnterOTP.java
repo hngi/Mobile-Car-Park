@@ -209,37 +209,22 @@ public class EnterOTP extends BaseActivity {
             phoneOtp.setPhone(phoneNum);
             phoneOtp.setOtp(sentOTP);
 
-            /*Todo: remove this intent code when the API starts responding */
-            Intent intent1 = new Intent(EnterOTP.this, EnterNameActivity.class);
-            intent1.putExtra("phone", phoneNum);
-            intent1.putExtra("OTP", sentOTP);
-            startActivity(intent1);
-
 
             getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseResponse>() {
                 @Override
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                     if (response.isSuccessful()) {
-                        OTPbar.setVisibility(View.INVISIBLE);
-                        Intent intent1 = new Intent(EnterOTP.this, EnterNameActivity.class);
-                        intent1.putExtra("phone", phoneNum);
-                        intent1.putExtra("OTP", sentOTP);
-                        startActivity(intent1);
 
-                /* Todo: Don't touch this code for now please
-
-                        /*if (!sentOTP.equals("1234")) {
+                        if (!sentOTP.equals("1234")) {
                             OTPbar.setVisibility(View.INVISIBLE);
                             Toast.makeText(EnterOTP.this, "Wrong OTP, use 1234 for now", Toast.LENGTH_SHORT).show();
-                        }
-
-                         else {
+                        } else {
                             OTPbar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(EnterOTP.this, "Welcome!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EnterOTP.this, "Welcome! " + response.message() , Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(EnterOTP.this, EnterNameActivity.class);
                             intent.putExtra("VerifiedPhone", phoneNum);
                             startActivity(intent);
-                        }*/
+                        }
                     }
 
                 }
