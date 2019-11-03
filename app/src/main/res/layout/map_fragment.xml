@@ -45,11 +45,11 @@
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/ic_magnify"
             android:layout_toRightOf="@+id/ic_magnify"
+            android:imeOptions="actionSearch"
             android:background="@null"
             android:fontFamily="@font/nunito"
             android:hint="@string/where_would_you_love_to_park"
-            android:imeOptions="actionSearch"
-            android:inputType="textShortMessage|textAutoCorrect"
+            android:inputType="text"
             android:textColor="#000"
             android:textSize="15sp" />
 
