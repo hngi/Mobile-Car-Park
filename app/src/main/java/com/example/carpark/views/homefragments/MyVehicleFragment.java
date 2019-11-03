@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,13 +36,13 @@ public class MyVehicleFragment extends Fragment {
         final View root =  inflater.inflate(R.layout.fragment_my_vehicle, container, false);
 
         FloatingActionButton fab = root.findViewById(R.id.mv_add_vehicle);
+        TextView new_text = root.findViewById(R.id.new_text);
+        new_text.setVisibility(View.INVISIBLE);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent transactionIntent = new Intent(getContext(), CarDetailsActiviy.class);
                 startActivity(transactionIntent);
-                Snackbar.make(root, "Add new Vehicle", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
 

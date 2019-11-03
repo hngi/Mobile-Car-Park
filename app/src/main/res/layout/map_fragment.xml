@@ -29,18 +29,21 @@
         tools:layout_constraintTop_toBottomOf="@+id/map">
 
         <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
             android:id="@+id/ic_magnify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_magnify"/>
+            android:paddingStart="10dp"
+            android:src="@drawable/ic_search_svgrepo_com" />
 
         <EditText
             android:id="@+id/input_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/ic_magnify"
             android:layout_toRightOf="@+id/ic_magnify"
             android:background="@null"
             android:fontFamily="@font/nunito"
