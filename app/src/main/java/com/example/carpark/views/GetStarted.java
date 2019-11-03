@@ -1,7 +1,9 @@
 package com.example.carpark.views;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -113,13 +115,17 @@ public class GetStarted extends AppCompatActivity {
 
     private void openVerifyNumber() {
         String Phone = number.getText().toString().trim();
+        String countryCode = ccp.getSelectedCountryCodeWithPlus();
+        String fullPhone = countryCode+Phone;
         intent = new Intent(getApplicationContext(), VerifyNumber.class);
         if(TextUtils.isEmpty(number.getText().toString())){
             number.setError("Please fill in phone number");
         }else if (!((Phone.length() < 10) || (Phone.length() > 11))){
-            intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
+            /*intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
             intent.putExtra("phoneNumber", number.getText().toString());
-            startActivity(intent);
+            startActivity(intent);*/
+
+            showAlert(fullPhone);
         }else {
             Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
         }
@@ -139,6 +145,53 @@ public class GetStarted extends AppCompatActivity {
             startActivity(new Intent(GetStarted.this, HomeActivity.class));
             finish();
         }
+    }
+
+    private void showAlert(final String phoneNumber){
+TextView yes, no;
+TextView phone;
+
+        final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
+        //myDialog.setTitle("Confirm Number?");
+        final View customView = getLayoutInflater().inflate(R.layout.activity_custom_dialogue, null);
+        yes = customView.findViewById(R.id.YesButton);
+        no = customView.findViewById(R.id.NoButton);
+        phone = customView.findViewById(R.id.confirmNumber);
+        phone.setText(phoneNumber);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GetStarted.this, EnterOTP.class);
+                intent.putExtra("PhoneNumberForOTP",phoneNumber);
+                startActivity(intent);
+            }
+        });
+        myDialog.setView(customView);
+        final AlertDialog dialog = myDialog.create();
+        dialog.show();
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+dialog.dismiss();
+            }
+        });
+
+       /* myDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(GetStarted.this, EnterOTP.class);
+                intent.putExtra("PhoneNumberForOTP",phoneNumber);
+                startActivity(intent);
+            }
+        });
+        myDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });*/
+
+
     }
 
 }

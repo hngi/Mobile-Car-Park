@@ -68,7 +68,7 @@ public class VerifyNumber extends AppCompatActivity {
 
                 if (!((phoneForOTP.length() < 10))){
                     verifyBar.setVisibility(View.VISIBLE);
-                    SendOtp(numberForOTP);
+                    SendOtp(phoneForOTP);
 
 
                 }else {
@@ -104,10 +104,8 @@ public class VerifyNumber extends AppCompatActivity {
 
                 }else {
                     verifyBar.setVisibility(View.INVISIBLE);
-                   // Toast.makeText(VerifyNumber.this, response.message() + "  Response", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(VerifyNumber.this, EnterOTP.class);
-                    intent.putExtra("PhoneNumberForOTP", PhoneForOTP);
-                    startActivity(intent);
+                   Toast.makeText(VerifyNumber.this, response.message() + "  Response", Toast.LENGTH_SHORT).show();
+
 
                 }
 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Confirm Number?"
+        android:fontFamily="@font/nunito_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/confirmNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Confirm Number"
+        android:fontFamily="@font/nunito"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/NoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:textColor="@color/colorAccent"
+        android:fontFamily="@font/nunito"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmNumber" />
+
+    <TextView
+        android:id="@+id/YesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yes"
+        android:padding="16dp"
+        android:textColor="@color/colorAccent"
+        android:fontFamily="@font/nunito"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmNumber" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
