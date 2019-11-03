@@ -4,33 +4,38 @@
 
         <item
             android:id="@+id/nav_notification"
-            android:icon="@drawable/ic_notifications"
+            android:icon="@drawable/ic_notifications_blue"
             android:title="Notification" />
 
         <item
             android:id="@+id/nav_parking_history"
-            android:icon="@drawable/ic_history"
+            android:icon="@drawable/ic_history_blue"
             android:title="Parking History" />
 
         <item
             android:id="@+id/nav_pay"
-            android:icon="@drawable/ic_round_credit_card"
-            android:title="Payments" />
+            android:icon="@drawable/ic_credit_card_blue"
+            android:title="Payment Method" />
 
         <item
             android:id="@+id/nav_prom"
-            android:icon="@drawable/ic_gift"
+            android:icon="@drawable/ic_gift_blue"
             android:title="Promotions" />
 
         <item
             android:id="@+id/nav_car"
-            android:icon="@drawable/ic_car"
+            android:icon="@drawable/ic_vehicle"
             android:title="My Vehicle" />
 
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings"
+            android:icon="@drawable/ic_settings_blue"
             android:title="Settings" />
+
+        <item
+            android:id="@+id/nav_sign_out"
+            android:icon="@drawable/ic_sign_out"
+            android:title="Sign Out" />
 
     </group>
 </menu>

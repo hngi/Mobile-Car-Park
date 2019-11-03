@@ -1,121 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mv_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".views.homefragments.MyVehicleFragment"
     tools:showIn="@layout/fragment_my_vehicle">
 
     <ImageView
-        android:id="@+id/car_icon"
+        android:id="@+id/mv_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/car_icon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
-
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/Linear_Layout1"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@id/car_icon"-->
-    <!--        android:layout_marginRight="20dp"-->
-    <!--        android:layout_marginLeft="20dp"-->
-    <!--        android:background="@drawable/cornered_rectangle"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:weightSum="100">-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="0dp"-->
-    <!--            android:layout_weight="50"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Car Plate Number"-->
-    <!--            android:padding="5dp"-->
-    <!--            android:layout_marginLeft="30dp"-->
-    <!--            android:layout_marginTop="5dp"-->
-    <!--            android:textColor="#fff" />-->
-
-    <!--        <View-->
-    <!--            android:layout_width="1dp"-->
-    <!--            android:layout_height="30dp"-->
-    <!--            android:background="#fff"-->
-    <!--            android:layout_gravity="center_vertical"/>-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="0dp"-->
-    <!--            android:layout_weight="50"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Car Make/Model"-->
-    <!--            android:padding="5dp"-->
-    <!--            android:layout_marginLeft="30dp"-->
-    <!--            android:layout_marginTop="5dp"-->
-    <!--            android:textColor="#fff" />-->
-
-    <!--    </LinearLayout>-->
-
-    <LinearLayout
-        android:id="@+id/Linear_Layout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/car_icon"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/cornered_rectangle_white_backgroud"
-        android:orientation="horizontal"
-        android:weightSum="100">
+        android:layout_marginBottom="30dp"
+        android:contentDescription="@string/vehicle"
+        app:layout_constraintBottom_toTopOf="@+id/mv_recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/car_icon" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="30"
-            android:layout_height="wrap_content"
-            android:text="XXXXXX"
-            android:fontFamily="@font/nunito"
-            android:padding="5dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:textColor="#000" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mv_recyclerView"
+        android:layout_width="371dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mv_image_view" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:background="#000"/>
+    <TextView
+        android:id="@+id/new_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="No Vehicles added. Click + below to add a Vehicle"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/mv_recyclerView"
+        app:layout_constraintEnd_toEndOf="@+id/mv_recyclerView"
+        app:layout_constraintStart_toStartOf="@+id/mv_recyclerView"
+        app:layout_constraintTop_toTopOf="@+id/mv_recyclerView" />
 
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="40"
-            android:layout_height="wrap_content"
-            android:text="Lexus RX330"
-            android:fontFamily="@font/nunito"
-            android:padding="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:textColor="#000" />
-
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="20"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="right"
-            android:text="edit"
-            android:fontFamily="@font/nunito"
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"/>
-
-
-    </LinearLayout>
-
-
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

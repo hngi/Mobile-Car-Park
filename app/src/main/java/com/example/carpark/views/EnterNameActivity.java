@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import com.example.carpark.R;
 
@@ -15,25 +16,19 @@ import com.example.carpark.R;
 public class EnterNameActivity extends AppCompatActivity {
     EditText firstName,lastName;
     Button btnContinue;
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_name);
-        firstName = findViewById(R.id.firstName);
+
+        initView();
+
+        /*
         ImageButton back = (ImageButton) findViewById(R.id.back);
-        lastName = findViewById(R.id.lastName);
-        btnContinue = findViewById(R.id.btnContinue);
-
-        //Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        //mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-
-
-        btnContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editContinue();
-            }
-        });
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,11 +36,24 @@ public class EnterNameActivity extends AppCompatActivity {
                 Intent i = new Intent(EnterNameActivity.this, EnterOTP.class);
                 startActivity(i);
             }
-        });
+        });*/
 
     }
 
 
+    private void initView(){
+        firstName = findViewById(R.id.firstName);
+        lastName = findViewById(R.id.lastName);
+        btnContinue = findViewById(R.id.btnContinue);
+        progressBar = findViewById(R.id.en_progress_bar);
+
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editContinue();
+            }
+        });
+    }
 
     public void editContinue(){
         String firstName = this.firstName.getText().toString();

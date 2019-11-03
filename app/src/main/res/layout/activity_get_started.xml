@@ -10,7 +10,7 @@
         android:id="@+id/fb_btn"
         android:layout_width="320dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/button_curve"
         android:fontFamily="@font/nunito"
         android:text="Continue with Facebook"
@@ -30,7 +30,7 @@
         android:layout_height="48dp"
         android:layout_centerInParent="false"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="250dp"
         android:autofillHints="+234"
         android:background="@drawable/edittext_curves"
         android:inputType="phone"
@@ -77,13 +77,20 @@
             android:textColorHint="#777777"
             android:textSize="15sp" />
 
+        <ImageButton
+            android:id="@+id/getSrt_cont_btn"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_arrow_forward_black_24dp"
+            android:background="#00EEEEEE"/>
+
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="60dp"
         android:fontFamily="@font/nunito"
         android:text="Welcome to CarPark"
         android:textColor="#4A4A4A"
@@ -91,7 +98,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linccp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -100,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/nunito"
         android:gravity="top"
         android:text="OR"
@@ -108,15 +115,14 @@
         android:textColor="#5F7481"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linccp" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/getSrt_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="104dp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

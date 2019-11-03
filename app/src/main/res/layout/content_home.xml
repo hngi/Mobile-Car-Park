@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/my_parking_space_cardview"
@@ -66,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:fontFamily="@font/nunito"
-                    android:text="parking spaces"
+                    android:text="parking spacesPerPage"
                     android:textColor="@android:color/white"
                     android:textSize="10sp" />
 
@@ -128,7 +135,7 @@
                     android:layout_above="@+id/text7"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/nunito"
-                    android:text="book a space for"
+                    android:text="book a parkingSpace for"
                     android:textColor="@android:color/white"
                     android:textSize="10sp" />
 
@@ -188,4 +195,7 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

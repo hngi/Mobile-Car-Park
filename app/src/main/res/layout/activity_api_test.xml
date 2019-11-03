@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IgnoreForApiTest.ApiTestActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/test_register_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="RegisterUser"
+                android:text="Register user" />
+
+            <Button
+                android:id="@+id/test_sendOtp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="sendOtp"
+                android:text="send Otp" />
+
+            <Button
+                android:id="@+id/test_verifyOtp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="verifyOtp"
+                android:text="verify Otp" />
+
+
+            <TextView
+                android:id="@+id/test_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Info shows here"
+                android:gravity="center"
+                android:layout_marginTop="16dp"/>
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+    <ProgressBar
+        android:id="@+id/test_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>
