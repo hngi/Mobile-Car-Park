@@ -119,19 +119,19 @@ public class ParkLocation extends FragmentActivity implements GoogleMap.OnMarker
         // Add some markers to the map, and add a data object to each marker.
         mIkeja_g = mMap.addMarker(new MarkerOptions()
                 .position(Ikeja_G)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_icon))
                 .title("Ikeja General Hospital, Car Park"));
         mIkeja_g.setTag(0);
 
         mN_air = mMap.addMarker(new MarkerOptions()
                 .position(N_Air)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_icon))
                 .title("New Airport, Car Park"));
         mN_air.setTag(0);
 
         mIkeja_p = mMap.addMarker(new MarkerOptions()
                 .position(Ikeja_p)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_park))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_icon))
                 .title("Ikeja, Car Park"));
         mIkeja_p.setTag(0);
 
@@ -147,6 +147,8 @@ public class ParkLocation extends FragmentActivity implements GoogleMap.OnMarker
         builder.include(mIkeja_p.getPosition());
 
         LatLngBounds bounds = builder.build();
+
+        getNearbyParks();
 
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
@@ -210,6 +212,8 @@ public class ParkLocation extends FragmentActivity implements GoogleMap.OnMarker
 
     }
 
+
+
     @Override
     public void onLocationChanged(Location location) {
         Log.d("onLocationChanged", "entered");
@@ -226,7 +230,7 @@ public class ParkLocation extends FragmentActivity implements GoogleMap.OnMarker
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("Current Position");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         mCurrLocationMarker = mMap.addMarker(markerOptions);
 
         getNearbyParks();
