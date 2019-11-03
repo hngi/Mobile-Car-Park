@@ -1,19 +1,25 @@
 package com.example.carpark.IgnoreForApiTest;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.carpark.Api.Responses.BaseDataResponse;
+import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Model.NewUser;
+import com.example.carpark.Model.PhoneOtp;
 import com.example.carpark.R;
 import com.example.carpark.views.BaseActivity;
+
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * @author .: Ehma Ugbogo
@@ -29,6 +35,8 @@ import com.example.carpark.views.BaseActivity;
 
 public class ApiTestActivity extends BaseActivity {
     private static final String TAG = "ApiTestActivity";
+    private ProgressBar progressBar;
+    private TextView textView;
 
 
     @Override
@@ -36,39 +44,113 @@ public class ApiTestActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_api_test);
 
-        Button testBtn=findViewById(R.id.testBtn);
-        testBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registerNewUser();
-            }
-        });
+        textView = findViewById(R.id.test_textView);
+        progressBar = findViewById(R.id.test_progressbar);
 
     }
 
-    private void registerNewUser() {
-        NewUser newUser=new NewUser();
+
+    public void RegisterUser(View view) {
+        NewUser newUser = new NewUser();
         newUser.setFirstName("Ehma");
         newUser.setLastName("Ugbogo");
         newUser.setOtp("1234");
         newUser.setPhone("08107535626");
+        showProgressbar();
         getParkingApi().registerUser(newUser)
                 .enqueue(new Callback<BaseDataResponse<UserResponse>>() {
-            @Override
-            public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
-                if(response.isSuccessful()){
-                    UserResponse userResponse = response.body().getData();
-                    String accessToken = userResponse.getAccessToken();
+                    @Override
+                    public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
+                        if (response.isSuccessful()) {
+                            UserResponse userResponse = response.body().getData();
+                            String accessToken = userResponse.getAccessToken();
 
-                    showToast(accessToken);
-                    Log.d(TAG, "AccessToken: "+accessToken);
+                            textView.setText("message; " + response.body().getMessage()+"\nAccessToken: " + accessToken);
+                            Log.d(TAG, "Code: " + response.code() + "message; " + response.body().getMessage());
+                            Log.d(TAG, "AccessToken: " + accessToken);
+                        } else {
+                            textView.setText("Success Error " + response.errorBody());
+                            textView.append("Code " + response.code());
+                            Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
+                        }
+                        hideProgressbar();
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
+                        textView.setText(String.format("Error; %s", t.getMessage()));
+                        Log.d(TAG, "onFailure: " + t.getMessage());
+                        hideProgressbar();
+                    }
+                });
+    }
+
+    public void sendOtp(View view) {
+        showProgressbar();
+        getParkingApi().sendOTP("08026136330").enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                if (response.isSuccessful()) {
+                    String message = response.body().getMessage();
+                    //if(message.equals("OTP verified."))
+                    textView.setText(message);
+                    Log.d(TAG, "Code: " + response.code() + "message; " + message);
+                } else {
+                    textView.setText("Success Error " + response.errorBody());
+                    textView.append("Code " + response.code());
+                    Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
                 }
+                hideProgressbar();
             }
 
             @Override
-            public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
-                Log.d(TAG, "onFailure: "+t.getMessage());
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                textView.setText(String.format("Error; %s", t.getMessage()));
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                hideProgressbar();
             }
         });
     }
+
+    public void verifyOtp(View view) {
+        showProgressbar();
+        PhoneOtp phoneOtp=new PhoneOtp();
+        phoneOtp.setOtp("1234");
+        phoneOtp.setPhone("08026136330");
+        getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                if (response.isSuccessful()) {
+                    String message = response.body().getMessage();
+                    //if(message.equals("OTP verified."))
+                    textView.setText(message);
+                    Log.d(TAG, "Code: " + response.code() + "message; " + message);
+                } else {
+                    textView.setText("Success Error " + response.errorBody().toString());
+                    textView.append("Code " + response.code());
+                    Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
+                }
+                hideProgressbar();
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                textView.setText(String.format("Error; %s", t.getMessage()));
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                hideProgressbar();
+            }
+        });
+    }
+
+
+    private void hideProgressbar() {
+        progressBar.setVisibility(View.GONE);
+    }
+
+    private void showProgressbar() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+
+
 }
