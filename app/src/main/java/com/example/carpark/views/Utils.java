@@ -6,5 +6,5 @@ public class Utils {
     public static final String EMAIL = "koredekorede01@gmail.com";
 
     //This is senders email password
-    public static final String PASSWORD = "adenike1";
+    public static final String PASSWORD = "ukumpmhbschdtsxv";
 }
