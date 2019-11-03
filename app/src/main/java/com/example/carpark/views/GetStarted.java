@@ -90,6 +90,33 @@ public class GetStarted extends AppCompatActivity {
         cont_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String Phone = number.getText().toString().trim();
+                String countryCode = ccp.getSelectedCountryCodeWithPlus();
+                String fullPhone = countryCode+Phone;
+                intent = new Intent(getApplicationContext(), VerifyNumber.class);
+                if(TextUtils.isEmpty(number.getText().toString())){
+                    number.setError("Please fill in phone number");
+                }else if (!((Phone.length() < 10) || (Phone.length() > 11))){
+            /*intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
+            intent.putExtra("phoneNumber", number.getText().toString());
+            startActivity(intent);*/
+
+                    showAlert(fullPhone);
+                }else {
+                    Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+//                if (TextUtils.isEmpty(number.getText().toString())){
+//                    number.setError("Please fill in phone number");
+//
+//                }else{
+//                    Intent intent= new Intent(getApplicationContext(),VerifyNumber.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
              
             }
         });
