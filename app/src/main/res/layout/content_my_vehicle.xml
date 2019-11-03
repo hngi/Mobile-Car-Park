@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mv_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
     tools:showIn="@layout/fragment_my_vehicle">
 
     <ImageView
         android:id="@+id/mv_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
         android:contentDescription="@string/vehicle"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/mv_recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/car_icon" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mv_recyclerView"
+        android:layout_width="371dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mv_image_view">
+        app:layout_constraintTop_toBottomOf="@+id/mv_image_view" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mv_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/vehicle_item" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/new_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="No Vehicles added. Click + below to add a Vehicle"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/mv_recyclerView"
+        app:layout_constraintEnd_toEndOf="@+id/mv_recyclerView"
+        app:layout_constraintStart_toStartOf="@+id/mv_recyclerView"
+        app:layout_constraintTop_toTopOf="@+id/mv_recyclerView" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

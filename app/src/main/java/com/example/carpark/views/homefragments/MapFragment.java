@@ -27,14 +27,12 @@ import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 
 import android.view.View;
 
 import android.view.ViewGroup;
 
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 
 import android.widget.EditText;
@@ -42,7 +40,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -90,7 +87,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class DefaultFragment extends Fragment implements OnMapReadyCallback,
+public class MapFragment extends Fragment implements OnMapReadyCallback,
 
         GoogleApiClient.ConnectionCallbacks,
 
@@ -146,7 +143,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
 
 
-    public DefaultFragment() {
+    public MapFragment() {
 
         // Required empty public constructor
 
@@ -158,15 +155,13 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        root = inflater.inflate(R.layout.content_home, container, false);
+        root = inflater.inflate(R.layout.fragment_map, container, false);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             checkLocationPermission();
 
         }
-
-
 
         //Check if Google Play Services Available or not
 
@@ -189,37 +184,6 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
-
-
-
-        setLayoutOnClickListers(root);
-
-
-
-        Toast.makeText(getActivity(), "Please click on schedule to test other activities", Toast.LENGTH_LONG).show();
-
-       // ImageView imageView = root.findViewById(R.id.ic_magnify);
-       /* imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onSearch(view);
-            }
-        });*/
-
-        input_search = root.findViewById(R.id.input_search);
-        input_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if(i == EditorInfo.IME_ACTION_SEARCH){
-                    onSearch();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-
-
 
         return root;
 
@@ -349,13 +313,13 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
 
 
-   //     LatLngBounds bounds = builder.build();
+        //     LatLngBounds bounds = builder.build();
 
 
 
-     //   int width = getResources().getDisplayMetrics().widthPixels;
+        //   int width = getResources().getDisplayMetrics().widthPixels;
 
-       // int height = getResources().getDisplayMetrics().heightPixels;
+        // int height = getResources().getDisplayMetrics().heightPixels;
 
         //int padding = (int) (width * 0.10); // offset from edges of the map 10% of screen
 
@@ -365,7 +329,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
 
 
-      //  mMap.animateCamera(cu);
+        //  mMap.animateCamera(cu);
 
 
 
@@ -386,33 +350,6 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
         mGoogleApiClient.connect();
 
     }
-
-    public void onSearch(){
-
-            String location = input_search.getText().toString();
-             List<Address> addressList = null;
-
-            if(location != null || !location.equals("")){
-                Geocoder geocoder = new Geocoder(getContext());
-
-                try {
-                     addressList = geocoder.getFromLocationName(location, 1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-               try {
-
-                       Address address = addressList.get(0);
-
-                       LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                       mMap.addMarker(new MarkerOptions().position(latLng).title(address.getCountryName()));
-                       mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                   } catch (Exception e) {
-                   e.printStackTrace();
-               }
-            }
-    }
-
 
 
     @Override
@@ -701,80 +638,11 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
     }
 
-
-
-
-
-    private void setLayoutOnClickListers(View view){
-
-        homeParkingSpace = view.findViewById(R.id.home_parking_space);
-
-        homeSchedule = view.findViewById(R.id.home_schedule);
-
-
-
-        homeParkingSpace.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-
-            public void onClick(View v) {
-
-                Toast.makeText(getActivity(), "My Parking Space Clicked", Toast.LENGTH_LONG).show();
-
-            }
-
-        });
-
-
-
-        homeSchedule.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity(), MapsActivity.class);
-
-                startActivity(intent);
-
-            }
-
-        });
-
-
-
-    }
-
-
-
     @Override
 
     public boolean onMarkerClick(Marker marker) {
 
-        final String address = (String) marker.getTitle();
-
-        input_search = root.findViewById(R.id.input_search);
-
-        input_search.setText(address);
-
-        String park_address = input_search.getText().toString();
-
-
-
-        if(input_search!=null){
-
-            Intent i = new Intent(getContext(),DetailsActivity.class);
-
-            i.putExtra("address",park_address);
-
-            startActivity(i);
-
-        }
-
-
-
         return false;
-
     }
 
 }
