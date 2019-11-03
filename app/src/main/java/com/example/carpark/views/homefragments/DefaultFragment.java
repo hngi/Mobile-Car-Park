@@ -54,6 +54,7 @@ import com.example.carpark.R;
 import com.example.carpark.views.DetailsActivity;
 
 import com.example.carpark.views.MapsActivity;
+import com.example.carpark.views.MyParkingSpace;
 import com.google.android.gms.common.ConnectionResult;
 
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -719,8 +720,9 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "My Parking ParkingSpace Clicked", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), MyParkingSpace.class);
 
+                startActivity(intent);
             }
 
         });
