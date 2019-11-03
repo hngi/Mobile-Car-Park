@@ -719,7 +719,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "My Parking Space Clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "My Parking ParkingSpace Clicked", Toast.LENGTH_LONG).show();
 
             }
 
