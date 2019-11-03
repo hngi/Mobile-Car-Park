@@ -3,90 +3,101 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fillViewport="true"
-    tools:context=".views.homefragments.SupportFragment">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="20dp">
 
-        <LinearLayout
-            android:id="@+id/lin"
+        <TextView
+            android:id="@+id/mailID"
             android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/nunito"
+            android:hint="Email"
+            android:text="gbindinazeez@gmail.com"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subjectID" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Subject"
-                android:textStyle="bold"
-                android:fontFamily="@font/nunito"
-                android:textColor="@color/black"
-                android:layout_margin="10dp"
-                android:textSize="25sp"/>
-            <EditText
-                android:layout_margin="10dp"
-                android:id="@+id/subjectID"
-                android:textSize="20sp"
-                android:paddingLeft="8dp"
-                android:fontFamily="@font/nunito"
-                android:background="@drawable/edittext_curves"
-                android:layout_width="match_parent"
-                android:layout_height="55dp" />
+            android:fontFamily="@font/nunito"
+            android:text="@string/subject"
+            android:textColor="@color/text_black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/mailID"
-                android:text="gbindinazeez@gmail.com"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:fontFamily="@font/nunito"
-                android:textColor="@color/white"
-                android:hint="Email"/>
+        <EditText
+            android:id="@+id/subjectID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_curves"
+            android:ems="10"
+            android:fontFamily="@font/nunito"
+            android:inputType="textPersonName"
+            android:padding="16dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Message"
-                android:textStyle="bold"
-                android:fontFamily="@font/nunito"
-                android:textColor="@color/black"
-                android:layout_margin="10dp"
-                android:textSize="25sp"/>
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/message"
+            android:textColor="@color/text_black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subjectID" />
 
-            <EditText
-                android:layout_margin="10dp"
-                android:id="@+id/messageID"
-                android:gravity="start"
-                android:textSize="16sp"
-                android:paddingLeft="8dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/nunito"
-                android:background="@drawable/edittext_curves"
-                android:layout_width="match_parent"
-                android:layout_height="300dp" />
-
-
-
-        </LinearLayout>
+        <EditText
+            android:id="@+id/messageID"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_curves"
+            android:ems="10"
+            android:fontFamily="@font/nunito"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lineSpacingExtra="10sp"
+            android:padding="16dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
         <Button
-            android:id="@+id/send"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:background="@drawable/cornered_rectangle"
-            android:text="send"
-            android:inputType="textMultiLine"
+            android:id="@+id/btn_send"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_curve"
             android:fontFamily="@font/nunito"
-            android:textColor="@color/white"
+            android:text="@string/send"
+            android:textAllCaps="false"
+            android:textColor="@color/color_white"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lin" />
-
+            app:layout_constraintTop_toBottomOf="@+id/messageID" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </ScrollView>

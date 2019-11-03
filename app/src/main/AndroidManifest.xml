@@ -16,7 +16,7 @@
         <activity android:name=".views.Map" />
         <activity
             android:name=".views.MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:parentActivityName=".views.HomeActivity"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,7 +33,8 @@
         <activity
             android:name=".views.EnterNameActivity"
             android:parentActivityName=".views.EnterOTP"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Material"/>
+           <!-- android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
             android:name=".views.GetStarted"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -78,7 +79,7 @@
             android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.ProfileActivity"
-            android:parentActivityName=".views.EnterNameActivity" />
+            android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar" />
