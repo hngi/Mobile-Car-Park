@@ -3,7 +3,12 @@ package com.example.carpark.Api;
 import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
+import com.example.carpark.Api.Responses.Park.ActiveAndInactiveParkingSpaceAllResponse;
+import com.example.carpark.Api.Responses.Park.PageParkingSpaceAllResponse;
+import com.example.carpark.Api.Responses.Park.ParkingSpaceAllResponse;
+import com.example.carpark.Api.Responses.Park.SingleParkingSpaceResponse;
 import com.example.carpark.Model.NewUser;
+import com.example.carpark.Model.Park.NewParkingSpace;
 import com.example.carpark.Model.PhoneOtp;
 import com.example.carpark.Model.User;
 import com.example.carpark.Model.UserProfile;
@@ -71,40 +76,38 @@ public interface ParkingApi {
     @PUT("user")
     Call<BaseDataResponse<UserProfile>> editUserProfile(@Header("Authorization") String token, @Body UserProfile userProfile);
 
+    //More methods
+
+
+
     //Parking Space Management
 
     //Add New Parking Space
-    //TODO Body and Response is Incorrect change to this new body
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("park")
-    Call<BaseDataResponse<UserResponse>> addNewParkingSpace(@Header("Authorization") String token, @Body PhoneOtp phoneOtp);
+    Call<SingleParkingSpaceResponse> addNewParkingSpace(@Header("Authorization") String token, @Body NewParkingSpace newParkingSpace);
 
-    //TODO Response is incorrect
     @Headers({"Accept:application/json"})
     @GET("park")
-    Call<List<Vehicle>> getAllParkingSpaceA(@Header("Authorization") String token);
+    Call<ParkingSpaceAllResponse> getAllParkingSpaceA(@Header("Authorization") String token);
 
-    //TODO Response is incorrect
     @Headers({"Accept:application/json"})
     @GET("park/{id}")
-    Call<List<Vehicle>> getAllDetailsForSingleParking(@Path("id") int id, @Header("Authorization") String token);
+    Call<SingleParkingSpaceResponse> getDetailsForSingleParking(@Path("id") int id, @Header("Authorization") String token);
 
-    //TODO Response is incorrect
     @Headers({"Accept:application/json"})
     @GET("park/active")
-    Call<List<Vehicle>> getAllActiveParkingSpaces(@Header("Authorization") String token);
+    Call<ActiveAndInactiveParkingSpaceAllResponse> getAllActiveParkingSpaces(@Header("Authorization") String token);
 
-    //TODO Response is incorrect
     @Headers({"Accept:application/json"})
     @GET("park/inactive")
-    Call<List<Vehicle>> getAllInactiveParkingSpaces(@Header("Authorization") String token);
+    Call<ActiveAndInactiveParkingSpaceAllResponse> getAllInactiveParkingSpaces(@Header("Authorization") String token);
 
-    //TODO Response is incorrect
     @Headers({"Accept:application/json"})
     @GET("park/all")
-    Call<List<Vehicle>> getAllParkingSpacesB(@Header("Authorization") String token);
+    Call<PageParkingSpaceAllResponse> getAllParkingSpacesB(@Header("Authorization") String token);
 
-    //TODO Response is incorrect
+    //TODO Response is incorrect but API works
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @PATCH("park/{id}")
     @FormUrlEncoded
@@ -113,7 +116,6 @@ public interface ParkingApi {
 
 
     //Vehicles
-    //TODO Response is incorrect
     @Headers({"Accept:application/json"})
     @GET("vehicles")
     Call<List<Vehicle>> getAllVehicles(@Header("Authorization") String token);
@@ -124,7 +126,7 @@ public interface ParkingApi {
     Call<BaseDataResponse<Vehicle>> addNewVehicle(@Header("Authorization") String token, @Field("plate_number") String plate_number, @Field("make_model") String make_model, @Field("main_ride") boolean main_ride);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
-    @PATCH("vehicles/{id}")
+    @PUT("vehicles/{id}")
     @FormUrlEncoded
     Call<BaseDataResponse<Vehicle>> editVehicle(@Header("Authorization") String token, @Path("id") int id, @Field("plate_number") String plate_number, @Field("make_model") String make_model);
 
