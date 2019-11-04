@@ -3,7 +3,7 @@ package com.example.carpark.views.homefragments;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.carpark.Model.ParkAddress;
+import com.example.carpark.Model.Park.ParkAddress;
 import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
 import com.example.carpark.adapter.AddressAdapter;
