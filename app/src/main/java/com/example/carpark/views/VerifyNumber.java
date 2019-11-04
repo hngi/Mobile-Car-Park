@@ -104,7 +104,7 @@ public class VerifyNumber extends AppCompatActivity {
 //                startActivity(i);
                 if (!((phoneForOTP.length() <10))){
                     verifyBar.setVisibility(View.VISIBLE);
-                    SendOtp(phoneForOTP);
+                  //  SendOtp(phoneForOTP);
 
                // SendOtp(numberForOTP);
                     Intent i = new Intent(VerifyNumber.this, EnterOTP.class);
@@ -147,38 +147,6 @@ public class VerifyNumber extends AppCompatActivity {
     }
 
 
-    private void SendOtp(final String PhoneForOTP){
 
-        RetrofitClient.getInstance().create(ParkingApi.class).sendOTP(PhoneForOTP).enqueue(new Callback<BaseResponse>() {
-            @Override
-            public void onResponse(@NotNull Call<BaseResponse> call, @NotNull Response<BaseResponse> response) {
-
-                if (response.isSuccessful()){
-                    Toast.makeText(VerifyNumber.this, "Otp Sent", Toast.LENGTH_SHORT).show();
-                    verifyBar.setVisibility(View.INVISIBLE);
-                        Intent intent = new Intent(VerifyNumber.this, EnterOTP.class);
-                        intent.putExtra("PhoneNumberForOTP", PhoneForOTP);
-                        startActivity(intent);
-
-                }else {
-                    verifyBar.setVisibility(View.INVISIBLE);
-                   Toast.makeText(VerifyNumber.this, response.message() + "  Response", Toast.LENGTH_SHORT).show();
-
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NotNull Call<BaseResponse> call, @NotNull Throwable t) {
-                verifyBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(VerifyNumber.this, t.getMessage()+ " Failure", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-
-    }
 
 }

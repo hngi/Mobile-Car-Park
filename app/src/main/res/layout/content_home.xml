@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:fontFamily="@font/nunito"
-                    android:text="parking spaces"
+                    android:text="parking spacesPerPage"
                     android:textColor="@android:color/white"
                     android:textSize="10sp" />
 
@@ -135,7 +135,7 @@
                     android:layout_above="@+id/text7"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/nunito"
-                    android:text="book a space for"
+                    android:text="book a parkingSpace for"
                     android:textColor="@android:color/white"
                     android:textSize="10sp" />
 

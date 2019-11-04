@@ -126,7 +126,8 @@ public interface ParkingApi {
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @PATCH("vehicles/{id}")
     @FormUrlEncoded
-    Call<Vehicle> editVehicle(@Header("Authorization") String token, @Path("id") int id, @Field("plate_number") String plate_number, @Field("make_model") String make_model);
+    Call<BaseDataResponse<Vehicle>> editVehicle(@Header("Authorization") String token, @Path("id") int id, @Field("plate_number") String plate_number, @Field("make_model") String make_model);
+
 
     @Headers({"Accept: ","Content-Type:text/plain"})
     @DELETE("vehicles/{id}")
