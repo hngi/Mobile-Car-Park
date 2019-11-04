@@ -12,7 +12,7 @@ import java.util.List;
  * @created : 03/10/19
  */
 
-public class ActiveParkingSpaceAllResponse {
+public class ActiveAndInactiveParkingSpaceAllResponse {
 
     @SerializedName("count")
     @Expose
