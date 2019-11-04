@@ -44,6 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_fname_tv">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
@@ -80,6 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_lname_tv">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
@@ -117,6 +119,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_phone_tv">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
@@ -154,6 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_email_tv">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
