@@ -1,6 +1,8 @@
 package com.example.carpark.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,9 @@ import android.widget.Toast;
 
 import com.example.carpark.Model.review.ParkingHistoryModel;
 import com.example.carpark.R;
+import com.example.carpark.views.DetailsActivity;
+import com.example.carpark.views.HomeActivity;
+import com.example.carpark.views.homefragments.ParkingHistoryFragment;
 
 import java.util.List;
 
@@ -19,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ParkingHistoryAdapter extends RecyclerView.Adapter<ParkingHistoryAdapter.CustomViewHolder>{
     private Context context;
     private List<ParkingHistoryModel> parkingHistory;
+    private Button re_book;
 
     public ParkingHistoryAdapter(Context context, List<ParkingHistoryModel> parkingHistory) {
         this.context = context;
@@ -65,12 +71,37 @@ public class ParkingHistoryAdapter extends RecyclerView.Adapter<ParkingHistoryAd
         holder.re_book.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(context, "Re-Book", Toast.LENGTH_LONG).show();
+
             }
         });
     }
 
+
     @Override
     public int getItemCount() {
         return parkingHistory.size();
+    }
+
+    private void setLayoutOnClickListers(View view) {
+
+        re_book = view.findViewById(R.id.ph_btn_rebook);
+
+
+        re_book.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+
+                Intent m = new Intent(ParkingHistoryAdapter.this, DetailsActivity.class);
+
+                Bundle a = new Bundle();
+                a.putString("location", "parkingHistoryDate");
+                m.putExtra("location", a);
+
+                startActivity(m);
+            }
+
+        });
     }
 }
