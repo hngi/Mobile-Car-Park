@@ -6,6 +6,7 @@ import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Api.Responses.Park.ActiveAndInactiveParkingSpaceAllResponse;
 import com.example.carpark.Api.Responses.Park.PageParkingSpaceAllResponse;
 import com.example.carpark.Api.Responses.Park.ParkingSpaceAllResponse;
+import com.example.carpark.Api.Responses.Park.ParkingSpaceResponse;
 import com.example.carpark.Api.Responses.Park.SingleParkingSpaceResponse;
 import com.example.carpark.Model.NewUser;
 import com.example.carpark.Model.Park.NewParkingSpace;
@@ -85,15 +86,15 @@ public interface ParkingApi {
     //Add New Parking Space
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("park")
-    Call<SingleParkingSpaceResponse> addNewParkingSpace(@Header("Authorization") String token, @Body NewParkingSpace newParkingSpace);
+    Call<ParkingSpaceResponse> addParkingSpace(@Header("Authorization") String token, @Body NewParkingSpace newParkingSpace);
 
     @Headers({"Accept:application/json"})
     @GET("park")
-    Call<ParkingSpaceAllResponse> getAllParkingSpaceA(@Header("Authorization") String token);
+    Call<ParkingSpaceAllResponse> getAllParkingSpace(@Header("Authorization") String token);
 
     @Headers({"Accept:application/json"})
     @GET("park/{id}")
-    Call<SingleParkingSpaceResponse> getDetailsForSingleParking(@Path("id") int id, @Header("Authorization") String token);
+    Call<SingleParkingSpaceResponse> getParkingSpace(@Path("id") int id, @Header("Authorization") String token);
 
     @Headers({"Accept:application/json"})
     @GET("park/active")
@@ -105,7 +106,7 @@ public interface ParkingApi {
 
     @Headers({"Accept:application/json"})
     @GET("park/all")
-    Call<PageParkingSpaceAllResponse> getAllParkingSpacesB(@Header("Authorization") String token);
+    Call<PageParkingSpaceAllResponse> getAllParkingSpacesByPage(@Header("Authorization") String token);
 
     //TODO Response is incorrect but API works
     @Headers({"Accept:application/json","Content-Type:application/json"})
