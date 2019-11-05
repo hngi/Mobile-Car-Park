@@ -92,7 +92,7 @@ public class ProfileActivity extends BaseActivity {
         String token = "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL2xvZ2luXC91c2VyIiwiaWF0IjoxNTcyODEwOTUyLCJleHAiOjE1NzI5MTg5NTIsIm5iZiI6MTU3MjgxMDk1MiwianRpIjoiMDhTQmNTb2RpWHpTUndIYSIsInN1YiI6OSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.MxcYOIU9p1zXQhLi1X8EUIbMKjHUj99yYHcIYSOJrY0";
 
         showProgressDialog();
-        RetrofitClient.getInstance().create(ParkingApi.class).editUserProfile(userProfile, token).enqueue(new Callback<BaseDataResponse<UserProfile>>() {
+        RetrofitClient.getInstance().create(ParkingApi.class).editUserProfile(token, userProfile).enqueue(new Callback<BaseDataResponse<UserProfile>>() {
             @Override
             public void onResponse(@NotNull Call<BaseDataResponse<UserProfile>> call, @NotNull Response<BaseDataResponse<UserProfile>> response) {
                 if (response.isSuccessful()){
