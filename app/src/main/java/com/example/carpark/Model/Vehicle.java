@@ -3,6 +3,8 @@ package com.example.carpark.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * @author .: Ehma Ugbogo
  * @email ..: ehmaugbogo@gmail.com
@@ -10,7 +12,16 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Vehicle {
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
 
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+    @SerializedName("data")
+    private List<Vehicle> vehicles;
     @SerializedName("id")
     @Expose
     private int id;

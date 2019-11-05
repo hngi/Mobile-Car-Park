@@ -118,7 +118,7 @@ public interface ParkingApi {
     //Vehicles
     @Headers({"Accept:application/json"})
     @GET("vehicles")
-    Call<List<Vehicle>> getAllVehicles(@Header("Authorization") String token);
+    Call<Vehicle> getAllVehicles(@Header("Authorization") String token);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("vehicles")

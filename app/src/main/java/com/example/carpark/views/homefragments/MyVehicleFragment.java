@@ -71,10 +71,10 @@ public class MyVehicleFragment extends Fragment {
 
         String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3JlZ2lzdGVyXC91c2VyIiwiaWF0IjoxNTcyODc4NDc0LCJleHAiOjE1NzI5ODY0NzQsIm5iZiI6MTU3Mjg3ODQ3NCwianRpIjoidEp4SGJ0OGo1MXFoM25MSSIsInN1YiI6MTIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.vLYVZOEHCk1K79BKzwF2GjdhrTsdgIlfgB3zU6jWEBE";
         ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
-        Call<List<Vehicle>> vehicles = parkingApi.getAllVehicles(token);
-        vehicles.enqueue(new Callback<List<Vehicle>>() {
+        Call<Vehicle> vehicles = parkingApi.getAllVehicles(token);
+        vehicles.enqueue(new Callback<Vehicle>() {
             @Override
-            public void onResponse(Call<List<Vehicle>> call, Response<List<Vehicle>> response) {
+            public void onResponse(Call<Vehicle> call, Response<Vehicle> response) {
                 if(response.isSuccessful()){
                     Log.e("Response code", String.valueOf(response.code()));
                     if (response.body()==null){
@@ -82,7 +82,7 @@ public class MyVehicleFragment extends Fragment {
                         progressBar.setVisibility(View.GONE);
                     }else{
                         new_text.setVisibility(View.INVISIBLE);
-                        vehicleList.addAll(response.body());
+                        vehicleList.addAll(response.body().getVehicles());
                         myVehicleAdapter.notifyDataSetChanged();
                         progressBar.setVisibility(View.GONE);
                     }
@@ -93,11 +93,10 @@ public class MyVehicleFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Vehicle>> call, Throwable t) {
-                Toast.makeText(getContext(), "Failed to retrieve items", Toast.LENGTH_LONG).show();
+            public void onFailure(Call<Vehicle> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage()+"Failed to retrieve items", Toast.LENGTH_LONG).show();
                 Log.e("On Failure", t.getMessage());
                 progressBar.setVisibility(View.GONE);
-
             }
         });
         return root;
