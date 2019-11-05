@@ -60,6 +60,8 @@ public class MyVehicleAdapter extends RecyclerView.Adapter<MyVehicleAdapter.Cust
             public void onClick(View v) {
                 Intent intent = new Intent(context, CarDetailsActiviy.class);
                 intent.putExtra("Vehicle_Id", vehicles.get(position).getId());
+                intent.putExtra("plate_number",vehicles.get(position).getPlateNumber());
+                intent.putExtra("make",vehicles.get(position).getMakeModel());
                 context.startActivity(intent);
             }
         });

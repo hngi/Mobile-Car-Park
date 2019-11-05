@@ -36,6 +36,7 @@ public class CarDetailsActiviy extends AppCompatActivity {
     private String plateNum,makeModel;
     private boolean main_ride = true;
     private ProgressBar progressBar;
+    private String vehicle_id, plate = "new", make;
 
 
 
@@ -44,17 +45,34 @@ public class CarDetailsActiviy extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_details);
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        getSupportActionBar().setTitle("Add Vechicle"); // for set actionbar title
+        getSupportActionBar().setTitle("Add Vehicle"); // for set actionbar title
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        vehicle_id = getIntent().getStringExtra("Vehicle_Id");
+        plate = getIntent().getStringExtra("plate_number");
+        make = getIntent().getStringExtra("make");
         viewsInit();
-        saveCarDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkInputBoxes();
-            }
-        });
+        getCarDetails(vehicle_id,plate,make);
+        if(plate!=null){
+            getCarDetails(vehicle_id,plate,make);
+        }else{
+            saveCarDetails.setText("Save");
+            saveCarDetails.setClickable(false);
+            getSupportActionBar().setTitle("Add New Vehicle");
+            saveCarDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkInputBoxes();
+                }
+            });
+        }
+    }
+
+    private void getCarDetails(String vehicleId, String plate, String make) {
+        plateNumber.setText(plate);
+        carModel.setText(make);
+        saveCarDetails.setText("Update");
+        saveCarDetails.setClickable(false);
+        getSupportActionBar().setTitle(make);
     }
 
     // initialising the views
