@@ -30,7 +30,12 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        String park_address = getIntent().getStringExtra("address");
+        //This is just a test. Will improve this....
+        Intent m =getIntent();
+        Bundle a = m.getBundleExtra("location");
+        String location = a.getString("location");
+
+        String park_address = getIntent().getStringExtra("address"); //this is just a test. Will improve this later...
 
         getSupportActionBar().setTitle(park_address);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
