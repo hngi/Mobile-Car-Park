@@ -93,13 +93,12 @@ public class ParkingHistoryAdapter extends RecyclerView.Adapter<ParkingHistoryAd
 
             public void onClick(View v) {
 
-                Intent m = new Intent(ParkingHistoryAdapter.this, DetailsActivity.class);
+                Intent m = new Intent(context, DetailsActivity.class);
 
                 Bundle a = new Bundle();
                 a.putString("location", "parkingHistoryDate");
                 m.putExtra("location", a);
-
-                startActivity(m);
+                context.startActivity(m);
             }
 
         });
