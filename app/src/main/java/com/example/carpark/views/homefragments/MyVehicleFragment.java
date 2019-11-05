@@ -3,6 +3,9 @@ package com.example.carpark.views.homefragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.carpark.Api.ParkingApi;
+import com.example.carpark.Api.Responses.BaseDataResponse;
+import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
 import com.example.carpark.adapter.MyVehicleAdapter;
@@ -17,18 +20,27 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MyVehicleFragment extends Fragment {
     private List<Vehicle> vehicleList;
     private RecyclerView recyclerView;
     private MyVehicleAdapter myVehicleAdapter;
+    private ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -36,7 +48,8 @@ public class MyVehicleFragment extends Fragment {
         final View root =  inflater.inflate(R.layout.fragment_my_vehicle, container, false);
 
         FloatingActionButton fab = root.findViewById(R.id.mv_add_vehicle);
-        TextView new_text = root.findViewById(R.id.new_text);
+        final TextView new_text = root.findViewById(R.id.new_text);
+        progressBar = root.findViewById(R.id.progressBar);
         new_text.setVisibility(View.INVISIBLE);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,43 +58,46 @@ public class MyVehicleFragment extends Fragment {
                 startActivity(transactionIntent);
             }
         });
-
-        //TEST DATA
-        vehicleList = new ArrayList<>();
-        Vehicle a = new Vehicle();
-        a.setPlateNumber("23WEH0");
-        a.setMakeModel("Lexus RX330");
-
-        Vehicle b = new Vehicle();
-        b.setPlateNumber("LAG684");
-        b.setMakeModel("Toyota Camry");
-
-        Vehicle c = new Vehicle();
-        c.setPlateNumber("FTR911");
-        c.setMakeModel("Mercedes GLX 450");
-
-        Vehicle d = new Vehicle();
-        d.setPlateNumber("67YTE0");
-        d.setMakeModel("Kia Sportage");
-
-        Vehicle e = new Vehicle();
-        e.setPlateNumber("LEX300");
-        e.setMakeModel("Range Rover Evoque");
-
-        vehicleList.add(a);
-        vehicleList.add(b);
-        vehicleList.add(c);
-        vehicleList.add(d);
-        vehicleList.add(e);
-
         recyclerView = root.findViewById(R.id.mv_recyclerView);
         myVehicleAdapter = new MyVehicleAdapter(this.getContext(), vehicleList);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
 
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(myVehicleAdapter);
 
+        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3JlZ2lzdGVyXC91c2VyIiwiaWF0IjoxNTcyODc4NDc0LCJleHAiOjE1NzI5ODY0NzQsIm5iZiI6MTU3Mjg3ODQ3NCwianRpIjoidEp4SGJ0OGo1MXFoM25MSSIsInN1YiI6MTIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.vLYVZOEHCk1K79BKzwF2GjdhrTsdgIlfgB3zU6jWEBE";
+        ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
+
+        parkingApi.getAllVehicles(token).enqueue(new Callback<List<Vehicle>>() {
+            @Override
+            public void onResponse(Call<List<Vehicle>> call, Response<List<Vehicle>> response) {
+                if(response.isSuccessful()){
+                    if (response.body()==null){
+                        new_text.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                    }else{
+                        new_text.setVisibility(View.INVISIBLE);
+                        myVehicleAdapter = new MyVehicleAdapter(getContext(), response.body());
+                        recyclerView.setAdapter(myVehicleAdapter);
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }else{
+                    new_text.setVisibility(View.VISIBLE);
+                    new_text.setText(response.code());
+                    progressBar.setVisibility(View.GONE);
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Vehicle>> call, Throwable t) {
+                Toast.makeText(getContext(), "Failed to retrieve items", Toast.LENGTH_LONG).show();
+                Log.e("On Failure", t.getMessage());
+                progressBar.setVisibility(View.GONE);
+
+            }
+        });
         return root;
     }
 }
