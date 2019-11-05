@@ -115,6 +115,12 @@ dependencies {
     implementation 'com.google.android.gms:play-services-places:17.0.0'
     implementation "com.google.android.gms:play-services-location:17.0.0"
 
+    //sekBar
+    //implementation 'com.github.JesusM:HoloCircleSeekBar:v2.2.2'
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-auth:19.1.0'
+
 
     //this allows mail to be sent in-app
     implementation files('libs/activation.jar')

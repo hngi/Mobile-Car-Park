@@ -1,5 +1,6 @@
 package com.example.carpark.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -17,7 +18,10 @@ import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.R;
 import com.google.android.gms.common.api.Api;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -36,7 +40,8 @@ public class VerifyNumber extends AppCompatActivity {
     Button next;
     EditText etPhoneNumer;
     CountryCodePicker tvCountryCode;
-    String phoneNumber;
+    String phoneNumber, verification_code;
+    FirebaseAuth auth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
     ProgressBar verifyBar;
 
@@ -47,11 +52,33 @@ public class VerifyNumber extends AppCompatActivity {
         setContentView(R.layout.activity_verify_number);
 
         ImageButton back = (ImageButton) findViewById(R.id.imageButton2);
+        auth = FirebaseAuth.getInstance();
 
         next = findViewById(R.id.next1);
         etPhoneNumer= findViewById(R.id.verify_number);
         tvCountryCode = findViewById(R.id.verify_ccp);
         verifyBar = findViewById(R.id.progressBarVer);
+
+        mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+            }
+
+            @Override
+            public void onVerificationFailed(@NonNull FirebaseException e) {
+
+            }
+
+            @Override
+            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                super.onCodeSent(s, forceResendingToken);
+                verification_code= s;
+                Toast.makeText(getApplicationContext(),"Code sent to number", Toast.LENGTH_LONG).show();
+            }
+        };
+
+
 
         // this allowsthe passed edittext from getstarted to show
         final String countryCode = getIntent().getStringExtra("countryCode");
@@ -62,13 +89,26 @@ public class VerifyNumber extends AppCompatActivity {
         String countryCodeForOTP = tvCountryCode.getFullNumber();
         final String numberForOTP = countryCodeForOTP+phoneForOTP;
 
+
+
+
+
+
+
+
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)  {
                // phoneNumber = etPhoneNumer.getText().toString();
-
-                if (!((phoneForOTP.length() < 10))){
+//                sendFBOTP();
+//                Intent i = new Intent(VerifyNumber.this, EnterOTP.class);
+//                startActivity(i);
+                if (!((phoneForOTP.length() <10))){
                     verifyBar.setVisibility(View.VISIBLE);
-                    SendOtp(numberForOTP);
+                  //  SendOtp(phoneForOTP);
+
+               // SendOtp(numberForOTP);
+                    Intent i = new Intent(VerifyNumber.this, EnterOTP.class);
+                    startActivity(i);
 
 
                 }else {
@@ -89,40 +129,24 @@ public class VerifyNumber extends AppCompatActivity {
 
     }
 
-    private void SendOtp(final String PhoneForOTP){
-
-        RetrofitClient.getInstance().create(ParkingApi.class).sendOTP(PhoneForOTP).enqueue(new Callback<BaseResponse>() {
-            @Override
-            public void onResponse(@NotNull Call<BaseResponse> call, @NotNull Response<BaseResponse> response) {
-
-                if (response.isSuccessful()){
-                    Toast.makeText(VerifyNumber.this, "Otp Sent", Toast.LENGTH_SHORT).show();
-                    verifyBar.setVisibility(View.INVISIBLE);
-                        Intent intent = new Intent(VerifyNumber.this, EnterOTP.class);
-                        intent.putExtra("PhoneNumberForOTP", PhoneForOTP);
-                        startActivity(intent);
-
-                }else {
-                    verifyBar.setVisibility(View.INVISIBLE);
-                   // Toast.makeText(VerifyNumber.this, response.message() + "  Response", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(VerifyNumber.this, EnterOTP.class);
-                    intent.putExtra("PhoneNumberForOTP", PhoneForOTP);
-                    startActivity(intent);
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NotNull Call<BaseResponse> call, @NotNull Throwable t) {
-                verifyBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(VerifyNumber.this, t.getMessage()+ " Failure", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-
+    public void sendFBOTP(){
+       phoneNumber = etPhoneNumer.getText().toString();
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+            phoneNumber,60,TimeUnit.SECONDS,this,mCallback
+        );
     }
+
+    public void signInwithPhone(PhoneAuthCredential credential){
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(getApplicationContext(),"User has Logged in successfully", Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+
+
 
 }

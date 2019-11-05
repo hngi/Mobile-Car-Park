@@ -3,7 +3,13 @@ package com.example.carpark.Api;
 import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
+import com.example.carpark.Api.Responses.Park.ActiveAndInactiveParkingSpaceAllResponse;
+import com.example.carpark.Api.Responses.Park.PageParkingSpaceAllResponse;
+import com.example.carpark.Api.Responses.Park.ParkingSpaceAllResponse;
+import com.example.carpark.Api.Responses.Park.ParkingSpaceResponse;
+import com.example.carpark.Api.Responses.Park.SingleParkingSpaceResponse;
 import com.example.carpark.Model.NewUser;
+import com.example.carpark.Model.Park.NewParkingSpace;
 import com.example.carpark.Model.PhoneOtp;
 import com.example.carpark.Model.User;
 import com.example.carpark.Model.UserProfile;
@@ -17,6 +23,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -25,14 +32,10 @@ import retrofit2.http.Path;
 
 public interface ParkingApi {
 
-    //Registration APIs
 
-
-    @Headers({"Accept:application/json","Content-Type:application/json"})
-    @POST("auth/register")
-    Call <BaseDataResponse<UserResponse>> registerUser(@Body NewUser newUser);
-
-
+    //Auth
+    //  Registration APIs
+    // End  User
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("auth/send-otp")
     @FormUrlEncoded
@@ -42,50 +45,103 @@ public interface ParkingApi {
     @POST("auth/verify-otp")
     Call<BaseResponse> verifyOTP(@Body PhoneOtp phoneOtp);
 
+    @Headers({"Accept:application/json","Content-Type:application/json"})
+    @POST("auth/register/user")
+    Call <BaseDataResponse<UserResponse>> registerUser(@Body NewUser newUser);
 
-    //Login APIs
 
+    /*Admin and Partners.... Empty for now*/
+
+
+    //Login
+    //End User
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("auth/send-otp?login=true")
     @FormUrlEncoded
     Call<BaseResponse> getLoginOTP(@Field("phone") String phone);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
-    @POST("auth/login")
+    @POST("auth/login/user")
     Call<BaseDataResponse<UserResponse>> getLoginAccess(@Body PhoneOtp phoneOtp);
+
+    /*Admin and Partners.... Empty for now*/
+
+
+    //Profile Management
+    @Headers({"Accept:application/json"})
+    @GET("user")
+    Call<User> getProfileDetails(@Header("Authorization") String token);
+
+    //API is Faulty
+    @Headers({"Accept:application/json","Content-Type:application/json", })
+    @PUT("user")
+    Call<BaseDataResponse<UserProfile>> editUserProfile(@Header("Authorization") String token, @Body UserProfile userProfile);
+
+    //More methods
+
+
+
+    //Parking Space Management
+
+    //Add New Parking Space
+    @Headers({"Accept:application/json","Content-Type:application/json"})
+    @POST("park")
+    Call<ParkingSpaceResponse> addParkingSpace(@Header("Authorization") String token, @Body NewParkingSpace newParkingSpace);
+
+    @Headers({"Accept:application/json"})
+    @GET("park")
+    Call<ParkingSpaceAllResponse> getAllParkingSpace(@Header("Authorization") String token);
+
+    @Headers({"Accept:application/json"})
+    @GET("park/{id}")
+    Call<SingleParkingSpaceResponse> getParkingSpace(@Path("id") int id, @Header("Authorization") String token);
+
+    @Headers({"Accept:application/json"})
+    @GET("park/active")
+    Call<ActiveAndInactiveParkingSpaceAllResponse> getAllActiveParkingSpaces(@Header("Authorization") String token);
+
+    @Headers({"Accept:application/json"})
+    @GET("park/inactive")
+    Call<ActiveAndInactiveParkingSpaceAllResponse> getAllInactiveParkingSpaces(@Header("Authorization") String token);
+
+    @Headers({"Accept:application/json"})
+    @GET("park/all")
+    Call<PageParkingSpaceAllResponse> getAllParkingSpacesByPage(@Header("Authorization") String token);
+
+    //TODO Response is incorrect but API works
+    @Headers({"Accept:application/json","Content-Type:application/json"})
+    @PATCH("park/{id}")
+    @FormUrlEncoded
+    Call<Vehicle> updateParkingSpaceDetails(@Header("Authorization") String token, @Path("id") int id, @Field("phone") String phone, @Field("status") String status);
+
 
 
     //Vehicles
     @Headers({"Accept:application/json"})
     @GET("vehicles")
-    Call<List<Vehicle>> getAllVehicles();
+    Call<List<Vehicle>> getAllVehicles(@Header("Authorization") String token);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("vehicles")
     @FormUrlEncoded
-    Call<BaseDataResponse<Vehicle>> addNewVehicle(@Field("plate_number") String plate_number, @Field("make_model") String make_model, @Field("main_ride") boolean main_ride);
+    Call<BaseDataResponse<Vehicle>> addNewVehicle(@Header("Authorization") String token, @Field("plate_number") String plate_number, @Field("make_model") String make_model, @Field("main_ride") boolean main_ride);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @PUT("vehicles/{id}")
     @FormUrlEncoded
-    Call<BaseDataResponse<Vehicle>> editVehicle(@Path("id") int id, @Field("plate_number") String plate_number, @Field("make_model") String make_model);
-
+    Call<BaseDataResponse<Vehicle>> editVehicle(@Header("Authorization") String token, @Path("id") int id, @Field("plate_number") String plate_number, @Field("make_model") String make_model);
 
 
     @Headers({"Accept: ","Content-Type:text/plain"})
     @DELETE("vehicles/{id}")
-    Call<Void> deleteVehicle(@Path("id") int id);
+    Call<Void> deleteVehicle(@Header("Authorization") String token, @Path("id") int id);
 
 
-    //User
+    //Space Booking
 
-    //Endpoint doesn't look correct (Verify from Back-enders)
-    @Headers({"Accept:application/javascript"})
-    @GET("user")
-    Call<User> getUserProfile();
-
-    @Headers({"Accept:application/json","Content-Type:application/json"})
-    @PUT("user")
-    Call<BaseDataResponse<UserProfile>> editUserProfile(@Body UserProfile userProfile);
+    //TODO Response is incorrect
+    @Headers({"Accept:application/json"})
+    @GET("vehicles")
+    Call<List<Vehicle>> bookASpace(@Header("Authorization") String token);
 
 }

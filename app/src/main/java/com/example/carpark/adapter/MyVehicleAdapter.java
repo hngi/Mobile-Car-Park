@@ -1,6 +1,7 @@
 package com.example.carpark.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
+import com.example.carpark.views.CarDetailsActiviy;
 
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class MyVehicleAdapter extends RecyclerView.Adapter<MyVehicleAdapter.Cust
         this.context = context;
         this.vehicles  = vehicles;
     }
+
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
 
@@ -48,13 +51,16 @@ public class MyVehicleAdapter extends RecyclerView.Adapter<MyVehicleAdapter.Cust
     }
 
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, int position) {
+    public void onBindViewHolder(CustomViewHolder holder, final int position) {
 
         holder.plate_number.setText(vehicles.get(position).getPlateNumber());
         holder.vehicle_name.setText(vehicles.get(position).getMakeModel());
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, CarDetailsActiviy.class);
+                intent.putExtra("Vehicle_Id", vehicles.get(position).getId());
+                context.startActivity(intent);
             }
         });
     }
