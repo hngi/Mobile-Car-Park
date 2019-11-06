@@ -6,10 +6,14 @@ import com.google.gson.annotations.SerializedName;
 /**
  * @author .: Ehma Ugbogo
  * @email ..: ehmaugbogo@gmail.com
- * @created : 31/10/19
+ * @created : 06/10/19
  */
 
-public class NewUser {
+public class FacebookUser {
+
+    @SerializedName("email")
+    @Expose
+    private String email;
     @SerializedName("phone")
     @Expose
     private String phone;
@@ -19,12 +23,17 @@ public class NewUser {
     @SerializedName("last_name")
     @Expose
     private String lastName;
-    @SerializedName("password")
+    @SerializedName("fb_id")
     @Expose
-    private String password;
-    @SerializedName("email")
-    @Expose
-    private String email;
+    private String fbId;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getPhone() {
         return phone;
@@ -50,20 +59,12 @@ public class NewUser {
         this.lastName = lastName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getFbId() {
+        return fbId;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFbId(String fbId) {
+        this.fbId = fbId;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
-

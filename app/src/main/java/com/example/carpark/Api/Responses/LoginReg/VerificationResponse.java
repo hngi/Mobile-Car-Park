@@ -1,4 +1,4 @@
-package com.example.carpark.Api.Responses.Otp;
+package com.example.carpark.Api.Responses.LoginReg;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -9,22 +9,11 @@ import com.google.gson.annotations.SerializedName;
  * @created : 06/10/19
  */
 
-public class OTPResponse {
+public class VerificationResponse {
 
-    @SerializedName("message")
-    @Expose
-    private String message;
     @SerializedName("registered")
     @Expose
     private boolean registered;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public boolean isRegistered() {
         return registered;
