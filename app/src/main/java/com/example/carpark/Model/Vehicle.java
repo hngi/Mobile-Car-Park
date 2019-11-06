@@ -12,16 +12,6 @@ import java.util.List;
  */
 
 public class Vehicle {
-    public List<Vehicle> getVehicles() {
-        return vehicles;
-    }
-
-    public void setVehicles(List<Vehicle> vehicles) {
-        this.vehicles = vehicles;
-    }
-
-    @SerializedName("data")
-    private List<Vehicle> vehicles;
     @SerializedName("id")
     @Expose
     private int id;
