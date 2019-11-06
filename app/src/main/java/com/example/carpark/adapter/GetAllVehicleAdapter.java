@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.carpark.R;
-import com.example.carpark.api.Responses.VehicleList;
 
 import java.util.List;
 
@@ -22,12 +21,12 @@ import java.util.List;
 
 public class GetAllVehicleAdapter extends RecyclerView.Adapter<GetAllVehicleAdapter.CostomViewHolder> {
     private Context context;
-    private VehicleList vehicles;
+    //private VehicleList vehicles;
 
-    public GetAllVehicleAdapter(Context context, VehicleList vehicles){
+    /*public GetAllVehicleAdapter(Context context, VehicleList vehicles){
         this.context = context;
         this.vehicles = vehicles;
-    }
+    }*/
 
     class CostomViewHolder extends RecyclerView.ViewHolder{
         public final View view;
@@ -56,13 +55,13 @@ public class GetAllVehicleAdapter extends RecyclerView.Adapter<GetAllVehicleAdap
 
     @Override
     public void onBindViewHolder(@NonNull GetAllVehicleAdapter.CostomViewHolder holder, int position) {
-        holder.mPlate_number.setText(vehicles.getVehicles().hashCode());
-        holder.mVehicle_model.setText(vehicles.getVehicles().hashCode());
+        //holder.mPlate_number.setText(vehicles.getVehicles().hashCode());
+        //holder.mVehicle_model.setText(vehicles.getVehicles().hashCode());
 
     }
 
     @Override
     public int getItemCount() {
-        return vehicles.getVehicles().size();
+        return 0;//vehicles.getVehicles().size();
     }
 }
