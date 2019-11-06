@@ -9,7 +9,6 @@ import com.example.carpark.Api.Responses.Park.PageParkingSpaceAllResponse;
 import com.example.carpark.Api.Responses.Park.ParkingSpaceAllResponse;
 import com.example.carpark.Api.Responses.Park.ParkingSpaceResponse;
 import com.example.carpark.Api.Responses.Park.SingleParkingSpaceResponse;
-import com.example.carpark.Api.Responses.VehicleList;
 import com.example.carpark.Model.NewUser;
 import com.example.carpark.Model.Park.NewParkingSpace;
 import com.example.carpark.Model.PhoneOtp;
@@ -22,8 +21,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -72,7 +69,7 @@ public interface ParkingApi {
     //Profile Management
     @Headers({"Accept:application/json"})
     @GET("user")
-    Call<User> getProfileDetails(@Header("Authorization") String token);
+    Call<BaseDataResponse<User>> getProfileDetails(@Header("Authorization") String token);
 
     //API is Faulty
     @Headers({"Accept:application/json","Content-Type:application/json"})
@@ -120,7 +117,7 @@ public interface ParkingApi {
     //Vehicles
     @Headers({"Accept:application/json"})
     @GET("vehicles")
-    Call<VehicleList<Vehicle>> getAllVehicles(@Header("Authorization") String token);
+    Call<BaseDataResponse<List<Vehicle>>> getAllVehicles(@Header("Authorization") String token);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("vehicles")
