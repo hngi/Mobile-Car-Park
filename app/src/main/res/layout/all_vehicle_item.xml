@@ -35,7 +35,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/get_all_vehicle_name_tv"
+                android:id="@+id/get_all_vehicle_model_tv"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
