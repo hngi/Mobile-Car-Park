@@ -226,10 +226,11 @@ public class GetStarted extends BaseActivity {
                     }
                 } else {
                     sendOTPbar.setVisibility(View.INVISIBLE);
+                    assert response.body().getMessage() != null;
                     String message = response.body().getMessage();
                     Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
-                }
+                }//0123858532
             }
 
             @Override
