@@ -19,6 +19,7 @@
 
         <TextView
             android:layout_width="wrap_content"
+            android:id="@+id/nav_drawer_name"
             android:layout_height="wrap_content"
             android:text="Lebron James"
             android:textSize="16sp"
@@ -26,5 +27,4 @@
             android:textColor="#808080"
             android:layout_marginStart="20dp"
             android:layout_gravity="center"/>
-
     </LinearLayout>
