@@ -42,7 +42,7 @@ public class StartActivity extends BaseActivity {
 
         phoneNo = findViewById(R.id.number);
         ImageView continueBtn = findViewById(R.id.getSrt_cont_btn);
-        progressBar = findViewById(R.id.get_act_progressBar);
+       // progressBar = findViewById(R.id.get_act_progressBar);
 
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +54,7 @@ public class StartActivity extends BaseActivity {
 
     private void verifyNumberIfRegistered() {
         //This Endpoint will be upgraded to verifyNumberIfRegistered later on - Logic will still be the same
-        showProgressbar();
+      //  showProgressbar();
         phone = phoneNo.getText().toString().trim();
         getParkingApi().sendOTP(phone).enqueue(new Callback<OTPResponse>() {
             @Override
@@ -70,13 +70,13 @@ public class StartActivity extends BaseActivity {
                     Log.d(TAG, "SendOTP; Code: " + response.code() + "message; " + response.message());
                     showToast("(sendOTP) Invalid data");
                 }
-                hideProgressbar();
+              //  hideProgressbar();
             }
 
             @Override
             public void onFailure(Call<OTPResponse> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-                hideProgressbar();
+              //  hideProgressbar();
             }
         });
     }
@@ -92,19 +92,19 @@ public class StartActivity extends BaseActivity {
                     Log.d(TAG, "getLoginOtpThenLoginOnSuccess; Code: " + response.code() + " message; " + response.message());
                     showToast("(VerifyOtp) Invalid data");
                 }
-                hideProgressbar();
+             //   hideProgressbar();
             }
 
             @Override
             public void onFailure(Call<BaseResponse> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-                hideProgressbar();
+              //  hideProgressbar();
             }
         });
     }
 
     private void loginInUser() {
-        showProgressbar();
+      //  showProgressbar();
         getParkingApi().getLoginAccess(new PhoneOtp(phone,"1234")).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
             @Override
             public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
@@ -120,13 +120,13 @@ public class StartActivity extends BaseActivity {
                     Log.d(TAG, "Login; Code: " + response.code() + " message; " + response.message());
                     showToast("(getLoginAccess) Invalid data");
                 }
-                hideProgressbar();
+              //  hideProgressbar();
             }
 
             @Override
             public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-                hideProgressbar();
+              //  hideProgressbar();
             }
         });
     }
@@ -140,14 +140,14 @@ public class StartActivity extends BaseActivity {
     }
 
 
-    private void hideProgressbar() {
+  /* private void hideProgressbar() {
         progressBar.setVisibility(View.GONE);
     }
 
     private void showProgressbar() {
         progressBar.setVisibility(View.VISIBLE);
     }
-
+*/
 
 
 }

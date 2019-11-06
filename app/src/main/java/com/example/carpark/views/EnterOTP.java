@@ -210,10 +210,11 @@ public class EnterOTP extends BaseActivity {
             final String phoneNum = getIntent().getStringExtra("PhoneNumberForOTP");
             PhoneOtp phoneOtp = new PhoneOtp(phoneNum, sentOTP);
 
-            if (!(sentOTP.equals("1234"))) {
-                Toast.makeText(EnterOTP.this, "Use 1234 as OTP please!", Toast.LENGTH_SHORT).show();
-                return;
-            }
+           if (!(sentOTP.equals("1234"))) {
+               OTPbar.setVisibility(View.INVISIBLE);
+               Toast.makeText(EnterOTP.this, "Use 1234 as OTP please!", Toast.LENGTH_SHORT).show();
+
+            }else {
 
             getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseResponse>() {
                 @Override
@@ -255,6 +256,7 @@ public class EnterOTP extends BaseActivity {
                     Toast.makeText(EnterOTP.this, t.getMessage() + " failure message", Toast.LENGTH_SHORT).show();
                 }
             });
+           }
 
 
         } else {

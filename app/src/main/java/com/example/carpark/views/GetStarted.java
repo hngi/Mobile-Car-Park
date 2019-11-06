@@ -19,9 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carpark.Api.ParkingApi;
+import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.BaseResponse;
+import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Api.Responses.Otp.OTPResponse;
 import com.example.carpark.Api.RetrofitClient;
+import com.example.carpark.IgnoreForApiTest.StartActivity;
+import com.example.carpark.Model.PhoneOtp;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -197,7 +201,6 @@ public class GetStarted extends BaseActivity {
         });
 
 
-
     }
 
 
@@ -206,16 +209,25 @@ public class GetStarted extends BaseActivity {
             @Override
             public void onResponse(Call<OTPResponse> call, Response<OTPResponse> response) {
                 if (response.isSuccessful()) {
-                    String message = response.body().getMessage();
-                    sendOTPbar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
-                    //if(message.equals("OTP verified."))
-                    Log.d(TAG, "Code: " + response.code() + "message; " + message);
-                    Intent intent = new Intent(GetStarted.this, EnterOTP.class);
-                    intent.putExtra("PhoneNumberForOTP", phoneForOTP);
-                    startActivity(intent);
+
+                    boolean registered = response.body().isRegistered();
+
+                    if (registered) {
+                        getLoginOtpThenLoginOnSuccess(phoneForOTP, "1234");
+                    } else {
+                        String message = response.body().getMessage();
+                        sendOTPbar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
+                        //if(message.equals("OTP verified."))
+                        Log.d(TAG, "Code: " + response.code() + "message; " + message);
+                        Intent intent = new Intent(GetStarted.this, EnterOTP.class);
+                        intent.putExtra("PhoneNumberForOTP", phoneForOTP);
+                        startActivity(intent);
+                    }
                 } else {
                     sendOTPbar.setVisibility(View.INVISIBLE);
+                    String message = response.body().getMessage();
+                    Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
                 }
             }
@@ -227,6 +239,60 @@ public class GetStarted extends BaseActivity {
 
                 Log.d(TAG, "onFailure: " + t.getMessage());
 
+            }
+        });
+    }
+
+
+    private void getLoginOtpThenLoginOnSuccess(final String phone, final String OTP) {
+        getParkingApi().getLoginOTP(phone).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                if (response.isSuccessful()) {
+                    showToast(response.body().getMessage());
+                    loginInUser(phone, OTP);
+                } else {
+                    Log.d(TAG, "getLoginOtpThenLoginOnSuccess; Code: " + response.code() + " message; " + response.message());
+                    showToast("(VerifyOtp) Invalid data");
+                }
+                //   hideProgressbar();
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                //  hideProgressbar();
+            }
+        });
+    }
+
+    private void loginInUser(String phone, String OTP) {
+        //  showProgressbar();
+        getParkingApi().getLoginAccess(new PhoneOtp(phone, OTP)).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+            @Override
+            public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
+                if (response.isSuccessful()) {
+                    sendOTPbar.setVisibility(View.INVISIBLE);
+                    String accessToken = response.body().getData().getAccessToken();
+                    int expiresIn = response.body().getData().getExpiresIn();
+                    getSharePref().setAccesstoken(accessToken);
+                    getSharePref().setExpiresIn(expiresIn);
+
+                    //This should go to password activity when api is fixed
+                    startActivity(new Intent(GetStarted.this, HomeActivity.class));
+                } else {
+                    sendOTPbar.setVisibility(View.INVISIBLE);
+                    Log.d(TAG, "Login; Code: " + response.code() + " message; " + response.message());
+                    showToast("(getLoginAccess) Invalid data");
+                }
+                //  hideProgressbar();
+            }
+
+            @Override
+            public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
+                sendOTPbar.setVisibility(View.INVISIBLE);
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                //  hideProgressbar();
             }
         });
     }
