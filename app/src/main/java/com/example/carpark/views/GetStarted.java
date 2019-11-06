@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.carpark.Api.ParkingApi;
 import com.example.carpark.Api.Responses.BaseResponse;
+import com.example.carpark.Api.Responses.Otp.OTPResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -208,9 +209,9 @@ public class GetStarted extends BaseActivity {
     }
 
     public void sendOtp(String phoneForOTP) {
-        getParkingApi().sendOTP(phoneForOTP).enqueue(new Callback<BaseResponse>() {
+        getParkingApi().sendOTP(phoneForOTP).enqueue(new Callback<OTPResponse>() {
             @Override
-            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+            public void onResponse(Call<OTPResponse> call, Response<OTPResponse> response) {
                 if (response.isSuccessful()) {
                     String message = response.body().getMessage();
                     Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
@@ -222,7 +223,7 @@ public class GetStarted extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call<BaseResponse> call, Throwable t) {
+            public void onFailure(Call<OTPResponse> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
 
             }

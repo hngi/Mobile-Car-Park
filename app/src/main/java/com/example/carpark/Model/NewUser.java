@@ -23,6 +23,13 @@ public class NewUser {
     @Expose
     private String lastName;
 
+    public NewUser(String otp, String phone, String firstName, String lastName) {
+        this.otp = otp;
+        this.phone = phone;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public String getOtp() {
         return otp;
     }
