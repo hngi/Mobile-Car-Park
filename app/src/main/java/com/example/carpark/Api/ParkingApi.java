@@ -3,6 +3,7 @@ package com.example.carpark.Api;
 import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
+import com.example.carpark.Api.Responses.LoginReg.VerificationResponse;
 import com.example.carpark.Api.Responses.Otp.OTPResponse;
 import com.example.carpark.Api.Responses.Park.ActiveAndInactiveParkingSpaceAllResponse;
 import com.example.carpark.Api.Responses.Park.PageParkingSpaceAllResponse;
@@ -10,6 +11,7 @@ import com.example.carpark.Api.Responses.Park.ParkingSpaceAllResponse;
 import com.example.carpark.Api.Responses.Park.ParkingSpaceResponse;
 import com.example.carpark.Api.Responses.Park.SingleParkingSpaceResponse;
 import com.example.carpark.Api.Responses.VehicleList;
+import com.example.carpark.Model.FacebookUser;
 import com.example.carpark.Model.NewUser;
 import com.example.carpark.Model.Park.NewParkingSpace;
 import com.example.carpark.Model.PhoneOtp;
@@ -40,6 +42,10 @@ public interface ParkingApi {
     //  Registration APIs
     // End  User
     @Headers({"Accept:application/json","Content-Type:application/json"})
+    @POST("auth/phone-registration-status")
+    Call<VerificationResponse> verifyPhoneNo(@Query("phone") String phone);
+
+    @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("auth/send-otp")
     Call<OTPResponse> sendOTP(@Query("phone") String phone);
 
@@ -64,6 +70,10 @@ public interface ParkingApi {
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("auth/login/user")
     Call<BaseDataResponse<UserResponse>> getLoginAccess(@Body PhoneOtp phoneOtp);
+
+    @Headers({"Accept:application/json","Content-Type:application/json"})
+    @POST("auth/login/facebook")
+    Call<Void>  registerFacebookUser (@Body FacebookUser facebookUser);
 
     /*Admin and Partners.... Empty for now*/
 

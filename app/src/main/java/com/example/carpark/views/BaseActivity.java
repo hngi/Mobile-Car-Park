@@ -25,7 +25,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
     public ParkingApi getParkingApi(){

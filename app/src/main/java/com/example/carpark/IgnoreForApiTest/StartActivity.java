@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
+import com.example.carpark.Api.Responses.LoginReg.VerificationResponse;
 import com.example.carpark.Api.Responses.Otp.OTPResponse;
 import com.example.carpark.Model.PhoneOtp;
 import com.example.carpark.R;
@@ -41,10 +42,10 @@ public class StartActivity extends BaseActivity {
         setContentView(R.layout.activity_get_started);
 
         phoneNo = findViewById(R.id.number);
-        ImageView continueBtn = findViewById(R.id.getSrt_cont_btn);
+        ImageView nextBtn = findViewById(R.id.getSrt_cont_btn);
         progressBar = findViewById(R.id.get_act_progressBar);
 
-        continueBtn.setOnClickListener(new View.OnClickListener() {
+        nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 verifyNumberIfRegistered();
@@ -53,17 +54,44 @@ public class StartActivity extends BaseActivity {
     }
 
     private void verifyNumberIfRegistered() {
-        //This Endpoint will be upgraded to verifyNumberIfRegistered later on - Logic will still be the same
+        showProgressbar();
+        phone = phoneNo.getText().toString().trim();
+        getParkingApi().verifyPhoneNo(phone).enqueue(new Callback<VerificationResponse>() {
+            @Override
+            public void onResponse(Call<VerificationResponse> call, Response<VerificationResponse> response) {
+                if(response.isSuccessful()){
+                    boolean registered = response.body().isRegistered();
+                    if(!registered){
+                        sendOTP();
+                        Log.d(TAG, "Number is not Registered");
+                    } else {
+                        getLoginOtpThenLoginOnSuccess();
+                        Log.d(TAG, "Number is Registered");
+                    }
+                } else {
+                    Log.d(TAG, "SendOTP; Code: " + response.code() + "message; " + response.message());
+                    showToast("(sendOTP) Invalid data");
+                }
+                hideProgressbar();
+            }
+
+            @Override
+            public void onFailure(Call<VerificationResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                hideProgressbar();
+            }
+        });
+    }
+
+    private void sendOTP() {
         showProgressbar();
         phone = phoneNo.getText().toString().trim();
         getParkingApi().sendOTP(phone).enqueue(new Callback<OTPResponse>() {
             @Override
             public void onResponse(Call<OTPResponse> call, Response<OTPResponse> response) {
                 if(response.isSuccessful()){
-                    boolean registered = response.body().isRegistered();
-                    if(registered){
-                        getLoginOtpThenLoginOnSuccess();
-                    } else {
+                    if(!(response.body().isRegistered())){
+                        showToast(response.body().getMessage());
                         openOtpActivity();
                     }
                 } else {
@@ -80,6 +108,7 @@ public class StartActivity extends BaseActivity {
             }
         });
     }
+
 
     private void getLoginOtpThenLoginOnSuccess(){
         getParkingApi().getLoginOTP(phone).enqueue(new Callback<BaseResponse>() {
