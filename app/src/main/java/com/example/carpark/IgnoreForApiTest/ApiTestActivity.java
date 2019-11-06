@@ -51,8 +51,8 @@ public class ApiTestActivity extends BaseActivity {
     }
 
 
-    public void RegisterUser(View view) {
-        NewUser newUser = new NewUser("1234","08107535626","Ehma","Ugbogo");
+  /*  public void RegisterUser(View view) {
+       // NewUser newUser = new NewUser("1234","08107535626","Ehma","Ugbogo");
         showProgressbar();
         getParkingApi().registerUser(newUser)
                 .enqueue(new Callback<BaseDataResponse<UserResponse>>() {
@@ -80,7 +80,7 @@ public class ApiTestActivity extends BaseActivity {
                         hideProgressbar();
                     }
                 });
-    }
+    }*/
 
     public void sendOtp(View view) {
         showProgressbar();
