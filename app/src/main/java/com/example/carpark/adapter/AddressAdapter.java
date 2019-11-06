@@ -2,6 +2,7 @@ package com.example.carpark.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import java.util.List;
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.CustomViewHolder> {
     private Context context;
     private List<ParkAddress> parkAddresses;
+    private final String PREFERENCE_FILE_KEY = "location_pref";
+
 
     public AddressAdapter(Context context, List<ParkAddress> parkAddresses) {
         this.context = context;
@@ -58,9 +61,13 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.CustomVi
         holder.park_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sharedPref = context.getSharedPreferences(
+                        PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("Park_Name",park_name);
+                editor.putString("Park_Address",park_address);
+                editor.commit();
                 Intent i = new Intent(context, ScheduleActivity.class);
-                i.putExtra("Park_Name",park_name);
-                i.putExtra("Park_Address",park_address);
                 context.startActivity(i);
             }
         });
