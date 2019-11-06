@@ -41,10 +41,52 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="about_app">Car Park application allows you find parking in seconds, wherever and whenever \n you need it, with millions of options at your \n finger tips via rated application.
-                                \n \n From work journeys to weekend trips, shopping to \n sport stadiums even parties, we have got you covered - with
-                                \n directions to car parks and on-street spaces, plus information on availability and restrictions.
-                                \n \n And for maximum peace of mind? Choose one of our numerous reservable locations - then simply
-                                \n \n park and get on with your day</string>
+    <string name="about_app">Our car parking solution is called ParkPlace - Simply everyones solution to parking.
+
+If youd ask, is there a need for this? - Yes indeed. And our assertion is HEAVILY backed up with research data.
+
+ParkPlace is a parking reservation solution.
+
+We partner with car parks throughout the country to provide you with a guaranteed parking spot at a discounted price.
+
+Here is how we work in 3 simple steps
+
+\n 1. You search. Find and compare pricing on convenient parking spots near your destination
+
+Driving to work, church/mosque, mall, party etc, all you need is to enter your destination and ParkPlace shows all the numerous places you can park your vehicular asset.
+
+You get to see number of vacant spots
+
+\n 2. You book. Either park right in and pay or schedule ahead of time by prepaying for your spot. You get a parking pass instantly via text, email or the app
+
+\n 3. You park. Scan or show your parking identification number when you arrive.
+
+\n No stress via wasting fuel to look for parking lots.
+\n No stress by causing traffic
+\n No stress so you can concentrate on other things that matter most.
+
+\n Here are a few mentions as it pertains to the flow:
+
+\n - To ease user integration, signup is only necessary when you need to pay to book ahead or drive in. And that simply requires Facebook authentication and verification of phone number.
+
+\n - Because we do not own these lots, there may be occasions parking lots arent available, so we notify you via email, sms or the app once a parking lot is opened around your searched area.
+
+\n- Research data shows the same set of people are likely to park at the same spot daily because of business, education or other need, there is the option to PURCHASE an available slot in a parking lot for a duration of time.
+
+\nIt is simply market aggregation. A win - win scenerio for everyone involved - the users, the car park owners, you (and your money) and our lovely planet.
+
+
+\n\nTo use ParkPlace, search for parking on our app or website (yeah) before you arrive, choose the place-space that works best for you, and book the space.
+
+\n  We are confident to tell you we do not own any single park but we control thousands of parking lots across the country..</string>
+
+
+
+
+<!--                                \nCar Park application allows you find parking in seconds, wherever and whenever \n you need it, with millions of options at your \n finger tips via rated application.-->
+<!--                                \n \n From work journeys to weekend trips, shopping to \n sport stadiums even parties, we have got you covered - with-->
+<!--                                \n directions to car parks and on-street spaces, plus information on availability and restrictions.-->
+<!--                                \n \n And for maximum peace of mind? Choose one of our numerous reservable locations - then simply-->
+<!--                                \n \n park and get on with your day</string>-->
 
 </resources>
