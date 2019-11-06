@@ -41,6 +41,7 @@ public interface ParkingApi {
     // End  User
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("auth/send-otp")
+
     Call<OTPResponse> sendOTP(@Query("phone") String phone);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})

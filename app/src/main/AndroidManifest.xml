@@ -97,9 +97,7 @@
             android:parentActivityName=".views.ScheduleActivity" />
         <activity android:name=".views.BaseActivity" />
         <activity android:name=".views.BarterActivity" />
-        <activity android:name=".IgnoreForApiTest.StartActivity" >
-
-        </activity>
+        <activity android:name=".IgnoreForApiTest.StartActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
