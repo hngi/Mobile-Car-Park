@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.carpark.Api.ParkingApi;
-import com.example.carpark.Api.Responses.BaseDataResponse;
-import com.example.carpark.Api.Responses.VehicleBase;
+import com.example.carpark.Api.Responses.VehicleList;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
@@ -69,9 +68,9 @@ public class MyVehicleFragment extends Fragment {
 
         String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3ZlcmlmeS1vdHAiLCJpYXQiOjE1NzMwMTQ4NTQsImV4cCI6MTU3MzEyMjg1NCwibmJmIjoxNTczMDE0ODU0LCJqdGkiOiJXQ0VydHZlZFV4RFBZdzB3Iiwic3ViIjoxOCwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.RMo2rLPq5YF6D3aau3N8NBg6D7hmeOTYntMySf5fizo";
         ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
-        parkingApi.getAllVehicles(token).enqueue(new Callback<VehicleBase<Vehicle>>() {
+        parkingApi.getAllVehicles(token).enqueue(new Callback<VehicleList<Vehicle>>() {
             @Override
-            public void onResponse(Call<VehicleBase<Vehicle>> call, Response<VehicleBase<Vehicle>> response) {
+            public void onResponse(Call<VehicleList<Vehicle>> call, Response<VehicleList<Vehicle>> response) {
                 if(response.isSuccessful()){
                     Log.e("Response code", String.valueOf(response.code()));
                     if (response.body()==null){
@@ -90,7 +89,7 @@ public class MyVehicleFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<VehicleBase<Vehicle>> call, Throwable t) {
+            public void onFailure(Call<VehicleList<Vehicle>> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage()+"Failed to retrieve items", Toast.LENGTH_LONG).show();
                 Log.e("On Failure", t.getMessage());
                 progressBar.setVisibility(View.GONE);
