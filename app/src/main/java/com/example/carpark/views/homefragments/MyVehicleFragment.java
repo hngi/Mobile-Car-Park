@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.carpark.Api.ParkingApi;
-import com.example.carpark.Api.Responses.VehicleList;
+import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
@@ -66,11 +66,11 @@ public class MyVehicleFragment extends Fragment {
         myVehicleAdapter = new MyVehicleAdapter(getContext(), vehicleList );
         recyclerView.setAdapter(myVehicleAdapter);
 
-        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3ZlcmlmeS1vdHAiLCJpYXQiOjE1NzMwMTQ4NTQsImV4cCI6MTU3MzEyMjg1NCwibmJmIjoxNTczMDE0ODU0LCJqdGkiOiJXQ0VydHZlZFV4RFBZdzB3Iiwic3ViIjoxOCwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.RMo2rLPq5YF6D3aau3N8NBg6D7hmeOTYntMySf5fizo";
+        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3ZlcmlmeS1vdHAiLCJpYXQiOjE1NzMwMzcyMTYsImV4cCI6MTU3MzE0NTIxNiwibmJmIjoxNTczMDM3MjE2LCJqdGkiOiJsR0JUOGZLOHJMemowNUI5Iiwic3ViIjoxOCwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.b-aVgC0fXv9PALA5mNobvfHGeVxkIjc5eTzxpByKvys";
         ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
-        parkingApi.getAllVehicles(token).enqueue(new Callback<VehicleList<Vehicle>>() {
+        parkingApi.getAllVehicles(token).enqueue(new Callback<BaseDataResponse<List<Vehicle>>>() {
             @Override
-            public void onResponse(Call<VehicleList<Vehicle>> call, Response<VehicleList<Vehicle>> response) {
+            public void onResponse(Call<BaseDataResponse<List<Vehicle>>> call, Response<BaseDataResponse<List<Vehicle>>> response) {
                 if(response.isSuccessful()){
                     Log.e("Response code", String.valueOf(response.code()));
                     if (response.body()==null){
@@ -78,7 +78,7 @@ public class MyVehicleFragment extends Fragment {
                         progressBar.setVisibility(View.GONE);
                     }else{
                         new_text.setVisibility(View.INVISIBLE);
-                        vehicleList.addAll(response.body().getVehicles());
+                        vehicleList.addAll(response.body().getData());
                         myVehicleAdapter.notifyDataSetChanged();
                         progressBar.setVisibility(View.GONE);
                     }
@@ -89,7 +89,7 @@ public class MyVehicleFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<VehicleList<Vehicle>> call, Throwable t) {
+            public void onFailure(Call<BaseDataResponse<List<Vehicle>>> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage()+"Failed to retrieve items", Toast.LENGTH_LONG).show();
                 Log.e("On Failure", t.getMessage());
                 progressBar.setVisibility(View.GONE);

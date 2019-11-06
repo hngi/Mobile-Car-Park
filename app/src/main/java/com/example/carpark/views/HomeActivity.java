@@ -7,17 +7,18 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.carpark.Api.Responses.BaseDataResponse;
+import com.example.carpark.Model.User;
 import com.example.carpark.R;
-import com.example.carpark.views.homefragments.AboutFragment;
 import com.example.carpark.views.homefragments.DefaultFragment;
 import com.example.carpark.views.homefragments.MyVehicleFragment;
 import com.example.carpark.views.homefragments.ParkingHistoryFragment;
@@ -28,7 +29,11 @@ import com.google.android.material.navigation.NavigationView;
 
 ;
 
-public class HomeActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class HomeActivity extends BaseActivity {
 
     //widgets
     private DrawerLayout mDrawerLayout;
@@ -36,15 +41,42 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private boolean mToolBarNavigationListenerIsRegistered = false;
-
+    private TextView navText;
+    private View headerView;
+    public static User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initViews();
+        fetchUserDetails();
         setUpDefaultFragment();
         navigationClickListeners();
+    }
+
+    private void fetchUserDetails() {
+        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3ZlcmlmeS1vdHAiLCJpYXQiOjE1NzMwMzcyMTYsImV4cCI6MTU3MzE0NTIxNiwibmJmIjoxNTczMDM3MjE2LCJqdGkiOiJsR0JUOGZLOHJMemowNUI5Iiwic3ViIjoxOCwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.b-aVgC0fXv9PALA5mNobvfHGeVxkIjc5eTzxpByKvys";
+        getParkingApi().getProfileDetails(token).enqueue(new Callback<BaseDataResponse<User>>() {
+            @Override
+            public void onResponse(Call<BaseDataResponse<User>> call, Response<BaseDataResponse<User>>response) {
+                if(response.isSuccessful()){
+                    user = response.body().getData();
+                    String name = user.getFirstName() + " " + user.getLastName();
+                    navText.setText(name);
+                }
+
+                else {
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<BaseDataResponse<User>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void initViews() {
@@ -56,6 +88,8 @@ public class HomeActivity extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        headerView = navigationView.getHeaderView(0);
+        navText = headerView.findViewById(R.id.nav_drawer_name);
 
     }
 
