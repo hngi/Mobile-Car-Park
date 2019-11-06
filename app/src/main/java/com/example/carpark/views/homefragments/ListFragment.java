@@ -1,6 +1,8 @@
 package com.example.carpark.views.homefragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.carpark.Model.Park.ParkAddress;
@@ -32,10 +34,12 @@ public class ListFragment extends Fragment {
     private RecyclerView recyclerView;
     private AddressAdapter addressAdapter;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View root =  inflater.inflate(R.layout.fragment_list, container, false);
+        Context context = getActivity();
 
 
         //TEST DATA
