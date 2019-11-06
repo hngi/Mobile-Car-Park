@@ -3,6 +3,7 @@ package com.example.carpark.Api;
 import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
+import com.example.carpark.Api.Responses.Otp.OTPResponse;
 import com.example.carpark.Api.Responses.Park.ActiveAndInactiveParkingSpaceAllResponse;
 import com.example.carpark.Api.Responses.Park.PageParkingSpaceAllResponse;
 import com.example.carpark.Api.Responses.Park.ParkingSpaceAllResponse;
@@ -29,6 +30,7 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ParkingApi {
 
@@ -38,8 +40,7 @@ public interface ParkingApi {
     // End  User
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("auth/send-otp")
-    @FormUrlEncoded
-    Call<BaseResponse> sendOTP(@Field("phone") String phone);
+    Call<OTPResponse> sendOTP(@Query("phone") String phone);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("auth/verify-otp")
@@ -57,8 +58,7 @@ public interface ParkingApi {
     //End User
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("auth/send-otp?login=true")
-    @FormUrlEncoded
-    Call<BaseResponse> getLoginOTP(@Field("phone") String phone);
+    Call<BaseResponse> getLoginOTP(@Query("phone") String phone);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("auth/login/user")
@@ -73,7 +73,7 @@ public interface ParkingApi {
     Call<User> getProfileDetails(@Header("Authorization") String token);
 
     //API is Faulty
-    @Headers({"Accept:application/json","Content-Type:application/json", })
+    @Headers({"Accept:application/json","Content-Type:application/json"})
     @PUT("user")
     Call<BaseDataResponse<UserProfile>> editUserProfile(@Header("Authorization") String token, @Body UserProfile userProfile);
 
@@ -111,8 +111,7 @@ public interface ParkingApi {
     //TODO Response is incorrect but API works
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @PATCH("park/{id}")
-    @FormUrlEncoded
-    Call<Vehicle> updateParkingSpaceDetails(@Header("Authorization") String token, @Path("id") int id, @Field("phone") String phone, @Field("status") String status);
+    Call<Vehicle> updateParkingSpaceDetails(@Header("Authorization") String token, @Path("id") int id, @Query("phone") String phone, @Query("status") String status);
 
 
 
@@ -123,13 +122,11 @@ public interface ParkingApi {
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("vehicles")
-    @FormUrlEncoded
-    Call<BaseDataResponse<Vehicle>> addNewVehicle(@Header("Authorization") String token, @Field("plate_number") String plate_number, @Field("make_model") String make_model, @Field("main_ride") boolean main_ride);
+    Call<BaseDataResponse<Vehicle>> addNewVehicle(@Header("Authorization") String token, @Query("plate_number") String plate_number, @Query("make_model") String make_model, @Query("main_ride") boolean main_ride);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @PUT("vehicles/{id}")
-    @FormUrlEncoded
-    Call<BaseDataResponse<Vehicle>> editVehicle(@Header("Authorization") String token, @Path("id") int id, @Field("plate_number") String plate_number, @Field("make_model") String make_model);
+    Call<BaseDataResponse<Vehicle>> editVehicle(@Header("Authorization") String token, @Path("id") int id, @Query("plate_number") String plate_number, @Query("make_model") String make_model);
 
 
     @Headers({"Accept: ","Content-Type:text/plain"})

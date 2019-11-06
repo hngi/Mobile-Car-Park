@@ -17,6 +17,11 @@ public class PhoneOtp {
     @Expose
     private String otp;
 
+    public PhoneOtp(String phone, String otp) {
+        this.phone = phone;
+        this.otp = otp;
+    }
+
     public String getPhone() {
         return phone;
     }

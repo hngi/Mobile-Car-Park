@@ -6,6 +6,11 @@ import android.preference.PreferenceManager;
 
 public class SharePreference {
     private static final String ID_KEY="com.example.carpark_ID_KEY";
+    private static final String ID_ACCESS_KEY="com.example.carpark_ID_ACCESS_KEY";
+    private static final String ID_EXPIRE_KEY="com.example.carpark_ID_EXPIRE_KEY";
+    private static final String ID_LOGGED_IN_KEY="com.example.carpark_ID_LOGGED_IN_KEY";
+
+
 
     private static SharePreference INSTANCE;
 
@@ -33,6 +38,30 @@ public class SharePreference {
 
     public Long getLoggedUserId(){
         return sharedPreferences.getLong(ID_KEY,-1);
+    }
+
+    public void setAccesstoken(String accesstoken){
+        sharedPreferences.edit().putString(ID_ACCESS_KEY,accesstoken).apply();
+    }
+
+    public String getAccessToken(){
+        return sharedPreferences.getString(ID_ACCESS_KEY, "null");
+    }
+
+    public void setExpiresIn(int expiresIn){
+        sharedPreferences.edit().putInt(ID_EXPIRE_KEY,expiresIn).apply();
+    }
+
+    public int getExpiresIn(){
+        return sharedPreferences.getInt(ID_EXPIRE_KEY, -1);
+    }
+
+    public void setIsUserLoggedIn(boolean isUserLoggedIn){
+        sharedPreferences.edit().putBoolean(ID_LOGGED_IN_KEY,isUserLoggedIn).apply();
+    }
+
+    public boolean getIsUserLoggedIn(){
+        return sharedPreferences.getBoolean(ID_LOGGED_IN_KEY, false);
     }
 
 
