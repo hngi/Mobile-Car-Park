@@ -5,14 +5,13 @@ import android.os.Bundle;
 
 import com.example.carpark.Api.ParkingApi;
 import com.example.carpark.Api.Responses.BaseDataResponse;
+import com.example.carpark.Api.Responses.VehicleBase;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
 import com.example.carpark.adapter.MyVehicleAdapter;
 import com.example.carpark.views.CarDetailsActiviy;
-import com.example.carpark.views.TransactionActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +27,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MyVehicleFragment extends Fragment {
-    private ArrayList<Vehicle> vehicleList;
+    private List<Vehicle> vehicleList;
     private RecyclerView recyclerView;
     private MyVehicleAdapter myVehicleAdapter;
     private ProgressBar progressBar;
@@ -65,16 +63,15 @@ public class MyVehicleFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
 
         recyclerView.setLayoutManager(layoutManager);
-        vehicleList = new ArrayList<Vehicle>();
+        vehicleList = new ArrayList<>();
         myVehicleAdapter = new MyVehicleAdapter(getContext(), vehicleList );
         recyclerView.setAdapter(myVehicleAdapter);
 
-        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3JlZ2lzdGVyXC91c2VyIiwiaWF0IjoxNTcyODc4NDc0LCJleHAiOjE1NzI5ODY0NzQsIm5iZiI6MTU3Mjg3ODQ3NCwianRpIjoidEp4SGJ0OGo1MXFoM25MSSIsInN1YiI6MTIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.vLYVZOEHCk1K79BKzwF2GjdhrTsdgIlfgB3zU6jWEBE";
+        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3ZlcmlmeS1vdHAiLCJpYXQiOjE1NzMwMTQ4NTQsImV4cCI6MTU3MzEyMjg1NCwibmJmIjoxNTczMDE0ODU0LCJqdGkiOiJXQ0VydHZlZFV4RFBZdzB3Iiwic3ViIjoxOCwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.RMo2rLPq5YF6D3aau3N8NBg6D7hmeOTYntMySf5fizo";
         ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
-        Call<Vehicle> vehicles = parkingApi.getAllVehicles(token);
-        vehicles.enqueue(new Callback<Vehicle>() {
+        parkingApi.getAllVehicles(token).enqueue(new Callback<VehicleBase<Vehicle>>() {
             @Override
-            public void onResponse(Call<Vehicle> call, Response<Vehicle> response) {
+            public void onResponse(Call<VehicleBase<Vehicle>> call, Response<VehicleBase<Vehicle>> response) {
                 if(response.isSuccessful()){
                     Log.e("Response code", String.valueOf(response.code()));
                     if (response.body()==null){
@@ -93,7 +90,7 @@ public class MyVehicleFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Vehicle> call, Throwable t) {
+            public void onFailure(Call<VehicleBase<Vehicle>> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage()+"Failed to retrieve items", Toast.LENGTH_LONG).show();
                 Log.e("On Failure", t.getMessage());
                 progressBar.setVisibility(View.GONE);

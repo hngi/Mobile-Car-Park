@@ -7,6 +7,7 @@ import com.example.carpark.Api.Responses.Park.ActiveAndInactiveParkingSpaceAllRe
 import com.example.carpark.Api.Responses.Park.PageParkingSpaceAllResponse;
 import com.example.carpark.Api.Responses.Park.ParkingSpaceAllResponse;
 import com.example.carpark.Api.Responses.Park.SingleParkingSpaceResponse;
+import com.example.carpark.Api.Responses.VehicleBase;
 import com.example.carpark.Model.NewUser;
 import com.example.carpark.Model.Park.NewParkingSpace;
 import com.example.carpark.Model.PhoneOtp;
@@ -118,7 +119,7 @@ public interface ParkingApi {
     //Vehicles
     @Headers({"Accept:application/json"})
     @GET("vehicles")
-    Call<Vehicle> getAllVehicles(@Header("Authorization") String token);
+    Call<VehicleBase<Vehicle>> getAllVehicles(@Header("Authorization") String token);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("vehicles")
