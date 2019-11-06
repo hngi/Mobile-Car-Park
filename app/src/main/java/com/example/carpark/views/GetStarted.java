@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class GetStarted extends BaseActivity {
     private Button fb_btn;
     private ImageView cont_btn;
     private CountryCodePicker ccp;
+    ProgressBar sendOTPbar;
     Intent intent;
 
     @Override
@@ -58,6 +60,7 @@ public class GetStarted extends BaseActivity {
         number = (EditText) findViewById(R.id.number);
         ccp = (CountryCodePicker) findViewById(R.id.ccp);
         cont_btn = (ImageView) findViewById(R.id.getSrt_cont_btn);
+        sendOTPbar = findViewById(R.id.sendOTPbar);
 
 
         // facebook authentication
@@ -170,19 +173,20 @@ public class GetStarted extends BaseActivity {
         no = customView.findViewById(R.id.NoButton);
         phone = customView.findViewById(R.id.confirmNumber);
         phone.setText(phoneNumber);
-        yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendOtp(phoneNumber);
-
-                Intent intent = new Intent(GetStarted.this, EnterOTP.class);
-                intent.putExtra("PhoneNumberForOTP", phoneNumber);
-                startActivity(intent);
-            }
-        });
         myDialog.setView(customView);
         final AlertDialog dialog = myDialog.create();
         dialog.show();
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendOTPbar.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+                sendOtp(phoneNumber);
+
+
+            }
+        });
+
 
         no.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,22 +199,28 @@ public class GetStarted extends BaseActivity {
 
     }
 
-    public void sendOtp(String phoneForOTP) {
+    public void sendOtp(final String phoneForOTP) {
         getParkingApi().sendOTP(phoneForOTP).enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 if (response.isSuccessful()) {
                     String message = response.body().getMessage();
+                    sendOTPbar.setVisibility(View.INVISIBLE);
                     Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
                     //if(message.equals("OTP verified."))
                     Log.d(TAG, "Code: " + response.code() + "message; " + message);
+                    Intent intent = new Intent(GetStarted.this, EnterOTP.class);
+                    intent.putExtra("PhoneNumberForOTP", phoneForOTP);
+                    startActivity(intent);
                 } else {
+                    sendOTPbar.setVisibility(View.INVISIBLE);
                     Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
                 }
             }
 
             @Override
             public void onFailure(Call<BaseResponse> call, Throwable t) {
+                sendOTPbar.setVisibility(View.INVISIBLE);
                 Toast.makeText(GetStarted.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onFailure: " + t.getMessage());
 

@@ -28,6 +28,7 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ParkingApi {
 
@@ -37,8 +38,8 @@ public interface ParkingApi {
     // End  User
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("auth/send-otp")
-    @FormUrlEncoded
-    Call<BaseResponse> sendOTP(@Field("phone") String phone);
+   // @FormUrlEncoded
+    Call<BaseResponse> sendOTP(@Query("phone") String phone);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("auth/verify-otp")
