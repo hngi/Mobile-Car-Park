@@ -14,13 +14,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carpark.Api.ParkingApi;
+import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.BaseResponse;
+import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Api.Responses.Otp.OTPResponse;
 import com.example.carpark.Api.RetrofitClient;
+import com.example.carpark.IgnoreForApiTest.StartActivity;
+import com.example.carpark.Model.PhoneOtp;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -48,6 +53,7 @@ public class GetStarted extends BaseActivity {
     private Button fb_btn;
     private ImageView cont_btn;
     private CountryCodePicker ccp;
+    ProgressBar sendOTPbar;
     Intent intent;
 
     @Override
@@ -59,6 +65,7 @@ public class GetStarted extends BaseActivity {
         number = (EditText) findViewById(R.id.number);
         ccp = (CountryCodePicker) findViewById(R.id.ccp);
         cont_btn = (ImageView) findViewById(R.id.getSrt_cont_btn);
+        sendOTPbar = findViewById(R.id.sendOTPbar);
 
 
         // facebook authentication
@@ -127,7 +134,8 @@ public class GetStarted extends BaseActivity {
 
     private void openVerifyNumber() {
         String Phone = number.getText().toString().trim();
-        String countryCode = ccp.getSelectedCountryCodeWithPlus();
+        String countryCode = ccp.getSelectedCountryCode();
+
         String fullPhone = countryCode + Phone;
         intent = new Intent(getApplicationContext(), VerifyNumber.class);
         if (TextUtils.isEmpty(number.getText().toString())) {
@@ -170,19 +178,20 @@ public class GetStarted extends BaseActivity {
         no = customView.findViewById(R.id.NoButton);
         phone = customView.findViewById(R.id.confirmNumber);
         phone.setText(phoneNumber);
-        yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               // sendOtp(phoneNumber);
-
-                Intent intent = new Intent(GetStarted.this, EnterOTP.class);
-                intent.putExtra("PhoneNumberForOTP", phoneNumber);
-                startActivity(intent);
-            }
-        });
         myDialog.setView(customView);
         final AlertDialog dialog = myDialog.create();
         dialog.show();
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendOTPbar.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+                sendOtp(phoneNumber);
+
+
+            }
+        });
+
 
         no.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,41 +200,99 @@ public class GetStarted extends BaseActivity {
             }
         });
 
-       /* myDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(GetStarted.this, EnterOTP.class);
-                intent.putExtra("PhoneNumberForOTP",phoneNumber);
-                startActivity(intent);
-            }
-        });
-        myDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });*/
-
 
     }
 
-    public void sendOtp(String phoneForOTP) {
+
+    public void sendOtp(final String phoneForOTP) {
         getParkingApi().sendOTP(phoneForOTP).enqueue(new Callback<OTPResponse>() {
             @Override
             public void onResponse(Call<OTPResponse> call, Response<OTPResponse> response) {
                 if (response.isSuccessful()) {
+
+                    boolean registered = response.body().isRegistered();
+
+                    if (registered) {
+                        getLoginOtpThenLoginOnSuccess(phoneForOTP, "1234");
+                    } else {
+                        String message = response.body().getMessage();
+                        sendOTPbar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
+                        //if(message.equals("OTP verified."))
+                        Log.d(TAG, "Code: " + response.code() + "message; " + message);
+                        Intent intent = new Intent(GetStarted.this, EnterOTP.class);
+                        intent.putExtra("PhoneNumberForOTP", phoneForOTP);
+                        startActivity(intent);
+                    }
+                } else {
+                    sendOTPbar.setVisibility(View.INVISIBLE);
                     String message = response.body().getMessage();
                     Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
-                    //if(message.equals("OTP verified."))
-                    Log.d(TAG, "Code: " + response.code() + "message; " + message);
-                } else {
                     Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
                 }
             }
 
             @Override
             public void onFailure(Call<OTPResponse> call, Throwable t) {
+                sendOTPbar.setVisibility(View.INVISIBLE);
+                Toast.makeText(GetStarted.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
                 Log.d(TAG, "onFailure: " + t.getMessage());
 
+            }
+        });
+    }
+
+
+    private void getLoginOtpThenLoginOnSuccess(final String phone, final String OTP) {
+        /*getParkingApi().getLoginOTP(phone).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                if (response.isSuccessful()) {
+                    showToast(response.body().getMessage());
+                    loginInUser(phone, OTP);
+                } else {
+                    Log.d(TAG, "getLoginOtpThenLoginOnSuccess; Code: " + response.code() + " message; " + response.message());
+                    showToast("(VerifyOtp) Invalid data");
+                }
+                //   hideProgressbar();
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                //  hideProgressbar();
+            }
+        });*/
+    }
+
+    private void loginInUser(String phone, String OTP) {
+        //  showProgressbar();
+        getParkingApi().getLoginAccess(new PhoneOtp(phone, OTP)).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+            @Override
+            public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
+                if (response.isSuccessful()) {
+                    sendOTPbar.setVisibility(View.INVISIBLE);
+                    String accessToken = response.body().getData().getAccessToken();
+                    int expiresIn = response.body().getData().getExpiresIn();
+                    getSharePref().setAccesstoken(accessToken);
+                    getSharePref().setExpiresIn(expiresIn);
+
+                    //This should go to password activity when api is fixed
+                    startActivity(new Intent(GetStarted.this, HomeActivity.class));
+                } else {
+                    sendOTPbar.setVisibility(View.INVISIBLE);
+                    Log.d(TAG, "Login; Code: " + response.code() + " message; " + response.message());
+                    showToast("(getLoginAccess) Invalid data");
+                }
+                //  hideProgressbar();
+            }
+
+            @Override
+            public void onFailure(Call<BaseDataResponse<UserResponse>> call, Throwable t) {
+                sendOTPbar.setVisibility(View.INVISIBLE);
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                //  hideProgressbar();
             }
         });
     }

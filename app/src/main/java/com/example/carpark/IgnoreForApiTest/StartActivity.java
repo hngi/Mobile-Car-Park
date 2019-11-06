@@ -9,11 +9,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.carpark.Api.Responses.BaseDataResponse;
-import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Api.Responses.LoginReg.VerificationResponse;
 import com.example.carpark.Api.Responses.Otp.OTPResponse;
-import com.example.carpark.Model.PhoneOtp;
+import com.example.carpark.Model.User;
 import com.example.carpark.R;
 import com.example.carpark.views.BaseActivity;
 import com.example.carpark.views.EnterOTP;
@@ -43,7 +42,7 @@ public class StartActivity extends BaseActivity {
 
         phoneNo = findViewById(R.id.number);
         ImageView nextBtn = findViewById(R.id.getSrt_cont_btn);
-        progressBar = findViewById(R.id.get_act_progressBar);
+        progressBar = findViewById(R.id.sendOTPbar);
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +64,7 @@ public class StartActivity extends BaseActivity {
                         sendOTP();
                         Log.d(TAG, "Number is not Registered");
                     } else {
-                        getLoginOtpThenLoginOnSuccess();
+                        logInOldUser();
                         Log.d(TAG, "Number is Registered");
                     }
                 } else {
@@ -110,38 +109,24 @@ public class StartActivity extends BaseActivity {
     }
 
 
-    private void getLoginOtpThenLoginOnSuccess(){
-        getParkingApi().getLoginOTP(phone).enqueue(new Callback<BaseResponse>() {
-            @Override
-            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                if(response.isSuccessful()){
-                    showToast(response.body().getMessage());
-                    loginInUser();
-                } else {
-                    Log.d(TAG, "getLoginOtpThenLoginOnSuccess; Code: " + response.code() + " message; " + response.message());
-                    showToast("(VerifyOtp) Invalid data");
-                }
-                hideProgressbar();
-            }
+    private void logInOldUser(){
+        showToast("Should open password Activity First for authentification before going to home");
 
-            @Override
-            public void onFailure(Call<BaseResponse> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
-                hideProgressbar();
-            }
-        });
     }
 
     private void loginInUser() {
         showProgressbar();
-        getParkingApi().getLoginAccess(new PhoneOtp(phone,"1234")).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+        getParkingApi().loginPhoneNoUser(phone,"12345678").enqueue(new Callback<BaseDataResponse<UserResponse>>() {
             @Override
             public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
                 if(response.isSuccessful()){
                     String accessToken = response.body().getData().getAccessToken();
                     int expiresIn = response.body().getData().getExpiresIn();
+                    User user = response.body().getData().getUser();
+
                     getSharePref().setAccesstoken(accessToken);
                     getSharePref().setExpiresIn(expiresIn);
+                    setStoredUser(user);
 
                     //This should go to password activity when api is fixed
                     startActivity(new Intent(StartActivity.this, HomeActivity.class));
