@@ -3,6 +3,8 @@ package com.example.carpark.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * @author .: Ehma Ugbogo
  * @email ..: ehmaugbogo@gmail.com
@@ -10,7 +12,6 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Vehicle {
-
     @SerializedName("id")
     @Expose
     private int id;
