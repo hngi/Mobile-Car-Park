@@ -10,9 +10,6 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class NewUser {
-    @SerializedName("otp")
-    @Expose
-    private String otp;
     @SerializedName("phone")
     @Expose
     private String phone;
@@ -22,21 +19,12 @@ public class NewUser {
     @SerializedName("last_name")
     @Expose
     private String lastName;
-
-    public NewUser(String otp, String phone, String firstName, String lastName) {
-        this.otp = otp;
-        this.phone = phone;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public String getOtp() {
-        return otp;
-    }
-
-    public void setOtp(String otp) {
-        this.otp = otp;
-    }
+    @SerializedName("password")
+    @Expose
+    private String password;
+    @SerializedName("email")
+    @Expose
+    private String email;
 
     public String getPhone() {
         return phone;
@@ -62,6 +50,20 @@ public class NewUser {
         this.lastName = lastName;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
 

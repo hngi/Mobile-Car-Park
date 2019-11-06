@@ -268,7 +268,7 @@ public class GetStarted extends BaseActivity {
 
     private void loginInUser(String phone, String OTP) {
         //  showProgressbar();
-        getParkingApi().getLoginAccess(new PhoneOtp(phone, OTP)).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
+        /*getParkingApi().loginPhoneNoUser(new PhoneOtp(phone, OTP)).enqueue(new Callback<BaseDataResponse<UserResponse>>() {
             @Override
             public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
                 if (response.isSuccessful()) {
@@ -294,7 +294,7 @@ public class GetStarted extends BaseActivity {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 //  hideProgressbar();
             }
-        });
+        });*/
     }
 
 }
