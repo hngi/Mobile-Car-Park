@@ -69,6 +69,15 @@ public class HomeActivity extends AppCompatActivity {
 
     private void navigationClickListeners() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            class Logout extends Fragment {
+                Intent intent = new Intent(getApplicationContext(),GetStarted.class);
+
+                @Override
+                public void startActivity(Intent intent) {
+                    super.startActivity(intent);
+                }
+            }
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment = null;
@@ -104,6 +113,11 @@ public class HomeActivity extends AppCompatActivity {
                         title = "Settings";
                         fragment = new SettingsFragment();
                         break;
+
+                    case R.id.nav_sign_out:
+                        title = "Logout";
+                        fragment = new Logout();
+                        break;
                 }
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 navigationView.setCheckedItem(item);
@@ -119,7 +133,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private void setUpFragment(Fragment fragment) {
+    public void setUpFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.home_frame, fragment).commit();
 
     }

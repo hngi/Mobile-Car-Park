@@ -112,28 +112,7 @@ public class CarDetailsActiviy extends AppCompatActivity {
 
     public void saveCar(String plate_number, String make_model,boolean main_ride){
         String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3JlZ2lzdGVyXC91c2VyIiwiaWF0IjoxNTcyODc4NDc0LCJleHAiOjE1NzI5ODY0NzQsIm5iZiI6MTU3Mjg3ODQ3NCwianRpIjoidEp4SGJ0OGo1MXFoM25MSSIsInN1YiI6MTIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.vLYVZOEHCk1K79BKzwF2GjdhrTsdgIlfgB3zU6jWEBE";
-        ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
-        parkingApi.addNewVehicle(token, plate_number,make_model,main_ride).enqueue(new Callback<BaseDataResponse<Vehicle>>() {
-            @Override
-            public void onResponse(Call<BaseDataResponse<Vehicle>> call, Response<BaseDataResponse<Vehicle>> response) {
-                if(response.isSuccessful()){
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(),"Successfully added", Toast.LENGTH_LONG);
-                    Intent i = new Intent(getApplicationContext(),HomeActivity.class);
-                    startActivity(i);
-                }else{
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(),response.code(), Toast.LENGTH_LONG);
-                }
-            }
 
-            @Override
-            public void onFailure(Call<BaseDataResponse<Vehicle>> call, Throwable t) {
-                progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getApplicationContext(),t.getMessage()+"Faill", Toast.LENGTH_LONG);
-
-            }
-        });
     }
 
 

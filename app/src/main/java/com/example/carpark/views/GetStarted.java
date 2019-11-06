@@ -126,7 +126,8 @@ public class GetStarted extends BaseActivity {
 
     private void openVerifyNumber() {
         String Phone = number.getText().toString().trim();
-        String countryCode = ccp.getSelectedCountryCodeWithPlus();
+        String countryCode = ccp.getSelectedCountryCode();
+
         String fullPhone = countryCode + Phone;
         intent = new Intent(getApplicationContext(), VerifyNumber.class);
         if (TextUtils.isEmpty(number.getText().toString())) {
@@ -172,7 +173,7 @@ public class GetStarted extends BaseActivity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // sendOtp(phoneNumber);
+                sendOtp(phoneNumber);
 
                 Intent intent = new Intent(GetStarted.this, EnterOTP.class);
                 intent.putExtra("PhoneNumberForOTP", phoneNumber);
@@ -190,19 +191,6 @@ public class GetStarted extends BaseActivity {
             }
         });
 
-       /* myDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(GetStarted.this, EnterOTP.class);
-                intent.putExtra("PhoneNumberForOTP",phoneNumber);
-                startActivity(intent);
-            }
-        });
-        myDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });*/
 
 
     }
@@ -223,6 +211,7 @@ public class GetStarted extends BaseActivity {
 
             @Override
             public void onFailure(Call<BaseResponse> call, Throwable t) {
+                Toast.makeText(GetStarted.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onFailure: " + t.getMessage());
 
             }
