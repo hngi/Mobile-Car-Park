@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.GetAllCarDerailsActivity"></activity>
+        <activity android:name=".views.GetAllCarDetailsActivity"></activity>
         <activity
             android:name=".views.MyParkingSpace"
             android:parentActivityName=".views.HomeActivity" />
