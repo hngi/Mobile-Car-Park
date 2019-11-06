@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
+import com.example.carpark.Api.Responses.Otp.OTPResponse;
 import com.example.carpark.Model.NewUser;
 import com.example.carpark.Model.PhoneOtp;
 import com.example.carpark.R;
@@ -51,11 +52,7 @@ public class ApiTestActivity extends BaseActivity {
 
 
     public void RegisterUser(View view) {
-        NewUser newUser = new NewUser();
-        newUser.setFirstName("Ehma");
-        newUser.setLastName("Ugbogo");
-        newUser.setOtp("1234");
-        newUser.setPhone("08107535626");
+        NewUser newUser = new NewUser("1234","08107535626","Ehma","Ugbogo");
         showProgressbar();
         getParkingApi().registerUser(newUser)
                 .enqueue(new Callback<BaseDataResponse<UserResponse>>() {
@@ -87,9 +84,9 @@ public class ApiTestActivity extends BaseActivity {
 
     public void sendOtp(View view) {
         showProgressbar();
-        getParkingApi().sendOTP("08026136330").enqueue(new Callback<BaseResponse>() {
+        getParkingApi().sendOTP("08026136330").enqueue(new Callback<OTPResponse>() {
             @Override
-            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+            public void onResponse(Call<OTPResponse> call, Response<OTPResponse> response) {
                 if (response.isSuccessful()) {
                     String message = response.body().getMessage();
                     //if(message.equals("OTP verified."))
@@ -104,7 +101,7 @@ public class ApiTestActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call<BaseResponse> call, Throwable t) {
+            public void onFailure(Call<OTPResponse> call, Throwable t) {
                 textView.setText(String.format("Error; %s", t.getMessage()));
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 hideProgressbar();
@@ -114,9 +111,7 @@ public class ApiTestActivity extends BaseActivity {
 
     public void verifyOtp(View view) {
         showProgressbar();
-        PhoneOtp phoneOtp=new PhoneOtp();
-        phoneOtp.setOtp("1234");
-        phoneOtp.setPhone("08026136330");
+        PhoneOtp phoneOtp=new PhoneOtp("08026136330","1234");
         getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {

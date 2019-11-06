@@ -207,28 +207,25 @@ public class EnterOTP extends BaseActivity {
 
             sentOTP = otp1.getText().toString() + otp2.getText().toString() + otp3.getText().toString() + otp4.getText().toString();
             final String phoneNum = getIntent().getStringExtra("PhoneNumberForOTP");
-            PhoneOtp phoneOtp = new PhoneOtp();
-            phoneOtp.setPhone(phoneNum);
-            phoneOtp.setOtp(sentOTP);
+            PhoneOtp phoneOtp = new PhoneOtp(phoneNum,sentOTP);
 
+            if (!(sentOTP.equals("1234"))) {
+                Toast.makeText(EnterOTP.this, "Use 1234 as OTP please!", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseResponse>() {
                 @Override
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                     if (response.isSuccessful()) {
 
-                        if (!(sentOTP.equals("1234"))) {
-                            Toast.makeText(EnterOTP.this, "Use 1234 as OTP please!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            OTPbar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(EnterOTP.this, " Success message", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(EnterOTP.this, EnterNameActivity.class);
-                            intent.putExtra("VerifiedPhone", phoneNum);
-                            intent.putExtra("OTP", sentOTP);
-                            startActivity(intent);
-                            //if(message.equals("OTP verified."))
-
-                        }
+                        OTPbar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(EnterOTP.this, " Success message", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(EnterOTP.this, EnterNameActivity.class);
+                        intent.putExtra("VerifiedPhone", phoneNum);
+                        intent.putExtra("OTP", sentOTP);
+                        startActivity(intent);
+                        //if(message.equals("OTP verified."))
 
                     } else {
 
