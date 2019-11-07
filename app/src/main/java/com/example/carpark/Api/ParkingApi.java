@@ -22,8 +22,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -123,7 +121,7 @@ public interface ParkingApi {
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("vehicles")
-    Call<BaseDataResponse<Vehicle>> addNewVehicle(@Header("Authorization") String token, @Query("plate_number") String plate_number, @Query("make_model") String make_model, @Query("main_ride") boolean main_ride);
+    Call<Vehicle> addNewVehicle(@Body Vehicle vehicle);
 
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @PUT("vehicles/{id}")
