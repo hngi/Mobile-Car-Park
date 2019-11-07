@@ -34,13 +34,15 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.CustomVi
 
         public final View view;
         TextView address_name;
-        TextView park_name;
+        TextView park_name, count, price;
         CardView park_details;
         CustomViewHolder(View itemView) {
             super(itemView);
             view = itemView;
 
             address_name = view.findViewById(R.id.park_address);
+            count = view.findViewById(R.id.slots_left);
+            price = view.findViewById(R.id.price);
             park_name = view.findViewById(R.id.park_name);
             park_details = view.findViewById(R.id.park_location);
         }
@@ -57,8 +59,14 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.CustomVi
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         final String park_name = parkAddresses.get(position).getName();
         final String park_address = parkAddresses.get(position).getAddress();
-        holder.address_name.setText(parkAddresses.get(position).getAddress());
-        holder.park_name.setText(parkAddresses.get(position).getName());
+        final String count = String.valueOf(parkAddresses.get(position).getStatus());
+        final String fee = String.valueOf(parkAddresses.get(position).getFee());
+        final String id = String.valueOf(parkAddresses.get(position).getId());
+        final String price = fee + " /hr";
+        holder.address_name.setText(park_address);
+        holder.park_name.setText(park_name);
+        holder.count.setText(count);
+        holder.price.setText(price);
         holder.park_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,6 +75,9 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.CustomVi
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("Park_Name",park_name);
                 editor.putString("Park_Address",park_address);
+                editor.putString("Price",price);
+                editor.putString("Count",count);
+                editor.putString("id",id);
                 editor.commit();
                 Intent i = new Intent(context, ScheduleActivity.class);
                 context.startActivity(i);

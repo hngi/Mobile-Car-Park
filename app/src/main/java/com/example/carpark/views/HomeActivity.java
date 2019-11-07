@@ -20,12 +20,14 @@ import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Model.User;
 import com.example.carpark.R;
 import com.example.carpark.utils.Commons;
+import com.example.carpark.utils.SharePreference;
 import com.example.carpark.views.homefragments.DefaultFragment;
 import com.example.carpark.views.homefragments.MyVehicleFragment;
 import com.example.carpark.views.homefragments.ParkingHistoryFragment;
 import com.example.carpark.views.homefragments.PaymentMethodsFragment;
 import com.example.carpark.views.homefragments.PromotionFragment;
 import com.example.carpark.views.homefragments.SettingsFragment;
+import com.facebook.login.LoginManager;
 import com.google.android.material.navigation.NavigationView;
 
 ;
@@ -105,10 +107,9 @@ public class HomeActivity extends BaseActivity {
     private void navigationClickListeners() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             class Logout extends Fragment {
-                Intent intent = new Intent(getApplicationContext(),GetStarted.class);
-
                 @Override
                 public void startActivity(Intent intent) {
+                    intent = new Intent(getApplicationContext(),GetStarted.class);
                     super.startActivity(intent);
                 }
             }
@@ -151,7 +152,7 @@ public class HomeActivity extends BaseActivity {
 
                     case R.id.nav_sign_out:
                         title = "Logout";
-                        fragment = new Logout();
+                        signout();
                         break;
                 }
                 mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -184,6 +185,18 @@ public class HomeActivity extends BaseActivity {
             setUpDefaultFragment();
             enableBackViews(false);
         }
+    }
+    private void signout() {
+        // Facebook logout
+        if (LoginManager.getInstance() != null) {
+            LoginManager.getInstance().logOut();
+        }
+
+        SharePreference.getINSTANCE(getApplicationContext()).setIsUserLoggedIn(false);
+        Intent logout = new Intent(getApplicationContext(), GetStarted.class);
+        logout.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(logout);
+        finish();
     }
 
     private void enableBackViews(boolean enable) {

@@ -12,9 +12,11 @@ import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.Park.ParkAddress;
 import com.example.carpark.Model.Park.ParkingSpace;
 import com.example.carpark.Model.Vehicle;
+import com.example.carpark.utils.SharePreference;
 import com.example.carpark.R;
 import com.example.carpark.adapter.AddressAdapter;
 import com.example.carpark.adapter.MyVehicleAdapter;
+import com.example.carpark.views.BaseActivity;
 import com.example.carpark.views.CarDetailsActiviy;
 import com.example.carpark.views.TransactionActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -61,7 +63,7 @@ public class ListFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(addressAdapter);
-        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3ZlcmlmeS1vdHAiLCJpYXQiOjE1NzMwMTQ4NTQsImV4cCI6MTU3MzEyMjg1NCwibmJmIjoxNTczMDE0ODU0LCJqdGkiOiJXQ0VydHZlZFV4RFBZdzB3Iiwic3ViIjoxOCwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.RMo2rLPq5YF6D3aau3N8NBg6D7hmeOTYntMySf5fizo";
+        String token = SharePreference.getINSTANCE(getContext()).getAccessToken();
         ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
         parkingApi.getAllParkingSpace(token).enqueue(new Callback<ParkingSpaceAllResponse>() {
             @Override
@@ -69,6 +71,7 @@ public class ListFragment extends Fragment {
                 if(response.isSuccessful()){
                     Log.e("Response code", String.valueOf(response.code()));
                     Toast.makeText(getContext(),"Successful"+String.valueOf(response.code()),Toast.LENGTH_LONG).show();
+                    assert response.body() != null;
                     ParkingSpace.addAll(response.body().getParkingSpaces());
                     addressAdapter.notifyDataSetChanged();
                     progressBar.setVisibility(View.INVISIBLE);
