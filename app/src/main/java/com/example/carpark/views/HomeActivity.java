@@ -102,7 +102,6 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-
     private void navigationClickListeners() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             class Logout extends Fragment {
