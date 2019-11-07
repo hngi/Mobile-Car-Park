@@ -22,6 +22,7 @@ import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.BaseResponse;
 import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Api.RetrofitClient;
+
 import com.example.carpark.Model.PhoneOtp;
 import com.example.carpark.R;
 import com.google.android.gms.common.api.Api;
@@ -178,8 +179,7 @@ public class EnterOTP extends BaseActivity {
             }
         });
 
-        // startFirebaseLogin();
-        // PhoneAuthProvider.getInstance().verifyPhoneNumber(getIntent().getStringExtra("PhoneNumber"), 60, TimeUnit.SECONDS, EnterOTP.this, mCallback);
+
     }
 
     public void verifyFBOTP() {
@@ -210,12 +210,6 @@ public class EnterOTP extends BaseActivity {
             final String phoneNum = getIntent().getStringExtra("PhoneNumberForOTP");
             PhoneOtp phoneOtp = new PhoneOtp(phoneNum, sentOTP);
 
-           if (!(sentOTP.equals("1234"))) {
-               OTPbar.setVisibility(View.INVISIBLE);
-               Toast.makeText(EnterOTP.this, "Use 1234 as OTP please!", Toast.LENGTH_SHORT).show();
-
-            }else {
-
             getParkingApi().verifyOTP(phoneOtp).enqueue(new Callback<BaseResponse>() {
                 @Override
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
@@ -231,17 +225,9 @@ public class EnterOTP extends BaseActivity {
                         startActivity(intent);
                         //if(message.equals("OTP verified."))
 
-
                     } else {
-
                         OTPbar.setVisibility(View.INVISIBLE);
-                        String message = response.body().getMessage();
-                        Log.d(TAG, "Code: " + response.code() + "message; " + message);
-                        Toast.makeText(EnterOTP.this, " not Success: " + message, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(EnterOTP.this, EnterNameActivity.class);
-                        intent.putExtra("VerifiedPhone", phoneNum);
-                        intent.putExtra("OTP", sentOTP);
-                        startActivity(intent);
+                        Toast.makeText(EnterOTP.this, " Wrong OTP ", Toast.LENGTH_SHORT).show();
                         //if(message.equals("OTP verified."))
 
 
@@ -256,7 +242,6 @@ public class EnterOTP extends BaseActivity {
                     Toast.makeText(EnterOTP.this, t.getMessage() + " failure message", Toast.LENGTH_SHORT).show();
                 }
             });
-           }
 
 
         } else {
@@ -264,46 +249,7 @@ public class EnterOTP extends BaseActivity {
             Toast.makeText(EnterOTP.this, "Enter a Valid OTP code", Toast.LENGTH_SHORT).show();
         }
 
-    } /*
-
-    private void SigninWithPhone(PhoneAuthCredential credential) {
-        auth.signInWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Intent intent = new Intent(EnterOTP.this, EnterNameActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(EnterOTP.this, "Incorrect OTP", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
     }
-/*
-    private void startFirebaseLogin() {
 
-        auth = FirebaseAuth.getInstance();
-        mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-            @Override
-            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                Toast.makeText(EnterOTP.this,"verification completed",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onVerificationFailed(FirebaseException e) {
-                Toast.makeText(EnterOTP.this,"verification fialed",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                super.onCodeSent(s, forceResendingToken);
-                verificationCode = s;
-                Toast.makeText(EnterOTP.this,"Code sent",Toast.LENGTH_SHORT).show();
-            }
-        };
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(getIntent().getStringExtra("PhoneNumber"), 60, TimeUnit.SECONDS, EnterOTP.this, mCallback);
-    }*/
 }

@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.carpark.Model.Park.ParkAddress;
+import com.example.carpark.Model.Park.ParkingSpace;
 import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
 import com.example.carpark.views.ScheduleActivity;
@@ -20,11 +21,11 @@ import java.util.List;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.CustomViewHolder> {
     private Context context;
-    private List<ParkAddress> parkAddresses;
+    private List<ParkingSpace> parkAddresses;
     private final String PREFERENCE_FILE_KEY = "location_pref";
 
 
-    public AddressAdapter(Context context, List<ParkAddress> parkAddresses) {
+    public AddressAdapter(Context context, List<ParkingSpace> parkAddresses) {
         this.context = context;
         this.parkAddresses  = parkAddresses;
     }
@@ -54,10 +55,10 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.CustomVi
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-        final String park_name = parkAddresses.get(position).getPark_name();
-        final String park_address = parkAddresses.get(position).getPark_address();
-        holder.address_name.setText(parkAddresses.get(position).getPark_address());
-        holder.park_name.setText(parkAddresses.get(position).getPark_name());
+        final String park_name = parkAddresses.get(position).getName();
+        final String park_address = parkAddresses.get(position).getAddress();
+        holder.address_name.setText(parkAddresses.get(position).getAddress());
+        holder.park_name.setText(parkAddresses.get(position).getName());
         holder.park_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
