@@ -27,6 +27,7 @@ import com.example.carpark.Api.Responses.Otp.OTPResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.IgnoreForApiTest.StartActivity;
 import com.example.carpark.Model.PhoneOtp;
+import com.example.carpark.utils.SharePreference;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -181,6 +182,11 @@ public class GetStarted extends BaseActivity {
     // Check if user is already logged in through facebook
     private void checkLoginStatus() {
         if (AccessToken.getCurrentAccessToken() != null && !AccessToken.getCurrentAccessToken().isExpired()) {
+            // user already signed in
+            startActivity(new Intent(GetStarted.this, HomeActivity.class));
+            finish();
+        }
+        if (SharePreference.getINSTANCE(this).getIsUserLoggedIn()==true) {
             // user already signed in
             startActivity(new Intent(GetStarted.this, HomeActivity.class));
             finish();
