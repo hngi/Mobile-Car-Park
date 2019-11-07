@@ -52,8 +52,8 @@ public class ScheduleActivity extends AppCompatActivity {
         add_vehicle = findViewById(R.id.fb_schedule_add);
 
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
-        String park_name = sharedPref.getString("Park_Name","park");
-        String park_address = sharedPref.getString("Park_Address","park");
+        String park_name = sharedPref.getString("Park_Name","null");
+        String park_address = sharedPref.getString("Park_Address","null");
 
         park.setText(park_name);
         address.setText(park_address);

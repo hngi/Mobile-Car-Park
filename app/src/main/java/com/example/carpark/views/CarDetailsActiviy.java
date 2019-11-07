@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -13,6 +15,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -21,6 +24,7 @@ import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
+import com.example.carpark.utils.SharePreference;
 import com.example.carpark.views.homefragments.MyVehicleFragment;
 
 import retrofit2.Call;
@@ -67,12 +71,51 @@ public class CarDetailsActiviy extends AppCompatActivity {
         }
     }
 
-    private void getCarDetails(String vehicleId, String plate, String make) {
+    private void getCarDetails(final String vehicle_id, final String plate, final String make) {
         plateNumber.setText(plate);
         carModel.setText(make);
         saveCarDetails.setText("Update");
         saveCarDetails.setClickable(false);
         getSupportActionBar().setTitle(make);
+        saveCarDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateCarDetails(vehicle_id, plate, make);
+            }
+        });
+
+    }
+
+    private void updateCarDetails(String vehicleId, String plate, String make) {
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.delete_menu,menu);
+        if(plate!=null){
+            menu.findItem(R.id.delete).setVisible(true);
+        }else{
+            menu.findItem(R.id.delete).setVisible(false);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete:
+                deleteVehicle(vehicle_id);
+                Toast.makeText(this, "Vehicle Deleted", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void deleteVehicle(String vehicle_id) {
+
     }
 
     // initialising the views
@@ -111,8 +154,8 @@ public class CarDetailsActiviy extends AppCompatActivity {
     }
 
     public void saveCar(String plate_number, String make_model,boolean main_ride){
-        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3JlZ2lzdGVyXC91c2VyIiwiaWF0IjoxNTcyODc4NDc0LCJleHAiOjE1NzI5ODY0NzQsIm5iZiI6MTU3Mjg3ODQ3NCwianRpIjoidEp4SGJ0OGo1MXFoM25MSSIsInN1YiI6MTIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.vLYVZOEHCk1K79BKzwF2GjdhrTsdgIlfgB3zU6jWEBE";
-
+        String token = SharePreference.getINSTANCE(getApplicationContext()).getAccessToken();
+        
     }
 
 
