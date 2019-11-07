@@ -1,13 +1,22 @@
 package com.example.carpark.views.homefragments;
 
+import android.app.MediaRouteButton;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.carpark.Api.ParkingApi;
+import com.example.carpark.Api.Responses.Park.ParkingSpaceAllResponse;
+import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.Park.ParkAddress;
+import com.example.carpark.Model.Park.ParkingSpace;
 import com.example.carpark.Model.Vehicle;
+import com.example.carpark.utils.SharePreference;
 import com.example.carpark.R;
 import com.example.carpark.adapter.AddressAdapter;
 import com.example.carpark.adapter.MyVehicleAdapter;
+import com.example.carpark.views.BaseActivity;
 import com.example.carpark.views.CarDetailsActiviy;
 import com.example.carpark.views.TransactionActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,73 +28,65 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ListFragment extends Fragment {
-    private List<ParkAddress> addresses;
     private RecyclerView recyclerView;
     private AddressAdapter addressAdapter;
+    private List<ParkingSpace> ParkingSpace;
+    private ProgressBar progressBar;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View root =  inflater.inflate(R.layout.fragment_list, container, false);
-
-
-        //TEST DATA
-        addresses = new ArrayList<>();
-        ParkAddress a = new ParkAddress();
-        a.setPark_address("Ikoyi, Lagos");
-        a.setPark_name("Ikoyi car Park");
-
-        ParkAddress b = new ParkAddress();
-        b.setPark_address("Murtala Muhammed International Airport, Lagos");
-        b.setPark_name("New Airport Car Park");
-
-        ParkAddress c = new ParkAddress();
-        c.setPark_address("Ojo, Lagos");
-        c.setPark_name("Zone D Car Park");
-
-        ParkAddress d = new ParkAddress();
-        d.setPark_address("31 Marina Rd, Lagos Island, Lagos");
-        d.setPark_name("Marina Car Park");
-
-        ParkAddress e = new ParkAddress();
-        e.setPark_address("Ikeja General Hospital Road, Ikeja GRA, Lagos");
-        e.setPark_name("Ikeja General hospital car park");
-        ParkAddress f = new ParkAddress();
-        f.setPark_address("Ilupeju, Lagos");
-        f.setPark_name("Oshodi Car Park");
-        ParkAddress g = new ParkAddress();
-        g.setPark_address("Mobolaji Johnson Ave, Alausa, Lagos");
-        g.setPark_name("Daystar Christian Center Car Park C");
-        ParkAddress h = new ParkAddress();
-        h.setPark_address("Yaba, Lagos");
-        h.setPark_name("Stadium Parking Lot");
-
-        addresses.add(a);
-        addresses.add(b);
-        addresses.add(c);
-        addresses.add(g);
-        addresses.add(d);
-        addresses.add(e);
-        addresses.add(f);
-        addresses.add(h);
-
+        Context context = getActivity();
+        ParkingSpace = new ArrayList<>();
         recyclerView = root.findViewById(R.id.map_list_view);
-        addressAdapter = new AddressAdapter(this.getContext(), addresses);
-
+        progressBar = root.findViewById(R.id.progressBar3);
+        progressBar.setVisibility(View.VISIBLE);
+        addressAdapter = new AddressAdapter(getContext(), ParkingSpace );
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
-
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(addressAdapter);
+        String token = SharePreference.getINSTANCE(getContext()).getAccessToken();
+        ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
+        parkingApi.getAllParkingSpace(token).enqueue(new Callback<ParkingSpaceAllResponse>() {
+            @Override
+            public void onResponse(Call<ParkingSpaceAllResponse> call, Response<ParkingSpaceAllResponse> response) {
+                if(response.isSuccessful()){
+                    Log.e("Response code", String.valueOf(response.code()));
+                    Toast.makeText(getContext(),"Successful"+String.valueOf(response.code()),Toast.LENGTH_LONG).show();
+                    assert response.body() != null;
+                    ParkingSpace.addAll(response.body().getParkingSpaces());
+                    addressAdapter.notifyDataSetChanged();
+                    progressBar.setVisibility(View.INVISIBLE);
+                }else{
+                    Toast.makeText(getContext(),"Failure"+String.valueOf(response.code()),Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<ParkingSpaceAllResponse> call, Throwable t) {
+                Toast.makeText(getContext(),t.getMessage(),Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+        });
         return root;
     }
 }

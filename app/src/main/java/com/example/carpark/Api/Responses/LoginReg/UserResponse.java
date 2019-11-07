@@ -1,5 +1,6 @@
 package com.example.carpark.Api.Responses.LoginReg;
 
+import com.example.carpark.Model.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,12 +11,16 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class UserResponse {
+
     @SerializedName("access_token")
     @Expose
     private String accessToken;
     @SerializedName("expires_in")
     @Expose
     private int expiresIn;
+    @SerializedName("user")
+    @Expose
+    private User user;
 
     public String getAccessToken() {
         return accessToken;
@@ -31,5 +36,13 @@ public class UserResponse {
 
     public void setExpiresIn(int expiresIn) {
         this.expiresIn = expiresIn;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

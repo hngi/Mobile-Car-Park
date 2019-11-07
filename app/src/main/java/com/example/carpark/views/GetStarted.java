@@ -14,23 +14,34 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carpark.Api.ParkingApi;
+import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Api.Responses.BaseResponse;
+import com.example.carpark.Api.Responses.LoginReg.UserResponse;
+import com.example.carpark.Api.Responses.LoginReg.VerificationResponse;
 import com.example.carpark.Api.Responses.Otp.OTPResponse;
 import com.example.carpark.Api.RetrofitClient;
+import com.example.carpark.IgnoreForApiTest.StartActivity;
+import com.example.carpark.Model.PhoneOtp;
+import com.example.carpark.utils.SharePreference;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.example.carpark.R;
 import com.hbb20.CountryCodePicker;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Arrays;
 
@@ -48,6 +59,7 @@ public class GetStarted extends BaseActivity {
     private Button fb_btn;
     private ImageView cont_btn;
     private CountryCodePicker ccp;
+    ProgressBar sendOTPbar;
     Intent intent;
 
     @Override
@@ -59,41 +71,15 @@ public class GetStarted extends BaseActivity {
         number = (EditText) findViewById(R.id.number);
         ccp = (CountryCodePicker) findViewById(R.id.ccp);
         cont_btn = (ImageView) findViewById(R.id.getSrt_cont_btn);
-
-
-        // facebook authentication
-        callbackManager = CallbackManager.Factory.create();
+        sendOTPbar = findViewById(R.id.sendOTPbar);
 
         // Check if user is already logged in through facebook
         checkLoginStatus();
 
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(GetStarted.this, "User logged in through Facebook.", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "onSuccess: " + loginResult.getAccessToken().getUserId());
-                setResult(RESULT_OK);
-                startActivity(new Intent(GetStarted.this, HomeActivity.class));
-                finish();
-                /*call : loginResult.getAccessToken().getUserId() to get userId and save to database;*/
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(GetStarted.this, "Error " + error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-
         fb_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginManager.getInstance().setAuthType(AUTH_TYPE)
-                        .logInWithReadPermissions(GetStarted.this, Arrays.asList(EMAIL));
+                onFacebookLogin();
             }
         });
 
@@ -110,37 +96,80 @@ public class GetStarted extends BaseActivity {
         number.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-//                intent = new Intent(getApplicationContext(), VerifyNumber.class);
-//                if(TextUtils.isEmpty(number.getText().toString())){
-//                    number.setError("Please fill in phone number");
-//                }else {
-//                    intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
-//                    intent.putExtra("phoneNumber", number.getText().toString());
-//                    startActivity(intent);
-//                }
+
 
                 return false;
             }
 
         });
     }
+    // facebook login
+    private void onFacebookLogin(){
+        callbackManager = CallbackManager.Factory.create();
 
-    private void openVerifyNumber() {
-        String Phone = number.getText().toString().trim();
-        String countryCode = ccp.getSelectedCountryCodeWithPlus();
-        String fullPhone = countryCode + Phone;
-        intent = new Intent(getApplicationContext(), VerifyNumber.class);
-        if (TextUtils.isEmpty(number.getText().toString())) {
-            number.setError("Please fill in phone number");
-        } else if (!((Phone.length() < 10) || (Phone.length() > 11))) {
-            /*intent.putExtra("countryCode", String.valueOf(ccp.getSelectedCountryCodeWithPlus()));
-            intent.putExtra("phoneNumber", number.getText().toString());
-            startActivity(intent);*/
+        // Set permissions
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile"));
 
-            showAlert(fullPhone);
-        } else {
-            Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
-        }
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+                Toast.makeText(GetStarted.this, "Successfully logged in with Facebook", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(GetStarted.this, HomeActivity.class);
+                intent.putExtra("login_type", "facebook");
+                startActivity(intent);
+                finish();
+
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject json, GraphResponse response) {
+                        if (response.getError() != null) {
+                            // handle error
+                            System.out.println("ERROR");
+
+                        } else {
+                            System.out.println("Success");
+
+                            try {
+
+                                String jsonresult = String.valueOf(json);
+                                System.out.println("JSON Result" + jsonresult);
+
+                                String email = json.getString("email");
+                                String id = json.getString("id");
+                                String firstname = json.getString("first_name");
+                                String lastname = json.getString("last_name");
+                                String phone = json.getString("phone");
+                                String image_url = "https://graph.facebook.com/" + id + "/picture?type=normal";
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                });
+
+                // We set parameters to the GraphRequest using a Bundle
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id, email, first_name, last_name, phone");
+                request.setParameters(parameters);
+                // Initiate the GraphRequest
+                request.executeAsync();
+
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d("TAG_CANCEL", "On cancel");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d("TAG_ERROR", error.toString());
+
+            }
+        });
     }
 
     //pass the facebook login results to the LoginManager via callbackManager.
@@ -157,7 +186,29 @@ public class GetStarted extends BaseActivity {
             startActivity(new Intent(GetStarted.this, HomeActivity.class));
             finish();
         }
+        if (SharePreference.getINSTANCE(this).getIsUserLoggedIn()==true) {
+            // user already signed in
+            startActivity(new Intent(GetStarted.this, HomeActivity.class));
+            finish();
+        }
     }
+
+    private void openVerifyNumber() {
+        String Phone = number.getText().toString().trim();
+        String countryCode = ccp.getSelectedCountryCode();
+
+        String fullPhone = countryCode + Phone;
+        intent = new Intent(getApplicationContext(), VerifyNumber.class);
+        if (TextUtils.isEmpty(number.getText().toString())) {
+            number.setError("Please fill in phone number");
+        } else if (!((Phone.length() < 10) || (Phone.length() > 11))) {
+            showAlert(fullPhone);
+        } else {
+            Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     private void showAlert(final String phoneNumber) {
         TextView yes, no;
@@ -170,19 +221,20 @@ public class GetStarted extends BaseActivity {
         no = customView.findViewById(R.id.NoButton);
         phone = customView.findViewById(R.id.confirmNumber);
         phone.setText(phoneNumber);
-        yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               // sendOtp(phoneNumber);
-
-                Intent intent = new Intent(GetStarted.this, EnterOTP.class);
-                intent.putExtra("PhoneNumberForOTP", phoneNumber);
-                startActivity(intent);
-            }
-        });
         myDialog.setView(customView);
         final AlertDialog dialog = myDialog.create();
         dialog.show();
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendOTPbar.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+                verifyNumberIfRegistered(phoneNumber);
+
+
+            }
+        });
+
 
         no.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,44 +243,85 @@ public class GetStarted extends BaseActivity {
             }
         });
 
-       /* myDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(GetStarted.this, EnterOTP.class);
-                intent.putExtra("PhoneNumberForOTP",phoneNumber);
-                startActivity(intent);
-            }
-        });
-        myDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });*/
-
 
     }
 
-    public void sendOtp(String phoneForOTP) {
+
+    public void sendOtp(final String phoneForOTP) {
         getParkingApi().sendOTP(phoneForOTP).enqueue(new Callback<OTPResponse>() {
             @Override
             public void onResponse(Call<OTPResponse> call, Response<OTPResponse> response) {
                 if (response.isSuccessful()) {
+
+                    boolean registered = response.body().isRegistered();
+
+                    if (registered) {
+                        //  getLoginOtpThenLoginOnSuccess(phoneForOTP, "1234");
+                    } else {
+                        String message = response.body().getMessage();
+                        sendOTPbar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
+                        //if(message.equals("OTP verified."))
+                        Log.d(TAG, "Code: " + response.code() + "message; " + message);
+                        Intent intent = new Intent(GetStarted.this, EnterOTP.class);
+                        intent.putExtra("PhoneNumberForOTP", phoneForOTP);
+                        startActivity(intent);
+                    }
+                } else {
+                    sendOTPbar.setVisibility(View.INVISIBLE);
+                    assert response.body().getMessage() != null;
                     String message = response.body().getMessage();
                     Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
-                    //if(message.equals("OTP verified."))
-                    Log.d(TAG, "Code: " + response.code() + "message; " + message);
-                } else {
                     Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
                 }
             }
 
             @Override
             public void onFailure(Call<OTPResponse> call, Throwable t) {
+                sendOTPbar.setVisibility(View.INVISIBLE);
+                Toast.makeText(GetStarted.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
                 Log.d(TAG, "onFailure: " + t.getMessage());
 
             }
         });
     }
+
+    private void verifyNumberIfRegistered(final String phone) {
+
+        getParkingApi().verifyPhoneNo(phone).enqueue(new Callback<VerificationResponse>() {
+            @Override
+            public void onResponse(Call<VerificationResponse> call, Response<VerificationResponse> response) {
+                if (response.isSuccessful()) {
+                    boolean registered = response.body().isRegistered();
+                    if (!registered) {
+                        sendOtp(phone);
+                        Log.d(TAG, "Number is not Registered");
+                    } else {
+                        logInOldUser(phone);
+                        Log.d(TAG, "Number is Registered");
+                    }
+                } else {
+                    Log.d(TAG, "SendOTP; Code: " + response.code() + "message; " + response.message());
+                    showToast("(sendOTP) Invalid data");
+                }
+                sendOTPbar.setVisibility(View.INVISIBLE);
+
+            }
+
+            @Override
+            public void onFailure(Call<VerificationResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+    }
+
+    private void logInOldUser(String phone) {
+        Intent intent = new Intent(this, PasswordActivity.class);
+        intent.putExtra(PasswordActivity.phoneForLoginKEY,phone);
+        startActivity(intent);
+    }
+
 
 }
 

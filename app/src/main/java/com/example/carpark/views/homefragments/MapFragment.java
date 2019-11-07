@@ -428,7 +428,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
 
 
 
-        getNearbyParks();
+        //getNearbyParks();
 
         mMap.setOnMarkerClickListener(this);
 

@@ -5,7 +5,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +32,8 @@ public class ScheduleActivity extends AppCompatActivity {
     FloatingActionButton add_vehicle;
     final Calendar checkInDate = Calendar.getInstance();
     final Calendar checkOutDate = Calendar.getInstance();
+    private final String PREFERENCE_FILE_KEY = "location_pref";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +43,6 @@ public class ScheduleActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Booking Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String park_name = getIntent().getStringExtra("Park_Name");
-        String park_address = getIntent().getStringExtra("Park_Address");
 
         park = findViewById(R.id.textView2);
         address = findViewById(R.id.textView3);
@@ -49,9 +51,12 @@ public class ScheduleActivity extends AppCompatActivity {
         tvDuration = findViewById(R.id.textView13);
         add_vehicle = findViewById(R.id.fb_schedule_add);
 
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
+        String park_name = sharedPref.getString("Park_Name","null");
+        String park_address = sharedPref.getString("Park_Address","null");
+
         park.setText(park_name);
         address.setText(park_address);
-
 
         add_vehicle.setOnClickListener(new View.OnClickListener() {
             @Override

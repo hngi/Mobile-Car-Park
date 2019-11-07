@@ -57,9 +57,9 @@ public class CarDetailsActiviy extends AppCompatActivity {
         makeModelView = makeModel.getText().toString();
 
         main_ride = findViewById(R.id.primary_ride);
-            if (main_ride.isChecked()){
-                primaryRide = true;
-            }
+        if (main_ride.isChecked()){
+            primaryRide = true;
+        }
 
         progressDialog = new ProgressDialog(this);
         progressDialog .setMessage("Adding Vehicle...");
@@ -77,10 +77,24 @@ public class CarDetailsActiviy extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                progressDialog.show();
-                  addNewVehicle();
+                if(plateNumberView.isEmpty() && makeModelView.isEmpty()) {
+                    plateNumber.setError("Input car Plate Number");
+                    makeModel.setError("Input Car Model");
+                    progressDialog.dismiss();
+                }
+                else if (makeModelView.isEmpty()) {
+                    makeModel.setError("Input Car Model");
+                    progressDialog.dismiss();
+                }
+                else if (plateNumberView.isEmpty()) {
+                    makeModel.setError("Input car Plate Number");
+                    progressDialog.dismiss();
+                }
+                else{
+                    progressDialog.show();
+                    addNewVehicle();
+                }
             }
-
         });
 
     }
@@ -89,29 +103,29 @@ public class CarDetailsActiviy extends AppCompatActivity {
         final Vehicle vehicle = new Vehicle(plateNumberView, makeModelView, primaryRide);
 
         Call<Vehicle> call = parkingApi.addNewVehicle(vehicle);
-            call.enqueue(new Callback<Vehicle>() {
-                @Override
-                public void onResponse(Call<Vehicle> call, Response<Vehicle> response) {
-                    if (!response.isSuccessful()) {
-                        Toast.makeText(CarDetailsActiviy.this, "New Vehicle Added successfully" + vehicle, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                        startActivity(intent);
-
-                    }
-
-                    Vehicle postNewVehicle = response.body();
-                    plateNumberView = postNewVehicle.getPlateNumber();
-                    makeModelView = postNewVehicle.getMakeModel();
-                }
-
-                @Override
-                public void onFailure(Call<Vehicle> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Error " + t, Toast.LENGTH_SHORT).show();
+        call.enqueue(new Callback<Vehicle>() {
+            @Override
+            public void onResponse(Call<Vehicle> call, Response<Vehicle> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(CarDetailsActiviy.this, "New Vehicle Added successfully" + vehicle, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent);
 
                 }
-            });
 
-        }
+                Vehicle postNewVehicle = response.body();
+                plateNumberView = postNewVehicle.getPlateNumber();
+                makeModelView = postNewVehicle.getMakeModel();
+            }
+
+            @Override
+            public void onFailure(Call<Vehicle> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Error " + t, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
 
 
 

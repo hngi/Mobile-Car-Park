@@ -194,10 +194,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
 
         setLayoutOnClickListers(root);
-
-
-
-        Toast.makeText(getActivity(), "Please click on schedule to test other activities", Toast.LENGTH_LONG).show();
+        
 
        // ImageView imageView = root.findViewById(R.id.ic_magnify);
        /* imageView.setOnClickListener(new View.OnClickListener() {
@@ -492,7 +489,7 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
 
 
 
-        getNearbyParks();
+        //getNearbyParks();
 
         mMap.setOnMarkerClickListener(this);
 
@@ -760,20 +757,6 @@ public class DefaultFragment extends Fragment implements OnMapReadyCallback,
         input_search.setText(address);
 
         String park_address = input_search.getText().toString();
-
-
-
-        if(input_search!=null){
-
-            Intent i = new Intent(getContext(),DetailsActivity.class);
-
-            i.putExtra("address",park_address);
-
-            startActivity(i);
-
-        }
-
-
 
         return false;
 

@@ -3,6 +3,12 @@ package com.example.carpark.Api.Responses.Otp;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * @author .: Ehma Ugbogo
+ * @email ..: ehmaugbogo@gmail.com
+ * @created : 06/10/19
+ */
+
 public class OTPResponse {
 
     @SerializedName("message")
