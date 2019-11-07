@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
 
 import java.util.List;
@@ -21,12 +22,37 @@ import java.util.List;
 
 public class GetAllVehicleAdapter extends RecyclerView.Adapter<GetAllVehicleAdapter.CostomViewHolder> {
     private Context context;
-    //private VehicleList vehicles;
+    private List<Vehicle> vehicles;
 
-    /*public GetAllVehicleAdapter(Context context, VehicleList vehicles){
+    public GetAllVehicleAdapter(Context context, List<Vehicle> vehicles){
         this.context = context;
         this.vehicles = vehicles;
-    }*/
+    }
+
+    @NonNull
+    @Override
+    public GetAllVehicleAdapter.CostomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.all_vehicle_item, parent, false);
+        return new GetAllVehicleAdapter.CostomViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull GetAllVehicleAdapter.CostomViewHolder holder, int position) {
+        Vehicle vehicle = vehicles.get(position);
+        holder.mPlate_number.setText(vehicle.getPlateNumber());
+        holder.mVehicle_model.setText(vehicle.getMakeModel());
+    }
+
+    @Override
+    public int getItemCount() {
+        return vehicles.size();
+    }
+
+    public void summitList(List<Vehicle> vehicleList){
+        vehicles=vehicleList;
+        notifyDataSetChanged();
+    }
 
     class CostomViewHolder extends RecyclerView.ViewHolder{
         public final View view;
@@ -43,25 +69,5 @@ public class GetAllVehicleAdapter extends RecyclerView.Adapter<GetAllVehicleAdap
             mVehicle_model = view.findViewById(R.id.get_all_vehicle_model_tv);
 
         }
-    }
-
-    @NonNull
-    @Override
-    public GetAllVehicleAdapter.CostomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.all_vehicle_item, parent, false);
-        return new GetAllVehicleAdapter.CostomViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull GetAllVehicleAdapter.CostomViewHolder holder, int position) {
-        //holder.mPlate_number.setText(vehicles.getVehicles().hashCode());
-        //holder.mVehicle_model.setText(vehicles.getVehicles().hashCode());
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;//vehicles.getVehicles().size();
     }
 }

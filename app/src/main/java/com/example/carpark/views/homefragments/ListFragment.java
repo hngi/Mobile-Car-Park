@@ -59,12 +59,14 @@ public class ListFragment extends Fragment {
         recyclerView = root.findViewById(R.id.map_list_view);
         progressBar = root.findViewById(R.id.progressBar3);
         progressBar.setVisibility(View.VISIBLE);
-        addressAdapter = new AddressAdapter(getContext(), ParkingSpace );
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
+        //addressAdapter = new AddressAdapter(getActivity(), ParkingSpace );
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(addressAdapter);
-        String token = SharePreference.getINSTANCE(getContext()).getAccessToken();
+        //recyclerView.setAdapter(addressAdapter);
+
+        String token = SharePreference.getINSTANCE(getActivity()).getAccessToken();
         ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
+
         parkingApi.getAllParkingSpace(token).enqueue(new Callback<ParkingSpaceAllResponse>() {
             @Override
             public void onResponse(Call<ParkingSpaceAllResponse> call, Response<ParkingSpaceAllResponse> response) {
@@ -73,6 +75,8 @@ public class ListFragment extends Fragment {
                     Toast.makeText(getContext(),"Successful"+String.valueOf(response.code()),Toast.LENGTH_LONG).show();
                     assert response.body() != null;
                     ParkingSpace.addAll(response.body().getParkingSpaces());
+                    addressAdapter = new AddressAdapter(getActivity(), ParkingSpace );
+                    recyclerView.setAdapter(addressAdapter);
                     addressAdapter.notifyDataSetChanged();
                     progressBar.setVisibility(View.INVISIBLE);
                 }else{

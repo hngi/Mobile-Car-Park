@@ -10,7 +10,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -104,7 +103,7 @@ public class EnterNameActivity extends AppCompatActivity {
             this.email.requestFocus();
         }
 
-        NewUser newUser = new NewUser();
+        NewUser newUser = new NewUser("1234", "08107535626", "Ehma", "Ugbogo");
         newUser.setPhone(phoneNum);
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
