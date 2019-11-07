@@ -49,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
 
                 if (firstTime) {
-                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), OnboardingActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
