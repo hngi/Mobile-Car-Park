@@ -6,15 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
 import com.example.carpark.views.CarDetailsActiviy;
 
 import java.util.List;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 public class MyVehicleAdapter extends RecyclerView.Adapter<MyVehicleAdapter.CustomViewHolder> {
     private Context context;
