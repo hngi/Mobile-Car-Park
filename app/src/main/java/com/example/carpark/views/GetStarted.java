@@ -292,13 +292,14 @@ public class GetStarted extends BaseActivity {
                         sendOtp(phone);
                         Log.d(TAG, "Number is not Registered");
                     } else {
-                        logInOldUser();
+                        logInOldUser(phone);
                         Log.d(TAG, "Number is Registered");
                     }
                 } else {
                     Log.d(TAG, "SendOTP; Code: " + response.code() + "message; " + response.message());
                     showToast("(sendOTP) Invalid data");
                 }
+                sendOTPbar.setVisibility(View.INVISIBLE);
 
             }
 
@@ -309,9 +310,10 @@ public class GetStarted extends BaseActivity {
         });
     }
 
-    private void logInOldUser() {
-        showToast("Should open password Activity First for authentification before going to home");
-
+    private void logInOldUser(String phone) {
+        Intent intent = new Intent(this, PasswordActivity.class);
+        intent.putExtra(PasswordActivity.phoneForLoginKEY,phone);
+        startActivity(intent);
     }
 
 
