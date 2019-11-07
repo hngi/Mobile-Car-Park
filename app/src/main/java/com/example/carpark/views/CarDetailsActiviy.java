@@ -155,24 +155,7 @@ public class CarDetailsActiviy extends AppCompatActivity {
 
     public void saveCar(String plate_number, String make_model,boolean main_ride){
         String token = SharePreference.getINSTANCE(getApplicationContext()).getAccessToken();
-        ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
-        parkingApi.addNewVehicle(token,plate_number,make_model,main_ride).enqueue(new Callback<BaseDataResponse<Vehicle>>() {
-            @Override
-            public void onResponse(Call<BaseDataResponse<Vehicle>> call, Response<BaseDataResponse<Vehicle>> response) {
-                if(response.isSuccessful()){
-                    progressBar.setVisibility(View.GONE);
-                    Intent i = new Intent(getApplicationContext(),HomeActivity.class);
-                    startActivity(i);
-                }else{
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BaseDataResponse<Vehicle>> call, Throwable t) {
-
-            }
-        });
+        
     }
 
 
