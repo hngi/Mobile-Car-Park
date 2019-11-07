@@ -31,12 +31,16 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.example.carpark.R;
 import com.hbb20.CountryCodePicker;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Arrays;
 
@@ -68,40 +72,13 @@ public class GetStarted extends BaseActivity {
         cont_btn = (ImageView) findViewById(R.id.getSrt_cont_btn);
         sendOTPbar = findViewById(R.id.sendOTPbar);
 
-
-        // facebook authentication
-        callbackManager = CallbackManager.Factory.create();
-
         // Check if user is already logged in through facebook
         checkLoginStatus();
-
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(GetStarted.this, "User logged in through Facebook.", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "onSuccess: " + loginResult.getAccessToken().getUserId());
-                setResult(RESULT_OK);
-                startActivity(new Intent(GetStarted.this, HomeActivity.class));
-                finish();
-                /*call : loginResult.getAccessToken().getUserId() to get userId and save to database;*/
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(GetStarted.this, "Error " + error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
 
         fb_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginManager.getInstance().setAuthType(AUTH_TYPE)
-                        .logInWithReadPermissions(GetStarted.this, Arrays.asList(EMAIL));
+                onFacebookLogin();
             }
         });
 
@@ -125,20 +102,73 @@ public class GetStarted extends BaseActivity {
 
         });
     }
+    // facebook login
+    private void onFacebookLogin(){
+        callbackManager = CallbackManager.Factory.create();
 
-    private void openVerifyNumber() {
-        String Phone = number.getText().toString().trim();
-        String countryCode = ccp.getSelectedCountryCode();
+        // Set permissions
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile"));
 
-        String fullPhone = countryCode + Phone;
-        intent = new Intent(getApplicationContext(), VerifyNumber.class);
-        if (TextUtils.isEmpty(number.getText().toString())) {
-            number.setError("Please fill in phone number");
-        } else if (!((Phone.length() < 10) || (Phone.length() > 11))) {
-            showAlert(fullPhone);
-        } else {
-            Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
-        }
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+                Toast.makeText(GetStarted.this, "Successfully logged in with Facebook", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(GetStarted.this, HomeActivity.class);
+                intent.putExtra("login_type", "facebook");
+                startActivity(intent);
+                finish();
+
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject json, GraphResponse response) {
+                        if (response.getError() != null) {
+                            // handle error
+                            System.out.println("ERROR");
+
+                        } else {
+                            System.out.println("Success");
+
+                            try {
+
+                                String jsonresult = String.valueOf(json);
+                                System.out.println("JSON Result" + jsonresult);
+
+                                String email = json.getString("email");
+                                String id = json.getString("id");
+                                String firstname = json.getString("first_name");
+                                String lastname = json.getString("last_name");
+                                String phone = json.getString("phone");
+                                String image_url = "https://graph.facebook.com/" + id + "/picture?type=normal";
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                });
+
+                // We set parameters to the GraphRequest using a Bundle
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id, email, first_name, last_name, phone");
+                request.setParameters(parameters);
+                // Initiate the GraphRequest
+                request.executeAsync();
+
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d("TAG_CANCEL", "On cancel");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d("TAG_ERROR", error.toString());
+
+            }
+        });
     }
 
     //pass the facebook login results to the LoginManager via callbackManager.
@@ -156,6 +186,23 @@ public class GetStarted extends BaseActivity {
             finish();
         }
     }
+
+    private void openVerifyNumber() {
+        String Phone = number.getText().toString().trim();
+        String countryCode = ccp.getSelectedCountryCode();
+
+        String fullPhone = countryCode + Phone;
+        intent = new Intent(getApplicationContext(), VerifyNumber.class);
+        if (TextUtils.isEmpty(number.getText().toString())) {
+            number.setError("Please fill in phone number");
+        } else if (!((Phone.length() < 10) || (Phone.length() > 11))) {
+            showAlert(fullPhone);
+        } else {
+            Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     private void showAlert(final String phoneNumber) {
         TextView yes, no;
