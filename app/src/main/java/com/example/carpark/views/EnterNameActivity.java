@@ -3,6 +3,7 @@ package com.example.carpark.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.example.carpark.Api.Responses.LoginReg.UserResponse;
 import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.NewUser;
 import com.example.carpark.R;
+import com.example.carpark.utils.SharePreference;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,11 +29,15 @@ public class EnterNameActivity extends AppCompatActivity {
     EditText firstName,lastName;
     Button btnContinue;
     ProgressBar progressBar;
+    SharedPreferences sharedPreferences;
+    SharePreference sharePref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_name);
+        sharedPreferences = getSharedPreferences("API", MODE_PRIVATE);
+        sharePref = SharePreference.getINSTANCE(this);
 
         initView();
 
@@ -69,7 +75,6 @@ public class EnterNameActivity extends AppCompatActivity {
         String firstName = this.firstName.getText().toString();
         String lastName = this.lastName.getText().toString();
         String phoneNum = getIntent().getStringExtra("VerifiedPhone");
-        String otp = getIntent().getStringExtra("OTP");
 
 
         if (firstName.isEmpty()) {
@@ -80,7 +85,13 @@ public class EnterNameActivity extends AppCompatActivity {
             this.lastName.setError("Please enter your last name");
             this.lastName.requestFocus();
         }
-        NewUser newUser = new NewUser(otp, phoneNum, firstName, lastName);
+        NewUser newUser = new NewUser();
+        newUser.setPhone(phoneNum);
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setPassword("helloalexa");
+        newUser.setEmail("helloalexa@gmail.com");
+
 
         ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
         progressBar.setVisibility(View.VISIBLE);
@@ -89,9 +100,16 @@ public class EnterNameActivity extends AppCompatActivity {
             public void onResponse(Call<BaseDataResponse<UserResponse>> call, Response<BaseDataResponse<UserResponse>> response) {
                 if(response.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(EnterNameActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+
+                    UserResponse userResponse = response.body().getData();
+                    String accessToken = userResponse.getAccessToken();
+                    sharePref.setAccesstoken(accessToken);
+
+
+
                     Intent intent = new Intent(EnterNameActivity.this, HomeActivity.class);
                     startActivity(intent);
+                    Toast.makeText(EnterNameActivity.this, response.message(), Toast.LENGTH_SHORT).show();
                 }else{
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(EnterNameActivity.this, response.message(), Toast.LENGTH_SHORT).show();
