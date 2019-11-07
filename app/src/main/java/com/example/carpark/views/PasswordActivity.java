@@ -91,9 +91,11 @@ public class PasswordActivity extends BaseActivity {
 
                     getSharePref().setAccesstoken(accessToken);
                     getSharePref().setExpiresIn(expiresIn);
+                    getSharePref().setIsUserLoggedIn(true);
                     setStoredUser(user);
-
-                    startActivity(new Intent(PasswordActivity.this, HomeActivity.class));
+                    Intent i = new Intent(PasswordActivity.this, HomeActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+                    startActivity(i);
                 } else {
                     Log.d(TAG, "Login; Code: " + response.code() + " message; " + response.message());
                     showToast("(getLoginAccess) Invalid data");

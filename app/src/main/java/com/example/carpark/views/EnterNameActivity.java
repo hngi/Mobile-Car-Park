@@ -123,8 +123,9 @@ public class EnterNameActivity extends AppCompatActivity {
                     UserResponse userResponse = response.body().getData();
                     String accessToken = userResponse.getAccessToken();
                     sharePref.setAccesstoken(accessToken);
-
                     Intent intent = new Intent(EnterNameActivity.this, HomeActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+                    sharePref.setIsUserLoggedIn(true);
                     startActivity(intent);
                     Toast.makeText(EnterNameActivity.this, response.message(), Toast.LENGTH_SHORT).show();
                     finish();
