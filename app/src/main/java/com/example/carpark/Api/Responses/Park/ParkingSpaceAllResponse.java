@@ -19,7 +19,7 @@ public class ParkingSpaceAllResponse {
     @SerializedName("count")
     @Expose
     private int count;
-    @SerializedName("spaces")
+    @SerializedName("result")
     @Expose
     private List<ParkingSpace> parkingSpaces = null;
 
