@@ -226,8 +226,8 @@ public class GetStarted extends BaseActivity {
                     }
                 } else {
                     sendOTPbar.setVisibility(View.INVISIBLE);
-                    String message = response.body().getMessage();
-                    Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
+                   // String message = response.body().getMessage();
+                    Toast.makeText(GetStarted.this, response.message(), Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
                 }
             }
