@@ -3,15 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.carpark">
 
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -21,9 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <uses-library android:name="com.google.android.maps"/>
-
+        <activity android:name=".views.GetAllCarDetailsActivity"></activity>
+        <activity
+            android:name=".views.MyParkingSpace"
+            android:parentActivityName=".views.HomeActivity" />
+        <activity android:name=".IgnoreForApiTest.ApiTestActivity" />
+        <activity android:name=".views.homefragments.SupportFragment" />
+        <activity android:name=".views.Map" />
+        <activity
+            android:name=".views.MapsActivity"
+            android:parentActivityName=".views.HomeActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -32,13 +35,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD_sKnjGf4KrzOB-743vnPPpSqAZdS1Qwc" />
-
-        <activity
-            android:name=".views.MapsActivity"
-            android:label="map"></activity>
         <activity android:name=".views.VehicleActivity" />
         <activity android:name=".views.PaymentMethodActivity" />
         <activity
@@ -47,7 +43,7 @@
         <activity
             android:name=".views.EnterNameActivity"
             android:parentActivityName=".views.EnterOTP"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Material" /> <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
         <activity
             android:name=".views.GetStarted"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -57,19 +53,20 @@
         <activity
             android:name=".views.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+            </intent-filter>-->
         </activity>
         <activity
+            android:name=".views.ParkLocation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".views.AddCardActivity"
+            android:label="Add Card"
             android:parentActivityName=".views.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Add Card"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.HomeActivity"
             android:label="Home"
@@ -79,7 +76,7 @@
             android:label="Transaction" />
         <activity
             android:name=".views.InvoiceActivity"
-            android:parentActivityName=".views.HomeActivity" />
+            android:parentActivityName=".views.ConfirmationActivity" />
         <activity
             android:name=".views.DetailsActivity"
             android:parentActivityName=".views.HomeActivity" />
@@ -91,23 +88,34 @@
             android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.ProfileActivity"
-            android:parentActivityName=".views.EnterNameActivity" />
+            android:parentActivityName=".views.HomeActivity" />
         <activity
             android:name=".views.VerifyNumber"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
         <activity
-            android:name=".views.CarDetailsActiviy"/>
-
-
-
-
+            android:name=".views.CarDetailsActiviy"
+            android:parentActivityName=".views.ScheduleActivity" />
         <activity android:name=".views.BaseActivity" />
-
-
         <activity android:name=".views.BarterActivity" />
+        <activity android:name=".IgnoreForApiTest.StartActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD1XwtM5P9rGEwSyvDY4f2W5VqhS85Xdjo" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="co.paystack.android.PublicKey"
+            android:value="pk_test_a6776f501f9fc824598fe84b547c0b742dd357f0" />
+
+        <uses-library android:name="com.google.android.maps" />
     </application>
 
 </manifest>

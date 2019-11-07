@@ -1,18 +1,16 @@
 package com.example.carpark.views;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.carpark.R;
 
 public class CarDetailsActiviy extends AppCompatActivity {
@@ -21,6 +19,10 @@ public class CarDetailsActiviy extends AppCompatActivity {
     TextView carDetails;
     EditText plateNumber, carModel;
     Switch primaryRide;
+    private String plateNum,makeModel;
+    private boolean main_ride = true;
+    private ProgressBar progressBar;
+    private String vehicle_id, plate = "new", make;
 
 
 
@@ -29,32 +31,35 @@ public class CarDetailsActiviy extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_details);
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        getSupportActionBar().setTitle("Add Vechicle"); // for set actionbar title
+        getSupportActionBar().setTitle("Add Vehicle"); // for set actionbar title
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        vehicle_id = getIntent().getStringExtra("Vehicle_Id");
+        plate = getIntent().getStringExtra("plate_number");
+        make = getIntent().getStringExtra("make");
         viewsInit();
-
-        saveCar();
+        getCarDetails(vehicle_id,plate,make);
+        if(plate!=null){
+            getCarDetails(vehicle_id,plate,make);
+        }else{
+            saveCarDetails.setText("Save");
+            saveCarDetails.setClickable(false);
+            getSupportActionBar().setTitle("Add New Vehicle");
+            saveCarDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkInputBoxes();
+                }
+            });
+        }
     }
 
-    // when the back icon on the activity page is clicked
-   // public boolean onOptionsItemSelected(MenuItem item) {
-   //     switch (item.getItemId()) {
-    //        case R.id.action_settings:
-
-//                return true;
-
-//            case R.id.back:
-//
-//                return true;
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-
-//        }
-//    }
-
+    private void getCarDetails(String vehicleId, String plate, String make) {
+        plateNumber.setText(plate);
+        carModel.setText(make);
+        saveCarDetails.setText("Update");
+        saveCarDetails.setClickable(false);
+        getSupportActionBar().setTitle(make);
+    }
 
     // initialising the views
     public void viewsInit(){
@@ -62,63 +67,120 @@ public class CarDetailsActiviy extends AppCompatActivity {
         primaryRide = (Switch) findViewById(R.id.primary_ride);
         plateNumber = (EditText) findViewById(R.id.car_plate_number);
         carModel = (EditText) findViewById(R.id.car_model);
-
+        progressBar = findViewById(R.id.progressBar2);
+        progressBar.setVisibility(View.INVISIBLE);
     }
-
-
     // checking if the input boxes were filled
     public void checkInputBoxes(){
-        viewsInit();
-        final String plateNumber = this.plateNumber.getText().toString();
-        String carModel = this.carModel.getText().toString();
-        final boolean primary = true;
-
+        plateNum = plateNumber.getText().toString();
+        makeModel = carModel.getText().toString();
         //checking the input boxes first
-        if (plateNumber.isEmpty()){
+        if (plateNum.isEmpty()){
             this.plateNumber.setError("Please fill this field");
-        }else if (carModel.isEmpty()){
+        }else if (makeModel.isEmpty()){
             this.carModel.setError("please fill this field");
         }else{
-            // checking the switch button second
             primaryRide.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked){
-
-                        Toast.makeText(CarDetailsActiviy.this,"Primary",Toast.LENGTH_SHORT);
-
+                        main_ride = true;
                     }else{
-                        //saving the carDetails to sharedpreferences
-
+                        main_ride = false;
                     }
-
                 }
             });
-            //saving data with SharedPreferences
-            //saving String
-            SharedPreferences sp = getSharedPreferences("prefs", Activity.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sp.edit();
-            editor.putString("data1", plateNumber);
-            editor.putString("data2",carModel);
-            editor.putBoolean("data3",primary);
-            editor.commit();
-
+            progressBar.setVisibility(View.VISIBLE);
+            saveCar(plateNum,makeModel,main_ride);
         }
 
     }
 
-    public void saveCar(){
-        saveCarDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //viewsInit();
-                //checkInputBoxes();
-                Intent intent = new Intent(CarDetailsActiviy.this, HomeActivity.class);
-                startActivity(intent);
+    public void saveCar(String plate_number, String make_model,boolean main_ride){
+        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3JlZ2lzdGVyXC91c2VyIiwiaWF0IjoxNTcyODc4NDc0LCJleHAiOjE1NzI5ODY0NzQsIm5iZiI6MTU3Mjg3ODQ3NCwianRpIjoidEp4SGJ0OGo1MXFoM25MSSIsInN1YiI6MTIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.vLYVZOEHCk1K79BKzwF2GjdhrTsdgIlfgB3zU6jWEBE";
 
-            }
-        });
     }
 
 
 }
+
+
+
+
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_car_details);
+//        getSupportActionBar().setTitle("Add Vehicle"); // for set actionbar title
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        vehicle_id = getIntent().getStringExtra("Vehicle_Id");
+//        plate = getIntent().getStringExtra("plate_number");
+//        make = getIntent().getStringExtra("make");
+//        viewsInit();
+//        getCarDetails(vehicle_id,plate,make);
+//        if(plate!=null){
+//            getCarDetails(vehicle_id,plate,make);
+//        }else{
+//            saveCarDetails.setText("Save");
+//            saveCarDetails.setClickable(false);
+//            getSupportActionBar().setTitle("Add New Vehicle");
+//            saveCarDetails.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    checkInputBoxes();
+//                }
+//            });
+//        }
+//    }
+//
+//    private void getCarDetails(String vehicleId, String plate, String make) {
+//        plateNumber.setText(plate);
+//        carModel.setText(make);
+//        saveCarDetails.setText("Update");
+//        saveCarDetails.setClickable(false);
+//        getSupportActionBar().setTitle(make);
+//    }
+//
+//    // initialising the views
+//    public void viewsInit(){
+//        saveCarDetails = (Button) findViewById(R.id.save_car_details);
+//        primaryRide = (Switch) findViewById(R.id.primary_ride);
+//        plateNumber = (EditText) findViewById(R.id.car_plate_number);
+//        carModel = (EditText) findViewById(R.id.car_model);
+//        progressBar = findViewById(R.id.progressBar2);
+//        progressBar.setVisibility(View.INVISIBLE);
+//    }
+//    // checking if the input boxes were filled
+//    public void checkInputBoxes(){
+//        plateNum = plateNumber.getText().toString();
+//        makeModel = carModel.getText().toString();
+//        //checking the input boxes first
+//        if (plateNum.isEmpty()){
+//            this.plateNumber.setError("Please fill this field");
+//        }else if (makeModel.isEmpty()){
+//            this.carModel.setError("please fill this field");
+//        }else{
+//            primaryRide.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                    if (isChecked){
+//                        main_ride = true;
+//                    }else{
+//                        main_ride = false;
+//                    }
+//                }
+//            });
+//            progressBar.setVisibility(View.VISIBLE);
+//            saveCar(plateNum,makeModel,main_ride);
+//        }
+//
+//    }
+//
+//    public void saveCar(String plate_number, String make_model,boolean main_ride){
+//        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3JlZ2lzdGVyXC91c2VyIiwiaWF0IjoxNTcyODc4NDc0LCJleHAiOjE1NzI5ODY0NzQsIm5iZiI6MTU3Mjg3ODQ3NCwianRpIjoidEp4SGJ0OGo1MXFoM25MSSIsInN1YiI6MTIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.vLYVZOEHCk1K79BKzwF2GjdhrTsdgIlfgB3zU6jWEBE";
+//
+//    }
+//
+//
+//}

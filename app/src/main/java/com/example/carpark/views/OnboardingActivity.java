@@ -3,6 +3,7 @@ package com.example.carpark.views;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -26,6 +27,7 @@ public class OnboardingActivity extends AhoyOnboarderActivity {
         onboarderCard1.setBackgroundColor(R.color.colorPrimary);
         onboarderCard1.setTitleColor(R.color.color_white);
         onboarderCard1.setTitleTextSize(dpToPixels(10, this));
+          //setFinishButtonTitle()
 
         AhoyOnboarderCard onboarderCard2 = new AhoyOnboarderCard("Reserve parking space with no hassle", null, R.drawable.splash_logo);
         onboarderCard2.setBackgroundColor(R.color.colorPrimary);
@@ -36,6 +38,7 @@ public class OnboardingActivity extends AhoyOnboarderActivity {
         onboarderCard3.setBackgroundColor(R.color.colorPrimary);
         onboarderCard3.setTitleColor(R.color.color_white);
         onboarderCard3.setTitleTextSize(dpToPixels(10, this));
+
 
         List<AhoyOnboarderCard> pages = new ArrayList<>();
         pages.add(onboarderCard1);
@@ -59,12 +62,18 @@ public class OnboardingActivity extends AhoyOnboarderActivity {
         //Set finish button text
         setFinishButtonTitle("Get Started");
 
+
         //Set the finish button style
         setFinishButtonDrawableStyle(ContextCompat.getDrawable(this, R.drawable.onboarding_finish_btn));
     }
 
     @Override
     public void onFinishButtonPressed() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("firstTime",false);
+        editor.apply();
+
         intent = new Intent( OnboardingActivity.this, GetStarted.class);
         startActivity(intent);
         finish();

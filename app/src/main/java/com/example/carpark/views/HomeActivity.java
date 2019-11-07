@@ -1,5 +1,6 @@
 package com.example.carpark.views;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -68,66 +69,62 @@ public class HomeActivity extends AppCompatActivity {
 
     private void navigationClickListeners() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            class Logout extends Fragment {
+                Intent intent = new Intent(getApplicationContext(),GetStarted.class);
+
+                @Override
+                public void startActivity(Intent intent) {
+                    super.startActivity(intent);
+                }
+            }
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment = null;
-                String titile = "";
+                String title = "";
                 switch (item.getItemId()) {
 
                     case R.id.nav_notification:
-                        titile = "Notificatins";
-                        fragment = null;
-
+                        title = "Notificatins";
+                        fragment = new NotificationFragment();
                         break;
 
                     case R.id.nav_parking_history:
-                        titile = "Parking History";
+                        title = "Parking History ";
                         fragment = new ParkingHistoryFragment();
-                        toolbar.setTitle("Parking History");
                         break;
 
                     case R.id.nav_pay:
-                        titile = "Payment Methods";
+                        title = "Payment Methods";
                         fragment = new PaymentMethodsFragment();
-                        toolbar.setTitle("Payment Methods");
                         break;
 
                     case R.id.nav_prom:
-                        titile = "Promotions";
+                        title = "Promotions";
                         fragment = new PromotionFragment();
-                        toolbar.setTitle("Promotion");
                         break;
 
                     case R.id.nav_car:
-                        titile = "My Vehicle";
+                        title = "My Vehicle";
                         fragment = new MyVehicleFragment();
-                        toolbar.setTitle("My Vehicle");
-                        break;
-
-                    case R.id.nav_about:
-                        titile = "About";
-                        fragment = new AboutFragment();
-                        toolbar.setTitle("About/How it works");
                         break;
 
                     case R.id.nav_settings:
-                        titile = "Settings";
+                        title = "Settings";
                         fragment = new SettingsFragment();
-                        toolbar.setTitle("Settings");
                         break;
 
-
-
+                    case R.id.nav_sign_out:
+                        title = "Logout";
+                        fragment = new Logout();
+                        break;
                 }
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 navigationView.setCheckedItem(item);
                 if (fragment != null) {
                     setUpFragment(fragment);
                     enableBackViews(true);
-                    toolbar.setTitle(titile);
-
-
-
+                    toolbar.setTitle(title);
 
                 }
                 return true;
@@ -136,7 +133,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private void setUpFragment(Fragment fragment) {
+    public void setUpFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.home_frame, fragment).commit();
 
     }

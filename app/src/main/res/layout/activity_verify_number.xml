@@ -12,7 +12,7 @@
         android:layout_width="253dp"
         android:layout_height="36dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/nunito"
         android:text="Enter your Phone Number"
         android:textSize="16sp"
@@ -45,30 +45,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-        <TextView
-            android:id="@+id/vn_code"
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/verify_ccp"
             android:layout_width="68dp"
             android:layout_height="match_parent"
-            android:layout_weight="0"
+            android:layout_weight="1"
             android:fontFamily="@font/nunito"
-            android:gravity="center_vertical"
-            android:text="+234"
-            android:textAlignment="center"
-            android:textSize="15sp" />
+            android:gravity="center"
+            app:ccp_arrowColor="@color/colorPrimary"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_contentColor="#777777"
+            app:ccp_showArrow="false"
+            app:ccp_showFlag="false"
+            app:ccp_showNameCode="false"
+            app:ccp_textSize="15sp">
+
+        </com.hbb20.CountryCodePicker>
 
         <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
+            android:id="@+id/verify_number"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0"
+            android:layout_weight="4"
+            android:autofillHints="+234"
             android:background="@drawable/edittext_line"
-            android:ems="10"
             android:fontFamily="@font/nunito"
+            android:hint="Enter your phone number"
             android:inputType="phone"
-            android:paddingStart="8dp"
+            android:maxLength="12"
+            android:paddingLeft="8dp"
+            android:textAllCaps="false"
+            android:textColor="#777777"
+            android:textColorHint="#777777"
             android:textSize="15sp" />
 
     </LinearLayout>
+
 
     <Button
         android:id="@+id/next1"
@@ -81,10 +93,9 @@
         android:textColor="@color/color_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.003" />
+        app:layout_constraintVertical_bias="0.142" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -100,5 +111,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.037"
         app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <ProgressBar
+        android:id="@+id/progressBarVer"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/next1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carpark.R;
@@ -20,7 +21,7 @@ import technolifestyle.com.imageslider.FlipperView;
 public class DetailsActivity extends AppCompatActivity {
     FlipperLayout flipperLayout;
     RelativeLayout address_picker;
-
+    TextView p_address;
 
     //Todo: Note, Most images are placeholders
 
@@ -29,7 +30,14 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        getSupportActionBar().setTitle("Lekki Gardens");
+        //This is just a test. Will improve this....
+        Intent m =getIntent();
+        Bundle a = m.getBundleExtra("location");
+        String location = a.getString("location");
+
+        String park_address = getIntent().getStringExtra("address"); //this is just a test. Will improve this later...
+
+        getSupportActionBar().setTitle(park_address);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         flipperLayout = findViewById(R.id.flipper_layout);
@@ -37,10 +45,13 @@ public class DetailsActivity extends AppCompatActivity {
 
         address_picker = findViewById(R.id.ad_rel_layout);
 
+        p_address = findViewById(R.id.park_address);
+        p_address.setText(park_address);
+
         address_picker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailsActivity.this, MapsActivity.class);
+                Intent intent = new Intent(DetailsActivity.this, ParkLocation.class);
                 startActivity(intent);
             }
         });
