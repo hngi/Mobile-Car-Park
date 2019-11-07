@@ -9,6 +9,7 @@ import com.example.carpark.Api.RetrofitClient;
 import com.example.carpark.Model.Vehicle;
 import com.example.carpark.R;
 import com.example.carpark.adapter.MyVehicleAdapter;
+import com.example.carpark.utils.SharePreference;
 import com.example.carpark.views.CarDetailsActiviy;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -66,7 +67,7 @@ public class MyVehicleFragment extends Fragment {
         myVehicleAdapter = new MyVehicleAdapter(getContext(), vehicleList );
         recyclerView.setAdapter(myVehicleAdapter);
 
-        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL2xvZ2luXC91c2VyIiwiaWF0IjoxNTczMTE2Njg3LCJleHAiOjE1NzMyMjQ2ODcsIm5iZiI6MTU3MzExNjY4NywianRpIjoiVkxKUUthb3lvVEJZQU5hcCIsInN1YiI6NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.JSSqajjxnMi28z__Q8hUQfZi0hrH65Y8qAeBB_HPv6M";
+        String token = SharePreference.getINSTANCE(getContext()).getAccessToken();
         ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
         parkingApi.getAllVehicles(token).enqueue(new Callback<BaseDataResponse<List<Vehicle>>>() {
             @Override
