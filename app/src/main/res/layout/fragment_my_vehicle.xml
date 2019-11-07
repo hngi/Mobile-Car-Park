@@ -38,4 +38,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
+    <TextView
+        android:id="@+id/new_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="No Vehicles added. Click + below to add a Vehicle"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
