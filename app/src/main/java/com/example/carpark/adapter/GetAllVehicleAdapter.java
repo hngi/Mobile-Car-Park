@@ -49,7 +49,10 @@ public class GetAllVehicleAdapter extends RecyclerView.Adapter<GetAllVehicleAdap
         return vehicles.size();
     }
 
-    private void
+    public void summitList(List<Vehicle> vehicleList){
+        vehicles=vehicleList;
+        notifyDataSetChanged();
+    }
 
     class CostomViewHolder extends RecyclerView.ViewHolder{
         public final View view;

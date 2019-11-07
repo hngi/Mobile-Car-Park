@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -29,21 +29,15 @@ import retrofit2.Response;
  */
 
 public class AllVehicleActivity extends BaseActivity {
+    private static final String TAG = "AllVehicleActivity";
     public Activity activity;
     public Dialog dialog;
     TextView mPlateNumber, mCarModel;
     RecyclerView recyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    RecyclerView.Adapter adapter;
+    GetAllVehicleAdapter adapter;
     private List<Vehicle> vehicles;
 
-//    public AllVehicleActivity(Context context, int themeResId) {
-//        super(context, themeResId);
-//    }
-//
-//    public AllVehicleActivity(Context context, boolean cancelable, OnCancelListener cancelListener) {
-//        super(context, cancelable, cancelListener);
-//    }
 
 
     @Override
@@ -62,7 +56,12 @@ public class AllVehicleActivity extends BaseActivity {
         adapter=new GetAllVehicleAdapter(this, vehicles);
 
         recyclerView.setAdapter(adapter);
+        getCarUserId();
         getAllVehicles();
+    }
+
+    private int getCarUserId() {
+        return getStoredUser().getId();
     }
 
     private void getAllVehicles() {
@@ -70,15 +69,21 @@ public class AllVehicleActivity extends BaseActivity {
             @Override
             public void onResponse(Call<BaseDataResponse<List<Vehicle>>> call, Response<BaseDataResponse<List<Vehicle>>> response) {
                 if (response.isSuccessful()){
-                    vehicles = response.body().getData();
-                    adapter.summitList();
-
+                    List<Vehicle> newVehicles = response.body().getData();
+                    for(Vehicle v:newVehicles){
+                        if(v.getUserId()== getCarUserId()){
+                            vehicles.add(v);
+                        }
+                    }
+                    adapter.summitList(vehicles);
+                } else {
+                    Log.d(TAG, "onResponse: Error Message: "+response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<BaseDataResponse<List<Vehicle>>> call, Throwable t) {
-
+                Log.d(TAG, "onFailure: Message: "+t.getMessage());
             }
         });
     }
