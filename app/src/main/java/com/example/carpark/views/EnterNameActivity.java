@@ -123,11 +123,10 @@ public class EnterNameActivity extends AppCompatActivity {
                     String accessToken = userResponse.getAccessToken();
                     sharePref.setAccesstoken(accessToken);
 
-
-
                     Intent intent = new Intent(EnterNameActivity.this, HomeActivity.class);
                     startActivity(intent);
                     Toast.makeText(EnterNameActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                    finish();
                 }else{
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(EnterNameActivity.this, response.message(), Toast.LENGTH_SHORT).show();

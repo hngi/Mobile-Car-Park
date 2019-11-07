@@ -29,6 +29,9 @@ public class NewUser {
     public NewUser(String s, String s1, String ehma, String ugbogo) {
     }
 
+    public NewUser(String s, String s1, String ehma, String ugbogo) {
+    }
+
     public String getPhone() {
         return phone;
     }

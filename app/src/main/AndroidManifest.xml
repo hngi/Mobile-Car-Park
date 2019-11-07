@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.Password"></activity>
-        <activity android:name=".views.AllVehicleActivity" />
+        <activity android:name=".views.PasswordActivity"></activity>
+        <activity android:name=".views.GetAllCarDetailsActivity" />
         <activity
             android:name=".views.MyParkingSpace"
             android:parentActivityName=".views.HomeActivity" />
