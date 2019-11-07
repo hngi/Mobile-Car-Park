@@ -193,6 +193,7 @@ public class HomeActivity extends BaseActivity {
         }
 
         SharePreference.getINSTANCE(getApplicationContext()).setIsUserLoggedIn(false);
+        SharePreference.getINSTANCE(getApplicationContext()).setAccesstoken("null");
         Intent logout = new Intent(getApplicationContext(), GetStarted.class);
         logout.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(logout);
