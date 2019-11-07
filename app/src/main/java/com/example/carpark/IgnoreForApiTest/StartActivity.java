@@ -124,7 +124,7 @@ public class StartActivity extends BaseActivity {
                     int expiresIn = response.body().getData().getExpiresIn();
                     User user = response.body().getData().getUser();
 
-                    getSharePref().setAccesstoken(accessToken);
+                    getSharePref().setAccesstoken("Bearer " + accessToken);
                     getSharePref().setExpiresIn(expiresIn);
                     setStoredUser(user);
 
