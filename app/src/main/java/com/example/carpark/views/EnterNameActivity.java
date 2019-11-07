@@ -122,7 +122,7 @@ public class EnterNameActivity extends AppCompatActivity {
 
                     UserResponse userResponse = response.body().getData();
                     String accessToken = userResponse.getAccessToken();
-                    sharePref.setAccesstoken("Bearer " + accessToken);
+                    sharePref.setAccesstoken(accessToken);
                     Intent intent = new Intent(EnterNameActivity.this, HomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
                     sharePref.setIsUserLoggedIn(true);

@@ -41,7 +41,8 @@ public class SharePreference {
     }
 
     public void setAccesstoken(String accesstoken){
-        sharedPreferences.edit().putString(ID_ACCESS_KEY,"Bearer "+accesstoken).apply();
+        String fullToken = "Bearer " + accesstoken;
+        sharedPreferences.edit().putString(ID_ACCESS_KEY, fullToken).apply();
     }
 
     public String getAccessToken(){
