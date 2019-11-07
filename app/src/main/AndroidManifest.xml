@@ -3,12 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.carpark">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-
     <application
         android:name=".utils.Commons"
         android:allowBackup="true"
@@ -18,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.GetAllCarDetailsActivity"></activity>
+        <activity android:name=".views.Password"></activity>
+        <activity android:name=".views.GetAllCarDetailsActivity" />
         <activity
             android:name=".views.MyParkingSpace"
             android:parentActivityName=".views.HomeActivity" />
@@ -98,12 +93,15 @@
             android:parentActivityName=".views.ScheduleActivity" />
         <activity android:name=".views.BaseActivity" />
         <activity android:name=".views.BarterActivity" />
-        <activity android:name=".IgnoreForApiTest.StartActivity" >
-            <!--<intent-filter>
+        <activity android:name=".IgnoreForApiTest.StartActivity">
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
 
         <meta-data
@@ -118,5 +116,11 @@
 
         <uses-library android:name="com.google.android.maps" />
     </application>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
