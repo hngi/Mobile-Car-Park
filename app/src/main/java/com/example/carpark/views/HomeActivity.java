@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.example.carpark.Api.Responses.BaseDataResponse;
 import com.example.carpark.Model.User;
 import com.example.carpark.R;
+import com.example.carpark.utils.Commons;
 import com.example.carpark.views.homefragments.DefaultFragment;
 import com.example.carpark.views.homefragments.MyVehicleFragment;
 import com.example.carpark.views.homefragments.ParkingHistoryFragment;
@@ -33,6 +34,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.carpark.utils.Commons.*;
+
 public class HomeActivity extends BaseActivity {
 
     //widgets
@@ -43,7 +46,6 @@ public class HomeActivity extends BaseActivity {
     private boolean mToolBarNavigationListenerIsRegistered = false;
     private TextView navText;
     private View headerView;
-    public static User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +58,13 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void fetchUserDetails() {
-        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL3ZlcmlmeS1vdHAiLCJpYXQiOjE1NzMwMzcyMTYsImV4cCI6MTU3MzE0NTIxNiwibmJmIjoxNTczMDM3MjE2LCJqdGkiOiJsR0JUOGZLOHJMemowNUI5Iiwic3ViIjoxOCwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.b-aVgC0fXv9PALA5mNobvfHGeVxkIjc5eTzxpByKvys";
+        String token = getSharePref().getAccessToken();
         getParkingApi().getProfileDetails(token).enqueue(new Callback<BaseDataResponse<User>>() {
             @Override
             public void onResponse(Call<BaseDataResponse<User>> call, Response<BaseDataResponse<User>>response) {
                 if(response.isSuccessful()){
-                    user = response.body().getData();
-                    String name = user.getFirstName() + " " + user.getLastName();
+                    setUser(response.body().getData());
+                    String name = getUser().getFirstName() + " " + getUser().getLastName();
                     navText.setText(name);
                 }
 
