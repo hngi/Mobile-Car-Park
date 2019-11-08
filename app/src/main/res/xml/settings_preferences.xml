@@ -12,8 +12,8 @@
 
     <intent
         android:action="android.intent.action.VIEW"
-        android:targetPackage="com.example.carpark"
-        android:targetClass="com.example.carpark.views.ProfileActivity">
+        android:targetPackage="com.carpark"
+        android:targetClass="com.carpark.views.ProfileActivity">
     </intent>
 
     </Preference>
@@ -49,7 +49,7 @@
             android:title="About" />
 
         <!-- Add Nested FAQ Fragment Here-->
-        <!-- Add  android:fragment="com.example.carpark.views.FAQ"-->
+        <!-- Add  android:fragment="com.carpark.views.FAQ"-->
 
         <Preference
             android:defaultValue="Default value"
