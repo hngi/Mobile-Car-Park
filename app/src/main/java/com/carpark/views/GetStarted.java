@@ -103,8 +103,9 @@ public class GetStarted extends BaseActivity {
 
         });
     }
+
     // facebook login
-    private void onFacebookLogin(){
+    private void onFacebookLogin() {
         callbackManager = CallbackManager.Factory.create();
 
         // Set permissions
@@ -186,7 +187,7 @@ public class GetStarted extends BaseActivity {
             startActivity(new Intent(GetStarted.this, HomeActivity.class));
             finish();
         }
-        if (SharePreference.getINSTANCE(this).getIsUserLoggedIn()==true) {
+        if (SharePreference.getINSTANCE(this).getIsUserLoggedIn() == true) {
             // user already signed in
             startActivity(new Intent(GetStarted.this, HomeActivity.class));
             finish();
@@ -202,12 +203,12 @@ public class GetStarted extends BaseActivity {
         if (TextUtils.isEmpty(number.getText().toString())) {
             number.setError("Please fill in phone number");
         } else if (!((Phone.length() < 10) || (Phone.length() > 11))) {
+            cont_btn.setClickable(false);
             showAlert(fullPhone);
         } else {
             Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 
     private void showAlert(final String phoneNumber) {
@@ -271,6 +272,7 @@ public class GetStarted extends BaseActivity {
                     sendOTPbar.setVisibility(View.INVISIBLE);
                     assert response.body().getMessage() != null;
                     String message = response.body().getMessage();
+                    cont_btn.setClickable(true);
                     Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
                 }
@@ -280,7 +282,7 @@ public class GetStarted extends BaseActivity {
             public void onFailure(Call<OTPResponse> call, Throwable t) {
                 sendOTPbar.setVisibility(View.INVISIBLE);
                 Toast.makeText(GetStarted.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-
+                cont_btn.setClickable(true);
                 Log.d(TAG, "onFailure: " + t.getMessage());
 
             }
@@ -311,6 +313,7 @@ public class GetStarted extends BaseActivity {
 
             @Override
             public void onFailure(Call<VerificationResponse> call, Throwable t) {
+                sendOTPbar.setVisibility(View.INVISIBLE);
                 Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
@@ -318,7 +321,7 @@ public class GetStarted extends BaseActivity {
 
     private void logInOldUser(String phone) {
         Intent intent = new Intent(this, PasswordActivity.class);
-        intent.putExtra(PasswordActivity.phoneForLoginKEY,phone);
+        intent.putExtra(PasswordActivity.phoneForLoginKEY, phone);
         startActivity(intent);
     }
 
