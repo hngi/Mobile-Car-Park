@@ -3,8 +3,6 @@ package com.carpark.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
  * @author .: Ehma Ugbogo
  * @email ..: ehmaugbogo@gmail.com
@@ -26,13 +24,19 @@ public class Vehicle {
     private String makeModel;
     @SerializedName("main_ride")
     @Expose
-    private int mainRide;
+    private boolean mainRide;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+
+    private String token;
+
+
+    public Vehicle() {
+    }
 
     public int getId() {
         return id;
@@ -66,11 +70,11 @@ public class Vehicle {
         this.makeModel = makeModel;
     }
 
-    public int getMainRide() {
+    public boolean isMainRide() {
         return mainRide;
     }
 
-    public void setMainRide(int mainRide) {
+    public void setMainRide(boolean mainRide) {
         this.mainRide = mainRide;
     }
 
@@ -90,4 +94,19 @@ public class Vehicle {
         this.updatedAt = updatedAt;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+        public Vehicle(String token, String plateNumber, String makeModel, boolean mainRide) {
+        this.plateNumber = plateNumber;
+        this.makeModel = makeModel;
+        this.mainRide = mainRide;
+        this.token = token;
+
+    }
 }
