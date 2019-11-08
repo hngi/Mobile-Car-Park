@@ -19,6 +19,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.carpark.R;
+import com.carpark.utils.SharePreference;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
@@ -28,7 +29,8 @@ import java.util.Date;
 public class ScheduleActivity extends AppCompatActivity {
     private TextView tvCheckIn;
     private TextView tvCheckOut;
-    private TextView tvDuration, park,address;
+    private TextView tvDuration, park,address,vehicle_number;
+    private Button schedule_btn;
     FloatingActionButton add_vehicle;
     final Calendar checkInDate = Calendar.getInstance();
     final Calendar checkOutDate = Calendar.getInstance();
@@ -49,7 +51,15 @@ public class ScheduleActivity extends AppCompatActivity {
         tvCheckIn = findViewById(R.id.textView7);
         tvCheckOut = findViewById(R.id.textView10);
         tvDuration = findViewById(R.id.textView13);
+        vehicle_number = findViewById(R.id.textView15);
         add_vehicle = findViewById(R.id.fb_schedule_add);
+        schedule_btn = findViewById(R.id.schedule_button);
+
+        String date_in = SharePreference.getINSTANCE(getApplicationContext()).getINFormattedDate();
+        String date_out = SharePreference.getINSTANCE(getApplicationContext()).getOutFormattedDate();
+
+        tvCheckIn.setText(date_in);
+        tvCheckOut.setText(date_out);
 
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
         String park_name = sharedPref.getString("Park_Name","null");
@@ -57,6 +67,9 @@ public class ScheduleActivity extends AppCompatActivity {
 
         park.setText(park_name);
         address.setText(park_address);
+        String vehicle_no = SharePreference.getINSTANCE(this).getMainVehicleNumber();
+
+        vehicle_number.setText(vehicle_no);
 
         add_vehicle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +79,26 @@ public class ScheduleActivity extends AppCompatActivity {
             }
         });
 
+        schedule_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                next();
+            }
+        });
+
     }
 
-    public void next(View view){
-        Intent intent = new Intent(ScheduleActivity.this, ConfirmationActivity.class);
-        startActivity(intent);
-        finish();
+    public void next(){
+        if (tvCheckIn.getText().toString().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Kindly set a Check-In time first", Toast.LENGTH_SHORT).show();
+        }else if(tvCheckOut.getText().toString().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Kindly set a Check-Out time first", Toast.LENGTH_SHORT).show();
+        }else{
+            Intent intent = new Intent(ScheduleActivity.this, ConfirmationActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
 
     public void checkIn(View view){
@@ -84,7 +111,13 @@ public class ScheduleActivity extends AppCompatActivity {
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         checkInDate.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         checkInDate.set(Calendar.MINUTE, minute);
+                        if(!SharePreference.getINSTANCE(getApplicationContext()).getOutFormattedDate().equals("null")){
+                            setDuration();
+                        }
                         tvCheckIn.setText(getFormattedDate(checkInDate));
+                        SharePreference.getINSTANCE(getApplicationContext()).setINFormattedDay(getFormattedDay(checkInDate));
+                        SharePreference.getINSTANCE(getApplicationContext()).setINFormattedTime(getFormattedTime(checkInDate));
+                        SharePreference.getINSTANCE(getApplicationContext()).setINFormattedDate(getFormattedDate(checkInDate));
                     }
                 }, checkInDate.get(Calendar.HOUR_OF_DAY), checkInDate.get(Calendar.MINUTE), false).show();
             }
@@ -107,6 +140,9 @@ public class ScheduleActivity extends AppCompatActivity {
                         checkOutDate.set(Calendar.MINUTE, minute);
                         setDuration();
                         tvCheckOut.setText(getFormattedDate(checkOutDate));
+                        SharePreference.getINSTANCE(getApplicationContext()).setOutFormattedDay(getFormattedDay(checkOutDate));
+                        SharePreference.getINSTANCE(getApplicationContext()).setOutFormattedTime(getFormattedTime(checkOutDate));
+                        SharePreference.getINSTANCE(getApplicationContext()).setOutFormattedDate(getFormattedDate(checkOutDate));
                     }
                 }, checkOutDate.get(Calendar.HOUR_OF_DAY), checkOutDate.get(Calendar.MINUTE), false).show();
             }
@@ -121,15 +157,22 @@ public class ScheduleActivity extends AppCompatActivity {
         secs = secs % 60;
         tvDuration.setText(String.valueOf(hours) + " hrs " + String.valueOf(mins) + " mins ");
     }
+    public String getFormattedDay(Calendar date){
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM");
+        return formatter.format(date.getTime());
+    }
+    public String getFormattedTime(Calendar date){
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        return formatter.format(date.getTime());
+    }
 
     public String getFormattedDate(Calendar date){
-        SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, HH:mm");
-        String strDate = formatter.format(date.getTime());
-        return strDate;
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM, HH:mm");
+        return formatter.format(date.getTime());
     }
 
     public void addVehicle(View view){
-        Intent intent = new Intent(ScheduleActivity.this, DetailsActivity.class);
+        Intent intent = new Intent(ScheduleActivity.this, CarDetailsActiviy.class);
         startActivity(intent);
     }
 }

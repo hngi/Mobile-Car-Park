@@ -25,7 +25,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.CustomVi
 
     public AddressAdapter(Context context, List<com.carpark.Model.Park.ParkingSpace> parkingSpace) {
         this.context = context;
-        this.parkAddresses  = parkAddresses;
+        this.parkAddresses  = parkingSpace;
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
