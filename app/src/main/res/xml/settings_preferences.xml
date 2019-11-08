@@ -23,7 +23,7 @@
         <Preference
             app:iconSpaceReserved="false"
             android:selectAllOnFocus="true"
-            android:fragment="com.example.carpark.views.NotificationFragment"
+            android:fragment="com.carpark.views.NotificationFragment"
             android:singleLine="true"
             android:title="Notification" >
 
@@ -44,7 +44,7 @@
             app:iconSpaceReserved="false"
             android:key="about_preferences"
             android:selectAllOnFocus="true"
-            android:fragment="com.example.carpark.views.homefragments.AboutFragment"
+            android:fragment="com.carpark.views.homefragments.AboutFragment"
             android:singleLine="true"
             android:title="About" />
 
@@ -65,7 +65,7 @@
             android:key="support_preferences"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:fragment="com.example.carpark.views.homefragments.SupportFragment"
+            android:fragment="com.carpark.views.homefragments.SupportFragment"
             app:iconSpaceReserved="false"
             android:title="Support" />
     </PreferenceCategory>
