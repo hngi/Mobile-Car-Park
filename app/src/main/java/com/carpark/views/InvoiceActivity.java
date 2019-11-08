@@ -13,8 +13,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.carpark.R;
+import com.carpark.utils.SharePreference;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -29,6 +31,7 @@ public class InvoiceActivity extends AppCompatActivity{
     private Object BarcodeMatrix;
     private String directionFrom;
     private String directionTo;
+    private TextView park, address, date_in, date_out, time_in, time_out, vehicle_name, vehicle_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,19 @@ public class InvoiceActivity extends AppCompatActivity{
 
     private void initView() {
         qrImage = findViewById(R.id.qr_code);
+        date_in = findViewById(R.id.from_date);
+        date_out = findViewById(R.id.to_date);
+        time_in = findViewById(R.id.from_time);
+        time_out = findViewById(R.id.to_time);
+        vehicle_name = findViewById(R.id.vehicle_name);
+        vehicle_number = findViewById(R.id.vehicle_number);
 
+        date_in.setText(SharePreference.getINSTANCE(getApplicationContext()).getINFormattedDay());
+        date_out.setText(SharePreference.getINSTANCE(getApplicationContext()).getOutFormattedDay());
+        time_in.setText(SharePreference.getINSTANCE(getApplicationContext()).getINFormattedTime());
+        time_out.setText(SharePreference.getINSTANCE(getApplicationContext()).getOutFormattedTime());
+        vehicle_name.setText(SharePreference.getINSTANCE(getApplicationContext()).getMainVehicleName());
+        vehicle_number.setText(SharePreference.getINSTANCE(getApplicationContext()).getMainVehicleNumber());
         showQrCode();
 
         directionFrom = "20.344,34.34";
@@ -96,5 +111,11 @@ public class InvoiceActivity extends AppCompatActivity{
         return directionTo;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(InvoiceActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
