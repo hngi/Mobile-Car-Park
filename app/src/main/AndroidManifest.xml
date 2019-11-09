@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.carpark">
+    package="com.carpark">
 
     <application
         android:name=".utils.Commons"
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.Password"></activity>
+        <activity android:name=".views.PasswordActivity"></activity>
         <activity android:name=".views.GetAllCarDetailsActivity" />
         <activity
             android:name=".views.MyParkingSpace"
@@ -137,8 +137,6 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
