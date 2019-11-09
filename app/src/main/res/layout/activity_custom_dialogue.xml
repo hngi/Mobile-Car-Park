@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="210dp"
     android:outlineSpotShadowColor="@color/black_transparent"
     android:background="@drawable/button_curve"
     >
@@ -28,7 +28,7 @@
         android:fontFamily="@font/nunito_bold"
         android:text="Confirm Number?"
         android:textColor="@color/color_white"
-        android:textSize="@dimen/text_16sp"
+        android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +76,7 @@
         android:background="@drawable/button_curve_white"
         android:textColor="@color/colorAccent"
         android:fontFamily="@font/nunito"
+        android:layout_marginBottom="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmNumber" />
 
@@ -89,6 +90,7 @@
         android:textColor="@color/colorAccent"
         android:fontFamily="@font/nunito"
         android:layout_margin="16dp"
+        android:layout_marginBottom="3dp"
         android:background="@drawable/button_curve_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmNumber" />

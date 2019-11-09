@@ -20,6 +20,8 @@ public class SharePreference {
     private static final String FORMATTED_DATE_OUT="com.carpark_FORMATTED_DATE_OUT";
     private static final String CHECK_IN="com.carpark_CHECK_IN";
     private static final String CHECK_OUT="com.carpark_CHECK_OUT";
+    private static final String DURATION="com.carpark_DURATION";
+
 
 
 
@@ -150,6 +152,12 @@ public class SharePreference {
     }
     public String getCheckIn(){
         return sharedPreferences.getString(CHECK_IN, "-----");
+    }
+    public void setDuration(String duration) {
+        sharedPreferences.edit().putString(DURATION,duration).apply();
+    }
+    public String getDuration(){
+        return sharedPreferences.getString(DURATION, "-----");
     }
 
 }
