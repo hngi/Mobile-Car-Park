@@ -31,8 +31,8 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class PaymentMethodsFragment extends Fragment {
     private TextView card;
     private TextView promoCode;
-    private TextView barter;
-    private Button payStackBut;
+    private TextView paystack, barter;
+    private Button payStackBut, barterBtn;
     ProgressBar paymentBar;
 
     @Nullable
@@ -44,8 +44,11 @@ public class PaymentMethodsFragment extends Fragment {
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
         addCard(root);
         addPromoCode(root);
-        payStackBut = root.findViewById(R.id.paystack_btn);
         paymentBar = root.findViewById(R.id.paymentBar);
+
+        paystack = root.findViewById(R.id.paystack);
+        payStackBut = root.findViewById(R.id.paystack_btn);
+
 
        // paymentBar.setVisibility(View.INVISIBLE);
 
@@ -54,14 +57,21 @@ public class PaymentMethodsFragment extends Fragment {
 
 
         barter = root.findViewById(R.id.barter);
+        barterBtn = root.findViewById(R.id.barter_btn);
         openBarter();
 
 
-        payStackBut.setOnClickListener(new View.OnClickListener() {
+        paystack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 paymentBar.setVisibility(View.VISIBLE);
                 performCharge();
+            }
+        });
+        payStackBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               paystack.callOnClick();
             }
         });
         return root;
@@ -131,6 +141,12 @@ public class PaymentMethodsFragment extends Fragment {
 
 
     private void openBarter() {
+        barterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                barter.callOnClick();
+            }
+        });
         barter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
