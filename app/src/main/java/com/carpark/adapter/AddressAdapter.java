@@ -57,13 +57,13 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.CustomVi
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         final String park_name = parkAddresses.get(position).getName();
         final String park_address = parkAddresses.get(position).getAddress();
-        final String count = String.valueOf(parkAddresses.get(position).getStatus());
-        final String fee = String.valueOf(parkAddresses.get(position).getFee());
-        final String id = String.valueOf(parkAddresses.get(position).getId());
-        final String price = fee + " /hr";
+        final int count = parkAddresses.get(position).getStatus();
+        final int fee = parkAddresses.get(position).getFee();
+        final int id = parkAddresses.get(position).getId();
+        final String price = fee + "/hr";
         holder.address_name.setText(park_address);
         holder.park_name.setText(park_name);
-        holder.count.setText(count);
+        holder.count.setText(String.valueOf(count));
         holder.price.setText(price);
         holder.park_details.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,9 +73,9 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.CustomVi
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("Park_Name",park_name);
                 editor.putString("Park_Address",park_address);
-                editor.putString("Price",price);
-                editor.putString("Count",count);
-                editor.putString("id",id);
+                editor.putInt("Price",fee);
+                editor.putInt("Count",count);
+                editor.putInt("id",id);
                 editor.commit();
                 Intent i = new Intent(context, ScheduleActivity.class);
                 context.startActivity(i);

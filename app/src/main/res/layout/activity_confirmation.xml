@@ -11,6 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tv1"
             android:layout_width="0dp"
@@ -229,7 +240,6 @@
             android:layout_marginBottom="18dp"
             android:background="@drawable/com_facebook_button_background"
             android:fontFamily="@font/nunito"
-            android:onClick="confirmBooking"
             android:text="Confirm Booking"
             android:textAllCaps="false"
             android:textColor="@color/color_white"
