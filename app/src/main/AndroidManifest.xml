@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.carpark">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
+    package="com.carpark">
 
     <application
         android:name=".utils.Commons"
@@ -18,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.GetAllCarDetailsActivity"></activity>
+        <activity android:name=".views.PasswordActivity"></activity>
+        <activity android:name=".views.GetAllCarDetailsActivity" />
         <activity
             android:name=".views.MyParkingSpace"
             android:parentActivityName=".views.HomeActivity" />
@@ -98,25 +93,50 @@
             android:parentActivityName=".views.ScheduleActivity" />
         <activity android:name=".views.BaseActivity" />
         <activity android:name=".views.BarterActivity" />
-        <activity android:name=".IgnoreForApiTest.StartActivity" >
-            <!--<intent-filter>
+        <activity android:name=".IgnoreForApiTest.StartActivity">
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD1XwtM5P9rGEwSyvDY4f2W5VqhS85Xdjo" />
+
+        <!-- Facebook starts don't touch please-->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <!-- Facebook ends don't touch please-->
+
         <meta-data
             android:name="co.paystack.android.PublicKey"
             android:value="pk_test_a6776f501f9fc824598fe84b547c0b742dd357f0" />
 
         <uses-library android:name="com.google.android.maps" />
     </application>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

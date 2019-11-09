@@ -12,8 +12,8 @@
 
     <intent
         android:action="android.intent.action.VIEW"
-        android:targetPackage="com.example.carpark"
-        android:targetClass="com.example.carpark.views.ProfileActivity">
+        android:targetPackage="com.carpark"
+        android:targetClass="com.carpark.views.ProfileActivity">
     </intent>
 
     </Preference>
@@ -23,7 +23,7 @@
         <Preference
             app:iconSpaceReserved="false"
             android:selectAllOnFocus="true"
-            android:fragment="com.example.carpark.views.NotificationFragment"
+            android:fragment="com.carpark.views.NotificationFragment"
             android:singleLine="true"
             android:title="Notification" >
 
@@ -44,12 +44,12 @@
             app:iconSpaceReserved="false"
             android:key="about_preferences"
             android:selectAllOnFocus="true"
-            android:fragment="com.example.carpark.views.homefragments.AboutFragment"
+            android:fragment="com.carpark.views.homefragments.AboutFragment"
             android:singleLine="true"
             android:title="About" />
 
         <!-- Add Nested FAQ Fragment Here-->
-        <!-- Add  android:fragment="com.example.carpark.views.FAQ"-->
+        <!-- Add  android:fragment="com.carpark.views.FAQ"-->
 
         <Preference
             android:defaultValue="Default value"
@@ -65,7 +65,7 @@
             android:key="support_preferences"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:fragment="com.example.carpark.views.homefragments.SupportFragment"
+            android:fragment="com.carpark.views.homefragments.SupportFragment"
             app:iconSpaceReserved="false"
             android:title="Support" />
     </PreferenceCategory>

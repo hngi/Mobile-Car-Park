@@ -75,7 +75,7 @@
                 android:fontFamily="@font/nunito"
                 android:hint="Enter your phone number"
                 android:inputType="phone"
-                android:maxLength="13"
+                android:maxLength="11"
                 android:paddingLeft="8dp"
                 android:textAllCaps="false"
                 android:textColor="#777777"

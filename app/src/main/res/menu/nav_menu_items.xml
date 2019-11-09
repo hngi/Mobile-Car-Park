@@ -13,6 +13,10 @@
             android:title="Parking History" />
 
         <item
+            android:id="@+id/nav_car"
+            android:icon="@drawable/ic_vehicle"
+            android:title="My Vehicle" />
+        <item
             android:id="@+id/nav_pay"
             android:icon="@drawable/ic_credit_card_blue"
             android:title="Payment Method" />
@@ -21,11 +25,6 @@
             android:id="@+id/nav_prom"
             android:icon="@drawable/ic_gift_blue"
             android:title="Promotions" />
-
-        <item
-            android:id="@+id/nav_car"
-            android:icon="@drawable/ic_vehicle"
-            android:title="My Vehicle" />
 
         <item
             android:id="@+id/nav_settings"

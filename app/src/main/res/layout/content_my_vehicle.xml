@@ -31,17 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mv_image_view" />
 
-    <TextView
-        android:id="@+id/new_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="No Vehicles added. Click + below to add a Vehicle"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/mv_recyclerView"
-        app:layout_constraintEnd_toEndOf="@+id/mv_recyclerView"
-        app:layout_constraintStart_toStartOf="@+id/mv_recyclerView"
-        app:layout_constraintTop_toTopOf="@+id/mv_recyclerView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
