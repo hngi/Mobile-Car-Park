@@ -65,7 +65,7 @@
         android:id="@+id/parking_slot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/slot_"
+        android:text="Floor 3 Section D Lane 3"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/slot_text"
