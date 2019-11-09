@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.carpark.Api.ParkingApi;
 import com.carpark.Api.Responses.BaseDataResponse;
 import com.carpark.Api.RetrofitClient;
+import com.carpark.Model.User;
 import com.carpark.Model.UserProfile;
 import com.carpark.R;
 import com.carpark.views.homefragments.MyVehicleFragment;
@@ -45,6 +46,14 @@ public class ProfileActivity extends BaseActivity {
         edtPhone = findViewById(R.id.edtPhone);
         edtEmail = findViewById(R.id.edtEmail);
         save_btn = findViewById(R.id.profile_save_btn);
+
+        User user = getStoredUser();
+        if (user != null) {
+            edtFirstName.setText(user.getFirstName());
+            edtLastName.setText(user.getLastName());
+            edtPhone.setText(user.getPhone());
+            edtEmail.setText(user.getEmail());
+        }
 
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,9 +96,8 @@ public class ProfileActivity extends BaseActivity {
         userProfile.setEmail(email);
         userProfile.setPhone(phone);
 
-        //TODO: Get actual user token from whatever it is saved with in shared preference. Waiting for Robin...
 
-        String token = "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9obmctY2FyLXBhcmstYXBpLmhlcm9rdWFwcC5jb21cL2FwaVwvdjFcL2F1dGhcL2xvZ2luXC91c2VyIiwiaWF0IjoxNTcyODEwOTUyLCJleHAiOjE1NzI5MTg5NTIsIm5iZiI6MTU3MjgxMDk1MiwianRpIjoiMDhTQmNTb2RpWHpTUndIYSIsInN1YiI6OSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.MxcYOIU9p1zXQhLi1X8EUIbMKjHUj99yYHcIYSOJrY0";
+        String token = getSharePref().getAccessToken();
 
         showProgressDialog();
         RetrofitClient.getInstance().create(ParkingApi.class).editUserProfile(token, userProfile).enqueue(new Callback<BaseDataResponse<UserProfile>>() {
@@ -99,6 +107,13 @@ public class ProfileActivity extends BaseActivity {
                     if (response.body() != null) {
                         if (response.body().getData() != null) {
                             showToast(response.body().getMessage());
+                            UserProfile newProfile = response.body().getData();
+                            User user = getStoredUser();
+                            user.setFirstName(newProfile.getFirstName());
+                            user.setLastName(newProfile.getLastName());
+                            user.setEmail(newProfile.getEmail());
+                            user.setPhone(newProfile.getPhone());
+                            setStoredUser(user);
                             finish();
                         } else {
                             showToast(response.body().getMessage());
