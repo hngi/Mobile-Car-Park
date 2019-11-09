@@ -4,7 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="230dp"
+    android:layout_height="220dp"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingEnd="16dp"
     android:background="@color/colorPrimary"
     >
 
@@ -20,33 +23,30 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/nunito_bold"
         android:text="Confirm Number"
         android:textColor="@color/color_white"
-        android:textSize="24dp"
+        android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintEnd_toEndOf="@+id/carpark_ic"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="@+id/carpark_ic"
+        app:layout_constraintTop_toBottomOf="@+id/carpark_ic" />
 
     <ImageView
         android:id="@+id/carpark_ic"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
         android:src="@drawable/splash_logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/confirmNumber"
@@ -54,25 +54,25 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/nunito"
         android:gravity="center"
         android:text="Confirm Number"
         android:textColor="@color/color_white"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carpark_ic" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <Button
         android:id="@+id/NoButton"
         android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_height="40dp"
+        android:layout_margin="4dp"
         android:background="@drawable/button_curve_white"
         android:fontFamily="@font/nunito"
-        android:padding="16dp"
         android:text="No"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
@@ -83,11 +83,10 @@
     <Button
         android:id="@+id/YesButton"
         android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_height="40dp"
+        android:layout_margin="4dp"
         android:background="@drawable/button_curve_white"
         android:fontFamily="@font/nunito"
-        android:padding="16dp"
         android:text="Yes"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
