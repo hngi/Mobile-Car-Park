@@ -50,20 +50,25 @@ public class CarDetailsActiviy extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_details);
-        getSupportActionBar().setTitle("Add Vehicle"); // for set actionbar title
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        vehicle_id = Integer.parseInt(getIntent().getStringExtra("Vehicle_Id"));
-        plate = getIntent().getStringExtra("plate_number");
-        make = getIntent().getStringExtra("make");
+        token = getSharePref().getAccessToken();
         viewsInit();
+
+        // To Edit or Delete Vehicle
         if(plate!=null){
             getCarDetails(vehicle_id,plate,make);
             saveCarDetails.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    UpdateInfo();
+                    saveCarDetails.setClickable(false);
                     updateCarDetails(vehicle_id, plate, make);
+                    saveCarDetails.setClickable(true);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             });
+
+            // To Add new Vehicle
         }else{
             saveCarDetails.setText("Save");
             getSupportActionBar().setTitle("Add New Vehicle");
@@ -74,6 +79,11 @@ public class CarDetailsActiviy extends BaseActivity {
                 }
             });
         }
+    }
+
+    private void UpdateInfo() {
+        plate = plateNumber.getText().toString();
+        make = carModel.getText().toString();
     }
 
     private void createNewVehicle() {
@@ -91,12 +101,14 @@ public class CarDetailsActiviy extends BaseActivity {
         getParkingApi().editVehicle(token, vehicleId, plate, make).enqueue(new Callback<BaseDataResponse<Vehicle>>() {
             @Override
             public void onResponse(Call<BaseDataResponse<Vehicle>> call, Response<BaseDataResponse<Vehicle>> response) {
-
+                // Vehicle will be updated In the API, Nothing to do with the response gotten
+                showToast("Vehicle Updated");
+                finish();
             }
 
             @Override
             public void onFailure(Call<BaseDataResponse<Vehicle>> call, Throwable t) {
-
+                showToast("Failed to Update, Please try again");
             }
         });
     }
@@ -118,7 +130,6 @@ public class CarDetailsActiviy extends BaseActivity {
         switch (item.getItemId()) {
             case R.id.delete:
                 deleteVehicle(vehicle_id);
-                Toast.makeText(this, "Vehicle Deleted", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -126,18 +137,36 @@ public class CarDetailsActiviy extends BaseActivity {
     }
 
     private void deleteVehicle(int vehicle_id) {
+        getParkingApi().deleteVehicle(token, vehicle_id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                showToast( "Vehicle Deleted");
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                showToast( "Failed to delete Vehicle");
+            }
+        });
 
     }
 
     // initialising the views
     public void viewsInit(){
-        saveCarDetails = (Button) findViewById(R.id.save_car_details);
-        primaryRide = (Switch) findViewById(R.id.primary_ride);
-        plateNumber = (EditText) findViewById(R.id.car_plate_number);
-        carModel = (EditText) findViewById(R.id.car_model);
+        getSupportActionBar().setTitle("Add Vehicle");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        saveCarDetails = findViewById(R.id.save_car_details);
+        primaryRide = findViewById(R.id.primary_ride);
+        plateNumber = findViewById(R.id.car_plate_number);
+        carModel =  findViewById(R.id.car_model);
         progressBar = findViewById(R.id.progressBar2);
         progressBar.setVisibility(View.INVISIBLE);
+        vehicle_id = getIntent().getIntExtra("Vehicle_Id", -1);
+        plate = getIntent().getStringExtra("plate_number");
+        make = getIntent().getStringExtra("make");
     }
+
     // checking if the input boxes were filled
     public void checkInputBoxes(){
         plateNum = plateNumber.getText().toString();

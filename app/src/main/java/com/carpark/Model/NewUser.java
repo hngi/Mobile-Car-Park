@@ -26,11 +26,15 @@ public class NewUser {
     @Expose
     private String email;
 
-    public NewUser() {
-    }
+
+
 
     public NewUser(String s, String s1, String ehma, String ugbogo) {
     }
+
+    public NewUser() {
+    }
+
 
     public String getPhone() {
         return phone;
