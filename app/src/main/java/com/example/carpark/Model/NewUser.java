@@ -26,8 +26,6 @@ public class NewUser {
     @Expose
     private String email;
 
-    public NewUser() {
-    }
 
     public String getPhone() {
         return phone;

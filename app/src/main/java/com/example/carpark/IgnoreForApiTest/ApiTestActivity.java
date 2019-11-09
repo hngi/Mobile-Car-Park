@@ -52,7 +52,7 @@ public class ApiTestActivity extends BaseActivity {
 
 
     public void RegisterUser(View view) {
-        NewUser newUser = new NewUser("1234","08107535626","Ehma","Ugbogo");
+        NewUser newUser = new NewUser();
         showProgressbar();
         getParkingApi().registerUser(newUser)
                 .enqueue(new Callback<BaseDataResponse<UserResponse>>() {
