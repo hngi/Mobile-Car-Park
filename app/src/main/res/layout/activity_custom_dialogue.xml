@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="210dp"
-    android:outlineSpotShadowColor="@color/black_transparent"
-    android:background="@drawable/button_curve"
+    android:layout_height="230dp"
+    android:background="@color/colorPrimary"
     >
 
 
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:fontFamily="@font/nunito_bold"
-        android:text="Confirm Number?"
+        android:text="Confirm Number"
         android:textColor="@color/color_white"
         android:textSize="24dp"
         android:textStyle="bold"
@@ -69,14 +69,14 @@
         android:id="@+id/NoButton"
         android:layout_width="60dp"
         android:layout_height="50dp"
-        android:text="No"
         android:layout_margin="16dp"
-        android:padding="16dp"
-        android:textStyle="bold"
         android:background="@drawable/button_curve_white"
-        android:textColor="@color/colorAccent"
         android:fontFamily="@font/nunito"
-        android:layout_marginBottom="3dp"
+        android:padding="16dp"
+        android:text="No"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmNumber" />
 
@@ -84,14 +84,14 @@
         android:id="@+id/YesButton"
         android:layout_width="60dp"
         android:layout_height="50dp"
-        android:text="Yes"
-        android:padding="16dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorAccent"
-        android:fontFamily="@font/nunito"
         android:layout_margin="16dp"
-        android:layout_marginBottom="3dp"
         android:background="@drawable/button_curve_white"
+        android:fontFamily="@font/nunito"
+        android:padding="16dp"
+        android:text="Yes"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmNumber" />
 
