@@ -1,6 +1,8 @@
 package com.carpark.views.homefragments;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.carpark.Api.ParkingApi;
@@ -16,6 +18,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +43,7 @@ public class MyVehicleFragment extends Fragment {
     private RecyclerView recyclerView;
     private MyVehicleAdapter myVehicleAdapter;
     private ProgressBar progressBar;
+    private TextView new_text;
 
     @Nullable
     @Override
@@ -46,7 +51,7 @@ public class MyVehicleFragment extends Fragment {
         final View root =  inflater.inflate(R.layout.fragment_my_vehicle, container, false);
 
         FloatingActionButton fab = root.findViewById(R.id.mv_add_vehicle);
-        final TextView new_text = root.findViewById(R.id.new_text);
+        new_text = root.findViewById(R.id.new_text);
         progressBar = root.findViewById(R.id.progressBar);
         new_text.setVisibility(View.INVISIBLE);
 
@@ -67,6 +72,11 @@ public class MyVehicleFragment extends Fragment {
         myVehicleAdapter = new MyVehicleAdapter(getContext(), vehicleList );
         recyclerView.setAdapter(myVehicleAdapter);
 
+        getVehicles();
+        return root;
+    }
+
+    private void getVehicles() {
         String token = SharePreference.getINSTANCE(getContext()).getAccessToken();
         ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
         parkingApi.getAllVehicles(token).enqueue(new Callback<BaseDataResponse<List<Vehicle>>>() {
@@ -74,13 +84,13 @@ public class MyVehicleFragment extends Fragment {
             public void onResponse(Call<BaseDataResponse<List<Vehicle>>> call, Response<BaseDataResponse<List<Vehicle>>> response) {
                 if(response.isSuccessful()){
                     Log.e("Response code", String.valueOf(response.code()));
-                        new_text.setVisibility(View.INVISIBLE);
-                        vehicleList.addAll(response.body().getData());
-                        myVehicleAdapter.notifyDataSetChanged();
-                        if(vehicleList.isEmpty()){
-                            new_text.setVisibility(View.VISIBLE);
-                        }
-                        progressBar.setVisibility(View.GONE);
+                    new_text.setVisibility(View.INVISIBLE);
+                    vehicleList.addAll(response.body().getData());
+                    myVehicleAdapter.notifyDataSetChanged();
+                    if(vehicleList.isEmpty()){
+                        new_text.setVisibility(View.VISIBLE);
+                    }
+                    progressBar.setVisibility(View.GONE);
                 }else{
                     Log.e("Response code", String.valueOf(response.code()));
                     progressBar.setVisibility(View.GONE);
@@ -94,6 +104,6 @@ public class MyVehicleFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
             }
         });
-        return root;
     }
+
 }
