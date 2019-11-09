@@ -85,7 +85,7 @@ public class BarterActivity extends BaseActivity {
             } else if (resultCode == RavePayActivity.RESULT_ERROR) {
                 showToast("ERROR " + message);
             } else if (resultCode == RavePayActivity.RESULT_CANCELLED) {
-                showToast("CANCELLED " + message);
+                //showToast("CANCELLED " + message);
                 finish();
             }
 
