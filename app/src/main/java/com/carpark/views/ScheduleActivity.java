@@ -118,6 +118,7 @@ public class ScheduleActivity extends AppCompatActivity {
                         SharePreference.getINSTANCE(getApplicationContext()).setINFormattedDay(getFormattedDay(checkInDate));
                         SharePreference.getINSTANCE(getApplicationContext()).setINFormattedTime(getFormattedTime(checkInDate));
                         SharePreference.getINSTANCE(getApplicationContext()).setINFormattedDate(getFormattedDate(checkInDate));
+                        SharePreference.getINSTANCE(getApplicationContext()).setCheckIn(mCheckIn(checkOutDate));
                     }
                 }, checkInDate.get(Calendar.HOUR_OF_DAY), checkInDate.get(Calendar.MINUTE), false).show();
             }
@@ -143,6 +144,7 @@ public class ScheduleActivity extends AppCompatActivity {
                         SharePreference.getINSTANCE(getApplicationContext()).setOutFormattedDay(getFormattedDay(checkOutDate));
                         SharePreference.getINSTANCE(getApplicationContext()).setOutFormattedTime(getFormattedTime(checkOutDate));
                         SharePreference.getINSTANCE(getApplicationContext()).setOutFormattedDate(getFormattedDate(checkOutDate));
+                        SharePreference.getINSTANCE(getApplicationContext()).setCheckOut(mCheckOut(checkOutDate));
                     }
                 }, checkOutDate.get(Calendar.HOUR_OF_DAY), checkOutDate.get(Calendar.MINUTE), false).show();
             }
@@ -159,6 +161,14 @@ public class ScheduleActivity extends AppCompatActivity {
     }
     public String getFormattedDay(Calendar date){
         SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM");
+        return formatter.format(date.getTime());
+    }
+    public String mCheckIn(Calendar date){
+        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        return formatter.format(date.getTime());
+    }
+    public String mCheckOut(Calendar date){
+        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         return formatter.format(date.getTime());
     }
     public String getFormattedTime(Calendar date){

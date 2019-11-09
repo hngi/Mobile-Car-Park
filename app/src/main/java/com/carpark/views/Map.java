@@ -54,7 +54,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
 
 
     public void onMapSearch(View view){
-        SearchView locationSearch =  findViewById(R.id.searchView2);
+        /*SearchView locationSearch =  findViewById(R.id.searchView2);
         String location = locationSearch.getQuery().toString();
         List<Address> addressList = null;
 
@@ -70,7 +70,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
             LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
             mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
             mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        }
+        }*/
     }
 
 

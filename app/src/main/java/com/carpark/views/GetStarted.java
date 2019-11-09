@@ -204,9 +204,13 @@ public class GetStarted extends BaseActivity {
         intent = new Intent(getApplicationContext(), VerifyNumber.class);
         if (TextUtils.isEmpty(number.getText().toString())) {
             number.setError("Please fill in phone number");
-        } else if (!((Phone.length() < 10) || (Phone.length() > 11))) {
-            cont_btn.setClickable(false);
-            showAlert(fullPhone);
+        } else if (!((Phone.length() < 9) || (Phone.length() > 11))) {
+            if (Phone.startsWith("0")) {
+                number.setError("Remove the '0' in front please ");
+            } else {
+                cont_btn.setClickable(false);
+                showAlert(fullPhone);
+            }
         } else {
             Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
         }
@@ -237,6 +241,7 @@ public class GetStarted extends BaseActivity {
             public void onClick(View view) {
                 sendOTPbar.setVisibility(View.VISIBLE);
                 dialog.dismiss();
+                cont_btn.setClickable(true);
                 verifyNumberIfRegistered(phoneNumber);
 
 
@@ -248,6 +253,15 @@ public class GetStarted extends BaseActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+                cont_btn.setClickable(true);
+            }
+
+
+        });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                cont_btn.setClickable(true);
             }
         });
 

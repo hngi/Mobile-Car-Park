@@ -8,11 +8,15 @@ import com.carpark.Api.Responses.Otp.OTPResponse;
 import com.carpark.Api.Responses.Park.ActiveAndInactiveParkingSpaceAllResponse;
 import com.carpark.Api.Responses.Park.PageParkingSpaceAllResponse;
 import com.carpark.Api.Responses.Park.ParkingSpaceAllResponse;
-import com.carpark.Api.Responses.Park.ParkingSpaceResponse;
+import com.carpark.Api.Responses.Park.ParkingSpaceDataResponse;
+import com.carpark.Api.Responses.Park.ParkingSpaceHistoryResponse;
 import com.carpark.Api.Responses.Park.SingleParkingSpaceResponse;
+import com.carpark.Model.Booking.BookingSchedule;
 import com.carpark.Model.FacebookUser;
 import com.carpark.Model.NewUser;
 import com.carpark.Model.Park.NewParkingSpace;
+import com.carpark.Model.Park.ParkingSpace;
+import com.carpark.Model.Park.UserPackedSpace;
 import com.carpark.Model.PhoneOtp;
 import com.carpark.Model.User;
 import com.carpark.Model.UserProfile;
@@ -90,7 +94,7 @@ public interface ParkingApi {
     //Add New Parking Space
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("park")
-    Call<ParkingSpaceResponse> addParkingSpace(@Header("Authorization") String token, @Body NewParkingSpace newParkingSpace);
+    Call<ParkingSpaceDataResponse<ParkingSpace>> addParkingSpace(@Header("Authorization") String token, @Body NewParkingSpace newParkingSpace);
 
     @Headers({"Accept:application/json"})
     @GET("park")
@@ -116,6 +120,22 @@ public interface ParkingApi {
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @PATCH("park/{id}")
     Call<Vehicle> updateParkingSpaceDetails(@Header("Authorization") String token, @Path("id") int id, @Query("phone") String phone, @Query("status") String status);
+
+
+
+    //ParkingSpace Booking
+
+    @Headers({"Accept:application/json"})
+    @GET("park/history/{user_id}")
+    Call<ParkingSpaceHistoryResponse> getParkingSpaceBookedHistory(@Header("Authorization") String token, @Path("user_id") int user_id);
+
+    @Headers({"Accept:application/json"})
+    @POST("park/book/{car_park_id}")
+    Call<ParkingSpaceDataResponse<UserPackedSpace>> scheduleParkingSpace(@Header("Authorization") String token, @Path("car_park_id") int booking_id, @Body BookingSchedule bookingSchedule);
+
+    @Headers({"Accept:application/json"})
+    @POST("park/book/{booking_id}")
+    Call<ParkingSpaceDataResponse<UserPackedSpace>> editParkingSpaceSchedule(@Header("Authorization") String token, @Path("booking_id") int booking_id, @Query("check_out") String check_out);
 
 
 

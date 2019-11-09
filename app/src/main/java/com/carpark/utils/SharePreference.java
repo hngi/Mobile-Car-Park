@@ -18,6 +18,9 @@ public class SharePreference {
     private static final String FORMATTED_TIME_OUT="com.carpark_FORMATTED_TIME_OUT";
     private static final String FORMATTED_DATE_IN="com.carpark_FORMATTED_DATE_IN";
     private static final String FORMATTED_DATE_OUT="com.carpark_FORMATTED_DATE_OUT";
+    private static final String CHECK_IN="com.carpark_CHECK_IN";
+    private static final String CHECK_OUT="com.carpark_CHECK_OUT";
+
 
 
 
@@ -79,17 +82,17 @@ public class SharePreference {
     }
 
     public String getMainVehicleName(){
-        return sharedPreferences.getString(VEHICLE_NAME, "Set Default");
+        return sharedPreferences.getString(VEHICLE_NAME, "_____");
     }
     public void setMainVehicleNumber(String vehicleNumber){
         sharedPreferences.edit().putString(VEHICLE_NUMBER,vehicleNumber).apply();
     }
     public String getMainVehicleNumber(){
-        return sharedPreferences.getString(VEHICLE_NUMBER, "Set Default");
+        return sharedPreferences.getString(VEHICLE_NUMBER, "_____");
     }
 
-    public void setMainVehicleId(String vehicleId){
-        sharedPreferences.edit().putString(VEHICLE_ID,vehicleId).apply();
+    public void setMainVehicleId(int vehicleId){
+        sharedPreferences.edit().putInt(VEHICLE_ID,vehicleId).apply();
     }
     public int getMainVehicleId(){
         return sharedPreferences.getInt(VEHICLE_ID, 0);
@@ -99,43 +102,54 @@ public class SharePreference {
         sharedPreferences.edit().putString(FORMATTED_TIME,formattedTime).apply();
     }
     public String getINFormattedTime(){
-        return sharedPreferences.getString(FORMATTED_TIME, "null");
+        return sharedPreferences.getString(FORMATTED_TIME, "-----");
     }
 
     public void setINFormattedDay(String formattedDay){
         sharedPreferences.edit().putString(FORMATTED_DAY,formattedDay).apply();
     }
     public String getINFormattedDay(){
-        return sharedPreferences.getString(FORMATTED_DAY, "day");
+        return sharedPreferences.getString(FORMATTED_DAY, "-----");
     }
 
     public void setOutFormattedTime(String formattedTime){
         sharedPreferences.edit().putString(FORMATTED_TIME_OUT,formattedTime).apply();
     }
     public String getOutFormattedTime(){
-        return sharedPreferences.getString(FORMATTED_TIME_OUT, "null");
+        return sharedPreferences.getString(FORMATTED_TIME_OUT, "-----");
     }
 
     public void setOutFormattedDay(String formattedDay){
         sharedPreferences.edit().putString(FORMATTED_DAY_OUT,formattedDay).apply();
     }
     public String getOutFormattedDay(){
-        return sharedPreferences.getString(FORMATTED_DAY_OUT, "null");
+        return sharedPreferences.getString(FORMATTED_DAY_OUT, "-----");
     }
     public void setOutFormattedDate(String formattedDay){
         sharedPreferences.edit().putString(FORMATTED_DATE_OUT,formattedDay).apply();
     }
     public String getOutFormattedDate(){
-        return sharedPreferences.getString(FORMATTED_DATE_OUT, "null");
+        return sharedPreferences.getString(FORMATTED_DATE_OUT, "-----");
     }
     public void setINFormattedDate(String formattedDay){
         sharedPreferences.edit().putString(FORMATTED_DATE_IN,formattedDay).apply();
     }
     public String getINFormattedDate(){
-        return sharedPreferences.getString(FORMATTED_DATE_IN, "null");
+        return sharedPreferences.getString(FORMATTED_DATE_IN, "-----");
     }
 
 
-
+    public void setCheckOut(String mCheckOut) {
+        sharedPreferences.edit().putString(CHECK_OUT,mCheckOut).apply();
+    }
+    public String getCheckOut(){
+        return sharedPreferences.getString(CHECK_OUT, "-----");
+    }
+    public void setCheckIn(String mCheckOut) {
+        sharedPreferences.edit().putString(CHECK_IN,mCheckOut).apply();
+    }
+    public String getCheckIn(){
+        return sharedPreferences.getString(CHECK_IN, "-----");
+    }
 
 }

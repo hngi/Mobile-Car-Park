@@ -25,7 +25,7 @@ public class ParkingSpace {
     private int fee;
     @SerializedName("image_link")
     @Expose
-    private Object imageLink;
+    private String imageLink;
     @SerializedName("status")
     @Expose
     private int status;
@@ -88,7 +88,7 @@ public class ParkingSpace {
         return imageLink;
     }
 
-    public void setImageLink(Object imageLink) {
+    public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
 
