@@ -3,20 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Preference
-        android:title="Profile Display"
-        android:key="theKey"
-        android:selectAllOnFocus="true"
 
-        android:layout="@layout/header">
-
-    <intent
-        android:action="android.intent.action.VIEW"
-        android:targetPackage="com.carpark"
-        android:targetClass="com.carpark.views.ProfileActivity">
-    </intent>
-
-    </Preference>
 
     <PreferenceCategory app:title="Privacy Settings" android:key="rootKey" app:iconSpaceReserved="false" >
 
