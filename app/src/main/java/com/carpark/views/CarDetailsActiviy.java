@@ -44,7 +44,6 @@ public class CarDetailsActiviy extends BaseActivity {
     private int vehicle_id;
     private String token;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -61,10 +60,9 @@ public class CarDetailsActiviy extends BaseActivity {
                 public void onClick(View view) {
                     progressBar.setVisibility(View.VISIBLE);
                     UpdateInfo();
-                    saveCarDetails.setClickable(false);
-                    updateCarDetails(vehicle_id, plate, make);
                     saveCarDetails.setClickable(true);
-                    progressBar.setVisibility(View.INVISIBLE);
+                    updateCarDetails(vehicle_id, plate, make);
+
                 }
             });
 
@@ -84,6 +82,22 @@ public class CarDetailsActiviy extends BaseActivity {
     private void UpdateInfo() {
         plate = plateNumber.getText().toString();
         make = carModel.getText().toString();
+        if (plate.isEmpty()) {
+            this.plateNumber.setError("Please fill this field");
+        } else if (make.isEmpty()) {
+            this.carModel.setError("please fill this field");
+        } else {
+            primaryRide.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        main_ride = true;
+                    } else {
+                        main_ride = false;
+                    }
+                }
+            });
+        }
     }
 
     private void createNewVehicle() {
@@ -97,17 +111,28 @@ public class CarDetailsActiviy extends BaseActivity {
         getSupportActionBar().setTitle(make);
     }
 
-    private void updateCarDetails(int vehicleId, String plate, String make) {
+    private void updateCarDetails(final int vehicleId, final String plate, final String make) {
         getParkingApi().editVehicle(token, vehicleId, plate, make).enqueue(new Callback<BaseDataResponse<Vehicle>>() {
             @Override
             public void onResponse(Call<BaseDataResponse<Vehicle>> call, Response<BaseDataResponse<Vehicle>> response) {
                 // Vehicle will be updated In the API, Nothing to do with the response gotten
                 showToast("Vehicle Updated");
+                if(primaryRide.isChecked()){
+                    SharePreference.getINSTANCE(getApplicationContext()).setMainVehicleId(vehicleId);
+                    SharePreference.getINSTANCE(getApplicationContext()).setMainVehicleName(make);
+                    SharePreference.getINSTANCE(getApplicationContext()).setMainVehicleNumber(plate);
+                }
+
+                progressBar.setVisibility(View.INVISIBLE);
+                Intent i = new Intent(getApplicationContext(),HomeActivity.class);
+                i.putExtra("name","Value");
+                startActivity(i);
                 finish();
             }
 
             @Override
             public void onFailure(Call<BaseDataResponse<Vehicle>> call, Throwable t) {
+                progressBar.setVisibility(View.INVISIBLE);
                 showToast("Failed to Update, Please try again");
             }
         });
@@ -129,6 +154,7 @@ public class CarDetailsActiviy extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete:
+                progressBar.setVisibility(View.VISIBLE);
                 deleteVehicle(vehicle_id);
                 return true;
             default:
@@ -140,7 +166,11 @@ public class CarDetailsActiviy extends BaseActivity {
         getParkingApi().deleteVehicle(token, vehicle_id).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                progressBar.setVisibility(View.INVISIBLE);
                 showToast( "Vehicle Deleted");
+                Intent i = new Intent(getApplicationContext(),HomeActivity.class);
+                i.putExtra("name","Value");
+                startActivity(i);
                 finish();
             }
 
@@ -195,6 +225,9 @@ public class CarDetailsActiviy extends BaseActivity {
 
     public void saveCar(String plate_number, String make_model,boolean main_ride){
         token = SharePreference.getINSTANCE(getApplicationContext()).getAccessToken();
+
+
+
     }
 
 
