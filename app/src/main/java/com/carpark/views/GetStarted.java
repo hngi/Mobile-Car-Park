@@ -206,7 +206,7 @@ public class GetStarted extends BaseActivity {
             number.setError("Please fill in phone number");
         } else if (!((Phone.length() < 9) || (Phone.length() > 11))) {
             if (Phone.startsWith("0")) {
-                number.setError("Remove the '0' in front please ");
+                number.setError("Kindly remove the first '0' on the number ");
             } else {
                 cont_btn.setClickable(false);
                 showAlert(fullPhone);
