@@ -109,6 +109,7 @@ public class CarDetailsActiviy extends BaseActivity {
                     Log.e("Response code", String.valueOf(response.code()));
                 }
                   Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                 startActivity(i);
 
                 Toast.makeText(CarDetailsActiviy.this, "New Vehicle Added successfully" + response.body(), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
@@ -118,6 +119,8 @@ public class CarDetailsActiviy extends BaseActivity {
 
             @Override
             public void onFailure(Call<BaseDataResponse<Vehicle>> call, Throwable t) {
+                Toast.makeText(CarDetailsActiviy.this, "error" + t, Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
 
             }
         });
