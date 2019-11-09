@@ -60,7 +60,6 @@ public class CarDetailsActiviy extends BaseActivity {
                     progressBar.setVisibility(View.VISIBLE);
                     UpdateInfo();
                     addNewVehicle(plate, make, main_ride);
-                    progressDialog.show();
                     saveCarDetails.setClickable(true);
                     updateCarDetails(vehicle_id, plate, make);
 
