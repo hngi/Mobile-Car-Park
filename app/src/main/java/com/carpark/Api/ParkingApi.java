@@ -131,7 +131,7 @@ public interface ParkingApi {
 
     @Headers({"Accept:application/json"})
     @POST("park/book/{car_park_id}")
-    Call<ParkingSpaceDataResponse<UserPackedSpace>> scheduleParkingSpace(@Header("Authorization") String token, @Body BookingSchedule bookingSchedule);
+    Call<ParkingSpaceDataResponse<UserPackedSpace>> scheduleParkingSpace(@Header("Authorization") String token, @Path("car_park_id") int booking_id, @Body BookingSchedule bookingSchedule);
 
     @Headers({"Accept:application/json"})
     @POST("park/book/{booking_id}")
