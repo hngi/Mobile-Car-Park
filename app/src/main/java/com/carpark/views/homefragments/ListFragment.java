@@ -70,13 +70,12 @@ public class ListFragment extends Fragment {
             public void onResponse(Call<ParkingSpaceAllResponse> call, Response<ParkingSpaceAllResponse> response) {
                 if(response.isSuccessful()){
                     Log.e("Response code", String.valueOf(response.code()));
-                    Toast.makeText(getContext(),"Successful"+String.valueOf(response.code()),Toast.LENGTH_LONG).show();
                     assert response.body() != null;
                     ParkingSpace.addAll(response.body().getParkingSpaces());
                     addressAdapter.notifyDataSetChanged();
                     progressBar.setVisibility(View.INVISIBLE);
                 }else{
-                    Toast.makeText(getContext(),"Failure"+String.valueOf(response.code()),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Failure "+ response.code(),Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
