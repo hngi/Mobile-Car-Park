@@ -1,5 +1,6 @@
 package com.carpark.views;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -10,11 +11,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.carpark.Api.Responses.BaseDataResponse;
 import com.carpark.Model.User;
@@ -57,6 +60,20 @@ public class HomeActivity extends BaseActivity {
         fetchUserDetails();
         setUpDefaultFragment();
         navigationClickListeners();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        String name = getIntent().getStringExtra("name");
+        if(name!=null){
+            Fragment frag = new MyVehicleFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.home_frame, frag).commit();
+            enableBackViews(true);
+            toolbar.setTitle("My Vehicle");
+
+        }
     }
 
     private void fetchUserDetails() {
@@ -186,6 +203,18 @@ public class HomeActivity extends BaseActivity {
             enableBackViews(false);
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Fragment frag = new MyVehicleFragment();
+        Fragment frag2 = new DefaultFragment();
+        if((requestCode == 10001) && (resultCode == Activity.RESULT_OK)) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.detach(frag2).attach(frag).commit();
+        }
+    }
+
     private void signout() {
         // Facebook logout
         if (LoginManager.getInstance() != null) {
