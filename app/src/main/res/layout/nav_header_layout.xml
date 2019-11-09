@@ -25,7 +25,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:fontFamily="@font/nunito_semibold"
-            android:textColor="#808080"
+            android:textColor="#5A5A5A"
             android:layout_marginStart="20dp"
             android:layout_gravity="center"/>
     </LinearLayout>
