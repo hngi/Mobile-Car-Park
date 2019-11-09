@@ -71,8 +71,7 @@ public class HomeActivity extends BaseActivity {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.home_frame, frag).commit();
             enableBackViews(true);
-            toolbar.setTitle("My Vehicle");
-
+            getSupportActionBar().setTitle("My Vehicle");
         }
     }
 
