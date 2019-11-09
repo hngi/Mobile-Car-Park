@@ -2,6 +2,7 @@ package com.carpark.views;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -61,6 +62,7 @@ public class GetStarted extends BaseActivity {
     private CountryCodePicker ccp;
     ProgressBar sendOTPbar;
     Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,7 +206,7 @@ public class GetStarted extends BaseActivity {
             number.setError("Please fill in phone number");
         } else if (!((Phone.length() < 9) || (Phone.length() > 11))) {
             if (Phone.startsWith("0")) {
-                number.setError("Remove the '0' in front please ");
+                number.setError("Kindly remove the first '0' on the number");
             } else {
                 cont_btn.setClickable(false);
                 showAlert(fullPhone);
@@ -216,8 +218,9 @@ public class GetStarted extends BaseActivity {
 
 
     private void showAlert(final String phoneNumber) {
-        TextView yes, no;
+        Button yes, no;
         TextView phone;
+        Toolbar toolbar;
 
         final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
         //myDialog.setTitle("Confirm Number?");
@@ -225,7 +228,11 @@ public class GetStarted extends BaseActivity {
         yes = customView.findViewById(R.id.YesButton);
         no = customView.findViewById(R.id.NoButton);
         phone = customView.findViewById(R.id.confirmNumber);
+        //toolbar = customView.findViewById(R.id.custom_toolbar);
         phone.setText(phoneNumber);
+        //toolbar.setTitle("Confirm phone Number");
+
+        //myDialog.setTitle("Confirm phone Number").setIconAttribute(getTitleColor());
         myDialog.setView(customView);
         final AlertDialog dialog = myDialog.create();
         dialog.show();

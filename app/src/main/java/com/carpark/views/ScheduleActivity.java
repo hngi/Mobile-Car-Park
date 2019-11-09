@@ -1,7 +1,11 @@
 package com.carpark.views;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -14,17 +18,36 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.carpark.Api.ParkingApi;
+import com.carpark.Api.Responses.BaseDataResponse;
+import com.carpark.Api.RetrofitClient;
+import com.carpark.Model.Vehicle;
 import com.carpark.R;
+import com.carpark.adapter.BookingVehicleAdapter;
+import com.carpark.adapter.MyVehicleAdapter;
 import com.carpark.utils.SharePreference;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+/**
+ * @author .: Osemwingie Oshodin
+ * @email ..: osemwingieoshodin@gmail.com
+ * @created : 06/11/19
+ */
 
 public class ScheduleActivity extends AppCompatActivity {
     private TextView tvCheckIn;
@@ -57,9 +80,12 @@ public class ScheduleActivity extends AppCompatActivity {
 
         String date_in = SharePreference.getINSTANCE(getApplicationContext()).getINFormattedDate();
         String date_out = SharePreference.getINSTANCE(getApplicationContext()).getOutFormattedDate();
+        String mDuration = SharePreference.getINSTANCE(getApplicationContext()).getDuration();
+
 
         tvCheckIn.setText(date_in);
         tvCheckOut.setText(date_out);
+        tvDuration.setText(mDuration);
 
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
         String park_name = sharedPref.getString("Park_Name","null");
@@ -70,6 +96,13 @@ public class ScheduleActivity extends AppCompatActivity {
         String vehicle_no = SharePreference.getINSTANCE(this).getMainVehicleNumber();
 
         vehicle_number.setText(vehicle_no);
+
+        vehicle_number.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAlert();
+            }
+        });
 
         add_vehicle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +151,7 @@ public class ScheduleActivity extends AppCompatActivity {
                         SharePreference.getINSTANCE(getApplicationContext()).setINFormattedDay(getFormattedDay(checkInDate));
                         SharePreference.getINSTANCE(getApplicationContext()).setINFormattedTime(getFormattedTime(checkInDate));
                         SharePreference.getINSTANCE(getApplicationContext()).setINFormattedDate(getFormattedDate(checkInDate));
+                        SharePreference.getINSTANCE(getApplicationContext()).setCheckIn(mCheckIn(checkOutDate));
                     }
                 }, checkInDate.get(Calendar.HOUR_OF_DAY), checkInDate.get(Calendar.MINUTE), false).show();
             }
@@ -143,6 +177,7 @@ public class ScheduleActivity extends AppCompatActivity {
                         SharePreference.getINSTANCE(getApplicationContext()).setOutFormattedDay(getFormattedDay(checkOutDate));
                         SharePreference.getINSTANCE(getApplicationContext()).setOutFormattedTime(getFormattedTime(checkOutDate));
                         SharePreference.getINSTANCE(getApplicationContext()).setOutFormattedDate(getFormattedDate(checkOutDate));
+                        SharePreference.getINSTANCE(getApplicationContext()).setCheckOut(mCheckOut(checkOutDate));
                     }
                 }, checkOutDate.get(Calendar.HOUR_OF_DAY), checkOutDate.get(Calendar.MINUTE), false).show();
             }
@@ -155,10 +190,20 @@ public class ScheduleActivity extends AppCompatActivity {
         secs = secs % 3600;
         int mins = (int) (secs / 60);
         secs = secs % 60;
-        tvDuration.setText(String.valueOf(hours) + " hrs " + String.valueOf(mins) + " mins ");
+        String duration = String.valueOf(hours) + " hrs " + String.valueOf(mins) + " mins ";
+        tvDuration.setText(duration);
+        SharePreference.getINSTANCE(this).setDuration(duration);
     }
     public String getFormattedDay(Calendar date){
         SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM");
+        return formatter.format(date.getTime());
+    }
+    public String mCheckIn(Calendar date){
+        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        return formatter.format(date.getTime());
+    }
+    public String mCheckOut(Calendar date){
+        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         return formatter.format(date.getTime());
     }
     public String getFormattedTime(Calendar date){
@@ -174,5 +219,75 @@ public class ScheduleActivity extends AppCompatActivity {
     public void addVehicle(View view){
         Intent intent = new Intent(ScheduleActivity.this, CarDetailsActiviy.class);
         startActivity(intent);
+    }
+    private void showAlert() {
+        final List<Vehicle> vehicleList;
+        final RecyclerView recyclerView;
+        final BookingVehicleAdapter myVehicleAdapter;
+        final ProgressBar progressBar;
+        final TextView new_text;
+        CardView single_vehicle;
+
+        final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
+        final View customView = getLayoutInflater().inflate(R.layout.dialog_my_vehicle, null);
+
+        final View vehicleView = getLayoutInflater().inflate(R.layout.vehicle_item, null);
+        single_vehicle = vehicleView.findViewById(R.id.single_vehicle);
+
+
+        new_text = customView.findViewById(R.id.new_text);
+        progressBar = customView.findViewById(R.id.progressBar);
+        new_text.setVisibility(View.INVISIBLE);
+        vehicleList = new ArrayList<>();
+        recyclerView = customView.findViewById(R.id.mv_recyclerView);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+
+        recyclerView.setLayoutManager(layoutManager);
+        myVehicleAdapter = new BookingVehicleAdapter(getApplicationContext(), vehicleList );
+        recyclerView.setAdapter(myVehicleAdapter);
+
+        String token = SharePreference.getINSTANCE(getApplicationContext()).getAccessToken();
+        ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
+        parkingApi.getAllVehicles(token).enqueue(new Callback<BaseDataResponse<List<Vehicle>>>() {
+            @Override
+            public void onResponse(Call<BaseDataResponse<List<Vehicle>>> call, Response<BaseDataResponse<List<Vehicle>>> response) {
+                if(response.isSuccessful()){
+                    Log.e("Response code", String.valueOf(response.code()));
+                    new_text.setVisibility(View.INVISIBLE);
+                    vehicleList.addAll(response.body().getData());
+                    myVehicleAdapter.notifyDataSetChanged();
+                    if(vehicleList.isEmpty()){
+                        new_text.setVisibility(View.VISIBLE);
+                    }
+                    progressBar.setVisibility(View.GONE);
+                }else{
+                    Log.e("Response code", String.valueOf(response.code()));
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseDataResponse<List<Vehicle>>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Failed to retrieve items", Toast.LENGTH_LONG).show();
+                Log.e("On Failure", t.getMessage());
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+        myDialog.setView(customView);
+        final AlertDialog dialog = myDialog.create();
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(false);
+        single_vehicle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+
+    }
+    private void getVehicles() {
+
     }
 }
