@@ -155,9 +155,7 @@ public class HomeActivity extends BaseActivity {
                         break;
 
                     case R.id.nav_settings:
-                        title = "Settings";
-                        fragment = new SettingsFragment();
-                        break;
+                       startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
 
                     case R.id.nav_sign_out:
                         title = "Logout";

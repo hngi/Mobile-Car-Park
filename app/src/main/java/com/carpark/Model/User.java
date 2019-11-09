@@ -24,7 +24,7 @@ public class User {
     private String phone;
     @SerializedName("email")
     @Expose
-    private Object email;
+    private String email;
     @SerializedName("email_verified_at")
     @Expose
     private Object emailVerifiedAt;
@@ -70,11 +70,11 @@ public class User {
         this.phone = phone;
     }
 
-    public Object getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Object email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
