@@ -12,7 +12,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.carpark.Model.Park.ParkingSpace;
-import com.carpark.Model.Park.ParkingSpace;
 import com.carpark.R;
 import com.carpark.views.ScheduleActivity;
 
