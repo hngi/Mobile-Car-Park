@@ -3,52 +3,97 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="200dp"
+    android:outlineSpotShadowColor="@color/black_transparent"
+    android:background="@drawable/button_curve"
     >
+
+
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/custom_toolbar"-->
+<!--        android:layout_width="409dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="?attr/colorPrimary"-->
+<!--        android:minHeight="?attr/actionBarSize"-->
+<!--        android:theme="?attr/actionBarTheme"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Confirm Number?"
         android:fontFamily="@font/nunito_bold"
+        android:text="Confirm Number?"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/text_16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/carpark_ic"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/splash_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
 
     <TextView
         android:id="@+id/confirmNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Confirm Number"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/nunito"
+        android:gravity="center"
+        android:text="Confirm Number"
+        android:textColor="@color/color_white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/carpark_ic" />
 
-    <TextView
+    <Button
         android:id="@+id/NoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
         android:text="No"
         android:layout_margin="16dp"
         android:padding="16dp"
+        android:textStyle="bold"
+        android:background="@drawable/button_curve_white"
         android:textColor="@color/colorAccent"
         android:fontFamily="@font/nunito"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmNumber" />
 
-    <TextView
+    <Button
         android:id="@+id/YesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
         android:text="Yes"
         android:padding="16dp"
+        android:textStyle="bold"
         android:textColor="@color/colorAccent"
         android:fontFamily="@font/nunito"
         android:layout_margin="16dp"
+        android:background="@drawable/button_curve_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmNumber" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
