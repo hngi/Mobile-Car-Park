@@ -122,13 +122,6 @@ public class HomeActivity extends BaseActivity {
 
     private void navigationClickListeners() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            class Logout extends Fragment {
-                @Override
-                public void startActivity(Intent intent) {
-                    intent = new Intent(getApplicationContext(),GetStarted.class);
-                    super.startActivity(intent);
-                }
-            }
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
