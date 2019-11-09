@@ -11,40 +11,60 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito"
+            android:text="Lekki Gardens"
+            android:textColor="@color/text_black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="8dp"
+            android:text="Bisyway St, Admiralty way,"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv1" />
+
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
             android:orientation="vertical"
-            android:padding="22dp"
+            android:paddingStart="22dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="22dp"
+            android:paddingBottom="22dp"
             app:layout_constraintBottom_toTopOf="@+id/confirm_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/tv1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:text="Lekki Gardens"
-                android:textColor="@color/text_black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bisyway St, Admiralty way,"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/tv3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lekki, Lagos"
-                android:textSize="17sp" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv2"
+            app:layout_constraintVertical_bias="1.0">
 
             <RatingBar
                 android:id="@+id/ratingBar"
@@ -66,11 +86,11 @@
                 android:id="@+id/tv5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Floor 3 Section D Lane 3"
-                android:textSize="18sp"
                 android:fontFamily="@font/nunito"
+                android:text="Floor 3 Section D Lane 3"
                 android:textColor="@color/text_black"
-                android:textStyle="bold"/>
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -106,22 +126,22 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Sun, 20 Oct"
-                    android:textSize="18sp"
                     android:fontFamily="@font/nunito"
+                    android:text="Sun, 20 Oct"
                     android:textColor="@color/text_black"
-                    android:textStyle="bold"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv21"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Sun, 20 Oct"
-                    android:textSize="18sp"
                     android:fontFamily="@font/nunito"
+                    android:text="Sun, 20 Oct"
                     android:textColor="@color/text_black"
-                    android:textStyle="bold"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -135,18 +155,18 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/nunito"
                     android:text="10.00am"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/nunito" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/tv23"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/nunito"
                     android:text="11.00am"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/nunito" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -160,25 +180,27 @@
                     android:id="@+id/tv24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vehicle"
-                    android:fontFamily="@font/nunito" />
+                    android:fontFamily="@font/nunito"
+                    android:text="Vehicle" />
+
                 <TextView
                     android:id="@+id/tv25"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lexus RX330"
-                    android:textSize="18sp"
                     android:fontFamily="@font/nunito"
+                    android:text="Lexus RX330"
                     android:textColor="@color/text_black"
-                    android:textStyle="bold"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tv26"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="LNG122BW"
-                    android:textSize="18sp"
                     android:fontFamily="@font/nunito"
-                    android:textColor="@color/text_black" />
+                    android:text="LNG122BW"
+                    android:textColor="@color/text_black"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -193,17 +215,18 @@
                     android:id="@+id/tv27"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payable Amount"
-                    android:fontFamily="@font/nunito" />
+                    android:fontFamily="@font/nunito"
+                    android:text="Payable Amount" />
+
                 <TextView
                     android:id="@+id/tv28"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="N200"
-                    android:textSize="18sp"
                     android:fontFamily="@font/nunito"
+                    android:text="N200"
                     android:textColor="@color/text_black"
-                    android:textStyle="bold"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
@@ -217,7 +240,6 @@
             android:layout_marginBottom="18dp"
             android:background="@drawable/com_facebook_button_background"
             android:fontFamily="@font/nunito"
-            android:onClick="confirmBooking"
             android:text="Confirm Booking"
             android:textAllCaps="false"
             android:textColor="@color/color_white"
@@ -249,6 +271,12 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.71" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

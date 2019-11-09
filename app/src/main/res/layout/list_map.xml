@@ -22,6 +22,16 @@
         android:paddingBottom="8dp">
 
         <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="3"
+            app:layout_constraintBottom_toBottomOf="@+id/park_name"
+            app:layout_constraintEnd_toEndOf="@+id/textView32"
+            app:layout_constraintTop_toTopOf="@+id/park_name"  />
+
+        <TextView
             android:id="@+id/park_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -34,7 +44,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/price"
+            app:layout_constraintEnd_toStartOf="@id/price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,15 +87,6 @@
             app:layout_constraintEnd_toStartOf="@+id/textView32"
             app:layout_constraintTop_toTopOf="@+id/textView32" />
 
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:text="3"
-            app:layout_constraintBottom_toBottomOf="@+id/park_name"
-            app:layout_constraintEnd_toEndOf="@+id/textView32"
-            app:layout_constraintTop_toTopOf="@+id/park_name"  />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -10,14 +10,14 @@ import com.google.gson.annotations.SerializedName;
  * @created : 03/10/19
  */
 
-public class ParkingSpaceResponse {
+public class ParkingSpaceDataResponse<T> {
 
     @SerializedName("status")
     @Expose
     private boolean status;
     @SerializedName("result")
     @Expose
-    private ParkingSpace parkingSpace;
+    private T parkingSpace;
     @SerializedName("message")
     @Expose
     private String message;
@@ -30,11 +30,11 @@ public class ParkingSpaceResponse {
         this.status = status;
     }
 
-    public ParkingSpace getParkingSpace() {
+    public T getParkingSpace() {
         return parkingSpace;
     }
 
-    public void setParkingSpace(ParkingSpace parkingSpace) {
+    public void setParkingSpace(T parkingSpace) {
         this.parkingSpace = parkingSpace;
     }
 

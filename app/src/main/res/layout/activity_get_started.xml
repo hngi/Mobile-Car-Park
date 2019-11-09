@@ -75,7 +75,7 @@
                 android:fontFamily="@font/nunito"
                 android:hint="Enter your phone number"
                 android:inputType="phone"
-                android:maxLength="13"
+                android:maxLength="11"
                 android:paddingLeft="8dp"
                 android:textAllCaps="false"
                 android:textColor="#777777"
@@ -140,10 +140,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/linccp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fb_btn" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.carpark.Api.Responses.BaseDataResponse;
 import com.carpark.Api.Responses.BaseResponse;
 import com.carpark.Api.Responses.LoginReg.UserResponse;
+import com.carpark.Api.Responses.Otp.OTPResponse;
 import com.carpark.Api.RetrofitClient;
 
 import com.carpark.Model.PhoneOtp;
@@ -49,6 +50,7 @@ public class EnterOTP extends BaseActivity {
     FirebaseAuth auth;
     private String verificationCode;
     ProgressBar OTPbar;
+    TextView resendOTP;
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
 
@@ -62,11 +64,13 @@ public class EnterOTP extends BaseActivity {
         otp2 = findViewById(R.id.edit_otp2);
         otp3 = findViewById(R.id.edit_otp3);
         otp4 = findViewById(R.id.edit_otp4);
+        resendOTP = findViewById(R.id.resend_otp);
 
         receiveNumber = findViewById(R.id.display_number);
         backToVerify = findViewById(R.id.back_verify_num);
         btnToNext = findViewById(R.id.btn_next_otp);
         OTPbar = findViewById(R.id.progress_bar_otp);
+        final String phoneNum = getIntent().getStringExtra("PhoneNumberForOTP");
 
         //receive user phone number from verify number activity
         receiveNumber.setText(getIntent().getStringExtra("PhoneNumber"));
@@ -179,6 +183,16 @@ public class EnterOTP extends BaseActivity {
             }
         });
 
+        resendOTP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OTPbar.setVisibility(View.VISIBLE);
+                resendOTP.setClickable(false);
+                sendOtp(phoneNum);
+
+            }
+        });
+
 
     }
 
@@ -249,6 +263,37 @@ public class EnterOTP extends BaseActivity {
             Toast.makeText(EnterOTP.this, "Enter a Valid OTP code", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public void sendOtp(final String phoneForOTP) {
+        getParkingApi().sendOTP(phoneForOTP).enqueue(new Callback<OTPResponse>() {
+            @Override
+            public void onResponse(Call<OTPResponse> call, Response<OTPResponse> response) {
+                if (response.isSuccessful()) {
+                    OTPbar.setVisibility(View.INVISIBLE);
+                        String message = response.body().getMessage();
+                        Toast.makeText(EnterOTP.this, message, Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "Code: " + response.code() + "message; " + message);
+
+                } else {
+                    resendOTP.setClickable(true);
+                    OTPbar.setVisibility(View.INVISIBLE);
+                    assert response.body().getMessage() != null;
+                    String message = response.body().getMessage();
+                    Toast.makeText(EnterOTP.this, message, Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OTPResponse> call, Throwable t) {
+                resendOTP.setClickable(true);
+                OTPbar.setVisibility(View.INVISIBLE);
+                Toast.makeText(EnterOTP.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onFailure: " + t.getMessage());
+
+            }
+        });
     }
 
 

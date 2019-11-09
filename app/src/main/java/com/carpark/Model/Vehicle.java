@@ -32,7 +32,7 @@ public class Vehicle {
     @Expose
     private String updatedAt;
 
-    private String token;
+//    private String token;
 
 
     public Vehicle() {
@@ -94,19 +94,19 @@ public class Vehicle {
         this.updatedAt = updatedAt;
     }
 
-    public String getToken() {
-        return token;
-    }
+//    public String getToken() {
+//        return token;
+//    }
+//
+//    public void setToken(String token) {
+//        this.token = token;
+//    }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-        public Vehicle(String token, String plateNumber, String makeModel, boolean mainRide) {
+        public Vehicle(String plateNumber, String makeModel, boolean mainRide) {
         this.plateNumber = plateNumber;
         this.makeModel = makeModel;
         this.mainRide = mainRide;
-        this.token = token;
+
 
     }
 }

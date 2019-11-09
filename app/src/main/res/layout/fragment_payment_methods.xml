@@ -121,24 +121,26 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
             android:src="@drawable/bartar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/line_1_3" />
 
         <TextView
             android:id="@+id/barter"
-            android:layout_width="wrap_content"
+            android:layout_width="282dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/nunito_semibold"
             android:gravity="top"
             android:lineHeight="22sp"
             android:text="@string/barter"
             android:textColor="#777777"
             android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/barter_btn"
+            app:layout_constraintHorizontal_bias="0.008"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
             app:layout_constraintTop_toBottomOf="@+id/line_1_3" />
 
@@ -177,8 +179,8 @@
 
         <TextView
             android:id="@+id/paystack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="316dp"
+            android:layout_height="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/nunito_semibold"
@@ -187,6 +189,7 @@
             android:text="@string/paystack"
             android:textColor="#777777"
             android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/paystack_btn"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/line_1_4" />
 

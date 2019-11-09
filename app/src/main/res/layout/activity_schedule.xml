@@ -269,7 +269,6 @@
             android:layout_marginBottom="22dp"
             android:background="@drawable/com_facebook_button_background"
             android:fontFamily="@font/nunito"
-            android:onClick="next"
             android:text="@string/next"
             android:textAllCaps="false"
             android:textColor="@color/color_white"

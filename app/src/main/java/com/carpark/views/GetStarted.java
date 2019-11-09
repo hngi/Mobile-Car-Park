@@ -2,6 +2,7 @@ package com.carpark.views;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -62,6 +63,7 @@ public class GetStarted extends BaseActivity {
     ProgressBar sendOTPbar;
     Intent intent;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,8 +105,9 @@ public class GetStarted extends BaseActivity {
 
         });
     }
+
     // facebook login
-    private void onFacebookLogin(){
+    private void onFacebookLogin() {
         callbackManager = CallbackManager.Factory.create();
 
         // Set permissions
@@ -186,7 +189,7 @@ public class GetStarted extends BaseActivity {
             startActivity(new Intent(GetStarted.this, HomeActivity.class));
             finish();
         }
-        if (SharePreference.getINSTANCE(this).getIsUserLoggedIn()==true) {
+        if (SharePreference.getINSTANCE(this).getIsUserLoggedIn() == true) {
             // user already signed in
             startActivity(new Intent(GetStarted.this, HomeActivity.class));
             finish();
@@ -201,18 +204,23 @@ public class GetStarted extends BaseActivity {
         intent = new Intent(getApplicationContext(), VerifyNumber.class);
         if (TextUtils.isEmpty(number.getText().toString())) {
             number.setError("Please fill in phone number");
-        } else if (!((Phone.length() < 10) || (Phone.length() > 11))) {
-            showAlert(fullPhone);
+        } else if (!((Phone.length() < 9) || (Phone.length() > 11))) {
+            if (Phone.startsWith("0")) {
+                number.setError("Kindly remove the first '0' on the number");
+            } else {
+                cont_btn.setClickable(false);
+                showAlert(fullPhone);
+            }
         } else {
             Toast.makeText(GetStarted.this, "Enter a Valid Number", Toast.LENGTH_SHORT).show();
         }
     }
 
 
-
     private void showAlert(final String phoneNumber) {
-        TextView yes, no;
+        Button yes, no;
         TextView phone;
+        Toolbar toolbar;
 
         final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
         //myDialog.setTitle("Confirm Number?");
@@ -220,7 +228,11 @@ public class GetStarted extends BaseActivity {
         yes = customView.findViewById(R.id.YesButton);
         no = customView.findViewById(R.id.NoButton);
         phone = customView.findViewById(R.id.confirmNumber);
+        //toolbar = customView.findViewById(R.id.custom_toolbar);
         phone.setText(phoneNumber);
+        //toolbar.setTitle("Confirm phone Number");
+
+        //myDialog.setTitle("Confirm phone Number").setIconAttribute(getTitleColor());
         myDialog.setView(customView);
         final AlertDialog dialog = myDialog.create();
         dialog.show();
@@ -229,6 +241,7 @@ public class GetStarted extends BaseActivity {
             public void onClick(View view) {
                 sendOTPbar.setVisibility(View.VISIBLE);
                 dialog.dismiss();
+                cont_btn.setClickable(true);
                 verifyNumberIfRegistered(phoneNumber);
 
 
@@ -240,6 +253,15 @@ public class GetStarted extends BaseActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+                cont_btn.setClickable(true);
+            }
+
+
+        });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                cont_btn.setClickable(true);
             }
         });
 
@@ -271,6 +293,7 @@ public class GetStarted extends BaseActivity {
                     sendOTPbar.setVisibility(View.INVISIBLE);
                     assert response.body().getMessage() != null;
                     String message = response.body().getMessage();
+                    cont_btn.setClickable(true);
                     Toast.makeText(GetStarted.this, message, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Code: " + response.code() + "message; " + response.errorBody());
                 }
@@ -280,7 +303,7 @@ public class GetStarted extends BaseActivity {
             public void onFailure(Call<OTPResponse> call, Throwable t) {
                 sendOTPbar.setVisibility(View.INVISIBLE);
                 Toast.makeText(GetStarted.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-
+                cont_btn.setClickable(true);
                 Log.d(TAG, "onFailure: " + t.getMessage());
 
             }
@@ -311,6 +334,7 @@ public class GetStarted extends BaseActivity {
 
             @Override
             public void onFailure(Call<VerificationResponse> call, Throwable t) {
+                sendOTPbar.setVisibility(View.INVISIBLE);
                 Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
@@ -318,7 +342,7 @@ public class GetStarted extends BaseActivity {
 
     private void logInOldUser(String phone) {
         Intent intent = new Intent(this, PasswordActivity.class);
-        intent.putExtra(PasswordActivity.phoneForLoginKEY,phone);
+        intent.putExtra(PasswordActivity.phoneForLoginKEY, phone);
         startActivity(intent);
     }
 
