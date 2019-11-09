@@ -52,6 +52,8 @@ public class CarDetailsActiviy extends BaseActivity {
         setContentView(R.layout.activity_car_details);
         token = getSharePref().getAccessToken();
         viewsInit();
+
+        // To Edit or Delete Vehicle
         if(plate!=null){
             getCarDetails(vehicle_id,plate,make);
             saveCarDetails.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +67,8 @@ public class CarDetailsActiviy extends BaseActivity {
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             });
+
+            // To Add new Vehicle
         }else{
             saveCarDetails.setText("Save");
             getSupportActionBar().setTitle("Add New Vehicle");
@@ -97,7 +101,9 @@ public class CarDetailsActiviy extends BaseActivity {
         getParkingApi().editVehicle(token, vehicleId, plate, make).enqueue(new Callback<BaseDataResponse<Vehicle>>() {
             @Override
             public void onResponse(Call<BaseDataResponse<Vehicle>> call, Response<BaseDataResponse<Vehicle>> response) {
+                // Vehicle will be updated In the API, Nothing to do with the response gotten
                 showToast("Vehicle Updated");
+                finish();
             }
 
             @Override
@@ -124,7 +130,6 @@ public class CarDetailsActiviy extends BaseActivity {
         switch (item.getItemId()) {
             case R.id.delete:
                 deleteVehicle(vehicle_id);
-                Toast.makeText(this, "Vehicle Deleted", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -132,6 +137,18 @@ public class CarDetailsActiviy extends BaseActivity {
     }
 
     private void deleteVehicle(int vehicle_id) {
+        getParkingApi().deleteVehicle(token, vehicle_id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                showToast( "Vehicle Deleted");
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                showToast( "Failed to delete Vehicle");
+            }
+        });
 
     }
 
