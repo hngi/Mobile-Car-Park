@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:text="Lebron James"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:fontFamily="@font/nunito_semibold"
             android:textColor="#808080"
             android:layout_marginStart="20dp"
