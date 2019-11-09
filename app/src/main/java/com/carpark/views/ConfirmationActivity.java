@@ -125,6 +125,9 @@ public class ConfirmationActivity extends BaseActivity {
         myDialog.setView(customView);
         final AlertDialog dialog = myDialog.create();
         dialog.show();
+        SharePreference.getINSTANCE(this).setDuration("-----");
+        SharePreference.getINSTANCE(this).setINFormattedDate("-----");
+        SharePreference.getINSTANCE(this).setOutFormattedDate("-----");
         dialog.setCanceledOnTouchOutside(false);
         invoice.setOnClickListener(new View.OnClickListener() {
             @Override
