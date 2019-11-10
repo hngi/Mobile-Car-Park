@@ -156,6 +156,7 @@ public class HomeActivity extends BaseActivity {
 
                     case R.id.nav_settings:
                        startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
+                       break;
 
                     case R.id.nav_sign_out:
                         title = "Logout";

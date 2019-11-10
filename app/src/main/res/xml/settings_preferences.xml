@@ -10,10 +10,14 @@
         <Preference
             app:iconSpaceReserved="false"
             android:selectAllOnFocus="true"
-            android:fragment="com.carpark.views.NotificationFragment"
             android:singleLine="true"
             android:title="Notification" >
 
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.carpark"
+                android:targetClass="com.carpark.views.NotificationActivity"
+                />
         </Preference>
 
         <SwitchPreference
@@ -31,9 +35,15 @@
             app:iconSpaceReserved="false"
             android:key="about_preferences"
             android:selectAllOnFocus="true"
-            android:fragment="com.carpark.views.homefragments.AboutFragment"
             android:singleLine="true"
-            android:title="About" />
+            android:title="About">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.carpark"
+                android:targetClass="com.carpark.views.AboutActivity"
+                />
+        </Preference>
 
         <!-- Add Nested FAQ Fragment Here-->
         <!-- Add  android:fragment="com.carpark.views.FAQ"-->
@@ -52,8 +62,14 @@
             android:key="support_preferences"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:fragment="com.carpark.views.homefragments.SupportFragment"
             app:iconSpaceReserved="false"
-            android:title="Support" />
+            android:title="Support">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.carpark"
+                android:targetClass="com.carpark.views.SupportActivity"
+                />
+        </Preference>
     </PreferenceCategory>
 </PreferenceScreen>
