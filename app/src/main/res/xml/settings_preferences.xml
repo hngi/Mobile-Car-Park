@@ -62,7 +62,6 @@
             android:key="support_preferences"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:fragment="com.carpark.views.homefragments.SupportFragment"
             app:iconSpaceReserved="false"
             android:title="Support">
 
