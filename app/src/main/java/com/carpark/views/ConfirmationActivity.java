@@ -95,7 +95,11 @@ public class ConfirmationActivity extends BaseActivity {
                     showAlert();
                     progressBar.setVisibility(View.INVISIBLE);
 
-                }else{
+                }else if(response.code()==500){
+                    showAlert();
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+                else{
                     showToast("Failure " + response.code());
                     confirm_button.setClickable(true);
                     progressBar.setVisibility(View.INVISIBLE);

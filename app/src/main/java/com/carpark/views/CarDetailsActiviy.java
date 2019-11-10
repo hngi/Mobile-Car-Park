@@ -107,6 +107,9 @@ public class CarDetailsActiviy extends BaseActivity {
     private void getCarDetails(final int vehicle_id, final String plate, final String make) {
         plateNumber.setText(plate);
         carModel.setText(make);
+        if(plate.equals(SharePreference.getINSTANCE(this).getMainVehicleNumber())){
+            primaryRide.setChecked(true);
+        }
         saveCarDetails.setText("Update");
         getSupportActionBar().setTitle(make);
     }
@@ -225,7 +228,27 @@ public class CarDetailsActiviy extends BaseActivity {
 
     public void saveCar(String plate_number, String make_model,boolean main_ride){
         token = SharePreference.getINSTANCE(getApplicationContext()).getAccessToken();
+        ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
+        parkingApi.addNewVehicle(token,plate_number,make_model,main_ride).enqueue(new Callback<BaseDataResponse<Vehicle>>() {
+            @Override
+            public void onResponse(Call<BaseDataResponse<Vehicle>> call, Response<BaseDataResponse<Vehicle>> response) {
+                if(response.isSuccessful()){
+                    progressBar.setVisibility(View.GONE);
+                    showToast( "Vehicle Added");
+                    Intent i = new Intent(getApplicationContext(),HomeActivity.class);
+                    i.putExtra("name","Value");
+                    startActivity(i);
+                    finish();
+                }else{
 
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseDataResponse<Vehicle>> call, Throwable t) {
+
+            }
+        });
 
 
     }
