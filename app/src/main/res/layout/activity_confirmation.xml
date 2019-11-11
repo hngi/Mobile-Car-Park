@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv1"
+            android:id="@+id/park_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
@@ -38,7 +38,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv2"
+            android:id="@+id/park_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
@@ -47,7 +47,7 @@
             android:textSize="17sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv1" />
+            app:layout_constraintTop_toBottomOf="@+id/park_name" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -63,7 +63,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv2"
+            app:layout_constraintTop_toBottomOf="@+id/park_address"
             app:layout_constraintVertical_bias="1.0">
 
             <RatingBar

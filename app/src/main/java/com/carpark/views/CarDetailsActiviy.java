@@ -226,13 +226,17 @@ public class CarDetailsActiviy extends BaseActivity {
 
     }
 
-    public void saveCar(String plate_number, String make_model,boolean main_ride){
+    public void saveCar(final String plate_number, final String make_model, boolean main_ride){
         token = SharePreference.getINSTANCE(getApplicationContext()).getAccessToken();
         ParkingApi parkingApi = RetrofitClient.getInstance().create(ParkingApi.class);
         parkingApi.addNewVehicle(token,plate_number,make_model,main_ride).enqueue(new Callback<BaseDataResponse<Vehicle>>() {
             @Override
             public void onResponse(Call<BaseDataResponse<Vehicle>> call, Response<BaseDataResponse<Vehicle>> response) {
                 if(response.isSuccessful()){
+                    if(primaryRide.isChecked()){
+                        SharePreference.getINSTANCE(getApplicationContext()).setMainVehicleName(make_model);
+                        SharePreference.getINSTANCE(getApplicationContext()).setMainVehicleNumber(plate_number);
+                    }
                     progressBar.setVisibility(View.GONE);
                     showToast( "Vehicle Added");
                     Intent i = new Intent(getApplicationContext(),HomeActivity.class);
