@@ -171,7 +171,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+        app:layout_constraintTop_toBottomOf="@+id/qr_code" />
 
     <TextView
         android:id="@+id/textView33"
@@ -206,7 +206,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView33" />
 
     <TextView
-        android:id="@+id/textView36"
+        android:id="@+id/qr_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
