@@ -42,8 +42,8 @@ public class ConfirmationActivity extends BaseActivity {
 
         bookingSchedule = new BookingSchedule();
 
-        park = findViewById(R.id.tv1);
-        address = findViewById(R.id.tv2);
+        park = findViewById(R.id.park_name);
+        address = findViewById(R.id.park_address);
         date_in = findViewById(R.id.tv20);
         date_out = findViewById(R.id.tv21);
         time_in = findViewById(R.id.tv22);
@@ -95,7 +95,11 @@ public class ConfirmationActivity extends BaseActivity {
                     showAlert();
                     progressBar.setVisibility(View.INVISIBLE);
 
-                }else{
+                }else if(response.code()==500){
+                    showAlert();
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+                else{
                     showToast("Failure " + response.code());
                     confirm_button.setClickable(true);
                     progressBar.setVisibility(View.INVISIBLE);
